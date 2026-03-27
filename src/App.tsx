@@ -843,10 +843,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-
-          <p className="mx-auto mt-10 max-w-2xl text-center text-sm text-brand-500 md:mt-12">
-            Ønsker dere egne leverandører? Det meste lar seg løse — ta det med oss i planleggingen.
-          </p>
         </div>
       </section>
     </div>
