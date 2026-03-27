@@ -6,3 +6,6 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Vercel (lokal linking — ikke commit prosjekt-ID)
+.vercel
