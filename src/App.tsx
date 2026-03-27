@@ -11,9 +11,8 @@ import { useState, useEffect, useRef } from 'react';
 import './lib/i18n';
 import { Toaster } from 'sonner';
 
-import { InquiryForm } from './components/InquiryForm';
-
 import { AdminPanel } from './components/AdminPanel';
+import { BOOKING_URL } from './lib/booking';
 
 import { ContactPage } from './pages/ContactPage';
 
@@ -25,14 +24,12 @@ import { WeddingsPage } from './pages/WeddingsPage';
 import { CorporatePage } from './pages/CorporatePage';
 
 const InquiryPage = () => {
-  const { t } = useTranslation();
+  useEffect(() => {
+    window.location.replace(BOOKING_URL);
+  }, []);
   return (
-    <div className="py-20 px-4 max-w-3xl mx-auto">
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-serif mb-4">{t('nav.inquiry')}</h1>
-        <p className="text-brand-600">Tell us about your event and we will get back to you with a tailored offer.</p>
-      </div>
-      <InquiryForm />
+    <div className="flex min-h-[50vh] items-center justify-center px-4 py-20">
+      <p className="text-center text-brand-600">Sender deg til booking …</p>
     </div>
   );
 };
@@ -243,18 +240,22 @@ const Home = () => {
               {t('hero.subtitle')}
             </p>
             <div className="flex flex-wrap justify-center gap-6 pt-8">
-              <Link 
-                to="/inquiry" 
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-white text-brand-900 px-10 py-5 rounded-full text-sm uppercase tracking-widest font-bold hover:bg-brand-50 transition-all shadow-2xl transform hover:-translate-y-1"
               >
                 {t('hero.cta')}
-              </Link>
-              <Link 
-                to="/contact" 
+              </a>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-all"
               >
-                Book a Viewing
-              </Link>
+                {t('hero.bookNow')}
+              </a>
             </div>
           </motion.div>
         </div>
@@ -389,13 +390,6 @@ const Home = () => {
                     Bryllup, bedrift eller privat feiring: vi legger til rette for alt fra vielse og mingling til dans og overnatting i rolige omgivelser.
                   </p>
                   <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                    <Link
-                      to="/contact"
-                      className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-[11px] font-bold uppercase tracking-[0.2em] text-brand-900 shadow-lg shadow-black/20 transition-transform hover:-translate-y-0.5 hover:bg-brand-50"
-                    >
-                      Book omvisning
-                      <ArrowRight size={16} strokeWidth={2.25} aria-hidden />
-                    </Link>
                     <Link
                       to="/gallery"
                       className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-7 py-3.5 text-[11px] font-bold uppercase tracking-[0.2em] text-white transition-colors hover:border-white hover:bg-white/10"
@@ -880,8 +874,26 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-brand-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-        <Link to="/" className="text-3xl font-serif font-bold text-brand-900 tracking-tight">
-          Rønningen
+        <Link
+          to="/"
+          className="flex shrink-0 items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-brand-900 focus-visible:ring-offset-2 rounded-sm md:gap-3"
+        >
+          <img
+            src="/logo.png"
+            alt=""
+            width={120}
+            height={120}
+            className="h-11 w-auto shrink-0 object-contain object-left md:h-[3.25rem]"
+            decoding="async"
+          />
+          <span className="flex min-w-0 flex-col items-start justify-center leading-none">
+            <span className="font-serif text-lg font-bold tracking-tight text-brand-900 md:text-xl">
+              {t('branding.navLine1')}
+            </span>
+            <span className="mt-0.5 font-serif text-[10px] font-medium tracking-wide text-brand-600 md:text-[11px]">
+              {t('branding.navLine2')}
+            </span>
+          </span>
         </Link>
 
         {/* Desktop Nav */}
@@ -913,12 +925,14 @@ const Navbar = () => {
             <Globe size={16} />
             <span className="text-[11px] font-bold uppercase tracking-widest">{i18n.language}</span>
           </button>
-          <Link 
-            to="/inquiry" 
+          <a
+            href={BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-brand-900 text-white px-8 py-3.5 rounded-full text-[11px] uppercase tracking-[0.3em] font-bold hover:bg-brand-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
           >
-            {t('nav.inquiry')}
-          </Link>
+            {t('hero.bookNow')}
+          </a>
         </div>
 
         {/* Mobile Nav Toggle */}
@@ -955,13 +969,15 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              <Link 
-                to="/inquiry" 
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
                 className="bg-brand-900 text-white px-8 py-4 rounded-full text-center text-xs uppercase tracking-[0.3em] font-bold shadow-lg"
               >
-                {t('nav.inquiry')}
-              </Link>
+                {t('hero.bookNow')}
+              </a>
             </div>
           </motion.div>
         )}

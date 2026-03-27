@@ -21,7 +21,12 @@ const resources = {
       hero: {
         title: 'Rønningen Selskapslokale',
         subtitle: 'Elegant, personal, and flexible venue for your most important celebrations.',
-        cta: 'Book an Inquiry'
+        cta: 'Book an Inquiry',
+        bookNow: 'Book now'
+      },
+      branding: {
+        navLine1: 'Rønningen',
+        navLine2: 'Selskapslokale'
       },
       footer: {
         rights: 'All rights reserved',
@@ -47,7 +52,12 @@ const resources = {
       hero: {
         title: 'Rønningen Selskapslokale',
         subtitle: 'Elegant, personlig og fleksibelt lokale for dine viktigste feiringer.',
-        cta: 'Send forespørsel'
+        cta: 'Send forespørsel',
+        bookNow: 'Book nå'
+      },
+      branding: {
+        navLine1: 'Rønningen',
+        navLine2: 'Selskapslokale'
       },
       footer: {
         rights: 'Alle rettigheter reservert',
