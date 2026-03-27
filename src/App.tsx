@@ -112,35 +112,41 @@ const PackagesPage = () => {
   ];
 
   return (
-    <div className="py-32 px-4 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-24 space-y-6">
-          <span className="text-xs uppercase tracking-[0.4em] font-bold text-brand-400">Priser & Pakker</span>
-          <h1 className="text-6xl font-serif text-brand-900">{t('nav.packages')}</h1>
-          <p className="text-brand-600 max-w-2xl mx-auto text-lg font-light">
-            Vi tilbyr fleksible konsepter tilpasset dine behov. Alle pakker kan skreddersys med tilleggstjenester som ølsmaking, underholdning og transport.
-          </p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {packages.map((pkg, i) => (
-            <PackageCard key={i} {...pkg} />
-          ))}
-        </div>
-
-        <div className="mt-24 p-12 bg-brand-900 rounded-[3rem] text-white flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
-          <div className="space-y-4 text-center md:text-left">
-            <h3 className="text-3xl font-serif">Trenger du noe helt unikt?</h3>
-            <p className="text-brand-200 max-w-md">Vi skreddersyr gjerne et eget opplegg for din bedrift eller ditt selskap.</p>
+    <div className="flex flex-col bg-white">
+      <section className="section-viewport">
+        <div className="section-viewport-scroll mx-auto max-w-7xl px-4 py-24">
+          <div className="mb-24 space-y-6 text-center">
+            <span className="text-xs font-bold uppercase tracking-[0.4em] text-brand-400">Priser & Pakker</span>
+            <h1 className="font-serif text-6xl text-brand-900">{t('nav.packages')}</h1>
+            <p className="mx-auto max-w-2xl text-lg font-light text-brand-600">
+              Vi tilbyr fleksible konsepter tilpasset dine behov. Alle pakker kan skreddersys med tilleggstjenester som ølsmaking, underholdning og transport.
+            </p>
           </div>
-          <Link 
-            to="/contact" 
-            className="bg-white text-brand-900 px-10 py-5 rounded-full text-sm uppercase tracking-widest font-bold hover:bg-brand-50 transition-all whitespace-nowrap"
-          >
-            Kontakt oss for tilbud
-          </Link>
+
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+            {packages.map((pkg, i) => (
+              <PackageCard key={i} {...pkg} />
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
+
+      <section className="section-viewport">
+        <div className="section-viewport-scroll mx-auto max-w-7xl px-4 py-12">
+          <div className="flex flex-col items-center justify-between gap-8 rounded-[3rem] bg-brand-900 p-12 text-white shadow-2xl md:flex-row">
+            <div className="space-y-4 text-center md:text-left">
+              <h3 className="font-serif text-3xl">Trenger du noe helt unikt?</h3>
+              <p className="max-w-md text-brand-200">Vi skreddersyr gjerne et eget opplegg for din bedrift eller ditt selskap.</p>
+            </div>
+            <Link
+              to="/contact"
+              className="whitespace-nowrap rounded-full bg-white px-10 py-5 text-sm font-bold uppercase tracking-widest text-brand-900 transition-all hover:bg-brand-50"
+            >
+              Kontakt oss for tilbud
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
@@ -217,7 +223,7 @@ const Home = () => {
   return (
     <div className="flex flex-col">
       {/* Hero Section - Recipe 2 Inspired */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="section-viewport section-viewport-hero relative flex flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=2000" 
@@ -226,7 +232,7 @@ const Home = () => {
             referrerPolicy="no-referrer"
           />
         </div>
-        <div className="relative z-10 text-center text-white px-4 max-w-6xl">
+        <div className="section-viewport-scroll relative z-10 flex w-full max-w-6xl flex-col items-center justify-center px-4 py-6 text-center text-white">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -262,7 +268,7 @@ const Home = () => {
         </div>
         
         {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white animate-bounce opacity-50">
+        <div className="pointer-events-none absolute bottom-10 left-1/2 z-10 -translate-x-1/2 text-white animate-bounce opacity-50">
           <ChevronDown size={32} />
         </div>
       </section>
@@ -271,7 +277,7 @@ const Home = () => {
       <section
         id="konsept"
         aria-labelledby="konsept-heading"
-        className="relative overflow-hidden bg-[#e8dfd6] py-20 md:py-28 lg:py-32"
+        className="section-viewport relative overflow-hidden bg-[#e8dfd6]"
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.35] bg-[radial-gradient(circle_at_center,rgba(67,48,43,0.055)_1px,transparent_1px)] bg-size-[26px_26px]"
@@ -282,13 +288,13 @@ const Home = () => {
           <div className="absolute -left-[12%] bottom-[8%] h-[42%] w-[52%] rounded-full bg-brand-500/8 blur-[95px]" />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1920px] px-5 py-16 sm:px-8 md:px-12 md:py-24 lg:px-16 lg:py-24 xl:px-20">
           <motion.header
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-12 md:mb-16 lg:mb-20 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end lg:gap-14"
+            className="mb-10 grid grid-cols-1 gap-8 md:mb-12 lg:mb-16 lg:grid-cols-12 lg:items-end lg:gap-14"
           >
             <div className="lg:col-span-7">
               <span className="mb-5 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.42em] text-brand-600">
@@ -321,7 +327,7 @@ const Home = () => {
           >
             <div className="grid grid-cols-1 lg:grid-cols-2">
               {/* Venstre: hero + tillitsstripe + sitat */}
-              <div className="relative min-h-[min(68vh,680px)] lg:min-h-[620px]">
+              <div className="relative min-h-[min(68vh,680px,min(50dvh,36rem))] lg:min-h-[min(620px,50dvh)]">
                 <img
                   src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=88&w=1800"
                   alt="Låven og festlokalet på Rønningen Gård — klar til deres arrangement"
@@ -453,10 +459,10 @@ const Home = () => {
       <section
         id="konsepter"
         aria-labelledby="konsepter-heading"
-        className="overflow-hidden bg-gradient-to-b from-[#eef0f3] via-[#F3F4F6] to-brand-50/90 py-24 md:py-32"
+        className="section-viewport overflow-hidden bg-gradient-to-b from-[#eef0f3] via-[#F3F4F6] to-brand-50/90"
       >
-        <div className="mx-auto max-w-[1920px] px-5 sm:px-8 md:px-12 lg:px-16 xl:px-20">
-          <header className="mb-12 max-w-3xl lg:mb-16">
+        <div className="section-viewport-scroll mx-auto max-w-[1920px] px-5 py-20 sm:px-8 md:px-12 md:py-24 lg:px-16 xl:px-20">
+          <header className="mb-10 max-w-3xl lg:mb-12">
             <span className="mb-4 inline-block text-[11px] font-bold uppercase tracking-[0.38em] text-brand-500">
               Arrangementer
             </span>
@@ -477,7 +483,7 @@ const Home = () => {
             className="scrollbar-hide -mx-5 snap-x snap-mandatory overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 md:mx-0 md:px-0"
           >
             <div 
-              className="flex gap-4 h-[650px] w-[500%] md:w-[200%] transition-all duration-700"
+              className="flex h-[min(650px,55dvh)] min-h-[280px] w-[500%] gap-4 transition-all duration-700 md:w-[200%]"
             >
               {[
                 { title: 'Bryllup', path: '/weddings', img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1200' },
@@ -530,15 +536,15 @@ const Home = () => {
       </section>
 
       {/* Our Services Section */}
-      <section className="py-32 px-4 bg-[#F5F5F5] overflow-hidden relative">
+      <section className="section-viewport relative overflow-hidden bg-[#F5F5F5] px-4">
         {/* Subtle Background Glows */}
-        <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="pointer-events-none absolute top-0 right-0 h-full w-full overflow-hidden">
           <div className="absolute top-[10%] -right-[5%] w-[30%] h-[30%] bg-brand-200/10 blur-[100px] rounded-full"></div>
           <div className="absolute bottom-[10%] -left-[5%] w-[30%] h-[30%] bg-brand-300/10 blur-[100px] rounded-full"></div>
         </div>
 
-        <div className="max-w-[1800px] mx-auto px-8 md:px-20 relative z-10">
-          <div className="mb-16">
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
+          <div className="mb-12">
             <motion.span 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -553,7 +559,7 @@ const Home = () => {
               viewport={{ once: true }}
               className="text-4xl md:text-8xl font-serif text-brand-900 leading-[0.9] tracking-tighter"
             >
-              Eksklusive <br /> Opplevelser
+              Eksklusive Opplevelser
             </motion.h2>
           </div>
 
@@ -645,18 +651,18 @@ const Home = () => {
       <section
         id="inspirasjon-galleri"
         aria-labelledby="inspirasjon-galleri-heading"
-        className="relative overflow-hidden bg-white py-32"
+        className="section-viewport relative overflow-hidden bg-white"
       >
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute top-[40%] -right-[10%] h-[40%] w-[40%] rounded-full bg-brand-100/20 blur-[150px]" aria-hidden />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-[1800px] px-8 md:px-20">
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-16 max-w-3xl"
+            className="mb-12 max-w-3xl"
           >
             <span className="mb-5 block text-xs font-bold uppercase tracking-[0.3em] text-brand-500">Visuelt</span>
             <h2
@@ -785,20 +791,20 @@ const Home = () => {
       <section
         id="partnere"
         aria-labelledby="partnere-heading"
-        className="relative overflow-hidden border-t border-brand-200/80 bg-gradient-to-b from-white to-brand-50/50 py-28 md:py-32"
+        className="section-viewport relative overflow-hidden border-t border-brand-200/80 bg-gradient-to-b from-white to-brand-50/50"
       >
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/60 to-transparent"
           aria-hidden
         />
 
-        <div className="relative z-10 mx-auto max-w-[1800px] px-8 md:px-20">
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20 md:py-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto mb-14 max-w-3xl text-center md:mb-16"
+            className="mx-auto mb-12 max-w-3xl text-center md:mb-14"
           >
             <span className="mb-4 block text-xs font-bold uppercase tracking-[0.32em] text-brand-500">Samarbeid</span>
             <h2 id="partnere-heading" className="mb-5 font-serif text-4xl tracking-tight text-brand-900 md:text-5xl lg:text-6xl">

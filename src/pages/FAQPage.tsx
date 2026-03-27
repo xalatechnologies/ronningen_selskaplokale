@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const faqData = [
@@ -58,26 +58,28 @@ const FAQItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
 export const FAQPage: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <div className="py-20 px-4 max-w-4xl mx-auto">
-      <div className="text-center mb-16">
-        <h1 className="text-5xl font-serif mb-4">{t('nav.faq')}</h1>
-        <p className="text-brand-600">Find answers to the most common questions about our venue and services.</p>
-      </div>
-
-      <div className="space-y-12">
-        {faqData.map((section, i) => (
-          <div key={i}>
-            <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-brand-400 mb-6">{section.category}</h3>
-            <div className="bg-white rounded-2xl shadow-sm border border-brand-200 px-8">
-              {section.questions.map((item, j) => (
-                <FAQItem key={j} {...item} />
-              ))}
-            </div>
+    <div className="flex flex-col">
+      <section className="section-viewport">
+        <div className="section-viewport-scroll mx-auto w-full max-w-4xl px-4 py-16">
+          <div className="mb-12 text-center">
+            <h1 className="mb-4 font-serif text-5xl">{t('nav.faq')}</h1>
+            <p className="text-brand-600">Find answers to the most common questions about our venue and services.</p>
           </div>
-        ))}
-      </div>
+
+          <div className="space-y-12">
+            {faqData.map((section, i) => (
+              <div key={i}>
+                <h3 className="mb-6 text-xs font-bold uppercase tracking-[0.2em] text-brand-400">{section.category}</h3>
+                <div className="rounded-2xl border border-brand-200 bg-white px-8 shadow-sm">
+                  {section.questions.map((item, j) => (
+                    <FAQItem key={j} {...item} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
-
-import { AnimatePresence } from 'motion/react';

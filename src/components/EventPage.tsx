@@ -23,16 +23,16 @@ export const EventPage: React.FC<EventPageProps> = ({ title, subtitle, descripti
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
+      <section className="section-viewport section-viewport-hero relative flex flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src={image} 
             alt={title} 
-            className="w-full h-full object-cover brightness-[0.4]"
+            className="h-full w-full object-cover brightness-[0.4]"
             referrerPolicy="no-referrer"
           />
         </div>
-        <div className="relative z-10 text-center text-white px-4 max-w-5xl">
+        <div className="section-viewport-scroll relative z-10 flex w-full max-w-5xl flex-col items-center justify-center px-4 py-6 text-center text-white">
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -52,8 +52,8 @@ export const EventPage: React.FC<EventPageProps> = ({ title, subtitle, descripti
       </section>
 
       {/* Concept Section */}
-      <section className="py-32 bg-brand-900 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="section-viewport overflow-hidden bg-brand-900 text-white">
+        <div className="section-viewport-scroll mx-auto max-w-7xl px-4 py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
@@ -106,7 +106,8 @@ export const EventPage: React.FC<EventPageProps> = ({ title, subtitle, descripti
         </div>
       </section>
       {/* Content */}
-      <section className="py-24 px-4 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+      <section className="section-viewport">
+        <div className="section-viewport-scroll mx-auto grid max-w-7xl grid-cols-1 items-start gap-20 px-4 py-20 lg:grid-cols-2">
         <div className="space-y-12">
             <h2 className="text-4xl font-serif text-brand-900 leading-tight">Create Unforgettable Moments</h2>
             <p className="text-brand-700 leading-relaxed text-xl font-light">
@@ -224,6 +225,7 @@ export const EventPage: React.FC<EventPageProps> = ({ title, subtitle, descripti
               </div>
             </div>
           )}
+        </div>
         </div>
       </section>
     </div>

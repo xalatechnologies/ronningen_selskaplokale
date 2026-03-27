@@ -33,8 +33,10 @@ const testimonials = [
 export const TestimonialsPage: React.FC = () => {
   const { t } = useTranslation();
   return (
-    <div className="py-20 px-4 max-w-7xl mx-auto">
-      <div className="text-center mb-16">
+    <div className="flex flex-col">
+    <section className="section-viewport">
+      <div className="section-viewport-scroll mx-auto max-w-7xl px-4 py-16">
+      <div className="mb-12 text-center">
         <h1 className="text-5xl font-serif mb-4">Testimonials</h1>
         <p className="text-brand-600 max-w-2xl mx-auto">
           Read what our clients have to say about their experiences at Rønningen Selskapslokale.
@@ -66,6 +68,8 @@ export const TestimonialsPage: React.FC = () => {
           </motion.div>
         ))}
       </div>
+      </div>
+    </section>
     </div>
   );
 };

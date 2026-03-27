@@ -20,6 +20,11 @@
 }
 
 @layer base {
+  :root {
+    --site-nav-pad: 5rem;
+    --section-max-h: calc(100dvh - var(--site-nav-pad));
+  }
+
   body {
     @apply bg-brand-50 text-brand-900 font-sans;
   }
@@ -55,6 +60,37 @@
   }
   .animate-spin-slow {
     animation: spin-slow 15s linear infinite;
+  }
+
+  /* Full-viewport hero; on compact laptop matches section cap below nav. */
+  .section-viewport-hero {
+    min-height: 28rem;
+    height: 100svh;
+  }
+
+  /* Compact laptop: each primary section ≤ one viewport below fixed nav (internal scroll). */
+  @media (min-width: 768px) and ((max-width: 1366px) or (max-height: 864px)) {
+    .section-viewport {
+      display: flex;
+      flex-direction: column;
+      max-height: var(--section-max-h);
+      height: var(--section-max-h);
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    .section-viewport-hero {
+      height: var(--section-max-h);
+      max-height: var(--section-max-h);
+      min-height: 0;
+    }
+
+    .section-viewport-scroll {
+      flex: 1 1 0%;
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior-y: contain;
+    }
   }
 }
 

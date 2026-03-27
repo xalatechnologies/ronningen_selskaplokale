@@ -8,8 +8,9 @@ export const ContactPage: React.FC = () => {
   
   return (
     <div className="flex flex-col">
-      <section className="py-20 px-4 max-w-7xl mx-auto w-full">
-        <div className="text-center mb-16">
+      <section className="section-viewport">
+        <div className="section-viewport-scroll mx-auto w-full max-w-7xl px-4 py-16">
+        <div className="mb-12 text-center">
           <h1 className="text-5xl font-serif mb-4">{t('nav.contact')}</h1>
           <p className="text-brand-600 max-w-2xl mx-auto">
             We are here to help you plan your perfect event. Reach out to us for any questions or to schedule a viewing.
@@ -63,12 +64,13 @@ export const ContactPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="rounded-2xl overflow-hidden h-[500px] shadow-sm border border-brand-200">
+          <div className="h-[min(500px,45dvh)] min-h-[200px] overflow-hidden rounded-2xl border border-brand-200 shadow-sm">
             {/* Placeholder for Map */}
             <div className="w-full h-full bg-brand-100 flex items-center justify-center text-brand-400 font-serif italic">
               Interactive Map Coming Soon
             </div>
           </div>
+        </div>
         </div>
       </section>
     </div>

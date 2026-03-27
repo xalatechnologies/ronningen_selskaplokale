@@ -186,7 +186,7 @@ export const WeddingsPage = () => {
   return (
     <div className="flex flex-col bg-white">
       {/* 1. Hero */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="section-viewport section-viewport-hero relative flex flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=2000" 
@@ -197,7 +197,7 @@ export const WeddingsPage = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-brand-900/60 via-brand-900/20 to-brand-900/70 z-10"></div>
           <div className="absolute inset-0 bg-brand-400/10 mix-blend-overlay z-10"></div>
         </div>
-        <div className="relative z-10 text-center text-white px-4 max-w-5xl">
+        <div className="section-viewport-scroll relative z-10 flex w-full max-w-5xl flex-col items-center justify-center px-4 py-6 text-center text-white">
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -244,13 +244,13 @@ export const WeddingsPage = () => {
       <section
         id="atmosfaeren"
         aria-labelledby="atmosfaeren-heading"
-        className="scroll-mt-24 py-32 bg-white border-y border-brand-100 overflow-hidden relative"
+        className="section-viewport scroll-mt-24 relative overflow-hidden border-y border-brand-100 bg-white"
       >
-        <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="pointer-events-none absolute top-0 right-0 h-full w-full overflow-hidden">
           <div className="absolute top-[35%] -right-[8%] w-[42%] h-[42%] bg-brand-100/25 blur-[120px] rounded-full" />
         </div>
 
-        <div className="max-w-[1800px] mx-auto px-8 md:px-20 relative z-10">
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-14 xl:gap-20 items-start">
             <div className="order-2 lg:order-1 max-w-3xl">
               <span className="text-xl font-sans text-brand-900 opacity-80 uppercase tracking-widest mb-4 block">
@@ -268,7 +268,7 @@ export const WeddingsPage = () => {
             </div>
 
             <figure className="order-1 lg:order-2 m-0 w-full">
-              <div className="aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] xl:h-[min(78vh,720px)] xl:aspect-auto w-full rounded-md overflow-hidden border border-brand-100 bg-brand-50 shadow-lg">
+              <div className="aspect-[3/4] w-full rounded-md border border-brand-100 bg-brand-50 shadow-lg sm:aspect-[4/5] lg:aspect-[3/4] xl:aspect-auto xl:h-[min(78vh,720px,50dvh)] overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1600"
                   alt="Feiring og stemning på Rønningen — lokalet og omgivelsene"
@@ -303,16 +303,16 @@ export const WeddingsPage = () => {
       </section>
 
       {/* 4. What your day can look like - Visual Timeline */}
-      <section className="py-24 text-white overflow-hidden relative bg-gradient-to-b from-[#1c1613] via-brand-900 to-[#0e0a08]">
+      <section className="section-viewport relative overflow-hidden bg-gradient-to-b from-[#1c1613] via-brand-900 to-[#0e0a08] text-white">
         {/* Abstract Background Glows — warm depth aligned with brand */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="pointer-events-none absolute top-0 left-0 h-full w-full overflow-hidden">
           <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-brand-400/14 blur-[120px] rounded-full"></div>
           <div className="absolute -bottom-[20%] -right-[10%] w-[50%] h-[50%] bg-brand-600/12 blur-[120px] rounded-full"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70%] h-[40%] bg-brand-800/8 blur-[100px] rounded-full"></div>
+          <div className="absolute top-1/2 left-1/2 h-[40%] w-[70%] -translate-x-1/2 -translate-y-1/2 bg-brand-800/8 blur-[100px] rounded-full"></div>
         </div>
 
-        <div className="max-w-[1800px] mx-auto px-8 md:px-20 relative z-10">
-          <header className="relative mb-24 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16 lg:items-start">
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-20 md:px-20">
+          <header className="relative mb-16 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16 lg:items-start">
             {/* Floating Vertical Text */}
             <div className="absolute top-1/2 -right-48 -translate-y-1/2 rotate-90 hidden 2xl:block pointer-events-none opacity-10">
               <span className="text-[140px] font-serif text-white select-none whitespace-nowrap leading-none tracking-tighter">
@@ -373,7 +373,7 @@ export const WeddingsPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.2, duration: 0.8 }}
-                    className="group relative h-[600px] rounded-lg overflow-hidden shadow-2xl"
+                    className="group relative h-[min(600px,50dvh)] min-h-[260px] overflow-hidden rounded-lg shadow-2xl"
                   >
                     {/* Visual Background */}
                     <div className="absolute inset-0 z-0">
@@ -417,15 +417,15 @@ export const WeddingsPage = () => {
       </section>
 
       {/* 5: Services & Partners - Matched to Home "Våre tjenester" style */}
-      <section className="py-32 px-4 bg-[#F5F5F5] overflow-hidden relative">
+      <section className="section-viewport relative overflow-hidden bg-[#F5F5F5] px-4">
         {/* Subtle Background Glows */}
-        <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="pointer-events-none absolute top-0 right-0 h-full w-full overflow-hidden">
           <div className="absolute top-[10%] -right-[5%] w-[30%] h-[30%] bg-brand-200/10 blur-[100px] rounded-full"></div>
           <div className="absolute bottom-[10%] -left-[5%] w-[30%] h-[30%] bg-brand-300/10 blur-[100px] rounded-full"></div>
         </div>
 
-        <div className="max-w-[1800px] mx-auto px-8 md:px-20 relative z-10">
-          <div className="mb-16">
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
+          <div className="mb-12">
             <motion.span 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -499,13 +499,13 @@ export const WeddingsPage = () => {
       </section>
 
       {/* 6. Booking/package model */}
-      <section className="py-32 bg-gradient-to-b from-brand-100/70 via-brand-50 to-brand-100/50 overflow-hidden relative border-y border-brand-200/80">
-        <div className="max-w-[1800px] mx-auto px-8 md:px-20 relative z-10">
+      <section className="section-viewport relative overflow-hidden border-y border-brand-200/80 bg-gradient-to-b from-brand-100/70 via-brand-50 to-brand-100/50">
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-16 max-w-3xl"
+            className="mb-12 max-w-3xl"
           >
             <span className="text-xs uppercase tracking-[0.3em] text-brand-500 font-bold mb-5 block">Investeringen</span>
             <h2 className="text-5xl md:text-7xl font-serif text-brand-900 mb-6 tracking-tight leading-[0.95]">
@@ -597,18 +597,18 @@ export const WeddingsPage = () => {
       </section>
 
       {/* 7. Gallery - Editorial Style */}
-      <section className="py-32 bg-white overflow-hidden relative">
+      <section className="section-viewport relative overflow-hidden bg-white">
         {/* Abstract Background Elements */}
-        <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="pointer-events-none absolute top-0 right-0 h-full w-full overflow-hidden">
           <div className="absolute top-[40%] -right-[10%] w-[40%] h-[40%] bg-brand-100/20 blur-[150px] rounded-full"></div>
         </div>
 
-        <div className="max-w-[1800px] mx-auto px-8 md:px-20 relative z-10">
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-16 max-w-3xl"
+            className="mb-12 max-w-3xl"
           >
             <span className="text-xs uppercase tracking-[0.3em] text-brand-500 font-bold mb-5 block">Visuelt</span>
             <h2 className="text-5xl md:text-7xl font-serif text-brand-900 mb-6 tracking-tight leading-[0.95]">
@@ -715,13 +715,13 @@ export const WeddingsPage = () => {
 
 
       {/* 8. FAQ - Editorial Style */}
-      <section className="py-16 md:py-20 bg-brand-50/50 relative overflow-hidden">
+      <section className="section-viewport relative overflow-hidden bg-brand-50/50">
         {/* Background Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="pointer-events-none absolute top-0 left-0 h-full w-full overflow-hidden">
           <div className="absolute top-[10%] left-[5%] w-[20%] h-[20%] bg-brand-200/10 blur-[100px] rounded-full"></div>
         </div>
 
-        <div className="max-w-3xl mx-auto px-6 sm:px-8 relative z-10">
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-3xl px-6 py-12 sm:px-8 md:py-16">
           <div className="text-center mb-10 md:mb-12">
             <motion.span 
               initial={{ opacity: 0, y: 10 }}
@@ -737,8 +737,8 @@ export const WeddingsPage = () => {
               viewport={{ once: true }}
               className="text-4xl sm:text-5xl font-serif text-brand-900 mb-4 tracking-tighter leading-[0.95]"
             >
-              Ofte stilte <br />
-              <span className="italic text-brand-600 ml-6 sm:ml-10">spørsmål</span>
+              Ofte stilte{' '}
+              <span className="italic text-brand-600">spørsmål</span>
             </motion.h2>
             <div className="h-px w-16 bg-brand-200 mx-auto"></div>
           </div>
@@ -795,13 +795,14 @@ export const WeddingsPage = () => {
       </section>
 
       {/* 9. Final CTA - Editorial Style */}
-      <section className="py-32 px-8 md:px-20">
+      <section className="section-viewport px-8 md:px-20">
+        <div className="section-viewport-scroll py-10 md:py-14">
         <motion.div 
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="max-w-[1800px] mx-auto bg-brand-900 rounded-xl p-16 md:p-32 text-center text-white relative overflow-hidden shadow-2xl"
+          className="relative mx-auto max-w-[1800px] overflow-hidden rounded-xl bg-brand-900 p-16 text-center text-white shadow-2xl md:p-32"
         >
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0 opacity-30">
@@ -873,6 +874,7 @@ export const WeddingsPage = () => {
             </motion.div>
           </div>
         </motion.div>
+        </div>
       </section>
     </div>
   );

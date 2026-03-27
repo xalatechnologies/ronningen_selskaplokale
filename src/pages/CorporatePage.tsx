@@ -1,15 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
+import { BOOKING_URL } from '../lib/booking';
 import {
   ArrowLeft,
   ArrowRight,
+  Car,
   CheckCircle2,
   ChevronDown,
   ChevronUp,
+  Eye,
+  LayoutGrid,
   MapPin,
   MessageSquare,
   PartyPopper,
+  SlidersHorizontal,
   Sparkles,
   Target,
   Users,
@@ -220,17 +225,23 @@ export const CorporatePage = () => {
   const packages = [
     {
       name: 'Lokalleie',
+      price: 'På forespørsel',
+      priceDetail: 'Tilbud etter samtale',
       fit: 'For dere som vil styre leverandører selv.',
       bullets: ['Eksklusiv bruk av avtalte lokaler', 'Grunnleggende bord og stoler', 'Avtalt tidsramme'],
     },
     {
       name: 'Fleksibelt opplegg',
+      price: 'På forespørsel',
+      priceDetail: 'Tilpasses behov',
       fit: 'Når dere ønsker sted pluss utvalgt støtte.',
       bullets: ['Tilpasset rigg og plan', 'Koordinering med oss', 'Kan utvides etter behov'],
       featured: true,
     },
     {
       name: 'Skreddersøm',
+      price: 'Individuelt',
+      priceDetail: 'Etter omfang',
       fit: 'Når alt skal på plass rundt arrangementet.',
       desc: 'Vi hjelper med helheten — fra idé til gjennomføring.',
       bullets: ['Dialog om konsept og budsjett', 'Samarbeid med leverandører', 'Oppfølging på dagen'],
@@ -246,13 +257,39 @@ export const CorporatePage = () => {
   ];
 
   const practical = [
-    { label: 'Kapasitet', value: 'Tilpasses arrangement — vi avklarer ved forespørsel' },
-    { label: 'Opplegg', value: 'Fleksibel rombruk og tidsplan' },
-    { label: 'Parkering', value: 'Gode muligheter på området' },
-    { label: 'Beliggenhet', value: 'Kort vei fra Oslo og Drammen' },
-    { label: 'Omvisning', value: 'Avtales etter ønske' },
-    { label: 'Tilpasning', value: 'Skreddersøm etter behov' },
-  ];
+    {
+      label: 'Kapasitet',
+      value:
+        'Inntil ca. 120 gjester ved selskap i låven — vi avklarer oppsett, flyt og tekniske behov sammen med dere.',
+      Icon: Users,
+    },
+    {
+      label: 'Opplegg',
+      value:
+        'Fleksibel bruk av låve, uteområder og sosiale soner — fra mingling og middag til taler og fest.',
+      Icon: LayoutGrid,
+    },
+    {
+      label: 'Parkering',
+      value: 'God plass til biler på området — enkelt for kolleger, gjester og leverandører.',
+      Icon: Car,
+    },
+    {
+      label: 'Beliggenhet',
+      value: 'Rolig gårdsramme med kort kjørevei fra Oslo og Drammen — destinasjon i én pakke.',
+      Icon: MapPin,
+    },
+    {
+      label: 'Omvisning',
+      value: 'Vi viser dere lokalet og gjennomgår muligheter og praktisk — uforpliktende og tilpasset deres behov.',
+      Icon: Eye,
+    },
+    {
+      label: 'Tilpasning',
+      value: 'Dato, varighet, rigg og vertskap tilpasses deres format og budsjett — ikke ferdig «hotellpakke».',
+      Icon: SlidersHorizontal,
+    },
+  ] as const;
 
   const trust = [
     {
@@ -307,7 +344,7 @@ export const CorporatePage = () => {
   return (
     <div className="flex flex-col bg-[#faf9f7]">
       {/* 1 Hero — samme mønster som WeddingsPage: fullskjerm, bilde, gradient, sentrert innhold */}
-      <section className="relative flex h-screen min-h-[32rem] items-center justify-center overflow-hidden">
+      <section className="section-viewport section-viewport-hero relative flex flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=2000"
@@ -318,7 +355,7 @@ export const CorporatePage = () => {
           <div className="absolute inset-0 z-10 bg-gradient-to-b from-brand-900/60 via-brand-900/20 to-brand-900/70" />
           <div className="absolute inset-0 z-10 bg-brand-400/10 mix-blend-overlay" />
         </div>
-        <div className="relative z-10 max-w-5xl px-4 text-center text-white">
+        <div className="section-viewport-scroll relative z-10 flex w-full max-w-5xl flex-col items-center justify-center px-4 py-6 text-center text-white">
           <motion.span
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -390,28 +427,51 @@ export const CorporatePage = () => {
       </section>
 
       {/* Fit + why — editorial: white field, one framed split, calm why block */}
-      <section aria-labelledby="corporate-fit-why-heading" className="border-b border-brand-100 bg-white py-24 md:py-32 lg:py-36">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-10 lg:px-14 xl:px-16">
-          <motion.header
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-40px' }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-12 max-w-[40rem] lg:mb-16"
-          >
-            <span className="mb-4 block font-sans text-xl uppercase tracking-widest text-brand-900 opacity-80">
-              Derfor Rønningen
-            </span>
-            <h2
-              id="corporate-fit-why-heading"
-              className="text-balance font-serif text-4xl leading-[0.9] tracking-tighter text-brand-900 md:text-8xl"
+      <section aria-labelledby="corporate-fit-why-heading" className="section-viewport border-b border-brand-100 bg-white">
+        <div className="section-viewport-scroll mx-auto max-w-[1600px] px-6 py-20 md:px-10 md:py-24 lg:px-14 lg:py-28 xl:px-16">
+          <div className="mb-10 grid grid-cols-1 items-start gap-10 lg:mb-12 lg:grid-cols-2 lg:gap-12 xl:gap-16">
+            <motion.header
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-[40rem] lg:max-w-none lg:pt-2"
             >
-              Minneverdige bedriftssamlinger — uten hotellfølelsen
-            </h2>
-            <p className="mt-6 font-sans text-lg font-light leading-relaxed text-brand-600">
-              Dere slipper anonyme konferansesaler og «pakkeløsninger» som ikke passer dere. Rønningen er én tydelig destinasjon der møte, middag og fest kan ligge naturlig i samme dag — med fleksibel plan og oppfølging dere faktisk merker.
-            </p>
-          </motion.header>
+              <span className="mb-4 block font-sans text-xl uppercase tracking-widest text-brand-900 opacity-80">
+                Derfor Rønningen
+              </span>
+              <h2
+                id="corporate-fit-why-heading"
+                className="text-balance font-serif text-4xl leading-[0.9] tracking-tighter text-brand-900 md:text-6xl lg:text-7xl xl:text-8xl"
+              >
+                Der teamet og merkevaren møtes — <br className="hidden md:block" />
+                tydelig kvalitet, ekte atmosfære
+              </h2>
+              <p className="mt-6 font-sans text-lg font-light leading-relaxed text-brand-600">
+                Dere slipper anonyme konferansesaler og generiske pakker. Hos oss får dere én destinasjon der møte, mingling og fest henger naturlig sammen — med fleksibel plan, trygg gjennomføring og vertskap som gjør at både kolleger og gjester føler seg ivaretatt.
+              </p>
+            </motion.header>
+
+            <motion.div
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.55, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full"
+            >
+              <figure className="relative overflow-hidden rounded-2xl border border-brand-200/70 bg-brand-100 shadow-[0_28px_70px_-32px_rgba(33,24,22,0.35)] lg:rounded-[1.25rem]">
+                <div className="relative aspect-[4/5] w-full sm:aspect-[5/6] lg:aspect-auto lg:min-h-[min(72vh,36rem,50dvh)] xl:min-h-[min(70vh,40rem,50dvh)]">
+                  <img
+                    src="https://images.unsplash.com/photo-1424847659532-6b64aba09edf?auto=format&fit=crop&q=85&w=1600"
+                    alt="Selskapsmiddag og mingling — stemning egnet til bedriftsarrangement"
+                    className="absolute inset-0 h-full w-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/45 via-transparent to-black/10" aria-hidden />
+                </div>
+              </figure>
+            </motion.div>
+          </div>
 
           {/* Én ramme: bilde | bruksmåter (profesjonell split, ingen «to separate cards») */}
           <motion.div
@@ -492,7 +552,7 @@ export const CorporatePage = () => {
                   </p>
                 </div>
               </header>
-              <section aria-labelledby="corporate-why-list-heading" className="pt-7 md:pt-8">
+              <div role="region" aria-labelledby="corporate-why-list-heading" className="pt-7 md:pt-8">
                 <h4
                   id="corporate-why-list-heading"
                   className="font-sans text-sm font-medium uppercase tracking-widest text-brand-400/90"
@@ -514,7 +574,7 @@ export const CorporatePage = () => {
                     </li>
                   ))}
                 </ul>
-              </section>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -523,9 +583,9 @@ export const CorporatePage = () => {
       {/* Bedriftsanledninger — referanse-inspirert karusell (portrettkort, pil = neste) */}
       <section
         aria-labelledby="corporate-occasions-heading"
-        className="border-b border-brand-100 bg-[#f2efe8] py-20 md:py-28 lg:py-32"
+        className="section-viewport border-b border-brand-100 bg-[#f2efe8]"
       >
-        <div className="mx-auto max-w-[1800px] px-5 md:px-10 lg:px-14 xl:px-16">
+        <div className="section-viewport-scroll mx-auto max-w-[1800px] px-5 py-16 md:px-10 md:py-24 lg:px-14 lg:py-24 xl:px-16">
           <motion.header
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -562,7 +622,7 @@ export const CorporatePage = () => {
               />
             </button>
 
-            <div className="relative min-h-[min(72vw,22rem)] min-w-0 flex-1 overflow-hidden md:min-h-[min(50vw,26rem)] lg:min-h-[28rem]">
+            <div className="relative min-h-[min(72vw,22rem,45dvh)] min-w-0 flex-1 overflow-hidden md:min-h-[min(50vw,26rem,45dvh)] lg:min-h-[min(28rem,42dvh)]">
               <AnimatePresence initial={false}>
                 <motion.div
                   key={occasionSlide}
@@ -582,7 +642,7 @@ export const CorporatePage = () => {
                     return (
                       <article
                         key={`${occasionSlide}-${j}-${e.title}`}
-                        className="relative aspect-3/5 min-h-[min(72vw,22rem)] overflow-hidden rounded-sm shadow-sm md:min-h-[min(50vw,26rem)] lg:min-h-[28rem]"
+                        className="relative aspect-3/5 min-h-[min(72vw,22rem,45dvh)] overflow-hidden rounded-sm shadow-sm md:min-h-[min(50vw,26rem,45dvh)] lg:min-h-[min(28rem,42dvh)]"
                       >
                         <img
                           src={e.img}
@@ -624,15 +684,15 @@ export const CorporatePage = () => {
       {/* 5 Facilities — samme mønster som forsiden «Våre tjenester» (bildekort, hover) */}
       <section
         aria-labelledby="corporate-facilities-heading"
-        className="relative overflow-hidden border-b border-brand-100/80 bg-[#F5F5F5] py-32 px-4"
+        className="section-viewport relative overflow-hidden border-b border-brand-100/80 bg-[#F5F5F5] px-4"
       >
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
           <div className="absolute top-[10%] -right-[5%] h-[30%] w-[30%] rounded-full bg-brand-200/10 blur-[100px]" />
           <div className="absolute bottom-[10%] -left-[5%] h-[30%] w-[30%] rounded-full bg-brand-300/10 blur-[100px]" />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-[1800px] px-8 md:px-20">
-          <div className="mb-16">
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
+          <div className="mb-12">
             <motion.span
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -648,7 +708,7 @@ export const CorporatePage = () => {
               viewport={{ once: true }}
               className="font-serif text-4xl leading-[0.9] tracking-tighter text-brand-900 md:text-8xl"
             >
-              Fasiliteter <br /> for bedrift
+              Fasiliteter for bedrift
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -707,9 +767,9 @@ export const CorporatePage = () => {
       </section>
 
       {/* 6 Process */}
-      <section className="border-b border-brand-100 bg-white py-20 md:py-28">
-        <div className="mx-auto max-w-[1800px] px-6 md:px-12 lg:px-16 xl:px-20">
-          <header className="mx-auto mb-12 max-w-4xl text-center md:mb-16">
+      <section className="section-viewport border-b border-brand-100 bg-white">
+        <div className="section-viewport-scroll mx-auto max-w-[1800px] px-6 py-16 md:px-12 md:py-24 lg:px-16 xl:px-20">
+          <header className="mx-auto mb-10 max-w-4xl text-center md:mb-12">
             <span className="mb-4 block font-sans text-xl uppercase tracking-widest text-brand-900 opacity-80">
               Prosessen
             </span>
@@ -739,66 +799,111 @@ export const CorporatePage = () => {
         </div>
       </section>
 
-      {/* 7 Packages */}
-      <section className="border-b border-brand-100 py-20 md:py-28">
-        <div className="mx-auto max-w-[1800px] px-6 md:px-12 lg:px-16 xl:px-20">
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 text-center md:mb-14">
-            <span className="mb-4 block font-sans text-xl uppercase tracking-widest text-brand-900 opacity-80">
-              Pakker
-            </span>
-            <h2 className="font-serif text-4xl leading-[0.9] tracking-tighter text-brand-900 md:text-8xl">
-              Fleksible løsninger <br className="hidden sm:block" />
-              for bedrift
+      {/* 7 Packages — samme mønster som WeddingsPage «Våre Bryllupspakker» */}
+      <section className="section-viewport relative overflow-hidden border-y border-brand-200/80 bg-gradient-to-b from-brand-100/70 via-brand-50 to-brand-100/50">
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12 max-w-3xl"
+          >
+            <span className="mb-5 block text-xs font-bold uppercase tracking-[0.3em] text-brand-500">Investeringen</span>
+            <h2 className="mb-6 font-serif text-5xl leading-[0.95] tracking-tight text-brand-900 md:text-7xl">
+              Våre bedriftspakker
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl font-sans text-lg font-light leading-relaxed text-brand-600">
-              Oversikt — detaljer avklares i dialog.
+            <p className="text-lg leading-relaxed text-brand-600 md:text-xl">
+              Velg utgangspunktet som passer dere. Hver løsning kan tilpasses — slik at arrangementet blir enkelt og gjennomførbart for team og gjester.
             </p>
           </motion.div>
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            {packages.map((p, i) => (
-              <motion.div
-                key={p.name}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className={`flex flex-col rounded-2xl border p-8 ${
-                  p.featured ? 'border-brand-900 bg-brand-900 text-white shadow-xl ring-2 ring-brand-400/20' : 'border-brand-200/90 bg-white shadow-sm'
-                }`}
-              >
-                {p.featured && (
-                  <span className="mb-3 inline-block w-fit rounded-full bg-white/15 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-200">
-                    Populær
-                  </span>
-                )}
-                <h3 className={`font-serif text-2xl ${p.featured ? 'text-white' : 'text-brand-900'}`}>{p.name}</h3>
-                <p className={`mt-2 text-sm leading-relaxed ${p.featured ? 'text-brand-100' : 'text-brand-600'}`}>{p.fit}</p>
-                {p.desc && <p className={`mt-2 text-sm ${p.featured ? 'text-brand-200' : 'text-brand-500'}`}>{p.desc}</p>}
-                <ul className="mt-6 flex-1 space-y-2.5">
-                  {p.bullets.map((b) => (
-                    <li key={b} className={`flex gap-2 text-sm ${p.featured ? 'text-brand-100' : 'text-brand-700'}`}>
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 opacity-80" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to={CTA_PRIMARY}
-                  className={`mt-8 inline-flex items-center justify-center rounded-full px-6 py-3.5 text-[11px] font-bold uppercase tracking-[0.18em] transition ${
-                    p.featured ? 'bg-white text-brand-900 hover:bg-brand-50' : 'border border-brand-300 bg-brand-900 text-white hover:bg-brand-800'
+
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {packages.map((pkg, i) => {
+              const featured = !!pkg.featured;
+              return (
+                <motion.div
+                  key={pkg.name}
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className={`relative flex h-full flex-col rounded-xl border p-8 md:p-10 ${
+                    featured
+                      ? 'z-[1] border-brand-800 bg-brand-900 text-white shadow-2xl shadow-brand-900/35 ring-2 ring-brand-400/25'
+                      : 'border-2 border-brand-300/90 bg-white text-brand-900 shadow-lg shadow-brand-900/[0.06] ring-1 ring-brand-900/[0.04]'
                   }`}
                 >
-                  Send forespørsel
-                </Link>
-              </motion.div>
-            ))}
+                  {featured && (
+                    <div className="absolute right-5 top-5 rounded-full bg-brand-700 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em]">
+                      Mest populær
+                    </div>
+                  )}
+
+                  <div className="mb-8">
+                    <h3 className={`mb-3 font-serif text-2xl md:text-3xl ${featured ? 'text-white' : 'text-brand-900'}`}>
+                      {pkg.name}
+                    </h3>
+                    <div className="mb-4 flex items-end gap-2">
+                      <span className={`font-display text-4xl leading-none ${featured ? 'text-brand-100' : 'text-brand-900'}`}>
+                        {pkg.price}
+                      </span>
+                      <span className={`text-xs uppercase tracking-[0.16em] ${featured ? 'text-brand-200' : 'text-brand-500'}`}>
+                        {pkg.priceDetail}
+                      </span>
+                    </div>
+                    <p className={`text-base leading-relaxed ${featured ? 'text-brand-100' : 'text-brand-700'}`}>{pkg.fit}</p>
+                    {pkg.desc && (
+                      <p className={`mt-2 text-sm leading-relaxed ${featured ? 'text-brand-200' : 'text-brand-600'}`}>{pkg.desc}</p>
+                    )}
+                  </div>
+
+                  <div className={`mb-7 h-px w-full ${featured ? 'bg-brand-700' : 'bg-brand-300/80'}`} />
+
+                  <ul className="mb-8 grow space-y-4">
+                    {pkg.bullets.map((feature) => (
+                      <li key={feature} className="flex items-start gap-3">
+                        <div className={`mt-0.5 shrink-0 ${featured ? 'text-brand-300' : 'text-brand-600'}`}>
+                          <CheckCircle2 size={18} strokeWidth={2.25} />
+                        </div>
+                        <span className={`text-[15px] leading-relaxed ${featured ? 'text-brand-100' : 'text-brand-800'}`}>
+                          {feature}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a
+                    href={BOOKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`mt-auto inline-flex items-center justify-center rounded-full px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.24em] transition-colors ${
+                      featured ? 'bg-white text-brand-900 hover:bg-brand-100' : 'bg-brand-900 text-white hover:bg-brand-800'
+                    }`}
+                  >
+                    Book nå
+                  </a>
+                </motion.div>
+              );
+            })}
           </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="mt-12 text-center"
+          >
+            <p className="text-sm italic text-brand-500">
+              * Priser er veiledende. Endelig tilbud utarbeides etter en uforpliktende samtale.
+            </p>
+          </motion.div>
         </div>
       </section>
 
       {/* 8 Gallery */}
-      <section className="border-b border-brand-100 bg-white py-20 md:py-28">
-        <div className="mx-auto max-w-[1800px] px-6 md:px-12 lg:px-16 xl:px-20">
+      <section className="section-viewport border-b border-brand-100 bg-white">
+        <div className="section-viewport-scroll mx-auto max-w-[1800px] px-6 py-16 md:px-12 md:py-24 lg:px-16 xl:px-20">
           <div className="mb-10 flex flex-col justify-between gap-6 md:mb-12 md:flex-row md:items-end">
             <div>
               <span className="mb-4 block font-sans text-xl uppercase tracking-widest text-brand-900 opacity-80">
@@ -867,30 +972,57 @@ export const CorporatePage = () => {
       </section>
 
       {/* 9 Practical */}
-      <section className="border-b border-brand-100 bg-[#faf9f7] py-20 md:py-28">
-        <div className="mx-auto max-w-[1800px] px-6 md:px-12 lg:px-16 xl:px-20">
-          <header className="mb-10 md:mb-12">
+      <section className="section-viewport relative overflow-hidden border-b border-brand-100 bg-[#faf9f7]">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.4]"
+          aria-hidden
+        >
+          <div className="absolute -right-[20%] top-[20%] h-[min(50vw,28rem)] w-[min(50vw,28rem)] rounded-full bg-brand-200/25 blur-[100px]" />
+          <div className="absolute -left-[15%] bottom-[10%] h-[35%] w-[45%] rounded-full bg-brand-100/60 blur-[90px]" />
+        </div>
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-6 py-16 md:px-12 md:py-24 lg:px-16 xl:px-20">
+          <header className="mb-8 max-w-3xl md:mb-10">
             <span className="mb-4 block font-sans text-xl uppercase tracking-widest text-brand-900 opacity-80">
               Praktisk
             </span>
-            <h2 className="font-serif text-4xl leading-[0.9] tracking-tighter text-brand-900 md:text-8xl">
+            <h2 className="font-serif text-4xl leading-[0.9] tracking-tighter text-brand-900 md:text-7xl lg:text-8xl">
               Praktisk informasjon
             </h2>
+            <p className="mt-5 text-base leading-relaxed text-brand-600 md:mt-6 md:text-lg">
+              Det dere trenger å vite før dere booker — kort, tydelig og tilpasset bedriftsarrangement hos oss.
+            </p>
           </header>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {practical.map((row) => (
-              <div key={row.label} className="rounded-xl border border-brand-200/80 bg-white px-5 py-4 shadow-sm">
-                <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-500">{row.label}</p>
-                <p className="mt-2 text-[15px] leading-relaxed text-brand-800">{row.value}</p>
-              </div>
-            ))}
-          </div>
+          <ul className="m-0 grid list-none grid-cols-1 gap-4 p-0 md:grid-cols-2 md:gap-5 lg:grid-cols-3" role="list">
+            {practical.map((row, i) => {
+              const ItemIcon = row.Icon;
+              return (
+              <motion.li
+                key={row.label}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-20px' }}
+                transition={{ delay: i * 0.05, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                className="group rounded-2xl border border-brand-200/90 bg-white/90 p-5 shadow-[0_1px_0_rgba(33,24,22,0.04)] backdrop-blur-[2px] transition-shadow duration-300 hover:border-brand-300/90 hover:shadow-md md:p-6"
+              >
+                <div className="flex gap-4">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-brand-200/80 bg-brand-50 text-brand-800 transition-colors group-hover:border-brand-300 group-hover:bg-white">
+                    <ItemIcon size={22} strokeWidth={1.65} aria-hidden />
+                  </span>
+                  <div className="min-w-0 pt-0.5">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-brand-500">{row.label}</p>
+                    <p className="mt-2 text-[15px] leading-[1.65] text-brand-800 md:text-[15.5px]">{row.value}</p>
+                  </div>
+                </div>
+              </motion.li>
+              );
+            })}
+          </ul>
         </div>
       </section>
 
       {/* 10 Trust */}
-      <section className="border-b border-brand-100 bg-white py-20 md:py-24">
-        <div className="mx-auto max-w-[1800px] px-6 md:px-12 lg:px-16 xl:px-20">
+      <section className="section-viewport border-b border-brand-100 bg-white">
+        <div className="section-viewport-scroll mx-auto max-w-[1800px] px-6 py-16 md:px-12 md:py-20 lg:px-16 xl:px-20">
           <header className="mx-auto mb-10 max-w-4xl text-center md:mb-12">
             <span className="mb-4 block font-sans text-xl uppercase tracking-widest text-brand-900 opacity-80">
               Trygghet
@@ -919,8 +1051,8 @@ export const CorporatePage = () => {
       </section>
 
       {/* 11 FAQ */}
-      <section className="border-b border-brand-100 bg-[#f3f1ee] py-20 md:py-28">
-        <div className="mx-auto max-w-3xl px-6 md:px-8">
+      <section className="section-viewport border-b border-brand-100 bg-[#f3f1ee]">
+        <div className="section-viewport-scroll mx-auto max-w-3xl px-6 py-16 md:px-8 md:py-24">
           <header className="mb-10 text-center md:mb-12">
             <span className="mb-4 block font-sans text-xl uppercase tracking-widest text-brand-900 opacity-80">
               FAQ
@@ -960,8 +1092,8 @@ export const CorporatePage = () => {
       </section>
 
       {/* 12 Final CTA */}
-      <section className="bg-brand-900 py-20 text-white md:py-28">
-        <div className="mx-auto max-w-3xl px-6 text-center md:px-8">
+      <section className="section-viewport bg-brand-900 text-white">
+        <div className="section-viewport-scroll mx-auto max-w-3xl px-6 py-16 text-center md:px-8 md:py-24">
           <span className="mb-4 block font-sans text-xl uppercase tracking-widest text-white/70">
             Neste steg
           </span>
