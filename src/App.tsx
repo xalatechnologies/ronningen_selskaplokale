@@ -24,12 +24,13 @@ import { WeddingsPage } from './pages/WeddingsPage';
 import { CorporatePage } from './pages/CorporatePage';
 
 const InquiryPage = () => {
+  const { t } = useTranslation();
   useEffect(() => {
     window.location.replace(BOOKING_URL);
   }, []);
   return (
     <div className="flex min-h-[50vh] items-center justify-center px-4 py-20">
-      <p className="text-center text-brand-600">Sender deg til booking …</p>
+      <p className="text-center text-brand-600">{t('common.redirectingBooking')}</p>
     </div>
   );
 };
@@ -994,7 +995,7 @@ const Footer = () => {
         <div className="space-y-6">
           <h2 className="text-3xl font-serif">Rønningen</h2>
           <p className="text-brand-300 font-light">
-            A premium venue for life's most beautiful moments.
+            {t('footer.tagline')}
           </p>
           <div className="flex space-x-4">
             <Instagram className="cursor-pointer hover:text-white transition-colors" />
@@ -1021,24 +1022,24 @@ const Footer = () => {
         </div>
 
         <div>
-          <h4 className="text-sm uppercase tracking-widest mb-6 font-bold">Quick Links</h4>
+          <h4 className="text-sm uppercase tracking-widest mb-6 font-bold">{t('footer.quickLinks')}</h4>
           <ul className="space-y-4 text-brand-300 font-light">
-            <li><Link to="/packages">Packages</Link></li>
-            <li><Link to="/gallery">Gallery</Link></li>
-            <li><Link to="/faq">FAQ</Link></li>
+            <li><Link to="/packages">{t('nav.packages')}</Link></li>
+            <li><Link to="/gallery">{t('nav.gallery')}</Link></li>
+            <li><Link to="/faq">{t('nav.faq')}</Link></li>
           </ul>
         </div>
 
         <div>
-          <h4 className="text-sm uppercase tracking-widest mb-6 font-bold">Newsletter</h4>
-          <p className="text-brand-300 font-light mb-4">Stay updated on our events and news.</p>
+          <h4 className="text-sm uppercase tracking-widest mb-6 font-bold">{t('footer.newsletter')}</h4>
+          <p className="text-brand-300 font-light mb-4">{t('footer.newsletterDesc')}</p>
           <div className="flex">
             <input 
               type="email" 
-              placeholder="Email" 
+              placeholder={t('footer.emailPlaceholder')} 
               className="bg-brand-800 border-none rounded-l-md px-4 py-2 w-full focus:ring-1 focus:ring-brand-400"
             />
-            <button className="bg-brand-700 px-4 py-2 rounded-r-md hover:bg-brand-600 transition-colors">Join</button>
+            <button type="button" className="bg-brand-700 px-4 py-2 rounded-r-md hover:bg-brand-600 transition-colors">{t('footer.newsletterCta')}</button>
           </div>
         </div>
       </div>
