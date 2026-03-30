@@ -190,11 +190,14 @@ export const WeddingsPage = () => {
       {/* 1. Hero */}
       <section className="section-viewport section-viewport-hero relative flex flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=2000" 
-            alt="Wedding Hero" 
-            className="h-full w-full object-cover brightness-[0.35]"
-            referrerPolicy="no-referrer"
+          <img
+            src="/hero-wedding-venue-night.png"
+            alt="Selskapslokale om kvelden med varmt lys, stjernehimmel og feststemning"
+            className="h-full w-full object-cover brightness-[0.52] contrast-[1.03]"
+          />
+          <div
+            className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/40 via-black/10 to-transparent"
+            aria-hidden
           />
         </div>
         <div className="section-viewport-scroll relative z-10 flex w-full max-w-6xl flex-col items-center justify-center px-4 py-6 text-center text-white">
