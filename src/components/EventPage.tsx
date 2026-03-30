@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { CheckCircle2, Users, Monitor, Utensils, Car, ShieldCheck } from 'lucide-react';
+import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 
 interface EventPageProps {
   title: string;
@@ -62,7 +63,7 @@ export const EventPage: React.FC<EventPageProps> = ({ title, subtitle, descripti
               className="space-y-8"
             >
               <span className="text-xs uppercase tracking-[0.4em] font-bold opacity-60">Konseptet</span>
-              <h2 className="text-5xl font-serif leading-tight">En atmosfære preget av historie og sjel</h2>
+              <h2 className={SECTION_H2_ON_DARK_CLASS}>En atmosfære preget av historie og sjel</h2>
               <p className="text-brand-200 text-lg leading-relaxed font-light">
                 Vi tror på at de beste øyeblikkene skapes i omgivelser som føles ekte. Rønningen er ikke bare et lokale, det er en destinasjon hvor hver krik og krok forteller en historie. 
               </p>
@@ -109,7 +110,7 @@ export const EventPage: React.FC<EventPageProps> = ({ title, subtitle, descripti
       <section className="section-viewport">
         <div className="section-viewport-scroll mx-auto grid max-w-7xl grid-cols-1 items-start gap-20 px-4 py-20 lg:grid-cols-2">
         <div className="space-y-12">
-            <h2 className="text-4xl font-serif text-brand-900 leading-tight">Create Unforgettable Moments</h2>
+            <h2 className={SECTION_H2_CLASS}>Create Unforgettable Moments</h2>
             <p className="text-brand-700 leading-relaxed text-xl font-light">
               {description}
             </p>

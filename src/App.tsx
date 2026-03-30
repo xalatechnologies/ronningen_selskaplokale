@@ -3,16 +3,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Globe, Phone, Mail, MapPin, Instagram, Facebook, ChevronDown, ChevronRight, ArrowRight, ArrowLeft, Music, Utensils, Camera, Sparkles, Wine, Truck, Calendar, Building2, Trees, Users, ShieldCheck } from 'lucide-react';
+import { Menu, X, Globe, Phone, Mail, MapPin, Instagram, Facebook, ChevronDown, ChevronRight, ArrowRight, ArrowLeft, Sparkles } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import './lib/i18n';
 import { Toaster } from 'sonner';
 
 import { AdminPanel } from './components/AdminPanel';
 import { BOOKING_URL } from './lib/booking';
+import { cn } from './lib/utils';
+import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from './lib/typography';
 
 import { ContactPage } from './pages/ContactPage';
 
@@ -22,6 +24,7 @@ import { FAQPage } from './pages/FAQPage';
 import { TestimonialsPage } from './pages/TestimonialsPage';
 import { WeddingsPage } from './pages/WeddingsPage';
 import { CorporatePage } from './pages/CorporatePage';
+import { PrivatePage } from './pages/PrivatePage';
 
 const InquiryPage = () => {
   const { t } = useTranslation();
@@ -35,131 +38,64 @@ const InquiryPage = () => {
   );
 };
 
-import { PackageCard } from './components/PackageCard';
+const HOME_KONSEPT_ITEMS = [
+  {
+    title: 'Bryllup',
+    description: 'Vielse, fest og mingling på ett sted — vi hjelper dere med helhetsplan fra ønskeliste til siste dans.',
+    path: '/weddings',
+    img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1200',
+  },
+  {
+    title: 'Bedrift',
+    description: 'Møter, middager og lanseringer med profesjonelt vertskap, teknisk utstyr og fleksible romløsninger.',
+    path: '/corporate',
+    img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200',
+  },
+  {
+    title: 'Private selskap',
+    description: 'Jubileer, konfirmasjon og familieselskap med plass til barn og voksne — rolige, hjemlige omgivelser på gården.',
+    path: '/packages',
+    img: 'https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=80&w=1200',
+  },
+  {
+    title: 'Julebord',
+    description: 'Tradisjonsrik julemiddag med meny tilpasset gruppen — perfekt for kollegaer eller vennegjengen.',
+    path: '/packages',
+    img: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=80&w=1200',
+  },
+  {
+    title: 'Konferanse',
+    description: 'Dagseminar eller heldagsmøte med pauserom, lyd, projeksjon og bevertning som holder dagen i flyt.',
+    path: '/corporate',
+    img: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=1200',
+  },
+  {
+    title: 'Sommerfest',
+    description: 'Ute og inne på gården — grill, mingling og lange kvelder når lyset og stemningen er på sitt beste.',
+    path: '/packages',
+    img: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=1200',
+  },
+] as const;
 
-import { EventPage } from './components/EventPage';
+const PARTNER_CATEGORIES = [
+  'Catering & kjøkken',
+  'Blomster & dekor',
+  'Foto & film',
+  'Lyd & lys',
+  'Bar & servering',
+  'Koordinering',
+  'Digilist',
+  'Xala technologies',
+  'CommitCare',
+] as const;
 
-const PrivatePage = () => {
-  return (
-    <EventPage 
-      title="Private Selskaper"
-      subtitle="Feir livets store begivenheter med dine nærmeste."
-      description="Fra bursdager og jubileer til konfirmasjoner og slektstreff – Rønningen er det ideelle stedet å samle familie og venner. Vår varme atmosfære og personlige service gjør at hver feiring føles unik og spesiell."
-      image="https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=80&w=2000"
-      capacity={{ seated: 120, standing: 180 }}
-      technical={[
-        'Musikkanlegg med Bluetooth-tilkobling',
-        'Barfasiliteter med kjøling',
-        'Projektor for bildevisning',
-        'WiFi for gjester',
-        'Sluttvask er alltid inkludert'
-      ]}
-      features={[
-        'Lokaler med sjel og historie',
-        'Barnevennlige uteområder',
-        'Fleksible løsninger for matservering',
-        'Hjelp til pynting og dekorasjon',
-        'God plass til dans og underholdning',
-        'Personlig oppfølging hele veien'
-      ]}
-    />
-  );
-};
-const PackagesPage = () => {
-  const { t } = useTranslation();
-  const packages = [
-    {
-      name: 'Basis Konsept',
-      description: 'Ideelt for mindre møter, kurs eller enkle selskaper som krever minimalt med rigging.',
-      price: 'Fra Kr. 450,-',
-      features: [
-        'Leie av lokale (inntil 12 timer)',
-        'Standard møbeloppsett',
-        'Grunnleggende lydanlegg & projektor',
-        'Kaffe, te og vann inkludert',
-        'Sluttvask inkludert'
-      ]
-    },
-    {
-      name: 'Full Pakke',
-      description: 'Vårt mest populære valg for bryllup og firmafester. Vi tar hånd om det meste så du kan nyte dagen.',
-      price: 'Fra Kr. 850,-',
-      features: [
-        'Leie av lokale (inntil 24 timer)',
-        'Premium oppdekking med hvite duker',
-        'Standard dekorasjonspakke',
-        'Profesjonelt lyd- og lysanlegg',
-        'Vertskap/personell (4 timer)',
-        'Koordinering med caterer',
-        'Sluttvask inkludert'
-      ],
-      isFeatured: true
-    },
-    {
-      name: 'Eksklusiv Helaften',
-      description: 'Den ultimate opplevelsen for de som ønsker full service fra start til slutt uten bekymringer.',
-      price: 'Fra Kr. 1250,-',
-      features: [
-        'Full tilgang hele helgen',
-        'Skreddersydd dekorasjon & blomster',
-        'Fullt personell gjennom hele kvelden',
-        'Eget mikrobryggeri-smaking (valgfritt)',
-        'Dedikert prosjektleder',
-        'Nattmat-servering inkludert',
-        'Sluttvask inkludert'
-      ]
-    }
-  ];
-
-  return (
-    <div className="flex flex-col bg-white">
-      <section className="section-viewport">
-        <div className="section-viewport-scroll mx-auto max-w-7xl px-4 py-24">
-          <div className="mb-24 space-y-6 text-center">
-            <span className="text-xs font-bold uppercase tracking-[0.4em] text-brand-400">Priser & Pakker</span>
-            <h1 className="font-serif text-6xl text-brand-900">{t('nav.packages')}</h1>
-            <p className="mx-auto max-w-2xl text-lg font-light text-brand-600">
-              Vi tilbyr fleksible konsepter tilpasset dine behov. Alle pakker kan skreddersys med tilleggstjenester som ølsmaking, underholdning og transport.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
-            {packages.map((pkg, i) => (
-              <PackageCard key={i} {...pkg} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-viewport">
-        <div className="section-viewport-scroll mx-auto max-w-7xl px-4 py-12">
-          <div className="flex flex-col items-center justify-between gap-8 rounded-[3rem] bg-brand-900 p-12 text-white shadow-2xl md:flex-row">
-            <div className="space-y-4 text-center md:text-left">
-              <h3 className="font-serif text-3xl">Trenger du noe helt unikt?</h3>
-              <p className="max-w-md text-brand-200">Vi skreddersyr gjerne et eget opplegg for din bedrift eller ditt selskap.</p>
-            </div>
-            <Link
-              to="/contact"
-              className="whitespace-nowrap rounded-full bg-white px-10 py-5 text-sm font-bold uppercase tracking-widest text-brand-900 transition-all hover:bg-brand-50"
-            >
-              Kontakt oss for tilbud
-            </Link>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
 const Home = () => {
   const { t } = useTranslation();
   const galleryRef = useRef<HTMLDivElement>(null);
-  const conceptsRef = useRef<HTMLDivElement>(null);
-  
+
   const [showGalleryLeft, setShowGalleryLeft] = useState(false);
   const [showGalleryRight, setShowGalleryRight] = useState(true);
   const [galleryHasOverflow, setGalleryHasOverflow] = useState(false);
-  const [showConceptsLeft, setShowConceptsLeft] = useState(false);
-  const [showConceptsRight, setShowConceptsRight] = useState(true);
 
   const handleGalleryScroll = () => {
     if (galleryRef.current) {
@@ -171,36 +107,21 @@ const Home = () => {
     }
   };
 
-  const handleConceptsScroll = () => {
-    if (conceptsRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = conceptsRef.current;
-      setShowConceptsLeft(scrollLeft > 10);
-      setShowConceptsRight(scrollLeft < scrollWidth - clientWidth - 10);
-    }
-  };
-
   useEffect(() => {
     const galleryContainer = galleryRef.current;
-    const conceptsContainer = conceptsRef.current;
 
     if (galleryContainer) galleryContainer.addEventListener('scroll', handleGalleryScroll);
-    if (conceptsContainer) conceptsContainer.addEventListener('scroll', handleConceptsScroll);
-    
+
     handleGalleryScroll();
-    handleConceptsScroll();
-    
-    window.addEventListener('resize', () => {
+
+    const onResize = () => {
       handleGalleryScroll();
-      handleConceptsScroll();
-    });
+    };
+    window.addEventListener('resize', onResize);
 
     return () => {
       if (galleryContainer) galleryContainer.removeEventListener('scroll', handleGalleryScroll);
-      if (conceptsContainer) conceptsContainer.removeEventListener('scroll', handleConceptsScroll);
-      window.removeEventListener('resize', () => {
-        handleGalleryScroll();
-        handleConceptsScroll();
-      });
+      window.removeEventListener('resize', onResize);
     };
   }, []);
 
@@ -209,14 +130,6 @@ const Home = () => {
       const { clientWidth } = galleryRef.current;
       const scrollAmount = direction === 'left' ? -clientWidth * 0.8 : clientWidth * 0.8;
       galleryRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
-
-  const scrollConcepts = (direction: 'left' | 'right') => {
-    if (conceptsRef.current) {
-      const { clientWidth } = conceptsRef.current;
-      const scrollAmount = direction === 'left' ? -clientWidth * 0.8 : clientWidth * 0.8;
-      conceptsRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
 
@@ -273,297 +186,85 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Konsept — venue showcase: tillit, kapasitet, tydelig neste steg */}
-      <section
-        id="konsept"
-        aria-labelledby="konsept-heading"
-        className="section-viewport relative overflow-hidden bg-[#e8dfd6]"
-      >
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.35] bg-[radial-gradient(circle_at_center,rgba(67,48,43,0.055)_1px,transparent_1px)] bg-size-[26px_26px]"
-          aria-hidden
-        />
-        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute -right-[18%] top-[12%] h-[min(65vw,520px)] w-[min(65vw,520px)] rounded-full bg-brand-300/22 blur-[110px]" />
-          <div className="absolute -left-[12%] bottom-[8%] h-[42%] w-[52%] rounded-full bg-brand-500/8 blur-[95px]" />
-        </div>
-
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1920px] px-5 py-16 sm:px-8 md:px-12 md:py-24 lg:px-16 lg:py-24 xl:px-20">
-          <motion.header
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="mb-10 grid grid-cols-1 gap-8 md:mb-12 lg:mb-16 lg:grid-cols-12 lg:items-end lg:gap-14"
-          >
-            <div className="lg:col-span-7">
-              <span className="mb-5 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.42em] text-brand-600">
-                <span className="h-px w-8 bg-brand-400/80" aria-hidden />
-                Konseptet Rønningen
-              </span>
-              <h2
-                id="konsept-heading"
-                className="text-balance font-serif text-4xl leading-[0.98] tracking-tighter text-brand-900 sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem] xl:leading-[0.96]"
-              >
-                Skap minner i historiske omgivelser
-              </h2>
-            </div>
-            <div className="lg:col-span-5 lg:border-l lg:border-brand-500/35 lg:pl-10 xl:pl-14">
-              <p className="font-serif text-xl leading-snug text-brand-800 md:text-2xl lg:text-[1.6rem] lg:leading-relaxed">
-                Hvorfor velge Rønningen til ditt neste arrangement?
-              </p>
-              <p className="mt-4 text-[15px] leading-relaxed text-brand-600 md:text-base">
-                Lei hele gården med låve, utearealer og vertskap — én destinasjon for vielse, møte og fest, med oppfølging fra befaring til dere låser døren.
-              </p>
-            </div>
-          </motion.header>
-
-          <motion.div
-            initial={{ opacity: 0, y: 36 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.75, delay: 0.04, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden rounded-[1.5rem] border border-brand-900/[0.08] bg-white shadow-[0_36px_100px_-36px_rgba(33,24,22,0.38)] md:rounded-[2rem]"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              {/* Venstre: hero + tillitsstripe + sitat */}
-              <div className="relative min-h-[min(68vh,680px,min(50dvh,36rem))] lg:min-h-[min(620px,50dvh)]">
-                <img
-                  src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=88&w=1800"
-                  alt="Låven og festlokalet på Rønningen Gård — klar til deres arrangement"
-                  className="absolute inset-0 h-full w-full object-cover object-center"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-black/92 via-black/35 to-transparent" />
-                <div className="absolute inset-0 bg-linear-to-t from-brand-950/55 via-transparent to-transparent" />
-                <div className="absolute left-6 top-6 md:left-8 md:top-8">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-black/25 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white backdrop-blur-md">
-                    <ShieldCheck size={14} className="text-brand-300" aria-hidden />
-                    Lokale utleie · Personlig vertskap
-                  </span>
-                </div>
-                <div className="absolute inset-x-0 bottom-0 p-5 md:p-7 lg:p-9 xl:p-10">
-                  <div className="rounded-2xl border border-white/20 bg-black/45 p-5 shadow-[0_12px_48px_rgba(0,0,0,0.45)] backdrop-blur-md md:rounded-3xl md:p-7 lg:p-8">
-                    <dl className="grid grid-cols-3 gap-3 border-b border-white/20 pb-6 text-white md:gap-5 md:pb-7">
-                      <div className="border-r border-white/20 pr-2 md:pr-4">
-                        <dt className="sr-only">Kapasitet</dt>
-                        <dd className="flex flex-col gap-1.5">
-                          <Users className="h-4 w-4 text-brand-200 md:h-5 md:w-5" aria-hidden />
-                          <span className="font-serif text-3xl font-medium tracking-tight tabular-nums md:text-4xl">120</span>
-                          <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/95">Sittende gjester</span>
-                        </dd>
-                      </div>
-                      <div className="border-r border-white/20 px-1 md:px-2">
-                        <dt className="sr-only">Eksklusivitet</dt>
-                        <dd className="flex flex-col gap-1.5">
-                          <Building2 className="h-4 w-4 text-brand-200 md:h-5 md:w-5" aria-hidden />
-                          <span className="font-serif text-3xl font-medium tracking-tight md:text-4xl">100%</span>
-                          <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/95">Eksklusiv bruk</span>
-                        </dd>
-                      </div>
-                      <div className="pl-1 md:pl-2">
-                        <dt className="sr-only">Beliggenhet</dt>
-                        <dd className="flex flex-col gap-1.5">
-                          <MapPin className="h-4 w-4 text-brand-200 md:h-5 md:w-5" aria-hidden />
-                          <span className="font-serif text-2xl font-medium leading-none tracking-tight md:text-3xl">Oslo</span>
-                          <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/95">& Drammen</span>
-                        </dd>
-                      </div>
-                    </dl>
-                    <blockquote className="mt-6 max-w-lg md:mt-7">
-                      <p className="mb-3 font-serif text-xl italic leading-snug text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.5)] md:text-2xl lg:text-[1.65rem]">
-                        «En uforglemmelig opplevelse i vakre omgivelser.»
-                      </p>
-                      <footer className="text-[10px] font-semibold uppercase tracking-[0.32em] text-brand-200">
-                        Sarah & Thomas · Bryllup
-                      </footer>
-                    </blockquote>
-                  </div>
-                </div>
-              </div>
-
-              {/* Høyre: historie + primær CTA + sekundær + fordeler */}
-              <div className="relative flex flex-col overflow-hidden bg-linear-to-b from-brand-900 via-brand-900 to-[#16110e] text-white">
-                <div className="pointer-events-none absolute inset-0" aria-hidden>
-                  <div className="absolute -right-[25%] -top-[10%] h-[min(100%,480px)] w-[min(100%,480px)] rounded-full bg-brand-500/16 blur-[110px]" />
-                  <div className="absolute -bottom-[20%] -left-[15%] h-[50%] w-[60%] rounded-full bg-rose-900/15 blur-[100px]" />
-                </div>
-                <div className="relative flex flex-1 flex-col justify-center px-8 py-11 md:px-10 md:py-14 lg:px-12 lg:py-16 xl:px-14">
-                  <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.35em] text-brand-400">For arrangører som vil mer</p>
-                  <p className="mb-6 max-w-xl text-[15px] font-light leading-[1.78] text-brand-100/95 md:text-[17px]">
-                    Rønningen Gård er mer enn bare et lokale. Det er en destinasjon hvor tradisjon møter moderne komfort — med låve, hage og vertskap som lar dere eie dagen uten å bekymre dere for logistikken.
-                  </p>
-                  <p className="max-w-xl text-[15px] font-light leading-[1.78] text-brand-100/90 md:text-[17px]">
-                    Bryllup, bedrift eller privat feiring: vi legger til rette for alt fra vielse og mingling til dans og overnatting i rolige omgivelser.
-                  </p>
-                  <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                    <Link
-                      to="/gallery"
-                      className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-7 py-3.5 text-[11px] font-bold uppercase tracking-[0.2em] text-white transition-colors hover:border-white hover:bg-white/10"
-                    >
-                      Se bildegalleri
-                      <ChevronRight size={16} strokeWidth={2.25} aria-hidden />
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="relative border-t border-white/10 bg-brand-50">
-                  <p className="border-b border-brand-200/80 px-8 py-4 text-center text-[10px] font-bold uppercase tracking-[0.28em] text-brand-500 md:px-10">
-                    Dette skiller oss når dere leier hos oss
-                  </p>
-                  <div className="grid grid-cols-1 sm:grid-cols-2">
-                    {[
-                      {
-                        title: 'Eksklusiv bruk',
-                        desc: 'Hele stedet for dere — personlig atmosfære uten fremmede gjester i bakgrunnen.',
-                        Icon: Building2,
-                      },
-                      {
-                        title: 'Landlig ro',
-                        desc: 'Kulturlandskap og ro som gir bedre samtaler og mer nærvær.',
-                        Icon: Trees,
-                      },
-                      {
-                        title: 'Matopplevelser',
-                        desc: 'Lokale råvarer og retter med sjel — tilpasset deres anledning.',
-                        Icon: Utensils,
-                      },
-                      {
-                        title: 'Enkel logistikk',
-                        desc: 'Kort vei fra Oslo og Drammen, god parkering og tydelig plan for dagen.',
-                        Icon: Truck,
-                      },
-                    ].map(({ title, desc, Icon }, i) => (
-                      <div
-                        key={title}
-                        className={`group border-b border-brand-200/80 p-7 transition-colors last:border-b-0 hover:bg-white md:p-8 lg:p-9 ${
-                          i % 2 === 0 ? 'sm:border-r sm:border-brand-200/80' : ''
-                        } ${i < 2 ? 'sm:border-b sm:border-brand-200/80' : ''}`}
-                      >
-                        <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full border border-brand-300/90 bg-white text-brand-800 shadow-sm transition-transform group-hover:scale-[1.04]">
-                          <Icon size={19} strokeWidth={1.75} aria-hidden />
-                        </div>
-                        <h4 className="mb-1.5 font-serif text-lg text-brand-900 md:text-[1.15rem]">{title}</h4>
-                        <p className="text-[13px] leading-relaxed text-brand-600 md:text-[14px]">{desc}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Featured Sections Preview — bred ramme, tydelig intro */}
       <section
         id="konsepter"
         aria-labelledby="konsepter-heading"
-        className="section-viewport overflow-hidden bg-gradient-to-b from-[#eef0f3] via-[#F3F4F6] to-brand-50/90"
+        className="section-viewport relative overflow-hidden bg-gradient-to-b from-white to-brand-50/50"
       >
-        <div className="section-viewport-scroll mx-auto max-w-[1920px] px-5 py-20 sm:px-8 md:px-12 md:py-24 lg:px-16 xl:px-20">
-          <header className="mb-10 max-w-3xl lg:mb-12">
-            <span className="mb-4 inline-block text-[11px] font-bold uppercase tracking-[0.38em] text-brand-500">
-              Arrangementer
-            </span>
-            <h2
-              id="konsepter-heading"
-              className="text-balance font-serif text-4xl leading-[0.98] tracking-tighter text-brand-900 sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem] xl:leading-[0.96]"
-            >
-              Våre konsepter
-            </h2>
-            <p className="mt-5 max-w-2xl text-base leading-relaxed text-brand-600 md:text-lg md:leading-relaxed">
-              Utforsk ulike typer selskap som passer låven og gårdsrommene våre — fra det intime til det storslåtte. Hvert konsept kan skreddersys med meny, dekor og plan for dagen.
-            </p>
-          </header>
+        <div
+          className="pointer-events-none absolute left-[6%] top-[10%] h-[min(44vw,26rem)] w-[min(44vw,26rem)] rounded-full bg-brand-300/20 blur-[90px]"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute bottom-[6%] right-[4%] h-[min(36vw,22rem)] w-[min(36vw,22rem)] rounded-full bg-brand-500/12 blur-[75px]"
+          aria-hidden
+        />
 
-          {/* Accordion Container */}
-          <div 
-            ref={conceptsRef}
-            className="scrollbar-hide -mx-5 snap-x snap-mandatory overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 md:mx-0 md:px-0"
-          >
-            <div 
-              className="flex h-[min(650px,55dvh)] min-h-[280px] w-[500%] gap-4 transition-all duration-700 md:w-[200%]"
-            >
-              {[
-                { title: 'Bryllup', path: '/weddings', img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1200' },
-                { title: 'Bedrift', path: '/corporate', img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200' },
-                { title: 'Private selskap', path: '/private', img: 'https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=80&w=1200' },
-                { title: 'Julebord', path: '/packages', img: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=80&w=1200' },
-                { title: 'Konferanse', path: '/corporate', img: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=1200' },
-                { title: 'Sommerfest', path: '/packages', img: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=1200' },
-                { title: 'Kick-off', path: '/corporate', img: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=1200' },
-                { title: 'Lansering', path: '/corporate', img: 'https://images.unsplash.com/photo-1540575861501-7c90b707a27d?auto=format&fit=crop&q=80&w=1200' },
-              ].map((item, i) => (
-                <Link 
-                  key={i} 
-                  to={item.path} 
-                  className="relative h-full rounded-2xl overflow-hidden shadow-lg transition-all duration-700 ease-in-out flex-[1] md:hover:flex-[2.5] snap-start"
-                >
-                  <img 
-                    src={item.img} 
-                    alt={item.title} 
-                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-8 left-8">
-                    <h3 className="text-5xl font-condensed text-white uppercase tracking-tight leading-none whitespace-nowrap">{item.title}</h3>
-                  </div>
-                </Link>
-              ))}
+        <div className="section-viewport-scroll relative z-10 flex min-h-0 flex-col">
+          <div className="mx-auto flex w-full max-w-[1920px] flex-col px-5 py-16 sm:px-8 sm:py-20 md:px-12 md:py-24 lg:px-16 xl:px-20">
+            <header className="max-w-2xl space-y-4 md:space-y-5">
+              <h2 id="konsepter-heading" className={SECTION_H2_CLASS}>
+                Våre konsepter
+              </h2>
+              <p className="text-base leading-relaxed text-brand-600 md:text-lg md:leading-relaxed">
+                Utforsk seks måter å bruke låven og gårdsrommene våre — fra det intime til det storslåtte. Hvert konsept kan skreddersys med meny, dekor og plan for dagen.
+              </p>
+            </header>
+
+            <div className="mt-10 md:mt-12">
+              <ul className="m-0 grid list-none grid-cols-1 gap-x-6 gap-y-10 pl-0 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-14">
+                {HOME_KONSEPT_ITEMS.map((item) => (
+                  <li key={item.title} className="min-w-0">
+                    <Link
+                      to={item.path}
+                      className="group flex flex-col items-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-2xl"
+                    >
+                      <div className="relative mx-auto aspect-square w-full max-w-[15rem] overflow-hidden rounded-full border-[3px] border-white/90 shadow-[0_20px_50px_-12px_rgba(33,24,22,0.35)] ring-1 ring-brand-900/10 transition-[transform,box-shadow] duration-500 ease-out group-hover:scale-[1.03] group-hover:shadow-[0_28px_60px_-8px_rgba(33,24,22,0.42)] sm:max-w-[16rem] md:max-w-[17.5rem]">
+                        <img
+                          src={item.img}
+                          alt=""
+                          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                          referrerPolicy="no-referrer"
+                        />
+                        <div
+                          className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/85 via-black/30 to-transparent"
+                          aria-hidden
+                        />
+                        <h3 className="absolute inset-x-0 bottom-0 px-3 pb-4 pt-16 text-center font-display text-sm font-normal uppercase leading-tight tracking-[0.07em] text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,0.9)] sm:pb-5 sm:text-base md:pt-20 md:text-lg">
+                          {item.title}
+                        </h3>
+                      </div>
+                      <p className="mt-5 max-w-[24rem] text-balance text-[0.9375rem] font-medium leading-[1.65] text-brand-900 md:text-base md:leading-relaxed sm:mt-6">
+                        {item.description}
+                      </p>
+                      <span className="mt-4 inline-flex items-center justify-center gap-2 text-[13px] font-bold uppercase tracking-[0.18em] text-brand-900">
+                        Les mer
+                        <ChevronRight size={18} strokeWidth={2.25} className="text-brand-700" aria-hidden />
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-
-          {/* Bottom Navigation */}
-          <div className="flex gap-3 mt-10">
-            <button 
-              onClick={() => scrollConcepts('left')}
-              className={`w-12 h-12 rounded-full border border-brand-200 flex items-center justify-center bg-white transition-all hover:bg-brand-50 ${showConceptsLeft ? 'opacity-100' : 'opacity-30 cursor-not-allowed'}`}
-              disabled={!showConceptsLeft}
-            >
-              <ArrowLeft size={20} className="text-brand-400" />
-            </button>
-            <button 
-              onClick={() => scrollConcepts('right')}
-              className={`w-12 h-12 rounded-full bg-[#C4B5FD] flex items-center justify-center transition-all hover:bg-[#B1A0F9] ${showConceptsRight ? 'opacity-100' : 'opacity-30 cursor-not-allowed'}`}
-              disabled={!showConceptsRight}
-            >
-              <ArrowRight size={20} className="text-brand-900" />
-            </button>
           </div>
         </div>
       </section>
 
-      {/* Our Services Section */}
-      <section className="section-viewport relative overflow-hidden bg-[#F5F5F5] px-4">
-        {/* Subtle Background Glows */}
-        <div className="pointer-events-none absolute top-0 right-0 h-full w-full overflow-hidden">
-          <div className="absolute top-[10%] -right-[5%] w-[30%] h-[30%] bg-brand-200/10 blur-[100px] rounded-full"></div>
-          <div className="absolute bottom-[10%] -left-[5%] w-[30%] h-[30%] bg-brand-300/10 blur-[100px] rounded-full"></div>
-        </div>
-
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
-          <div className="mb-12">
-            <motion.span 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="text-xl font-sans text-brand-900 opacity-80 uppercase tracking-widest mb-4 block"
-            >
-              Våre tjenester
-            </motion.span>
-            <motion.h2 
+      {/* Our Services — flat brand-900 (samme som bryllup «Slik kan dagen se ut») */}
+      <section className="section-viewport relative overflow-hidden bg-brand-900 px-4 text-white">
+        <div className="section-viewport-scroll relative z-10 mx-auto w-full max-w-[1800px] px-5 py-14 sm:px-8 sm:py-16 md:px-14 md:py-16 lg:px-16 xl:px-20">
+          <div className="mb-7 md:mb-8 lg:mb-7">
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-8xl font-serif text-brand-900 leading-[0.9] tracking-tighter"
+              className={SECTION_H2_ON_DARK_CLASS}
             >
               Eksklusive Opplevelser
             </motion.h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-4 xl:gap-5">
             {[
               {
                 title: "Catering",
@@ -602,43 +303,44 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="group relative aspect-[4/5] rounded-xl overflow-hidden shadow-sm transition-all duration-500 cursor-pointer"
+                className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-white/28 transition-all duration-500 hover:border-white/45"
               >
                 {/* Background Image */}
                 <img 
                   src={service.img} 
                   alt={service.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
                 
                 {/* Default Bottom Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-0 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0" />
                 
                 {/* Hover Overlay (Teal/Blue Gradient) */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 
                 {/* Content Container */}
-                <div className="absolute inset-0 p-10 flex flex-col h-full">
+                <div className="absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6 md:p-7 lg:p-6">
                   {/* Title - Repositions on hover */}
-                  <h3 className="text-4xl font-display text-white uppercase tracking-wide transition-all duration-500 
-                    group-hover:mt-0 mt-auto">
+                  <h3 className="mt-auto shrink-0 font-display text-2xl uppercase tracking-wide text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.85)] transition-all duration-500 group-hover:mt-0 sm:text-3xl md:text-[1.85rem] lg:text-2xl lg:leading-tight xl:text-[1.75rem]">
                     {service.title}
                   </h3>
                   
                   {/* Description - Appears on hover */}
-                  <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 flex-grow">
-                    <p className="text-white text-lg leading-relaxed font-light">
+                  <div className="mt-3 flex-grow opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100">
+                    <p className="line-clamp-5 text-sm font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:line-clamp-4">
                       {service.description}
                     </p>
                   </div>
                   
                   {/* Read More - Appears on hover at bottom */}
-                  <div className="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200 flex items-center gap-3 group/btn">
-                    <div className="w-10 h-10 rounded-full border border-white/50 flex items-center justify-center transition-colors group-hover/btn:bg-white group-hover/btn:text-[#4F9DA6]">
-                      <ArrowRight size={18} />
+                  <div className="mt-auto flex items-center gap-3 opacity-0 transition-opacity delay-200 duration-500 group-hover:opacity-100 group/btn">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/70 bg-black/10 backdrop-blur-[2px] transition-colors group-hover/btn:bg-white group-hover/btn:text-[#4F9DA6] sm:h-11 sm:w-11">
+                      <ArrowRight size={20} strokeWidth={2.25} />
                     </div>
-                    <span className="text-white font-medium uppercase tracking-wider text-sm">Les mer</span>
+                    <span className="text-sm font-semibold uppercase tracking-[0.14em] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.5)] sm:text-base">
+                      Les mer
+                    </span>
                   </div>
                 </div>
               </motion.div>
@@ -664,11 +366,7 @@ const Home = () => {
             viewport={{ once: true }}
             className="mb-12 max-w-3xl"
           >
-            <span className="mb-5 block text-xs font-bold uppercase tracking-[0.3em] text-brand-500">Visuelt</span>
-            <h2
-              id="inspirasjon-galleri-heading"
-              className="mb-6 font-serif text-5xl leading-[0.95] tracking-tight text-brand-900 md:text-7xl"
-            >
+            <h2 id="inspirasjon-galleri-heading" className={cn(SECTION_H2_CLASS, 'mb-6')}>
               Galleri
             </h2>
             <p className="text-lg leading-relaxed text-brand-600 md:text-xl">
@@ -746,7 +444,7 @@ const Home = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08, duration: 0.7 }}
-                  className="group relative aspect-[4/5] min-w-[88%] overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm snap-center transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
+                  className="group relative aspect-[6/7] min-w-[88%] overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm snap-center transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
                 >
                   <img
                     src={item.src}
@@ -798,56 +496,31 @@ const Home = () => {
           aria-hidden
         />
 
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20 md:py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="mx-auto mb-12 max-w-3xl text-center md:mb-14"
-          >
-            <span className="mb-4 block text-xs font-bold uppercase tracking-[0.32em] text-brand-500">Samarbeid</span>
-            <h2 id="partnere-heading" className="mb-5 font-serif text-4xl tracking-tight text-brand-900 md:text-5xl lg:text-6xl">
-              Våre partnere
-            </h2>
-            <p className="text-base leading-relaxed text-brand-600 md:text-lg">
-              Vi jobber med anbefalte leverandører innen mat, dekor, foto og mer — slik at dere får ett koordinert team rundt arrangementet på Rønningen.
-            </p>
-          </motion.div>
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-20 md:px-20 md:py-28">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-16 xl:gap-20">
+            <header className="text-center lg:col-span-5 xl:col-span-4 lg:text-left">
+              <h2 id="partnere-heading" className={cn(SECTION_H2_CLASS, 'mb-4 md:mb-5')}>
+                Våre partnere
+              </h2>
+              <p className="mx-auto max-w-xl text-base leading-[1.65] text-brand-600 md:text-lg md:leading-relaxed lg:mx-0 lg:max-w-none">
+                Vi jobber med anbefalte leverandører innen mat, dekor, foto og mer — slik at dere får ett koordinert team rundt arrangementet på Rønningen.
+              </p>
+            </header>
 
-          <div className="relative -mx-4 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] md:-mx-8 md:[mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
-            <div className="overflow-hidden py-2" aria-hidden>
-              <div className="animate-marquee-slow flex w-max items-center gap-12 md:gap-20 lg:gap-24">
-                {(
-                  [
-                    'Catering & kjøkken',
-                    'Blomster & dekor',
-                    'Foto & film',
-                    'Lyd & lys',
-                    'Bar & servering',
-                    'Koordinering',
-                  ] as const
-                )
-                  .concat(
-                    [
-                      'Catering & kjøkken',
-                      'Blomster & dekor',
-                      'Foto & film',
-                      'Lyd & lys',
-                      'Bar & servering',
-                      'Koordinering',
-                    ] as const
-                  )
-                  .map((label, i) => (
-                    <span
-                      key={`${label}-${i}`}
-                      className="font-display text-2xl uppercase tracking-[0.12em] text-brand-800/35 transition-colors hover:text-brand-800/70 md:text-3xl lg:text-4xl"
-                    >
+            <ul
+              className="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 sm:gap-4 lg:col-span-7 xl:col-span-8 xl:grid-cols-3 xl:gap-4"
+              aria-label="Partnerkategorier"
+            >
+              {PARTNER_CATEGORIES.map((label) => (
+                <li key={label}>
+                  <div className="flex min-h-[4.25rem] items-center justify-center rounded-lg border border-brand-200/90 bg-white/90 px-4 py-3.5 text-center shadow-[0_1px_0_rgba(28,22,19,0.04)] backdrop-blur-[2px] md:min-h-[4.5rem] md:px-5">
+                    <span className="font-sans text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-brand-900 sm:text-sm">
                       {label}
                     </span>
-                  ))}
-              </div>
-            </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </section>
@@ -869,7 +542,7 @@ const Navbar = () => {
     { name: t('nav.home'), path: '/' },
     { name: t('nav.weddings'), path: '/weddings' },
     { name: t('nav.corporate'), path: '/corporate' },
-    { name: t('nav.packages'), path: '/packages' },
+    { name: t('nav.private'), path: '/packages' },
     { name: t('nav.gallery'), path: '/gallery' },
     { name: t('nav.contact'), path: '/contact' },
   ];
@@ -991,71 +664,143 @@ const Navbar = () => {
 
 const Footer = () => {
   const { t } = useTranslation();
+  const year = new Date().getFullYear();
+  const linkClass =
+    'text-brand-300 transition-colors hover:text-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900 rounded-sm';
+  const labelClass = 'mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-500';
+
   return (
-    <footer className="bg-brand-900 text-brand-100 py-20 px-4">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-        <div className="space-y-6">
-          <h2 className="text-3xl font-serif">Rønningen</h2>
-          <p className="text-brand-300 font-light">
-            {t('footer.tagline')}
-          </p>
-          <div className="flex space-x-4">
-            <Instagram className="cursor-pointer hover:text-white transition-colors" />
-            <Facebook className="cursor-pointer hover:text-white transition-colors" />
+    <footer className="border-t border-brand-800/90 bg-brand-900 text-brand-100">
+      <div className="mx-auto max-w-7xl px-4 py-14 md:px-6 md:py-16">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
+          <div className="space-y-4">
+            <h2 className="font-serif text-3xl font-semibold tracking-tight text-brand-100 md:text-[2.125rem] md:leading-tight">
+              Rønningen
+            </h2>
+            <p className="max-w-xs text-sm leading-relaxed text-brand-400">{t('footer.tagline')}</p>
+            <div className="flex flex-wrap items-center gap-3 text-brand-500">
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-sm transition-colors hover:text-brand-100"
+                aria-label="Instagram"
+              >
+                <Instagram size={20} strokeWidth={1.5} />
+              </a>
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-sm transition-colors hover:text-brand-100"
+                aria-label="Facebook"
+              >
+                <Facebook size={20} strokeWidth={1.5} />
+              </a>
+              <a
+                href="https://www.tiktok.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-sm transition-colors hover:text-brand-100"
+                aria-label="TikTok"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5"
+                  fill="currentColor"
+                  aria-hidden
+                >
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+                </svg>
+              </a>
+              <a
+                href="https://digilist.no"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center rounded-sm"
+                aria-label="Digilist"
+              >
+                <svg
+                  viewBox="0 0 76 18"
+                  className="h-5 w-[4.75rem] text-brand-500 transition-colors group-hover:text-brand-100"
+                  fill="currentColor"
+                  aria-hidden
+                >
+                  <text
+                    x="0"
+                    y="13.5"
+                    fontFamily="ui-sans-serif, system-ui, sans-serif"
+                    fontSize="12.5"
+                    fontWeight="600"
+                    letterSpacing="-0.02em"
+                  >
+                    Digilist
+                  </text>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <p className={labelClass}>{t('footer.contact')}</p>
+            <ul className="space-y-2.5 text-sm text-brand-300">
+              <li>
+                <a href="tel:+4712345678" className={linkClass}>
+                  <span className="inline-flex items-center gap-2.5">
+                    <Phone size={15} className="shrink-0 text-brand-500" aria-hidden />
+                    +47 123 45 678
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="mailto:post@ronningen.no" className={linkClass}>
+                  <span className="inline-flex items-center gap-2.5">
+                    <Mail size={15} className="shrink-0 text-brand-500" aria-hidden />
+                    post@ronningen.no
+                  </span>
+                </a>
+              </li>
+              <li className="flex items-start gap-2.5 pt-0.5">
+                <MapPin size={15} className="mt-0.5 shrink-0 text-brand-500" aria-hidden />
+                <span>Baneveien 290, 3410 SYLLING</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <p className={labelClass}>{t('footer.quickLinks')}</p>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <Link to="/packages" className={linkClass}>
+                  {t('nav.private')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/gallery" className={linkClass}>
+                  {t('nav.gallery')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className={linkClass}>
+                  {t('nav.faq')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className={linkClass}>
+                  {t('nav.contact')}
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
-        
-        <div>
-          <h4 className="text-sm uppercase tracking-widest mb-6 font-bold">{t('footer.contact')}</h4>
-          <ul className="space-y-4 text-brand-300 font-light">
-            <li className="flex items-center space-x-3">
-              <Phone size={16} />
-              <span>+47 123 45 678</span>
-            </li>
-            <li className="flex items-center space-x-3">
-              <Mail size={16} />
-              <span>post@ronningen.no</span>
-            </li>
-            <li className="flex items-center space-x-3">
-              <MapPin size={16} />
-              <span>Rønningen Gård, 1234 Oslo</span>
-            </li>
-          </ul>
-        </div>
 
-        <div>
-          <h4 className="text-sm uppercase tracking-widest mb-6 font-bold">{t('footer.quickLinks')}</h4>
-          <ul className="space-y-4 text-brand-300 font-light">
-            <li><Link to="/packages">{t('nav.packages')}</Link></li>
-            <li><Link to="/gallery">{t('nav.gallery')}</Link></li>
-            <li><Link to="/faq">{t('nav.faq')}</Link></li>
-          </ul>
+        <div className="mt-12 border-t border-brand-800 pt-8 text-center text-xs text-brand-500 md:text-left">
+          © {year} Rønningen Selskapslokale. {t('footer.rights')}.
         </div>
-
-        <div>
-          <h4 className="text-sm uppercase tracking-widest mb-6 font-bold">{t('footer.newsletter')}</h4>
-          <p className="text-brand-300 font-light mb-4">{t('footer.newsletterDesc')}</p>
-          <div className="flex">
-            <input 
-              type="email" 
-              placeholder={t('footer.emailPlaceholder')} 
-              className="bg-brand-800 border-none rounded-l-md px-4 py-2 w-full focus:ring-1 focus:ring-brand-400"
-            />
-            <button type="button" className="bg-brand-700 px-4 py-2 rounded-r-md hover:bg-brand-600 transition-colors">{t('footer.newsletterCta')}</button>
-          </div>
-        </div>
-      </div>
-      <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-brand-800 text-center text-brand-500 text-xs">
-        © {new Date().getFullYear()} Rønningen Selskapslokale. {t('footer.rights')}.
       </div>
     </footer>
   );
 };
-
-// Utility function
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(' ');
-}
 
 export default function App() {
   return (
@@ -1068,8 +813,8 @@ export default function App() {
               <Route path="/" element={<Home />} />
               <Route path="/weddings" element={<WeddingsPage />} />
               <Route path="/corporate" element={<CorporatePage />} />
-              <Route path="/private" element={<PrivatePage />} />
-              <Route path="/packages" element={<PackagesPage />} />
+              <Route path="/packages" element={<PrivatePage />} />
+              <Route path="/private" element={<Navigate to="/packages" replace />} />
               <Route path="/gallery" element={<GalleryPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/testimonials" element={<TestimonialsPage />} />

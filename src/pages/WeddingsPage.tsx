@@ -9,6 +9,8 @@ import {
   Wine, Car, ChevronDown, ChevronUp,
   GlassWater, PartyPopper
 } from 'lucide-react';
+import { cn } from '../lib/utils';
+import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 
 export const WeddingsPage = () => {
   const GALLERY_EDGE_TOLERANCE = 2;
@@ -141,23 +143,23 @@ export const WeddingsPage = () => {
 
   const packages = [
     {
-      name: "Lokalleie",
-      price: "Fra 45.000,-",
-      desc: "For dere som ønsker å styre alt selv og leie kun lokalene.",
-      features: ["Eksklusiv tilgang hele helgen", "Bord og stoler inkludert", "Sluttrengjøring", "Eget vertskap"]
+      name: 'Lokalleie',
+      tag: 'Grunnleggende',
+      desc: 'For dere som ønsker å styre det meste selv og leie kun lokalene.',
+      features: ['Eksklusiv tilgang hele helgen', 'Bord og stoler inkludert', 'Sluttrengjøring', 'Eget vertskap'],
     },
     {
-      name: "Fleksibel Bryllupspakke",
-      price: "Fra 75.000,-",
-      desc: "En god grunnpakke som kan utvides med de tjenestene dere trenger.",
-      features: ["Alt i Lokalleie", "Oppdekking & servise", "Lyd & Lys-pakke", "Prosjektleder"]
+      name: 'Fleksibel bryllupspakke',
+      tag: 'Utvidet',
+      desc: 'En solid grunnpakke som kan utvides med de tjenestene dere trenger.',
+      features: ['Alt i lokalleie', 'Oppdekking og servise', 'Lyd og lys-pakke', 'Prosjektleder'],
     },
     {
-      name: "Skreddersydd Løsning",
-      price: "Pris på forespørsel",
-      desc: "Vi hjelper dere med alt fra A til Å for en helt bekymringsfri feiring.",
-      features: ["Full planlegging", "Catering & servering", "Blomster & dekor", "Koordinering på dagen"]
-    }
+      name: 'Skreddersydd løsning',
+      tag: 'Full service',
+      desc: 'Vi hjelper dere med alt fra A til Å for en trygg og bekymringsfri feiring.',
+      features: ['Full planlegging', 'Catering og servering', 'Blomster og dekor', 'Koordinering på dagen'],
+    },
   ];
 
   const faqs = [
@@ -191,47 +193,47 @@ export const WeddingsPage = () => {
           <img 
             src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=2000" 
             alt="Wedding Hero" 
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover brightness-[0.35]"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-brand-900/60 via-brand-900/20 to-brand-900/70 z-10"></div>
-          <div className="absolute inset-0 bg-brand-400/10 mix-blend-overlay z-10"></div>
         </div>
-        <div className="section-viewport-scroll relative z-10 flex w-full max-w-5xl flex-col items-center justify-center px-4 py-6 text-center text-white">
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-8xl font-display uppercase tracking-tight mb-6"
-          >
-            Bryllup i vakre og <br className="hidden md:block" /> unike omgivelser
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg md:text-2xl font-light mb-12 max-w-2xl mx-auto opacity-90"
-          >
-            Skap en feiring som føles personlig, varm og minneverdig.
-          </motion.p>
+        <div className="section-viewport-scroll relative z-10 flex w-full max-w-6xl flex-col items-center justify-center px-4 py-6 text-center text-white">
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
           >
-            <Link to="/contact" className="bg-white text-brand-900 px-10 py-5 rounded-full text-sm uppercase tracking-widest font-bold hover:bg-brand-50 transition-all shadow-xl w-full sm:w-auto">
-              Book nå
-            </Link>
-            <Link to="/contact" className="bg-transparent text-white border-2 border-white/30 px-10 py-5 rounded-full text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-all w-full sm:w-auto">
-              Send forespørsel
-            </Link>
+            <span className="block text-xs font-bold uppercase tracking-[0.4em] opacity-70">
+              Bryllup
+            </span>
+            <h1 className="font-serif text-6xl leading-[0.9] tracking-tighter md:text-9xl">
+              Bryllup i vakre og <br className="hidden md:block" /> unike omgivelser
+            </h1>
+            <p className="mx-auto max-w-2xl text-xl font-light italic opacity-90 md:text-3xl">
+              Skap en feiring som føles personlig, varm og minneverdig.
+            </p>
+            <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
+              <Link
+                to="/contact"
+                className="w-full rounded-full bg-white px-10 py-5 text-sm font-bold uppercase tracking-widest text-brand-900 shadow-2xl transition-all hover:-translate-y-1 hover:bg-brand-50 sm:w-auto"
+              >
+                Book nå
+              </Link>
+              <Link
+                to="/contact"
+                className="w-full rounded-full border-2 border-white bg-transparent px-10 py-5 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-white/10 sm:w-auto"
+              >
+                Send forespørsel
+              </Link>
+            </div>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="flex flex-wrap items-center justify-center gap-8 md:gap-16 text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold opacity-70"
+            className="mt-12 flex flex-wrap items-center justify-center gap-8 text-[10px] font-bold uppercase tracking-[0.3em] opacity-70 md:mt-16 md:gap-16 md:text-xs"
           >
             <span className="flex items-center gap-2"><Sparkles size={14} /> Unike omgivelser</span>
             <span className="flex items-center gap-2"><Calendar size={14} /> Fleksible løsninger</span>
@@ -240,29 +242,28 @@ export const WeddingsPage = () => {
         </div>
       </section>
 
-      {/* Atmosfæren — samme etikett + h2 som «Våre tjenester» / Alt dere trenger */}
+      {/* Atmosfæren — samme bakgrunn og typografi som forsiden «Våre konsepter» for tydelig kontrast */}
       <section
         id="atmosfaeren"
         aria-labelledby="atmosfaeren-heading"
-        className="section-viewport scroll-mt-24 relative overflow-hidden border-y border-brand-100 bg-white"
+        className="section-viewport scroll-mt-24 relative overflow-hidden border-y border-brand-200/80 bg-gradient-to-b from-white to-brand-50/50"
       >
-        <div className="pointer-events-none absolute top-0 right-0 h-full w-full overflow-hidden">
-          <div className="absolute top-[35%] -right-[8%] w-[42%] h-[42%] bg-brand-100/25 blur-[120px] rounded-full" />
-        </div>
+        <div
+          className="pointer-events-none absolute left-[6%] top-[10%] h-[min(44vw,26rem)] w-[min(44vw,26rem)] rounded-full bg-brand-300/20 blur-[90px]"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute bottom-[6%] right-[4%] h-[min(36vw,22rem)] w-[min(36vw,22rem)] rounded-full bg-brand-500/12 blur-[75px]"
+          aria-hidden
+        />
 
         <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-14 xl:gap-20 items-start">
             <div className="order-2 lg:order-1 max-w-3xl">
-              <span className="text-xl font-sans text-brand-900 opacity-80 uppercase tracking-widest mb-4 block">
-                Atmosfæren
-              </span>
-              <h2
-                id="atmosfaeren-heading"
-                className="text-4xl md:text-8xl font-serif text-brand-900 leading-[0.9] tracking-tighter mb-6"
-              >
+              <h2 id="atmosfaeren-heading" className={cn(SECTION_H2_CLASS, 'mb-6 text-balance')}>
                 Vielse og fest <br /> på samme sted
               </h2>
-              <p className="text-brand-600 text-lg md:text-xl leading-relaxed">
+              <p className="text-pretty text-base leading-relaxed text-brand-800/95 md:text-lg md:leading-relaxed">
                 Historisk låv og lokaler med komfort og utstyr som holder i dag. Samme sted til vielse, mat og fest. Dere bestemmer rekkefølgen og stilen. Rolige omgivelser i kulturlandskap, kort vei mellom seremoni og dans. Vi hjelper dere med planlegging og gjennomføring slik at dere kan konsentrere dere om hverandre. Ta kontakt for omvisning og en prat om hvordan dagen kan legges opp hos oss.
               </p>
             </div>
@@ -279,20 +280,20 @@ export const WeddingsPage = () => {
             </figure>
           </div>
 
-          <ul className="mt-16 md:mt-20 pt-12 md:pt-14 border-t border-brand-200 grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-12 lg:gap-14 list-none m-0 p-0">
+          <ul className="mt-16 md:mt-20 grid list-none grid-cols-1 gap-10 border-t border-brand-200/90 pt-12 sm:grid-cols-2 sm:gap-12 md:pt-14 lg:gap-14 m-0 p-0">
             {whyUs.map((item, i) => (
               <li key={i} className="flex gap-5 md:gap-6">
                 <span
-                  className="font-serif text-3xl md:text-4xl text-brand-200 tabular-nums shrink-0 w-11 md:w-12 pt-0.5 leading-none text-right"
+                  className="w-11 shrink-0 pt-0.5 text-right font-serif text-3xl tabular-nums leading-none text-brand-400 md:w-12 md:text-4xl"
                   aria-hidden
                 >
                   {item.number}
                 </span>
-                <div className="min-w-0 border-l border-brand-200 pl-5 md:pl-6">
-                  <h3 className="font-serif text-xl md:text-2xl text-brand-900 mb-2 tracking-tight leading-snug">
+                <div className="min-w-0 border-l border-brand-300/90 pl-5 md:pl-6">
+                  <h3 className="mb-2 font-serif text-xl tracking-tight text-brand-950 md:text-2xl md:leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-brand-700/95 text-base md:text-[17px] leading-[1.7]">
+                  <p className="text-base leading-[1.7] text-brand-800 md:text-[17px]">
                     {item.desc}
                   </p>
                 </div>
@@ -303,37 +304,15 @@ export const WeddingsPage = () => {
       </section>
 
       {/* 4. What your day can look like - Visual Timeline */}
-      <section className="section-viewport relative overflow-hidden bg-gradient-to-b from-[#1c1613] via-brand-900 to-[#0e0a08] text-white">
-        {/* Abstract Background Glows — warm depth aligned with brand */}
-        <div className="pointer-events-none absolute top-0 left-0 h-full w-full overflow-hidden">
-          <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] bg-brand-400/14 blur-[120px] rounded-full"></div>
-          <div className="absolute -bottom-[20%] -right-[10%] w-[50%] h-[50%] bg-brand-600/12 blur-[120px] rounded-full"></div>
-          <div className="absolute top-1/2 left-1/2 h-[40%] w-[70%] -translate-x-1/2 -translate-y-1/2 bg-brand-800/8 blur-[100px] rounded-full"></div>
-        </div>
-
+      <section className="section-viewport relative overflow-hidden bg-brand-900 text-white">
         <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-20 md:px-20">
           <header className="relative mb-16 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16 lg:items-start">
-            {/* Floating Vertical Text */}
-            <div className="absolute top-1/2 -right-48 -translate-y-1/2 rotate-90 hidden 2xl:block pointer-events-none opacity-10">
-              <span className="text-[140px] font-serif text-white select-none whitespace-nowrap leading-none tracking-tighter">
-                Deres historie
-              </span>
-            </div>
-
             <div className="lg:col-span-7 xl:col-span-6 flex flex-col gap-5 md:gap-6">
-              <motion.p
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="m-0 text-[10px] uppercase tracking-[0.6em] font-bold text-brand-400"
-              >
-                Opplevelsen
-              </motion.p>
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="m-0 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif leading-[0.92] tracking-tighter text-balance"
+                className={cn(SECTION_H2_ON_DARK_CLASS, 'm-0')}
               >
                 <span className="block">Slik kan</span>
                 <span className="mt-1 block pl-6 italic text-brand-400 sm:pl-10 md:pl-14 lg:pl-16">
@@ -358,14 +337,6 @@ export const WeddingsPage = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
               {dayFlow.map((item, i) => {
-                const colors = [
-                  { bg: 'from-amber-900/80', accent: 'text-amber-400', border: 'border-amber-400/30' },
-                  { bg: 'from-rose-900/80', accent: 'text-rose-400', border: 'border-rose-400/30' },
-                  { bg: 'from-emerald-900/80', accent: 'text-emerald-400', border: 'border-emerald-400/30' },
-                  { bg: 'from-blue-900/80', accent: 'text-blue-400', border: 'border-blue-400/30' }
-                ];
-                const color = colors[i % colors.length];
-                
                 return (
                   <motion.div 
                     key={i}
@@ -373,7 +344,7 @@ export const WeddingsPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.2, duration: 0.8 }}
-                    className="group relative h-[min(600px,50dvh)] min-h-[260px] overflow-hidden rounded-lg shadow-2xl"
+                    className="group relative h-[min(600px,50dvh)] min-h-[260px] overflow-hidden rounded-lg border border-white/28 transition-all duration-500 hover:border-white/45"
                   >
                     {/* Visual Background */}
                     <div className="absolute inset-0 z-0">
@@ -386,17 +357,17 @@ export const WeddingsPage = () => {
                         className="w-full h-full object-cover group-hover:scale-110 transition-all duration-1000"
                         referrerPolicy="no-referrer"
                       />
-                      <div className={`absolute inset-0 bg-gradient-to-t ${color.bg} via-brand-900/45 to-transparent opacity-90 group-hover:opacity-70 transition-colors duration-700`}></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-brand-950/50 to-transparent opacity-90 transition-opacity duration-700 group-hover:opacity-75" />
                     </div>
 
                     {/* Content Overlay */}
                     <div className="relative z-10 h-full p-12 flex flex-col justify-between">
                       <div className="flex justify-between items-start">
                         <div className="flex flex-col">
-                          <span className={`text-6xl font-serif ${color.accent} opacity-40 group-hover:opacity-100 transition-colors duration-500`}>0{i + 1}</span>
-                          <div className={`h-px w-12 ${color.accent} opacity-30 mt-4 group-hover:w-24 transition-all duration-500`}></div>
+                          <span className="text-6xl font-serif text-brand-400 opacity-50 transition-opacity duration-500 group-hover:opacity-100">0{i + 1}</span>
+                          <div className="mt-4 h-px w-12 bg-brand-400/40 opacity-60 transition-all duration-500 group-hover:w-24 group-hover:opacity-100" />
                         </div>
-                        <div className={`w-14 h-14 rounded-full bg-white/10 border ${color.border} flex items-center justify-center ${color.accent} backdrop-blur-md group-hover:bg-white group-hover:text-brand-900 transition-all duration-500`}>
+                        <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-white/10 text-brand-200 backdrop-blur-md transition-all duration-500 group-hover:border-white/40 group-hover:bg-white group-hover:text-brand-900">
                           {item.icon}
                         </div>
                       </div>
@@ -416,7 +387,7 @@ export const WeddingsPage = () => {
         </div>
       </section>
 
-      {/* 5: Services & Partners - Matched to Home "Våre tjenester" style */}
+      {/* 5: Services — samme rutenett og kortformat som forsiden «Eksklusive Opplevelser» */}
       <section className="section-viewport relative overflow-hidden bg-[#F5F5F5] px-4">
         {/* Subtle Background Glows */}
         <div className="pointer-events-none absolute top-0 right-0 h-full w-full overflow-hidden">
@@ -424,71 +395,58 @@ export const WeddingsPage = () => {
           <div className="absolute bottom-[10%] -left-[5%] w-[30%] h-[30%] bg-brand-300/10 blur-[100px] rounded-full"></div>
         </div>
 
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
-          <div className="mb-12">
-            <motion.span 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="text-xl font-sans text-brand-900 opacity-80 uppercase tracking-widest mb-4 block"
-            >
-              Våre tjenester
-            </motion.span>
-            <motion.h2 
+        <div className="section-viewport-scroll relative z-10 mx-auto w-full max-w-[1800px] px-5 py-14 sm:px-8 sm:py-16 md:px-14 md:py-16 lg:px-16 xl:px-20">
+          <div className="mb-7 md:mb-8 lg:mb-7">
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-8xl font-serif text-brand-900 leading-[0.9] tracking-tighter"
+              className={SECTION_H2_CLASS}
             >
               Alt dere trenger <br /> på ett sted
             </motion.h2>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-4 xl:gap-5">
             {services.map((service, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative aspect-[4/5] rounded-md overflow-hidden shadow-sm transition-all duration-500 cursor-pointer"
+                className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-black/10 transition-all duration-500 hover:border-black/20"
               >
-                {/* Background Image */}
-                <img 
-                  src={service.img} 
-                  alt={service.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                <img
+                  src={service.img}
+                  alt={service.title}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
-                
-                {/* Default Bottom Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-0 transition-opacity duration-500" />
-                
-                {/* Hover Overlay (Teal/Blue Gradient) */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Content Container */}
-                <div className="absolute inset-0 p-10 flex flex-col h-full">
-                  {/* Title - Repositions on hover */}
-                  <h3 className="text-4xl font-display text-white uppercase tracking-wide transition-all duration-500 group-hover:mt-0 mt-auto">
+
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0" />
+
+                <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                <div className="absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6 md:p-7 lg:p-6">
+                  <h3 className="mt-auto shrink-0 font-display text-2xl uppercase tracking-wide text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.85)] transition-all duration-500 group-hover:mt-0 sm:text-3xl md:text-[1.85rem] lg:text-2xl lg:leading-tight xl:text-[1.75rem]">
                     {service.title}
                   </h3>
-                  
-                  {/* Description - Appears on hover */}
-                  <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 flex-grow">
-                    <p className="text-white text-lg leading-relaxed font-light">
+
+                  <div className="mt-3 flex-grow opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100">
+                    <p className="line-clamp-5 text-sm font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:line-clamp-4">
                       {service.desc}
                     </p>
                   </div>
-                  
-                  {/* Read More - Appears on hover at bottom */}
-                  <div className="mt-auto opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200 flex items-center gap-3 group/btn">
+
+                  <div className="mt-auto flex items-center gap-3 opacity-0 transition-opacity delay-200 duration-500 group-hover:opacity-100 group/btn">
                     <Link to="/contact" className="contents">
-                      <div className="w-10 h-10 rounded-full border border-white/50 flex items-center justify-center transition-colors group-hover/btn:bg-white group-hover/btn:text-[#4F9DA6]">
-                        <ArrowRight size={18} />
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/70 bg-black/10 backdrop-blur-[2px] transition-colors group-hover/btn:bg-white group-hover/btn:text-[#4F9DA6] sm:h-11 sm:w-11">
+                        <ArrowRight size={20} strokeWidth={2.25} />
                       </div>
-                      <span className="text-white font-medium uppercase tracking-wider text-sm">Les mer</span>
+                      <span className="text-sm font-semibold uppercase tracking-[0.14em] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.5)] sm:text-base">
+                        Les mer
+                      </span>
                     </Link>
                   </div>
                 </div>
@@ -498,70 +456,80 @@ export const WeddingsPage = () => {
         </div>
       </section>
 
-      {/* 6. Booking/package model */}
-      <section className="section-viewport relative overflow-hidden border-y border-brand-200/80 bg-gradient-to-b from-brand-100/70 via-brand-50 to-brand-100/50">
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
+      {/* 6. Pakker — uten priser, tydelig tilbud etter samtale */}
+      <section
+        aria-labelledby="bryllupspakker-heading"
+        className="section-viewport relative overflow-hidden border-y border-brand-200/80 bg-gradient-to-b from-white to-brand-50/50"
+      >
+        <div
+          className="pointer-events-none absolute left-[8%] top-[18%] h-[min(38vw,22rem)] w-[min(38vw,22rem)] rounded-full bg-brand-200/25 blur-[90px]"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute bottom-[12%] right-[6%] h-[min(32vw,18rem)] w-[min(32vw,18rem)] rounded-full bg-brand-400/10 blur-[80px]"
+          aria-hidden
+        />
+
+        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-5 py-16 sm:px-8 sm:py-20 md:px-14 md:py-24 lg:px-16 xl:px-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12 max-w-3xl"
+            className="mb-10 max-w-2xl md:mb-12"
           >
-            <span className="text-xs uppercase tracking-[0.3em] text-brand-500 font-bold mb-5 block">Investeringen</span>
-            <h2 className="text-5xl md:text-7xl font-serif text-brand-900 mb-6 tracking-tight leading-[0.95]">
-              Våre Bryllupspakker
+            <h2 id="bryllupspakker-heading" className={cn(SECTION_H2_CLASS, 'mb-5')}>
+              Våre bryllupspakker
             </h2>
-            <p className="text-brand-600 text-lg md:text-xl leading-relaxed">
-              Velg pakken som passer dere best. Hver løsning kan tilpasses slik at feiringen oppleves personlig, enkel og gjennomført.
+            <p className="text-base leading-relaxed text-brand-700 md:text-lg md:leading-relaxed">
+              Tre utgangspunkt vi kan tilpasse sammen med dere. Detaljer og omfang avklares i en uforpliktende prat — slik at dere får et opplegg som passer dagen og budsjettet.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-6 md:gap-7 lg:grid-cols-3 lg:gap-8">
             {packages.map((pkg, i) => (
               <motion.div
-                key={i}
+                key={pkg.name}
                 initial={{ opacity: 0, y: 28 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`relative rounded-xl border p-8 md:p-10 h-full flex flex-col ${
+                className={`relative flex h-full flex-col rounded-2xl border p-8 md:p-9 ${
                   i === 1
-                    ? 'bg-brand-900 text-white border-brand-800 shadow-2xl shadow-brand-900/35 ring-2 ring-brand-400/25 z-[1]'
-                    : 'bg-white text-brand-900 border-2 border-brand-300/90 shadow-lg shadow-brand-900/[0.06] ring-1 ring-brand-900/[0.04]'
+                    ? 'z-[1] border-brand-800 bg-brand-900 text-white shadow-2xl shadow-brand-900/30 ring-2 ring-brand-400/20'
+                    : 'border-brand-200/90 bg-white/95 text-brand-900 shadow-[0_1px_0_rgba(28,22,19,0.04)] ring-1 ring-brand-900/[0.04]'
                 }`}
               >
                 {i === 1 && (
-                  <div className="absolute top-5 right-5 px-3 py-1 rounded-full bg-brand-700 text-[10px] uppercase tracking-[0.18em] font-bold">
+                  <div className="absolute right-4 top-4 rounded-full bg-brand-700 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em]">
                     Mest populær
                   </div>
                 )}
 
-                <div className="mb-8">
-                  <h3 className={`text-2xl md:text-3xl font-serif mb-3 ${i === 1 ? 'text-white' : 'text-brand-900'}`}>
+                <div className="mb-6">
+                  <p
+                    className={`mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] ${
+                      i === 1 ? 'text-brand-400' : 'text-brand-500'
+                    }`}
+                  >
+                    {pkg.tag}
+                  </p>
+                  <h3 className={`font-serif text-2xl tracking-tight md:text-[1.65rem] ${i === 1 ? 'text-white' : 'text-brand-950'}`}>
                     {pkg.name}
                   </h3>
-                  <div className="flex items-end gap-2 mb-4">
-                    <span className={`text-4xl font-display leading-none ${i === 1 ? 'text-brand-100' : 'text-brand-900'}`}>
-                      {pkg.price}
-                    </span>
-                    <span className={`text-xs uppercase tracking-[0.16em] ${i === 1 ? 'text-brand-200' : 'text-brand-500'}`}>
-                      inkl. mva
-                    </span>
-                  </div>
-                  <p className={`${i === 1 ? 'text-brand-100' : 'text-brand-700'} text-base leading-relaxed`}>
+                  <p className={`mt-4 text-[15px] leading-relaxed md:text-base ${i === 1 ? 'text-brand-100' : 'text-brand-700'}`}>
                     {pkg.desc}
                   </p>
                 </div>
 
-                <div className={`h-px w-full mb-7 ${i === 1 ? 'bg-brand-700' : 'bg-brand-300/80'}`}></div>
+                <div className={`mb-6 h-px w-full ${i === 1 ? 'bg-brand-700' : 'bg-brand-200'}`} />
 
-                <ul className="space-y-4 mb-8 grow">
+                <ul className="mb-8 grow space-y-3.5">
                   {pkg.features.map((feature, j) => (
                     <li key={j} className="flex items-start gap-3">
-                      <div className={`mt-0.5 shrink-0 ${i === 1 ? 'text-brand-300' : 'text-brand-600'}`}>
-                        <CheckCircle2 size={18} strokeWidth={2.25} />
+                      <div className={`mt-0.5 shrink-0 ${i === 1 ? 'text-brand-400' : 'text-brand-600'}`}>
+                        <CheckCircle2 size={18} strokeWidth={2.25} aria-hidden />
                       </div>
-                      <span className={`${i === 1 ? 'text-brand-100' : 'text-brand-800'} text-[15px] leading-relaxed`}>
+                      <span className={`text-[15px] leading-relaxed ${i === 1 ? 'text-brand-100' : 'text-brand-800'}`}>
                         {feature}
                       </span>
                     </li>
@@ -570,29 +538,17 @@ export const WeddingsPage = () => {
 
                 <Link
                   to="/contact"
-                  className={`mt-auto inline-flex items-center justify-center rounded-full px-6 py-4 text-[11px] uppercase tracking-[0.24em] font-semibold transition-colors ${
+                  className={`mt-auto inline-flex items-center justify-center rounded-full px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] transition-colors ${
                     i === 1
                       ? 'bg-white text-brand-900 hover:bg-brand-100'
                       : 'bg-brand-900 text-white hover:bg-brand-800'
                   }`}
                 >
-                  Velg denne pakken
+                  Be om tilbud
                 </Link>
               </motion.div>
             ))}
           </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="mt-12 text-center"
-          >
-            <p className="text-brand-500 text-sm italic">
-              * Alle priser er veiledende. Endelig tilbud utarbeides etter en uforpliktende samtale.
-            </p>
-          </motion.div>
         </div>
       </section>
 
@@ -610,11 +566,8 @@ export const WeddingsPage = () => {
             viewport={{ once: true }}
             className="mb-12 max-w-3xl"
           >
-            <span className="text-xs uppercase tracking-[0.3em] text-brand-500 font-bold mb-5 block">Visuelt</span>
-            <h2 className="text-5xl md:text-7xl font-serif text-brand-900 mb-6 tracking-tight leading-[0.95]">
-              Inspirasjon og Galleri
-            </h2>
-            <p className="text-brand-600 text-lg md:text-xl leading-relaxed">
+            <h2 className={cn(SECTION_H2_CLASS, 'mb-6')}>Inspirasjon og Galleri</h2>
+            <p className="text-lg leading-relaxed text-brand-600 md:text-xl">
               Et kuratert utvalg fra bryllup hos oss. Bla gjennom og se hvordan ulike uttrykk, farger og stemninger kan tilpasses deres dag.
             </p>
           </motion.div>
@@ -626,10 +579,10 @@ export const WeddingsPage = () => {
                   type="button"
                   onClick={() => scrollGallery('left')}
                   disabled={!showGalleryLeft}
-                  className={`absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 md:w-12 md:h-12 rounded-full border flex items-center justify-center shadow-md transition-colors backdrop-blur-sm ${
+                  className={`absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-md backdrop-blur-sm transition-colors md:left-4 md:h-12 md:w-12 ${
                     showGalleryLeft
-                      ? 'border-white/60 bg-white/85 text-brand-900 hover:bg-brand-900 hover:text-white hover:border-brand-900'
-                      : 'border-brand-200/80 bg-white/50 text-brand-300 cursor-not-allowed opacity-70'
+                      ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
+                      : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70'
                   }`}
                   aria-label="Forrige bilde"
                   aria-disabled={!showGalleryLeft}
@@ -640,10 +593,10 @@ export const WeddingsPage = () => {
                   type="button"
                   onClick={() => scrollGallery('right')}
                   disabled={!showGalleryRight}
-                  className={`absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 md:w-12 md:h-12 rounded-full border flex items-center justify-center shadow-md transition-colors backdrop-blur-sm ${
+                  className={`absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-md backdrop-blur-sm transition-colors md:right-4 md:h-12 md:w-12 ${
                     showGalleryRight
-                      ? 'border-white/60 bg-white/85 text-brand-900 hover:bg-brand-900 hover:text-white hover:border-brand-900'
-                      : 'border-brand-200/80 bg-white/50 text-brand-300 cursor-not-allowed opacity-70'
+                      ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
+                      : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70'
                   }`}
                   aria-label="Neste bilde"
                   aria-disabled={!showGalleryRight}
@@ -655,39 +608,39 @@ export const WeddingsPage = () => {
 
             <div
               ref={galleryRef}
-              className="flex gap-6 md:gap-8 overflow-x-auto pb-8 md:pb-10 scrollbar-hide snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0"
+              className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-8 md:gap-8 md:pb-10 md:mx-0 md:px-0"
             >
               {[
-              "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1200",
-              "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200",
-              "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200",
-              "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=1200",
-              "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=1200",
-              "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=1200"
-            ].map((img, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.7 }}
-                className="min-w-[88%] md:min-w-[46%] lg:min-w-[34%] aspect-[4/5] relative group overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm hover:shadow-xl transition-all duration-500 snap-center"
-              >
-                <img
-                  src={img}
-                  alt={`Bryllupsinspirasjon ${i + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-900/75 via-brand-900/20 to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-500" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
-                  <div className="inline-flex items-center gap-2 text-white/85 text-[11px] uppercase tracking-[0.2em] mb-2">
-                    <Sparkles size={12} />
-                    Galleri
+                'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1200',
+                'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200',
+                'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200',
+                'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=1200',
+                'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=1200',
+                'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=1200',
+              ].map((img, i) => (
+                <motion.div
+                  key={img}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.7 }}
+                  className="group relative aspect-[6/7] min-w-[88%] snap-center overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
+                >
+                  <img
+                    src={img}
+                    alt={`Bryllupsinspirasjon ${i + 1}`}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-900/75 via-brand-900/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-85" />
+                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
+                    <div className="mb-2 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/85">
+                      <Sparkles size={12} aria-hidden />
+                      Galleri
+                    </div>
+                    <p className="font-serif text-lg text-white md:text-xl">Bryllupsinspirasjon {i + 1}</p>
                   </div>
-                  <p className="text-white text-lg md:text-xl font-serif">Bryllupsinspirasjon {i + 1}</p>
-                </div>
-              </motion.div>
+                </motion.div>
               ))}
             </div>
           </div>
@@ -697,14 +650,14 @@ export const WeddingsPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="mt-10 md:mt-12 text-center"
+            className="mt-10 text-center md:mt-12"
           >
             <Link
               to="/gallery"
-              className="inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 group hover:border-brand-300 hover:shadow-md transition-all"
+              className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md"
             >
-              <span className="text-xs uppercase tracking-[0.28em] font-semibold text-brand-900">Se hele galleriet</span>
-              <div className="w-9 h-9 rounded-full bg-brand-900 text-white flex items-center justify-center group-hover:translate-x-1 transition-transform">
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">Se hele galleriet</span>
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white transition-transform group-hover:translate-x-1">
                 <ArrowRight size={16} />
               </div>
             </Link>
@@ -723,19 +676,11 @@ export const WeddingsPage = () => {
 
         <div className="section-viewport-scroll relative z-10 mx-auto max-w-3xl px-6 py-12 sm:px-8 md:py-16">
           <div className="text-center mb-10 md:mb-12">
-            <motion.span 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-[10px] uppercase tracking-[0.35em] text-brand-400 font-bold mb-3 block"
-            >
-              Informasjon
-            </motion.span>
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl sm:text-5xl font-serif text-brand-900 mb-4 tracking-tighter leading-[0.95]"
+              className={cn(SECTION_H2_CLASS, 'mb-4')}
             >
               Ofte stilte{' '}
               <span className="italic text-brand-600">spørsmål</span>
@@ -796,13 +741,13 @@ export const WeddingsPage = () => {
 
       {/* 9. Final CTA - Editorial Style */}
       <section className="section-viewport px-8 md:px-20">
-        <div className="section-viewport-scroll py-10 md:py-14">
+        <div className="section-viewport-scroll py-8 md:py-10">
         <motion.div 
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="relative mx-auto max-w-[1800px] overflow-hidden rounded-xl bg-brand-900 p-16 text-center text-white shadow-2xl md:p-32"
+          className="relative mx-auto max-w-[1800px] overflow-hidden rounded-xl bg-brand-900 px-6 py-12 text-center text-white shadow-2xl sm:px-10 sm:py-14 md:px-14 md:py-16 lg:px-16 lg:py-20"
         >
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0 opacity-30">
@@ -821,22 +766,13 @@ export const WeddingsPage = () => {
             <div className="absolute -bottom-[20%] -right-[10%] w-[50%] h-[50%] bg-rose-400/10 blur-[120px] rounded-full"></div>
           </div>
 
-          <div className="relative z-10 space-y-12 max-w-4xl mx-auto">
-            <motion.span 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-xs uppercase tracking-[0.6em] font-bold text-brand-300 block"
-            >
-              Neste steg
-            </motion.span>
-            
-            <motion.h2 
+          <div className="relative z-10 mx-auto max-w-4xl space-y-8 md:space-y-10">
+            <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-6xl md:text-9xl font-serif leading-[0.85] tracking-tighter"
+              className={SECTION_H2_ON_DARK_CLASS}
             >
               Skal vi skape <br />
               <span className="italic text-brand-400">magi sammen?</span>
@@ -857,17 +793,17 @@ export const WeddingsPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-12"
+              className="flex flex-col items-center justify-center gap-5 pt-4 sm:flex-row sm:gap-6 sm:pt-6"
             >
               <Link 
                 to="/contact" 
-                className="bg-white text-brand-900 px-16 py-7 rounded-full text-xs uppercase tracking-[0.3em] font-bold hover:bg-brand-50 transition-all shadow-2xl hover:scale-105 active:scale-95 w-full sm:w-auto"
+                className="w-full rounded-full bg-white px-10 py-5 text-xs font-bold uppercase tracking-[0.3em] text-brand-900 shadow-xl transition-all hover:scale-[1.02] hover:bg-brand-50 active:scale-[0.98] sm:w-auto sm:px-14"
               >
-                Book visning
+                Book nå
               </Link>
               <Link 
                 to="/contact" 
-                className="bg-transparent text-white border border-white/30 px-16 py-7 rounded-full text-xs uppercase tracking-[0.3em] font-bold hover:bg-white/10 transition-all w-full sm:w-auto"
+                className="w-full rounded-full border border-white/30 bg-transparent px-10 py-5 text-xs font-bold uppercase tracking-[0.3em] text-white transition-all hover:bg-white/10 sm:w-auto sm:px-14"
               >
                 Send forespørsel
               </Link>

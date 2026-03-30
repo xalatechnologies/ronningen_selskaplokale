@@ -8,9 +8,10 @@ import {
   ArrowRight,
   CheckCircle2,
   ChevronDown,
+  Gift,
+  Heart,
   MapPin,
   Sparkles,
-  Target,
 } from 'lucide-react';
 
 const CTA_PRIMARY = '/inquiry';
@@ -18,69 +19,81 @@ const CTA_SECONDARY = '/contact';
 
 const quickFit = [
   {
-    title: 'Julebord',
-    desc: 'Varm stemning, tydelig flyt og plass til tradisjon og litt ekstra.',
-    img: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=85&w=800',
-  },
-  {
-    title: 'Teambuilding & teamdag',
-    desc: 'Ut av møterommet — tillit og fellesskap i rolige omgivelser.',
-    img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=800',
-  },
-  {
-    title: 'Firmamiddag',
-    desc: 'Vertskap med sjel når dere vil vise frem bedriften på en ekte måte.',
+    title: 'Bursdag',
+    desc: 'Barnebursdag, runde år eller overraskelsesfest — plass til både mat, taler og dans.',
     img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=800',
   },
   {
-    title: 'Feiringer & milepæler',
-    desc: 'Jubileum og høytider med taler, latter og fest — deres ramme, ikke en mal.',
-    img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=800',
+    title: 'Konfirmasjon',
+    desc: 'Samling etter kirken med rom til slekt, venner og den gode middagen.',
+    img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=800',
+  },
+  {
+    title: 'Dåp & navnefest',
+    desc: 'Rolige rammer for den lille høytiden — kaffe, kaker og tid til å være sammen.',
+    img: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=85&w=800',
+  },
+  {
+    title: 'Jubileum',
+    desc: 'Sølvbryllup, runde dager og milepæler — feiring som føles ekte, ikke pyntet.',
+    img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=800',
   },
 ] as const;
 
-const whyThree = [
-  'Personlig ramme — ikke anonym konferansesal',
-  'Opplegg tilpasset dato, format og antall gjester',
-  'Én destinasjon fra ankomst til siste toast',
+const privateHighlights = [
+  {
+    icon: Heart,
+    title: 'Nærhet',
+    desc: 'Rom som føles personlige — ikke anonyme festlokaler. Her handler det om dere og gjestene.',
+  },
+  {
+    icon: Gift,
+    title: 'Deres tradisjon',
+    desc: 'Opplegg tilpasset familie, gjester og høytider dere bryr dere om — uten ferdig mal fra oss.',
+  },
+  {
+    icon: Sparkles,
+    title: 'Samlet på ett sted',
+    desc: 'Én destinasjon fra ankomst til siste klem: mindre stress, mer tid til å være til stede.',
+  },
 ];
 
 const eventTypes = [
   {
-    title: 'Julebord',
-    tag: 'Festlig',
-    desc: 'Julebord med plass til både tradisjon og det lille ekstra. Vi hjelper dere å sette stemningen — fra velkomst til siste tale — i lokaler som føles særegne, ikke standard hotell.',
-    img: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=85&w=1200',
+    title: 'Konfirmasjon',
+    tag: 'Tradisjon',
+    desc: 'Etter seremonien samles dere til fest med plass til slekt og venner. Vi hjelper med flyt, bord og tidsrom — slik at konfirmanten og familien kan være til stede, ikke styre logistikk.',
+    img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=1200',
   },
   {
-    title: 'Sommerfest',
-    tag: 'Sosialt',
-    desc: 'Når været tillater det, kan dere bruke uteareal og inne i samme flyt. Hel dag med aktiviteter eller ren kveldsfest — vi avklarer rigg, mat og tidsplan slik at alle slipper å tenke på logistikken.',
-    img: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Kick-off',
-    tag: 'Energi',
-    desc: 'Samle laget for ny sesong eller nytt prosjekt. Vi legger til rette for tydelig program, pauser og måltider — slik at dere kan bruke tiden på budskap og samhold, ikke på praktiske avklaringer.',
-    img: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Teamdag',
-    tag: 'Fleksibelt',
-    desc: 'Workshop, mingling og mat i ett sammenhengende løp. Rom og tid kan tilpasses gruppens størrelse og ønsket form — fra uformelt til mer strukturert, alt på samme sted.',
-    img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Firmamiddag',
-    tag: 'Formelt',
-    desc: 'Når kvelden skal være representativ, men fortsatt personlig. Vi samarbeider om meny, flyt og vertskap slik at gjester og verter føler seg ivaretatt — uten at det blir stivt.',
+    title: 'Bursdag',
+    tag: 'Feiring',
+    desc: 'Fra barnebursdag med enkel servering til voksne selskap med middag og dans. Vi tilpasser kapasitet, lyd og tidsplan slik at dagen blir deres — ikke en ferdig mal.',
     img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1200',
   },
   {
-    title: 'Kundeevent',
-    tag: 'Profesjonelt',
-    desc: 'Lanseringer, takketilstelninger eller møter der merkevaren deres skal stå tydelig. Vi er med på plan og gjennomføring slik at dere kan være vertskap uten å miste oversikten over detaljene.',
-    img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=85&w=1200',
+    title: 'Dåp',
+    tag: 'Familie',
+    desc: 'Rolig og varm ramme når dere vil samle nærmeste etter kirken. Vi avklarer plass til barnestoler, kaffebord og den lille ekstra tiden som ofte betyr mest.',
+    img: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=85&w=1200',
+  },
+  {
+    title: 'Navnefest',
+    tag: 'Nærhet',
+    desc: 'Feiring av nytt navn med dem dere vil ha rundt dere. Mindre selskap, tydelig vertskap og fleksibilitet for taler, musikk og servering i samme rom.',
+    img: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=85&w=1200',
+  },
+  {
+    title: 'Jubileum',
+    tag: 'Milepæl',
+    desc: 'Sølvbryllup, runde år eller langt ekteskap — vi legger til rette for taler, minner og fest som varer ut kvelden, uten at dere må tenke på alt selv.',
+    img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1200',
+  },
+  {
+    title: 'Minnesamvær',
+    tag: 'Verdig',
+    desc: 'Samling etter livets tunge dager — en rolig ramme for minneord, kaffe og tid til å være sammen. Vi koordinerer diskret med dere om det dere trenger.',
+    img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=1200',
   },
 ];
 
@@ -89,22 +102,22 @@ const packages = [
     name: 'Lokalleie',
     price: 'På forespørsel',
     detail: 'Tilbud etter samtale',
-    fit: 'Dere styrer leverandører selv.',
+    fit: 'Dere velger selv catering og detaljer — vi stiller med rommet.',
     bullets: ['Eksklusiv bruk av avtalte lokaler', 'Grunnleggende bord og stoler', 'Avtalt tidsramme'],
   },
   {
     name: 'Fleksibelt opplegg',
     price: 'På forespørsel',
     detail: 'Tilpasses behov',
-    fit: 'Sted pluss utvalgt støtte fra oss.',
-    bullets: ['Tilpasset rigg og plan', 'Koordinering med oss', 'Kan utvides'],
+    fit: 'Lokale pluss praktisk støtte til familiefeiringer.',
+    bullets: ['Tilpasset rigg og flyt', 'Koordinering med oss', 'Kan utvides med det dere trenger'],
     featured: true,
   },
   {
     name: 'Skreddersøm',
     price: 'Individuelt',
     detail: 'Etter omfang',
-    fit: 'Helheten fra idé til gjennomføring.',
+    fit: 'Fra idé til gjennomføring — når dere vil ha alt samlet.',
     bullets: ['Dialog om konsept og budsjett', 'Samarbeid med leverandører', 'Oppfølging på dagen'],
   },
 ];
@@ -119,26 +132,26 @@ const galleryImgs = [
 
 const faqs = [
   {
-    q: 'Hvilke typer bedriftsarrangement passer?',
-    a: 'Blant annet julebord, sommerfest, kick-off, teamdag, firmamiddag og kundearrangement. Vi avklarer kapasitet og format i dialog.',
+    q: 'Hvilke private feiringer kan vi ha hos dere?',
+    a: 'Blant annet konfirmasjon, bursdag, dåp, navnefest, jubileum og minnesamvær. Vi avklarer antall gjester, tidsrom og ønsket form i en uforpliktende prat.',
   },
   {
-    q: 'Kan opplegget tilpasses?',
-    a: 'Ja. Rom, tid og praktiske detaljer settes opp ut fra type selskap og antall gjester.',
+    q: 'Kan vi ta med egen mat og drikke?',
+    a: 'Det avklarer vi ut fra valgt opplegg og lokale. Mange kombinerer egen kake og drikke med catering — vi hjelper dere å finne en ryddig løsning.',
   },
   {
-    q: 'Kan vi komme på omvisning?',
-    a: 'Ja. Ta kontakt så finner vi et tidspunkt som passer.',
+    q: 'Passer det for både små og store selskap?',
+    a: 'Ja. Vi tilpasser bordoppsett og rom etter antall gjester — fra intime samlinger til større familielag.',
   },
   {
-    q: 'Hvordan sender vi forespørsel?',
-    a: 'Bruk skjemaet vårt med dato, omtrentlig antall og plan. Vi tar kontakt med forslag.',
+    q: 'Hvordan booker vi?',
+    a: 'Send forespørsel med dato, omtrentlig antall og type feiring. Vi kommer tilbake med forslag og neste steg.',
   },
 ];
 
 const GALLERY_EDGE_TOLERANCE = 2;
 
-export const CorporatePage = () => {
+export const PrivatePage = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const [galleryHasOverflow, setGalleryHasOverflow] = useState(false);
@@ -209,7 +222,7 @@ export const CorporatePage = () => {
             <div className="flex flex-col items-center gap-4">
               <span className="inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.45em] text-white/75 md:text-xs">
                 <span className="h-px w-8 bg-white/40" aria-hidden />
-                Bedrift
+                Privat
                 <span className="h-px w-8 bg-white/40" aria-hidden />
               </span>
               <motion.h1
@@ -218,8 +231,8 @@ export const CorporatePage = () => {
                 transition={{ duration: 0.55 }}
                 className="max-w-[min(100%,20rem)] font-serif text-5xl leading-[0.92] tracking-tighter text-balance sm:max-w-none sm:text-7xl md:text-8xl lg:text-9xl"
               >
-                Fra julebord til kick-off.
-                <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">Ett sted.</span>
+                Livets feiringer samlet.
+                <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">Hos oss.</span>
               </motion.h1>
             </div>
             <motion.div
@@ -249,10 +262,10 @@ export const CorporatePage = () => {
             className="mt-12 flex flex-wrap items-center justify-center gap-8 text-[10px] font-bold uppercase tracking-[0.3em] opacity-70 md:mt-16 md:gap-16 md:text-xs"
           >
             <span className="flex items-center gap-2">
-              <Sparkles size={14} aria-hidden /> Fest
+              <Heart size={14} aria-hidden /> Familie &amp; venner
             </span>
             <span className="flex items-center gap-2">
-              <Target size={14} aria-hidden /> Format
+              <Gift size={14} aria-hidden /> Konfirmasjon &amp; mer
             </span>
             <span className="flex items-center gap-2">
               <MapPin size={14} aria-hidden /> Sylling
@@ -261,137 +274,137 @@ export const CorporatePage = () => {
         </div>
       </section>
 
-      {/* 2 — Verdi: bilde venstre + kompakt innhold (samme informasjon) */}
+      {/* 2 — Verdi: editorial + panoramabilde + tre søyler + feiring-rutenett */}
       <section
-        aria-labelledby="corporate-value-heading"
-        className="section-viewport border-b border-brand-100 bg-linear-to-b from-white via-brand-50/30 to-brand-50/50"
+        aria-labelledby="private-value-heading"
+        className="section-viewport border-b border-brand-200/80 bg-linear-to-b from-white via-brand-50/50 to-brand-100/40"
       >
-        <div className="section-viewport-scroll mx-auto w-full max-w-[min(92rem,calc(100vw-2.5rem))] px-5 py-12 md:px-8 md:py-16 lg:py-20">
-          <div className="flex flex-col gap-8 md:gap-10">
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-stretch lg:gap-10">
-              <div className="flex flex-col lg:col-span-5">
-                <motion.div
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  className="relative mx-auto aspect-[7/8] w-full max-w-md overflow-hidden rounded-2xl border border-brand-200/80 shadow-lg lg:mx-0 lg:max-w-none"
-                >
-                  <img
-                    src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1600"
-                    alt="Selskapslokale med varmt lys og dekket til fest — stemning som passer bedriftsarrangement hos Rønningen"
-                    className="absolute inset-0 h-full w-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/45 via-transparent to-black/10"
-                    aria-hidden
-                  />
-                </motion.div>
-              </div>
+        <div className="section-viewport-scroll mx-auto w-full max-w-[1800px] px-5 py-14 md:px-10 md:py-20 lg:px-14 lg:py-24">
+          <div className="mx-auto max-w-3xl text-center">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-600 md:text-xs md:tracking-[0.32em]"
+            >
+              Privat hos Rønningen
+            </motion.p>
+            <motion.h2
+              id="private-value-heading"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.05 }}
+              className={cn(SECTION_H2_CLASS, 'mt-5 text-balance')}
+            >
+              Der feiringen får <span className="italic text-brand-700">personlighet</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="mt-6 text-pretty text-base leading-relaxed text-brand-800 md:text-lg md:leading-relaxed"
+            >
+              Konfirmasjon, bursdag, dåp og alt imellom — dere samles i lokaler med sjel, der det handler om mennesker og tradisjoner, ikke om standard oppsett fra en katalog.
+            </motion.p>
+          </div>
 
-              <div className="flex flex-col lg:col-span-7">
-                <motion.header
-                  initial={{ opacity: 0, y: 14 }}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55 }}
+            className="relative mx-auto mt-12 max-h-[min(52vh,480px)] w-full overflow-hidden rounded-2xl border border-brand-200/90 shadow-[0_24px_60px_-20px_rgba(33,24,22,0.35)] md:mt-16 aspect-[16/10] md:aspect-[21/9]"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=2000"
+              alt="Feststemning og dekkede bord i selskapslokalet"
+              className="h-full w-full object-cover object-center"
+              loading="lazy"
+              decoding="async"
+            />
+            <div
+              className="pointer-events-none absolute inset-0 bg-linear-to-t from-brand-950/75 via-brand-950/15 to-transparent"
+              aria-hidden
+            />
+            <p className="absolute bottom-5 left-5 right-5 max-w-xl text-left text-sm font-light leading-relaxed text-white/95 md:bottom-8 md:left-8 md:text-base">
+              Lys, treverk og plass til både taler og latter — en ramme som lar dagen puste.
+            </p>
+          </motion.div>
+
+          <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-3 md:mt-16 md:gap-6 lg:gap-8">
+            {privateHighlights.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4 }}
-                  className="space-y-4 md:space-y-5"
+                  transition={{ delay: i * 0.08 }}
+                  className="flex flex-col rounded-2xl border border-brand-200/90 bg-white/90 p-6 shadow-[0_1px_0_rgba(28,22,19,0.05)] backdrop-blur-sm md:p-7"
                 >
-                  <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-600 md:text-xs md:tracking-[0.32em]">
-                    Vertskap &amp; ramme
-                  </p>
-                  <h2
-                    id="corporate-value-heading"
-                    className={cn(SECTION_H2_CLASS, 'text-balance')}
-                  >
-                    Der profesjon møter <span className="italic text-brand-700">varme</span>
-                  </h2>
-                  <p className="max-w-2xl text-pretty text-sm leading-relaxed text-brand-800 md:text-base md:leading-relaxed">
-                    Hos oss får dere én destinasjon der alt kan ligge i samme flyt — med vertskap som gjør det enklere å lykkes på dagen.
-                  </p>
-                </motion.header>
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-brand-200/80 bg-brand-50 text-brand-800">
+                    <Icon size={22} strokeWidth={1.75} aria-hidden />
+                  </div>
+                  <h3 className="font-serif text-xl tracking-tight text-brand-950 md:text-[1.35rem]">{item.title}</h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-brand-700 md:text-base">{item.desc}</p>
+                </motion.div>
+              );
+            })}
+          </div>
 
-                <div className="mt-6 border-t border-brand-200/90 pt-6 md:mt-8 md:pt-8">
-                  <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-500 md:mb-4 md:text-[11px] md:tracking-[0.24em]">
-                    Tre tydelige fordeler
-                  </p>
-                  <ul className="space-y-2.5 md:space-y-3" role="list">
-                    {whyThree.map((line) => (
-                      <li
-                        key={line}
-                        className="flex gap-2.5 text-[13px] leading-snug text-brand-800 md:gap-3 md:text-[15px] md:leading-snug"
-                      >
-                        <CheckCircle2
-                          className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
-                          strokeWidth={1.75}
-                          aria-hidden
-                        />
-                        <span>{line}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="w-full" aria-labelledby="corporate-quickfit-heading">
+          <div className="mt-16 md:mt-20" aria-labelledby="private-quickfit-heading">
+            <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
               <h3
-                id="corporate-quickfit-heading"
-                className="mb-4 text-center font-serif text-xl text-brand-950 md:mb-5 md:text-left md:text-2xl"
+                id="private-quickfit-heading"
+                className="font-serif text-2xl tracking-tight text-brand-950 md:text-3xl"
               >
-                Typiske anledninger
+                Eksempler på feiringer
               </h3>
-              <div className="grid grid-cols-2 place-items-center gap-8 sm:grid-cols-4 sm:gap-10 lg:gap-12">
-                {quickFit.map((c, i) => (
-                  <motion.article
-                    key={c.title}
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: Math.min(i * 0.05, 0.2), duration: 0.4 }}
-                    tabIndex={0}
-                    aria-label={`${c.title}. ${c.desc}`}
-                    className="group relative aspect-square w-full max-w-[13.5rem] outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 sm:max-w-[15rem] lg:max-w-[16.5rem]"
-                  >
-                    <div className="absolute inset-0 overflow-hidden rounded-full border border-brand-200/90 shadow-md transition-[box-shadow,transform] duration-300 group-hover:shadow-xl group-hover:shadow-brand-900/15 group-focus-visible:shadow-xl">
-                      <img
-                        src={c.img}
-                        alt=""
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 group-focus-within:scale-105"
-                        referrerPolicy="no-referrer"
-                      />
-                      <div
-                        className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/55 via-black/15 to-black/25 transition-opacity duration-300 group-hover:opacity-40 group-focus-within:opacity-40"
-                        aria-hidden
-                      />
-                      {/* Midtstilt som før: tittel alltid, brødtekst ved hover */}
-                      <div className="pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-6">
-                        <div
-                          className="absolute inset-0 rounded-full bg-brand-950/0 transition-[background-color] duration-300 group-hover:bg-brand-950/88 group-focus-within:bg-brand-950/88"
-                          aria-hidden
-                        />
-                        <div className="relative z-10 flex max-h-[90%] flex-col items-center justify-center gap-2">
-                          <h4 className="max-w-[min(100%,14rem)] font-serif text-base font-semibold leading-snug text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] sm:text-lg md:text-xl">
-                            {c.title}
-                          </h4>
-                          <p className="max-w-[min(100%,18rem)] text-[11px] leading-snug text-brand-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 sm:text-xs md:text-[13px] md:leading-relaxed">
-                            {c.desc}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.article>
-                ))}
-              </div>
+              <p className="max-w-md text-sm leading-relaxed text-brand-600 md:text-[15px]">
+                Fire utgangspunkt — kombiner gjerne flere i samme helg eller kveld.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+              {quickFit.map((c, i) => (
+                <motion.article
+                  key={c.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: Math.min(i * 0.06, 0.18) }}
+                  tabIndex={0}
+                  aria-label={`${c.title}. ${c.desc}`}
+                  className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-brand-200/90 shadow-md outline-none transition-shadow duration-300 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                >
+                  <img
+                    src={c.img}
+                    alt=""
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div
+                    className="pointer-events-none absolute inset-0 bg-linear-to-t from-brand-950/90 via-brand-950/25 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-95"
+                    aria-hidden
+                  />
+                  <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-6">
+                    <h4 className="font-display text-lg uppercase tracking-wide text-white md:text-xl">{c.title}</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-brand-100/95 opacity-0 transition-all duration-300 group-hover:opacity-100 group-focus-within:opacity-100 md:text-[15px]">
+                      {c.desc}
+                    </p>
+                  </div>
+                </motion.article>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3 — Arrangementer: flat brand-900 (samme som bryllup «Slik kan dagen se ut») */}
+      {/* 3 — Anledninger: samme grid som bedrift */}
       <section
-        aria-labelledby="corporate-events-heading"
+        aria-labelledby="private-events-heading"
         className="section-viewport relative overflow-hidden border-b border-brand-800 bg-brand-900 px-4 text-white"
       >
         <div className="pointer-events-none absolute right-0 top-0 h-full w-full overflow-hidden">
@@ -402,16 +415,16 @@ export const CorporatePage = () => {
         <div className="section-viewport-scroll relative z-10 mx-auto w-full max-w-[1800px] px-5 py-14 sm:px-8 sm:py-16 md:px-14 md:py-16 lg:px-16 xl:px-20">
           <div className="mb-7 md:mb-8 lg:mb-7">
             <motion.h2
-              id="corporate-events-heading"
+              id="private-events-heading"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className={SECTION_H2_ON_DARK_CLASS}
             >
-              Arrangementer som <span className="italic text-brand-400">passer hos oss</span>
+              Anledninger vi ofte <span className="italic text-brand-400">skaper sammen</span>
             </motion.h2>
             <p className="mt-5 max-w-2xl text-base font-light leading-relaxed text-brand-200 md:text-lg md:leading-relaxed">
-              Utgangspunkter dere kan kombinere og tilpasse — vi lander detaljene sammen.
+              Fra konfirmasjon og bursdag til dåp og jubileum — utgangspunkter dere kan blande og tilpasse. Vi lander detaljene i dialog med dere.
             </p>
           </div>
 
@@ -457,7 +470,7 @@ export const CorporatePage = () => {
 
       {/* 4 — Pakker (samme uttrykk som bryllupspakker) */}
       <section
-        aria-labelledby="corporate-packages-heading"
+        aria-labelledby="private-packages-heading"
         className="section-viewport relative overflow-hidden border-b border-brand-200/80 bg-gradient-to-b from-white to-brand-50/50"
       >
         <div
@@ -476,8 +489,8 @@ export const CorporatePage = () => {
             viewport={{ once: true }}
             className="mb-10 max-w-2xl space-y-4 md:mb-12 md:space-y-5"
           >
-            <h2 id="corporate-packages-heading" className={cn(SECTION_H2_CLASS, 'mb-5 text-balance')}>
-              Våre bedriftspakker
+            <h2 id="private-packages-heading" className={cn(SECTION_H2_CLASS, 'mb-5 text-balance')}>
+              Våre private pakker
             </h2>
             <p className="max-w-2xl text-base leading-relaxed text-brand-700 md:text-lg md:leading-relaxed">
               Tre utgangspunkt — vi tilpasser i dialog med dere.
@@ -582,7 +595,7 @@ export const CorporatePage = () => {
           >
             <h2 className={cn(SECTION_H2_CLASS, 'mb-6')}>Stemning fra lokalet</h2>
             <p className="text-lg leading-relaxed text-brand-600 md:text-xl">
-              Selskap, mingling og kveld — ikke bare tomme rom. Bla gjennom et utvalg av stemning fra arrangement hos oss.
+              Fest, samvær og kveldsstemning — et glimt av hvordan private selskap kan ta form hos oss.
             </p>
           </motion.div>
 
@@ -649,7 +662,7 @@ export const CorporatePage = () => {
                       <Sparkles size={12} aria-hidden />
                       Galleri
                     </div>
-                    <p className="font-serif text-lg text-white md:text-xl">Bedrift og selskap {i + 1}</p>
+                    <p className="font-serif text-lg text-white md:text-xl">Privat selskap {i + 1}</p>
                   </div>
                 </motion.div>
               ))}
@@ -781,12 +794,12 @@ export const CorporatePage = () => {
             <div className="relative z-10 mx-auto max-w-3xl space-y-6 md:space-y-8">
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-300">Neste steg</p>
               <h2 className={cn(SECTION_H2_ON_DARK_CLASS, 'm-0')}>
-                Klar for å <span className="italic text-brand-400">planlegge</span>
+                Lyst å <span className="italic text-brand-400">planlegge</span>
                 <br />
-                bedriftens dag hos oss?
+                feiringen hos oss?
               </h2>
               <p className="text-lg font-light leading-relaxed text-brand-100 md:text-xl">
-                Kort fortalt hva dere tenker på — så foreslår vi opplegg som passer team og gjester.
+                Fortell kort hva dere feirer og når — så foreslår vi ramme og opplegg som passer familie og gjester.
               </p>
               <div className="flex flex-col items-center justify-center gap-4 pt-2 sm:flex-row sm:gap-5">
                 <Link

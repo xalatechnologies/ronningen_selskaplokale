@@ -3,6 +3,7 @@ import { supabase } from '../lib/supabase';
 import { useTranslation } from 'react-i18next';
 import { LayoutDashboard, Inbox, Package, Image as ImageIcon, MessageSquare, HelpCircle, Users, Settings, LogOut, Plus, Edit, Trash2 } from 'lucide-react';
 import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
+import { SECTION_H2_CLASS } from '../lib/typography';
 
 const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       {/* Sidebar */}
       <aside className="w-64 bg-brand-900 text-white flex flex-col">
         <div className="p-6">
-          <h2 className="text-2xl font-serif">Admin Panel</h2>
+          <h1 className="text-xl font-serif font-semibold tracking-tight">Admin Panel</h1>
         </div>
         <nav className="flex-grow p-4 space-y-2">
           {menuItems.map((item) => (
@@ -214,7 +215,7 @@ export const PackagesManagement = () => {
   return (
     <div className="space-y-8">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-serif text-brand-900">Packages Management</h2>
+        <h2 className={SECTION_H2_CLASS}>Packages Management</h2>
         <button className="bg-brand-800 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-900 transition-colors flex items-center">
           <Plus size={18} className="mr-2" /> Add New Package
         </button>
@@ -258,7 +259,7 @@ const GalleryManagement = () => {
   return (
     <div className="space-y-8">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-serif text-brand-900">Gallery Management</h2>
+        <h2 className={SECTION_H2_CLASS}>Gallery Management</h2>
         <button className="bg-brand-800 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-900 transition-colors flex items-center">
           <Plus size={18} className="mr-2" /> Upload Images
         </button>
@@ -291,7 +292,7 @@ const FAQManagement = () => {
   return (
     <div className="space-y-8">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-serif text-brand-900">FAQ Management</h2>
+        <h2 className={SECTION_H2_CLASS}>FAQ Management</h2>
         <button className="bg-brand-800 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-900 transition-colors flex items-center">
           <Plus size={18} className="mr-2" /> Add Question
         </button>
@@ -320,7 +321,7 @@ const FAQManagement = () => {
 const SiteSettings = () => {
   return (
     <div className="space-y-8">
-      <h2 className="text-2xl font-serif text-brand-900">Site Settings</h2>
+      <h2 className={SECTION_H2_CLASS}>Site Settings</h2>
       <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-200">
         <form className="space-y-6 max-w-2xl">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -356,7 +357,7 @@ const TestimonialsManagement = () => {
   return (
     <div className="space-y-8">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-serif text-brand-900">Testimonials Management</h2>
+        <h2 className={SECTION_H2_CLASS}>Testimonials Management</h2>
         <button className="bg-brand-800 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-900 transition-colors flex items-center">
           <Plus size={18} className="mr-2" /> Add Testimonial
         </button>
@@ -387,7 +388,7 @@ const PartnersManagement = () => {
   return (
     <div className="space-y-8">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-serif text-brand-900">Partner Vendors</h2>
+        <h2 className={SECTION_H2_CLASS}>Partner Vendors</h2>
         <button className="bg-brand-800 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-brand-900 transition-colors flex items-center">
           <Plus size={18} className="mr-2" /> Add Partner
         </button>
