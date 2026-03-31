@@ -152,31 +152,12 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            <span className="text-xs uppercase tracking-[0.4em] font-bold opacity-70 block">Velkommen til Rønningen</span>
             <h1 className="text-6xl md:text-9xl font-serif leading-[0.9] tracking-tighter">
-              {t('hero.title')}
+              Velkommen til Rønningen selskapslokale
             </h1>
             <p className="text-xl md:text-3xl font-light max-w-2xl mx-auto opacity-90 italic">
-              {t('hero.subtitle')}
+              Alt du trenger for en vellykket feiring – på ett sted
             </p>
-            <div className="flex flex-wrap justify-center gap-6 pt-8">
-              <a
-                href={BOOKING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-white text-brand-900 px-10 py-5 rounded-full text-sm uppercase tracking-widest font-bold hover:bg-brand-50 transition-all shadow-2xl transform hover:-translate-y-1"
-              >
-                {t('hero.cta')}
-              </a>
-              <a
-                href={BOOKING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-transparent border-2 border-white text-white px-10 py-5 rounded-full text-sm uppercase tracking-widest font-bold hover:bg-white/10 transition-all"
-              >
-                {t('hero.bookNow')}
-              </a>
-            </div>
           </motion.div>
         </div>
         
@@ -202,12 +183,12 @@ const Home = () => {
 
         <div className="section-viewport-scroll relative z-10 flex min-h-0 flex-col">
           <div className="mx-auto flex w-full max-w-[1920px] flex-col px-5 py-16 sm:px-8 sm:py-20 md:px-12 md:py-24 lg:px-16 xl:px-20">
-            <header className="max-w-2xl space-y-4 md:space-y-5">
+            <header className="mx-auto max-w-2xl space-y-4 text-center md:space-y-5">
               <h2 id="konsepter-heading" className={SECTION_H2_CLASS}>
                 Våre konsepter
               </h2>
               <p className="text-base leading-relaxed text-brand-600 md:text-lg md:leading-relaxed">
-                Utforsk seks måter å bruke låven og gårdsrommene våre — fra det intime til det storslåtte. Hvert konsept kan skreddersys med meny, dekor og plan for dagen.
+                Her starter de beste feiringene - omgitt av natur
               </p>
             </header>
 
