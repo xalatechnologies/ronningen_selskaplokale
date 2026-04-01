@@ -188,7 +188,7 @@ export const WeddingsPage = () => {
   return (
     <div className="flex flex-col bg-white">
       {/* 1. Hero */}
-      <section className="section-viewport section-viewport-hero relative flex flex-col items-center justify-center overflow-hidden">
+      <section className="hero-below-nav section-viewport section-viewport-hero relative flex min-h-0 flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="/hero-wedding-venue-night.png"
@@ -200,20 +200,22 @@ export const WeddingsPage = () => {
             aria-hidden
           />
         </div>
-        <div className="section-viewport-scroll relative z-10 flex w-full max-w-6xl flex-col items-center justify-center px-4 py-6 text-center text-white">
+        <div className="section-viewport-scroll relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-center px-4 py-6 text-center text-white">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
+            transition={{ duration: 0.75 }}
+            className="flex w-full flex-col items-center space-y-7 md:space-y-9"
           >
-            <span className="block text-xs font-bold uppercase tracking-[0.4em] opacity-70">
-              Bryllup
-            </span>
-            <h1 className="font-serif text-6xl leading-[0.9] tracking-tighter md:text-9xl">
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+              className="max-w-5xl text-balance font-serif text-6xl leading-[0.9] tracking-tighter text-white [text-shadow:0_2px_32px_rgba(0,0,0,0.45)] md:text-9xl"
+            >
               Bryllup i vakre og <br className="hidden md:block" /> unike omgivelser
-            </h1>
-            <p className="mx-auto max-w-2xl text-xl font-light italic opacity-90 md:text-3xl">
+            </motion.h1>
+            <p className="mx-auto max-w-2xl text-xl font-light italic opacity-90 md:text-3xl [text-shadow:0_1px_24px_rgba(0,0,0,0.35)]">
               Skap en feiring som føles personlig, varm og minneverdig.
             </p>
             <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
@@ -230,17 +232,6 @@ export const WeddingsPage = () => {
                 Send forespørsel
               </Link>
             </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="mt-12 flex flex-wrap items-center justify-center gap-8 text-[10px] font-bold uppercase tracking-[0.3em] opacity-70 md:mt-16 md:gap-16 md:text-xs"
-          >
-            <span className="flex items-center gap-2"><Sparkles size={14} /> Unike omgivelser</span>
-            <span className="flex items-center gap-2"><Calendar size={14} /> Fleksible løsninger</span>
-            <span className="flex items-center gap-2"><Heart size={14} /> Personlig oppfølging</span>
           </motion.div>
         </div>
       </section>
@@ -637,10 +628,6 @@ export const WeddingsPage = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-900/75 via-brand-900/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-85" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
-                    <div className="mb-2 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/85">
-                      <Sparkles size={12} aria-hidden />
-                      Galleri
-                    </div>
                     <p className="font-serif text-lg text-white md:text-xl">Bryllupsinspirasjon {i + 1}</p>
                   </div>
                 </motion.div>

@@ -3,71 +3,75 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
-import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 
 const CTA_PRIMARY = '/inquiry';
 const CTA_SECONDARY = '/contact';
 const GALLERY_EDGE_TOLERANCE = 2;
 
+/** Unsplash: use ixlib + verified photo ids (some legacy ids return 404 from the CDN). */
+const US_IMG = (id: string) =>
+  `https://images.unsplash.com/${id}?ixlib=rb-4.1.0&auto=format&fit=crop&q=85&w=1200`;
+
 const FACILITY_CARDS = [
   {
     title: 'Barnepass',
     desc: 'Trygt opplegg for de minste, slik at foreldre kan være til stede i feiringen uten å bekymre seg for logistikken.',
-    img: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80&w=900',
+    img: US_IMG('photo-1503454537195-1dcabb73ffb9'),
     imgAlt: 'Barn som leker sammen — illustrerer barnepass og familieselskap',
   },
   {
     title: 'Overnatting',
     desc: 'Gjester som kommer langveisfra kan bli natten over — enkelt å samle hele helgen på samme sted.',
-    img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=900',
+    img: US_IMG('photo-1522708323590-d24dbb6b0267'),
     imgAlt: 'Rolig soverom — overnatting for gjester',
   },
   {
     title: 'Brudesuite',
     desc: 'Rom for forberedelser, ro og private øyeblikk før vielse og fest — et naturlig knutepunkt for bruden og følget.',
-    img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=900',
+    img: US_IMG('photo-1519741497674-611481863552'),
     imgAlt: 'Elegant detalj — forberedelser og brudesuite',
   },
   {
     title: 'Aktiviteter',
     desc: 'Mulighet for opplegg som engasjerer ulike aldre og gir pauser og energi gjennom dagen.',
-    img: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=80&w=900',
+    img: US_IMG('photo-1512909006721-3d6018887383'),
     imgAlt: 'Uteområde og natur — aktiviteter og pauser',
   },
   {
     title: 'Samvær med dyr',
     desc: 'Nærhet til dyr og uteområder som gir en avslappende og særegen ramme rundt arrangementet.',
-    img: 'https://images.unsplash.com/photo-1464226184882-fedb00660135?auto=format&fit=crop&q=80&w=900',
-    imgAlt: 'Dyr på landet — naturlig ramme for arrangement',
+    img: US_IMG('photo-1516467508483-a7212febe31a'),
+    imgAlt: 'Dyr på bondegård — naturlig ramme for arrangement',
   },
   {
     title: 'Bar & Dansegulv',
     desc: 'Naturlig flyt fra middag til kveld med plass til musikk, toastmaster og dans uten å skifte lokasjon.',
-    img: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=900',
+    img: US_IMG('photo-1514362545857-3bc16c4c7d1b'),
     imgAlt: 'Stemning fra fest og bar',
   },
   {
     title: 'Storkjøkken',
     desc: 'Godt utstyrt kjøkken som gjør det enkelt for catering, buffét og servering i større skala.',
-    img: 'https://images.unsplash.com/photo-1556912173-046c9c372425?auto=format&fit=crop&q=80&w=900',
+    img: US_IMG('photo-1556911220-bff31c812dba'),
     imgAlt: 'Profesjonelt kjøkken til catering og servering',
   },
   {
     title: 'Universel utformet',
     desc: 'Tilrettelagt slik at gjester med ulike behov kan komme seg inn, delta og føle seg velkomne.',
-    img: 'https://images.unsplash.com/photo-1580757469898-295dedbdb3c2?auto=format&fit=crop&q=80&w=900',
-    imgAlt: 'Tilgjengelighet og universell utforming',
+    img: US_IMG('photo-1584464491033-06628f3a6b7b'),
+    imgAlt: 'Tilgjengelig bygning og inngang — universell utforming',
   },
   {
     title: 'Gratis parkering (mulighet til å lade eller la bilen stå igjen)',
     desc: 'God plass til biler, lademuligheter og mulighet til å avtale at bilen kan stå — praktisk for alle som kjører.',
-    img: 'https://images.unsplash.com/photo-1506521781263-d8422e82fd27?auto=format&fit=crop&q=80&w=900',
-    imgAlt: 'Parkering og ankomst for gjester',
+    img: US_IMG('photo-1492144534655-ae79c964c9d7'),
+    imgAlt: 'Biler og parkering — ankomst for gjester',
   },
   {
     title: 'Låve',
     desc: 'Hovedrommet med autentisk stemning — ideelt til middag, taler, dans og fellesskap under samme tak.',
-    img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=900',
+    img: US_IMG('photo-1519225421980-715cb0215aed'),
     imgAlt: 'Festlokale og feststemning i låve eller selskapslokale',
   },
 ] as const;
@@ -75,38 +79,32 @@ const FACILITY_CARDS = [
 const useCases = [
   {
     title: 'Familiefeiring',
-    tag: 'Privat',
-    desc: 'Kombiner låve, barnepass og aktivitetsflater for et opplegg som fungerer for alle aldre.',
+    desc: 'Rom for både små og store: autentisk låve, trygt barnepass og uteområder som gir pauser og lek — slik at hele familien kan være til stede uten stress.',
     img: 'https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Bryllupshelg',
-    tag: 'Bryllup',
-    desc: 'Brudesuite, overnatting og bar/dansegulv gir en helhetlig feiring fra ankomst til siste dans.',
+    desc: 'Fra forberedelser til siste dans: suite til dere, sengeplass for gjester og kveld på dansegulvet — ett sted, ett sammenhengende løp dere kan slappe av i.',
     img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Bedriftskveld',
-    tag: 'Bedrift',
-    desc: 'Storkjøkken, teknisk oppsett og rom med fleksibel møblering gjør gjennomføringen enkel og tydelig.',
+    desc: 'Imponer teamet med profesjonelt kjøkken, tydelig romflyt og teknisk oppsett — dere får et arrangement som føles gjennomført, uten at logistikken stjeler oppmerksomheten.',
     img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=1200',
   },
   {
-    title: 'Ute + inne',
-    tag: 'Aktivitet',
-    desc: 'Samvær med dyr og uteområder kan kombineres med middag og program inne i låven.',
+    title: 'Ute og inne',
+    desc: 'La gjestene trekke pusten ute blant natur og dyr, og samle dere til middag og program inne i låven — en helhet som føles avslappet og litt annerledes.',
     img: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Helg med gjester',
-    tag: 'Overnatting',
-    desc: 'Når gjester kommer langveisfra, kan dere samle alt i ett løp med overnatting og parkering.',
+    desc: 'Når folk kommer langveisfra: overnatting, parkering og fest på samme tun — færre avtaler og kjøring, mer tid til å være vertskap.',
     img: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=85&w=1200',
   },
   {
-    title: 'Kveld med energi',
-    tag: 'Sosialt',
-    desc: 'Bar og dansegulv gir naturlig flyt fra middag til sosial kveld uten skifte av lokasjon.',
+    title: 'Kveld med puls',
+    desc: 'Naturlig flyt fra middag og taler til bar og dans — uten å pakke sammen og flytte gjestene. Stemningen får lov til å bygge seg hele kvelden.',
     img: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=85&w=1200',
   },
 ] as const;
@@ -245,7 +243,7 @@ export const FacilitiesPage = () => {
 
   return (
     <div className="flex flex-col bg-white">
-      <section className="section-viewport section-viewport-hero relative flex flex-col items-center justify-center overflow-hidden">
+      <section className="hero-below-nav section-viewport section-viewport-hero relative flex min-h-0 flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=80&w=2000"
@@ -257,17 +255,10 @@ export const FacilitiesPage = () => {
         </div>
         <div className="section-viewport-scroll relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-center px-4 py-6 text-center text-white">
           <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.75 }} className="flex w-full flex-col items-center space-y-7 md:space-y-9">
-            <div className="flex flex-col items-center gap-4">
-              <span className="inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.45em] text-white/75 md:text-xs">
-                <span className="h-px w-8 bg-white/40" aria-hidden />
-                Fasiliteter
-                <span className="h-px w-8 bg-white/40" aria-hidden />
-              </span>
-              <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="max-w-5xl font-serif text-6xl leading-[0.9] tracking-tighter text-balance md:text-9xl">
-                Alt på ett sted.
-                <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">For hele feiringen.</span>
-              </motion.h1>
-            </div>
+            <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="max-w-5xl font-serif text-6xl leading-[0.9] tracking-tighter text-balance md:text-9xl">
+              Alt på ett sted.
+              <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">For hele feiringen.</span>
+            </motion.h1>
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.45 }} className="flex w-full flex-col items-stretch justify-center gap-4 pt-1 sm:flex-row sm:items-center sm:gap-6">
               <Link to={CTA_SECONDARY} className="rounded-full bg-white px-10 py-5 text-center text-sm font-bold uppercase tracking-widest text-brand-900 shadow-xl transition hover:bg-brand-50">
                 Book nå
@@ -341,23 +332,21 @@ export const FacilitiesPage = () => {
                 className="scrollbar-facilities -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-pl-5 scroll-pr-5 px-5 pb-4 pt-2 md:mx-0 md:gap-8 md:scroll-pl-8 md:scroll-pr-8 md:px-8 md:pb-5"
               >
                 {FACILITY_CARDS.map((item, i) => (
-                  <motion.article
+                  <article
                     key={item.title}
                     role="listitem"
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: Math.min(i * 0.04, 0.24) }}
                     className="group flex w-[min(100%,20.5rem)] shrink-0 snap-center snap-always flex-col overflow-hidden rounded-xl border border-brand-200 bg-white shadow-sm outline-none transition-shadow duration-300 hover:shadow-md focus-within:ring-2 focus-within:ring-brand-900/20 sm:w-[min(100%,22rem)] md:w-[min(100%,24rem)] lg:w-[min(100%,26rem)]"
                   >
                     <div className="relative aspect-[16/10] shrink-0 overflow-hidden bg-brand-100">
                       <img
                         src={item.img}
                         alt={item.imgAlt}
-                        className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                        loading="lazy"
+                        className="relative z-[1] h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                        sizes="(min-width: 1024px) 416px, (min-width: 768px) 384px, min(100vw - 2.5rem, 328px)"
+                        loading={i < 5 ? 'eager' : 'lazy'}
                         decoding="async"
                         referrerPolicy="no-referrer"
+                        fetchPriority={i === 0 ? 'high' : undefined}
                       />
                     </div>
                     <div className="flex flex-1 flex-col border-t border-brand-100 bg-white px-5 py-5 md:px-6 md:py-6">
@@ -366,7 +355,7 @@ export const FacilitiesPage = () => {
                         {item.desc}
                       </p>
                     </div>
-                  </motion.article>
+                  </article>
                 ))}
               </div>
             </div>
@@ -382,16 +371,40 @@ export const FacilitiesPage = () => {
           </div>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-4 xl:gap-5">
             {useCases.map((u, i) => (
-              <motion.div key={u.title} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }} className="group relative aspect-4/3 overflow-hidden rounded-lg border border-white/28">
-                <img src={u.img} alt={u.title} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-65 transition-opacity duration-500 group-hover:opacity-0" />
-                <div className="absolute inset-0 bg-linear-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <div className="absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6">
-                  <div className="mb-5 inline-flex w-fit rounded-full border border-white/25 bg-black/30 px-3 py-1.5 backdrop-blur-sm">
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white">{u.tag}</span>
+              <motion.div
+                key={u.title}
+                tabIndex={0}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-white/28 transition-all duration-500 outline-none hover:border-white/45 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900"
+              >
+                <img
+                  src={u.img}
+                  alt=""
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus-within:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                  referrerPolicy="no-referrer"
+                />
+                <div
+                  className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0"
+                  aria-hidden
+                />
+                <div
+                  className="pointer-events-none absolute inset-0 bg-linear-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100"
+                  aria-hidden
+                />
+                <div className="absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6 md:p-7 lg:p-6">
+                  <h3 className="mt-auto shrink-0 font-display text-2xl uppercase tracking-wide text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.85)] transition-all duration-500 group-hover:mt-0 group-focus-within:mt-0 sm:text-3xl md:text-[1.85rem] lg:text-2xl lg:leading-tight xl:text-[1.75rem]">
+                    {u.title}
+                  </h3>
+                  <div className="mt-3 flex-grow opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100 group-focus-within:opacity-100">
+                    <p className="line-clamp-6 text-sm font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:line-clamp-7">
+                      {u.desc}
+                    </p>
                   </div>
-                  <h3 className="mt-auto shrink-0 font-display text-2xl uppercase tracking-wide text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.85)]">{u.title}</h3>
-                  <p className="mt-4 max-w-[30ch] text-sm leading-relaxed text-white/95 opacity-0 transition-all duration-500 group-hover:opacity-100">{u.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -407,7 +420,7 @@ export const FacilitiesPage = () => {
           </div>
           <div className="grid grid-cols-1 gap-5 md:gap-6 lg:grid-cols-3 lg:items-stretch">
             {packages.map((pkg, i) => {
-              const featured = Boolean(pkg.featured);
+              const featured = 'featured' in pkg && Boolean(pkg.featured);
               return (
                 <motion.div key={pkg.name} initial={{ opacity: 0, y: 26 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }} className={cn('flex h-full flex-col rounded-2xl border p-6 shadow-[0_14px_34px_-24px_rgba(33,24,22,0.45)] md:p-8', featured ? 'border-brand-800 bg-brand-900 text-white' : 'border-brand-200/90 bg-white text-brand-900')}>
                   <p className={cn('mb-2 text-[11px] font-semibold uppercase tracking-[0.2em]', featured ? 'text-brand-400' : 'text-brand-500')}>{pkg.detail}</p>
@@ -453,10 +466,6 @@ export const FacilitiesPage = () => {
                   <img src={src} alt={`Fasiliteter ${i + 1}`} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async" referrerPolicy="no-referrer" />
                   <div className="absolute inset-0 bg-linear-to-t from-brand-900/75 via-brand-900/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-85" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
-                    <div className="mb-2 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/85">
-                      <Sparkles size={12} aria-hidden />
-                      Galleri
-                    </div>
                     <p className="font-serif text-lg text-white md:text-xl">Fasiliteter {i + 1}</p>
                   </div>
                 </motion.div>

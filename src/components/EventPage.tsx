@@ -24,7 +24,7 @@ export const EventPage: React.FC<EventPageProps> = ({ title, subtitle, descripti
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="section-viewport section-viewport-hero relative flex flex-col items-center justify-center overflow-hidden">
+      <section className="hero-below-nav section-viewport section-viewport-hero relative flex min-h-0 flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src={image} 

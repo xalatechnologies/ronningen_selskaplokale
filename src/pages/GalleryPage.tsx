@@ -165,37 +165,41 @@ export const GalleryPage: React.FC = () => {
             </p>
           </header>
 
-          <div
-            className="mx-auto mt-12 flex max-w-3xl flex-wrap items-center justify-center gap-2 sm:gap-3"
-            role="tablist"
-            aria-label={t('nav.gallery')}
-          >
-            {FILTERS.map((f) => (
-              <button
-                key={f}
-                type="button"
-                role="tab"
-                aria-selected={filter === f}
-                onClick={() => setFilter(f)}
-                className={cn(
-                  'inline-flex min-h-[44px] items-center gap-2 rounded-full px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.18em] transition-all',
-                  filter === f
-                    ? 'bg-brand-900 text-white shadow-lg ring-2 ring-brand-900 ring-offset-2 ring-offset-[#faf8f5]'
-                    : 'border border-brand-200/90 bg-white/95 text-brand-800 shadow-sm hover:border-brand-400 hover:bg-brand-50'
-                )}
-              >
-                <span>{filterLabel(f)}</span>
-                <span
+          <div className="mx-auto mt-12 w-full overflow-x-auto overflow-y-hidden pb-2 scrollbar-hide">
+            <div
+              className="mx-auto flex w-max flex-nowrap items-center gap-3 sm:gap-3.5"
+              role="tablist"
+              aria-label={t('nav.gallery')}
+            >
+              {FILTERS.map((f) => (
+                <button
+                  key={f}
+                  type="button"
+                  role="tab"
+                  aria-selected={filter === f}
+                  onClick={() => setFilter(f)}
                   className={cn(
-                    'rounded-full px-2 py-0.5 text-[10px] tabular-nums',
-                    filter === f ? 'bg-white/20 text-white' : 'bg-brand-100 text-brand-700'
+                    'inline-flex shrink-0 min-h-[48px] items-center gap-2.5 rounded-full px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] transition-all sm:min-h-[52px] sm:px-7 sm:py-3.5 sm:text-[13px] sm:tracking-[0.12em]',
+                    filter === f
+                      ? 'bg-brand-900 text-white shadow-[0_6px_24px_rgba(33,24,22,0.38)] ring-[3px] ring-brand-900 ring-offset-[3px] ring-offset-[#faf8f5]'
+                      : 'border-2 border-brand-400/90 bg-white text-brand-950 shadow-[0_2px_12px_rgba(33,24,22,0.08)] hover:border-brand-800 hover:bg-brand-50 hover:shadow-[0_4px_16px_rgba(33,24,22,0.12)]'
                   )}
-                  aria-hidden
                 >
-                  {categoryCounts[f]}
-                </span>
-              </button>
-            ))}
+                  <span>{filterLabel(f)}</span>
+                  <span
+                    className={cn(
+                      'min-w-7 rounded-full px-2.5 py-1 text-[11px] font-bold tabular-nums sm:text-xs',
+                      filter === f
+                        ? 'bg-white/25 text-white ring-1 ring-white/40'
+                        : 'border border-brand-300/80 bg-brand-100 text-brand-900'
+                    )}
+                    aria-hidden
+                  >
+                    {categoryCounts[f]}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
 
           {filteredItems.length === 0 ? (

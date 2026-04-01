@@ -3,13 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
-import {
-  ArrowLeft,
-  ArrowRight,
-  CheckCircle2,
-  ChevronDown,
-  Sparkles,
-} from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 
 const CTA_PRIMARY = '/inquiry';
 const CTA_SECONDARY = '/contact';
@@ -180,7 +174,7 @@ export const CorporatePage = () => {
   return (
     <div className="flex flex-col bg-white">
       {/* 1 — Hero */}
-      <section className="section-viewport section-viewport-hero relative flex flex-col items-center justify-center overflow-hidden">
+      <section className="hero-below-nav section-viewport section-viewport-hero relative flex min-h-0 flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=2000"
@@ -204,22 +198,15 @@ export const CorporatePage = () => {
             transition={{ duration: 0.75 }}
             className="flex w-full flex-col items-center space-y-7 md:space-y-9"
           >
-            <div className="flex flex-col items-center gap-4">
-              <span className="inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.45em] text-white/75 md:text-xs">
-                <span className="h-px w-8 bg-white/40" aria-hidden />
-                Bedrift
-                <span className="h-px w-8 bg-white/40" aria-hidden />
-              </span>
-              <motion.h1
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55 }}
-                className="max-w-5xl font-serif text-6xl leading-[0.9] tracking-tighter text-balance md:text-9xl"
-              >
-                Fra julebord til kick-off.
-                <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">Ett sted.</span>
-              </motion.h1>
-            </div>
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+              className="max-w-5xl font-serif text-6xl leading-[0.9] tracking-tighter text-balance md:text-9xl"
+            >
+              Fra julebord til kick-off.
+              <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">Ett sted.</span>
+            </motion.h1>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -627,10 +614,6 @@ export const CorporatePage = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-900/75 via-brand-900/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-85" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
-                    <div className="mb-2 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/85">
-                      <Sparkles size={12} aria-hidden />
-                      Galleri
-                    </div>
                     <p className="font-serif text-lg text-white md:text-xl">Bedrift og selskap {i + 1}</p>
                   </div>
                 </motion.div>

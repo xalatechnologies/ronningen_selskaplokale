@@ -6,7 +6,7 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Globe, Phone, Mail, MapPin, Instagram, Facebook, ArrowRight, ArrowLeft, Sparkles, MessageCircle, SendHorizontal } from 'lucide-react';
+import { Menu, X, Globe, Phone, Mail, MapPin, Instagram, Facebook, ArrowRight, ArrowLeft, MessageCircle, SendHorizontal } from 'lucide-react';
 import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import './lib/i18n';
 import { Toaster } from 'sonner';
@@ -116,7 +116,6 @@ const PARTNER_LOGOS = [
 ] as const;
 
 const Home = () => {
-  const { t } = useTranslation();
   const galleryRef = useRef<HTMLDivElement>(null);
 
   const [showGalleryLeft, setShowGalleryLeft] = useState(false);
@@ -187,25 +186,26 @@ const Home = () => {
             aria-hidden
           />
         </div>
-        <div className="section-viewport-scroll relative z-10 flex h-full min-h-0 w-full flex-col overflow-hidden px-5 pt-6 text-white sm:px-8 sm:pt-8 md:px-10 md:pt-10">
-          <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-center">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
+        <div className="section-viewport-scroll relative z-10 flex h-full min-h-0 w-full flex-col items-center justify-center overflow-hidden px-4 py-6 text-center text-white sm:px-8 md:px-10">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.75 }}
+            className="flex w-full max-w-6xl flex-col items-center space-y-7 md:space-y-9"
+          >
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              className="flex max-w-[42rem] flex-col items-center gap-6 text-center md:max-w-[52rem] md:gap-8"
+              transition={{ duration: 0.55 }}
+              className="max-w-5xl text-balance font-serif text-6xl leading-[0.9] tracking-tighter text-white [text-shadow:0_2px_32px_rgba(0,0,0,0.45)] md:text-9xl"
             >
-              <h1 className="text-balance font-serif leading-[0.9] tracking-tighter text-white [text-shadow:0_2px_32px_rgba(0,0,0,0.45)]">
-                <span className="block font-serif text-6xl uppercase tracking-[0.2em] text-white md:text-9xl">
-                  Velkommen til
-                </span>
-                <span className="mt-2 block text-4xl md:mt-3 md:text-7xl">Rønningen selskapslokale</span>
-              </h1>
-              <p className="mx-auto mt-5 max-w-2xl text-xl font-light italic opacity-90 md:mt-6 md:text-3xl">
-                Alt du trenger for en vellykket feiring – på ett sted
-              </p>
-            </motion.div>
-          </div>
+              Velkommen til
+              <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">Rønningen selskapslokale</span>
+            </motion.h1>
+            <p className="mx-auto max-w-2xl text-xl font-light italic opacity-90 md:text-3xl [text-shadow:0_1px_24px_rgba(0,0,0,0.35)]">
+              Alt du trenger for en vellykket feiring – på ett sted
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -476,10 +476,6 @@ const Home = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-900/75 via-brand-900/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-85" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
-                    <div className="mb-2 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/85">
-                      <Sparkles size={12} aria-hidden />
-                      Galleri
-                    </div>
                     <p className="font-serif text-lg text-white md:text-xl">Bryllupsinspirasjon {i + 1}</p>
                   </div>
                 </motion.div>
@@ -554,6 +550,22 @@ const Home = () => {
       </section>
     </div>
   );
+};
+
+/** SPA navigation keeps window scroll by default — reset window and section scrollers on each route. */
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    document.querySelectorAll('.section-viewport-scroll').forEach((el) => {
+      (el as HTMLElement).scrollTop = 0;
+    });
+  }, [pathname]);
+
+  return null;
 };
 
 const Navbar = () => {
@@ -929,6 +941,7 @@ const Footer = () => {
 export default function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen flex flex-col">
         <Navbar />
         <main className="flex-grow pt-20">
