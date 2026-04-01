@@ -484,7 +484,7 @@ export const WeddingsPage = () => {
               Våre bryllupspakker
             </h2>
             <p className="text-base leading-relaxed text-brand-700 md:text-lg md:leading-relaxed">
-              Tre utgangspunkt vi kan tilpasse sammen med dere. Detaljer og omfang avklares i en uforpliktende prat — slik at dere får et opplegg som passer dagen og budsjettet.
+              Tre tydelige utgangspunkt — tilpasset dagen, ønskene og budsjettet deres.
             </p>
           </motion.div>
 
@@ -571,7 +571,7 @@ export const WeddingsPage = () => {
           >
             <h2 className={cn(SECTION_H2_CLASS, 'mb-6')}>Inspirasjon og Galleri</h2>
             <p className="text-lg leading-relaxed text-brand-600 md:text-xl">
-              Et kuratert utvalg fra bryllup hos oss. Bla gjennom og se hvordan ulike uttrykk, farger og stemninger kan tilpasses deres dag.
+              Et lite utvalg fra tidligere bryllup hos oss.
             </p>
           </motion.div>
 

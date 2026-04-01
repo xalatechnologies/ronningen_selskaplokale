@@ -1,0 +1,64 @@
+{
+  "name": "Rønningen Selskapslokale",
+  "location": {
+    "no": "Baneveien 290, 3410 Sylling (Lier), rolig område ved Nordelva.",
+    "en": "Baneveien 290, 3410 Sylling (Lier), quiet setting near Nordelva."
+  },
+  "positioning": {
+    "no": "Landlig og elegant — fleksibel planlegging for bryllup, bedrift og privat.",
+    "en": "Rural and elegant — flexible planning for weddings, corporate, and private events."
+  },
+  "events_no": [
+    "Bryllup",
+    "Julebord",
+    "Bedrift (møter, middager, julebord)",
+    "Firmafester",
+    "Privat (bursdag, konfirmasjon, familie)",
+    "Forlovelse og jubileum",
+    "Teambuilding / seminar",
+    "Barnedåp (avklares)",
+    "Minnesamlinger (avklares)",
+    "Kulturelle samlinger",
+    "Små og mellomstore selskap"
+  ],
+  "events_en": [
+    "Weddings",
+    "Julebord",
+    "Corporate (meetings, dinners, julebord)",
+    "Company parties",
+    "Private (birthdays, confirmations, family)",
+    "Engagements and anniversaries",
+    "Team building / seminars",
+    "Christenings (by arrangement)",
+    "Memorials (by arrangement)",
+    "Cultural gatherings",
+    "Small and medium-sized events"
+  ],
+  "capacity": {
+    "seatedApprox": 150
+  },
+  "facilities_no": [
+    "Bord og stoler",
+    "Servise, glass og bestikk",
+    "Restaurantkjøkken",
+    "Barområde",
+    "Garderobe",
+    "Toaletter",
+    "Lekerom",
+    "Uteplass",
+    "Lydstøtte for taler",
+    "Mulig TV/Chromecast-leie ved tilgjengelighet"
+  ],
+  "facilities_en": [
+    "Tables and chairs",
+    "Tableware, glassware, and cutlery",
+    "Restaurant kitchen",
+    "Bar area",
+    "Wardrobe/cloakroom",
+    "Toilets",
+    "Playroom",
+    "Outdoor area",
+    "Sound support for speeches",
+    "Possible TV/Chromecast rental when available"
+  ]
+}

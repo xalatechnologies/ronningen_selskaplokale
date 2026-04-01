@@ -6,8 +6,8 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Globe, Phone, Mail, MapPin, Instagram, Facebook, ChevronDown, ChevronRight, ArrowRight, ArrowLeft, Sparkles } from 'lucide-react';
-import { useState, useEffect, useRef } from 'react';
+import { Menu, X, Globe, Phone, Mail, MapPin, Instagram, Facebook, ArrowRight, ArrowLeft, Sparkles, MessageCircle, SendHorizontal } from 'lucide-react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import './lib/i18n';
 import { Toaster } from 'sonner';
 
@@ -25,6 +25,8 @@ import { TestimonialsPage } from './pages/TestimonialsPage';
 import { WeddingsPage } from './pages/WeddingsPage';
 import { CorporatePage } from './pages/CorporatePage';
 import { PrivatePage } from './pages/PrivatePage';
+import { FacilitiesPage } from './pages/FacilitiesPage';
+import { appendConversation, detectLanguage } from './lib/customerAssistant';
 
 const InquiryPage = () => {
   const { t } = useTranslation();
@@ -40,53 +42,77 @@ const InquiryPage = () => {
 
 const HOME_KONSEPT_ITEMS = [
   {
+    metaDate: 'Bryllup',
+    metaType: 'Klassisk',
     title: 'Bryllup',
     description: 'Vielse, fest og mingling på ett sted — vi hjelper dere med helhetsplan fra ønskeliste til siste dans.',
     path: '/weddings',
     img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1200',
   },
   {
-    title: 'Bedrift',
-    description: 'Møter, middager og lanseringer med profesjonelt vertskap, teknisk utstyr og fleksible romløsninger.',
+    metaDate: 'Firmaeventer',
+    metaType: 'Profesjonelt',
+    title: 'Firmaeventer',
+    description: 'Konferanse, teambuilding, julebord og sommerfest med profesjonelt vertskap og fleksible rammer.',
     path: '/corporate',
     img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200',
   },
   {
-    title: 'Private selskap',
+    metaDate: 'Private selskaper',
+    metaType: 'Personlig',
+    title: 'Private selskaper',
     description: 'Jubileer, konfirmasjon og familieselskap med plass til barn og voksne — rolige, hjemlige omgivelser på gården.',
     path: '/packages',
     img: 'https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=80&w=1200',
   },
   {
-    title: 'Julebord',
-    description: 'Tradisjonsrik julemiddag med meny tilpasset gruppen — perfekt for kollegaer eller vennegjengen.',
-    path: '/packages',
+    metaDate: 'Fasiliteter',
+    metaType: 'Fleksibelt',
+    title: 'Fasiliteter',
+    description: 'Alt fra storkjøkken og dansegulv til gode parkeringsmuligheter og fleksible løsninger rundt opphold.',
+    path: '/facilities',
     img: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=80&w=1200',
-  },
-  {
-    title: 'Konferanse',
-    description: 'Dagseminar eller heldagsmøte med pauserom, lyd, projeksjon og bevertning som holder dagen i flyt.',
-    path: '/corporate',
-    img: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=80&w=1200',
-  },
-  {
-    title: 'Sommerfest',
-    description: 'Ute og inne på gården — grill, mingling og lange kvelder når lyset og stemningen er på sitt beste.',
-    path: '/packages',
-    img: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=1200',
   },
 ] as const;
 
-const PARTNER_CATEGORIES = [
-  'Catering & kjøkken',
-  'Blomster & dekor',
-  'Foto & film',
-  'Lyd & lys',
-  'Bar & servering',
-  'Koordinering',
-  'Digilist',
-  'Xala technologies',
-  'CommitCare',
+/** Hero background: one full-bleed mosaic of several photos (collage in one view) */
+const HOME_HERO_COLLAGE = [
+  {
+    src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=900',
+    alt: '',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=900',
+    alt: '',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=900',
+    alt: '',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=900',
+    alt: '',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=80&w=900',
+    alt: '',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=80&w=900',
+    alt: '',
+  },
+] as const;
+
+const PARTNER_LOGOS = [
+  { name: 'Catering & kjøkken', mark: 'CK' },
+  { name: 'Blomster & dekor', mark: 'BD' },
+  { name: 'Foto & film', mark: 'FF' },
+  { name: 'Lyd & lys', mark: 'LL' },
+  { name: 'Bar & servering', mark: 'BS' },
+  { name: 'Koordinering', mark: 'KO' },
+  { name: 'Digilist', mark: 'DG' },
+  { name: 'Xala technologies', mark: 'XT' },
+  { name: 'CommitCare', mark: 'CC' },
 ] as const;
 
 const Home = () => {
@@ -135,35 +161,51 @@ const Home = () => {
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section - Recipe 2 Inspired */}
-      <section className="section-viewport section-viewport-hero relative flex flex-col items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=2000" 
-            alt="Venue Hero" 
-            className="w-full h-full object-cover brightness-[0.35]"
-            referrerPolicy="no-referrer"
+      {/* Hero — full-bleed background image + cream wash for readable type */}
+      <section className="home-hero section-viewport section-viewport-hero relative flex min-h-0 flex-col overflow-hidden border-b border-brand-800 bg-brand-950 text-white">
+        <div className="pointer-events-none absolute inset-0 z-0">
+          <div
+            className="grid h-full w-full grid-cols-3 grid-rows-2 gap-0.5 bg-brand-950 sm:gap-1"
+            role="img"
+            aria-label="Rønningen selskapslokale — utvalg av stemning fra bryllup, selskap og feiring"
+          >
+            {HOME_HERO_COLLAGE.map((item, i) => (
+              <img
+                key={item.src}
+                src={item.src}
+                alt={item.alt}
+                className="h-full min-h-0 w-full min-w-0 object-cover"
+                loading={i < 3 ? 'eager' : 'lazy'}
+                decoding="async"
+                fetchPriority={i === 0 ? 'high' : undefined}
+                referrerPolicy="no-referrer"
+              />
+            ))}
+          </div>
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/50 to-black/65"
+            aria-hidden
           />
         </div>
-        <div className="section-viewport-scroll relative z-10 flex w-full max-w-6xl flex-col items-center justify-center px-4 py-6 text-center text-white">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <h1 className="text-6xl md:text-9xl font-serif leading-[0.9] tracking-tighter">
-              Velkommen til Rønningen selskapslokale
-            </h1>
-            <p className="text-xl md:text-3xl font-light max-w-2xl mx-auto opacity-90 italic">
-              Alt du trenger for en vellykket feiring – på ett sted
-            </p>
-          </motion.div>
-        </div>
-        
-        {/* Scroll Indicator */}
-        <div className="pointer-events-none absolute bottom-10 left-1/2 z-10 -translate-x-1/2 text-white animate-bounce opacity-50">
-          <ChevronDown size={32} />
+        <div className="section-viewport-scroll relative z-10 flex h-full min-h-0 w-full flex-col overflow-hidden px-5 pt-6 text-white sm:px-8 sm:pt-8 md:px-10 md:pt-10">
+          <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="flex max-w-[42rem] flex-col items-center gap-6 text-center md:max-w-[52rem] md:gap-8"
+            >
+              <h1 className="text-balance font-serif leading-[0.9] tracking-tighter text-white [text-shadow:0_2px_32px_rgba(0,0,0,0.45)]">
+                <span className="block font-serif text-6xl uppercase tracking-[0.2em] text-white md:text-9xl">
+                  Velkommen til
+                </span>
+                <span className="mt-2 block text-4xl md:mt-3 md:text-7xl">Rønningen selskapslokale</span>
+              </h1>
+              <p className="mx-auto mt-5 max-w-2xl text-xl font-light italic opacity-90 md:mt-6 md:text-3xl">
+                Alt du trenger for en vellykket feiring – på ett sted
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -183,7 +225,7 @@ const Home = () => {
 
         <div className="section-viewport-scroll relative z-10 flex min-h-0 flex-col">
           <div className="mx-auto flex w-full max-w-[1920px] flex-col px-5 py-16 sm:px-8 sm:py-20 md:px-12 md:py-24 lg:px-16 xl:px-20">
-            <header className="mx-auto max-w-2xl space-y-4 text-center md:space-y-5">
+            <header className="max-w-2xl space-y-4 md:space-y-5">
               <h2 id="konsepter-heading" className={SECTION_H2_CLASS}>
                 Våre konsepter
               </h2>
@@ -193,40 +235,39 @@ const Home = () => {
             </header>
 
             <div className="mt-10 md:mt-12">
-              <ul className="m-0 grid list-none grid-cols-1 gap-x-6 gap-y-10 pl-0 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-14">
+              <ul className="m-0 grid list-none grid-cols-1 gap-x-6 gap-y-10 pl-0 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-14">
                 {HOME_KONSEPT_ITEMS.map((item) => (
                   <li key={item.title} className="min-w-0">
                     <Link
                       to={item.path}
                       className="group flex flex-col items-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-2xl"
                     >
-                      <div className="relative mx-auto aspect-square w-full max-w-[15rem] overflow-hidden rounded-full border-[3px] border-white/90 shadow-[0_20px_50px_-12px_rgba(33,24,22,0.35)] ring-1 ring-brand-900/10 transition-[transform,box-shadow] duration-500 ease-out group-hover:scale-[1.03] group-hover:shadow-[0_28px_60px_-8px_rgba(33,24,22,0.42)] sm:max-w-[16rem] md:max-w-[17.5rem]">
-                        <img
-                          src={item.img}
-                          alt=""
-                          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                          referrerPolicy="no-referrer"
-                        />
-                        <div
-                          className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/85 via-black/30 to-transparent"
-                          aria-hidden
-                        />
-                        <h3 className="absolute inset-x-0 bottom-0 px-3 pb-4 pt-16 text-center font-display text-sm font-normal uppercase leading-tight tracking-[0.07em] text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.95),0_1px_3px_rgba(0,0,0,0.9)] sm:pb-5 sm:text-base md:pt-20 md:text-lg">
+                      <div className="relative mx-auto mb-7 w-full max-w-[17rem] sm:mb-8 sm:max-w-[18rem] md:max-w-[19rem]">
+                        <div className="relative aspect-square overflow-hidden rounded-full border-[3px] border-white/90 shadow-[0_20px_50px_-12px_rgba(33,24,22,0.35)] ring-1 ring-brand-900/10 transition-[transform,box-shadow] duration-500 ease-out group-hover:scale-[1.03] group-hover:shadow-[0_28px_60px_-8px_rgba(33,24,22,0.42)]">
+                          <img
+                            src={item.img}
+                            alt={item.title}
+                            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                            referrerPolicy="no-referrer"
+                          />
+                          <div
+                            className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent"
+                            aria-hidden
+                          />
+                        </div>
+                        <h3 className="absolute bottom-0 left-1/2 z-10 w-[min(92%,15.5rem)] -translate-x-1/2 translate-y-1/2 rounded-sm border-2 border-[#c9a352] bg-[linear-gradient(180deg,#faf8f4_0%,#f3efe6_55%,#f0ebe0_100%)] px-4 py-2 text-center font-serif text-[11px] font-normal uppercase leading-snug tracking-[0.12em] text-brand-950 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.55),inset_0_0_0_2px_rgba(169,132,66,0.35),0_4px_14px_rgba(33,24,22,0.12)] sm:px-5 sm:py-2.5 sm:text-xs md:text-[0.8125rem]">
                           {item.title}
                         </h3>
                       </div>
                       <p className="mt-5 max-w-[24rem] text-balance text-[0.9375rem] font-medium leading-[1.65] text-brand-900 md:text-base md:leading-relaxed sm:mt-6">
                         {item.description}
                       </p>
-                      <span className="mt-4 inline-flex items-center justify-center gap-2 text-[13px] font-bold uppercase tracking-[0.18em] text-brand-900">
-                        Les mer
-                        <ChevronRight size={18} strokeWidth={2.25} className="text-brand-700" aria-hidden />
-                      </span>
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
+
           </div>
         </div>
       </section>
@@ -241,41 +282,41 @@ const Home = () => {
               viewport={{ once: true }}
               className={SECTION_H2_ON_DARK_CLASS}
             >
-              Eksklusive Opplevelser
+              Eksklusive tjenester
             </motion.h2>
           </div>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-4 xl:gap-5">
             {[
               {
-                title: "Catering",
-                description: "Vårt samarbeid med anerkjente kokker sikrer uovertruffen kvalitet og skreddersøm for hvert arrangement. Du får tilgang til kulinarisk ekspertise som bringer din visjon til live.",
-                img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800"
-              },
-              {
-                title: "Event management",
-                description: "Fra konseptutvikling til gjennomføring, vi håndterer alle aspekter av ditt arrangement. Våre erfarne prosjektledere sørger for at alt går knirkefritt.",
-                img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800"
-              },
-              {
-                title: "Production",
-                description: "Vi leverer toppmoderne tekniske løsninger innen lyd, lys og bilde. Vårt produksjonsteam skaper visuelt slående miljøer som forsterker budskapet.",
+                title: "Lyd og Lys",
+                description: "Vi setter opp lyd og lys som passer formatet deres - fra tydelige presentasjoner til kveld med musikk, dans og stemning.",
                 img: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=800"
               },
               {
-                title: "Dekorasjon",
-                description: "Våre stylister forvandler ethvert lokale til en unik opplevelse. Vi kombinerer blomster, møbler og dekor for å skape en atmosfære som reflekterer ditt merke.",
-                img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800"
+                title: "Catering og servering",
+                description: "Vi kobler dere med kvalitetscatering og trygg servering, slik at meny, flyt og vertskap henger sammen gjennom hele dagen.",
+                img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800"
               },
               {
-                title: "Bar & Servering",
-                description: "Profesjonell service er ryggraden i ethvert vellykket arrangement. Våre bartendere og servitører er håndplukket for sin kompetanse og evne til å yte det lille ekstra.",
+                title: "Bar og dansegulv",
+                description: "Fra første skål til siste låt: vi tilrettelegger barområde og dansegulv som gir god energi og naturlig flyt utover kvelden.",
                 img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800"
               },
               {
-                title: "Logistikk",
-                description: "Vi tar oss av den komplekse logistikken bak kulissene. Fra transport og lagring til rigging og rydding, sørger vi for en effektiv og sømløs prosess.",
-                img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800"
+                title: "Event koordinering",
+                description: "Vi holder oversikt på detaljer, tidsplan og leverandører, så dere kan være vertskap uten å bruke dagen på logistikk.",
+                img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800"
+              },
+              {
+                title: "Dekorasjon",
+                description: "Blomster, bord og detaljer settes opp etter uttrykket dere ønsker - fra klassisk og rent til varmt og festlig.",
+                img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800"
+              },
+              {
+                title: "Overnatting",
+                description: "Vi hjelper med anbefalte overnattingsmuligheter i nærheten og plan for transport, slik at gjestene kommer trygt frem og tilbake.",
+                img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800"
               }
             ].map((service, index) => (
               <motion.div 
@@ -351,7 +392,7 @@ const Home = () => {
               Galleri
             </h2>
             <p className="text-lg leading-relaxed text-brand-600 md:text-xl">
-              Et kuratert utvalg fra bryllup hos oss. Bla gjennom og se hvordan ulike uttrykk, farger og stemninger kan tilpasses deres dag.
+              Et lite utvalg fra tidligere arrangementer hos oss.
             </p>
           </motion.div>
 
@@ -490,14 +531,20 @@ const Home = () => {
 
             <ul
               className="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 sm:gap-4 lg:col-span-7 xl:col-span-8 xl:grid-cols-3 xl:gap-4"
-              aria-label="Partnerkategorier"
+              aria-label="Partnerlogoer"
             >
-              {PARTNER_CATEGORIES.map((label) => (
-                <li key={label}>
-                  <div className="flex min-h-[4.25rem] items-center justify-center rounded-lg border border-brand-200/90 bg-white/90 px-4 py-3.5 text-center shadow-[0_1px_0_rgba(28,22,19,0.04)] backdrop-blur-[2px] md:min-h-[4.5rem] md:px-5">
-                    <span className="font-sans text-[0.8125rem] font-semibold uppercase tracking-[0.12em] text-brand-900 sm:text-sm">
-                      {label}
-                    </span>
+              {PARTNER_LOGOS.map((partner) => (
+                <li key={partner.name}>
+                  <div className="flex min-h-[4.6rem] items-center gap-3 rounded-lg border border-brand-200/90 bg-white/95 px-4 py-3.5 shadow-[0_1px_0_rgba(28,22,19,0.04)] backdrop-blur-[2px] transition-colors hover:border-brand-300 md:min-h-[4.9rem] md:px-5">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-brand-300/80 bg-brand-50 text-[0.7rem] font-bold uppercase tracking-[0.08em] text-brand-800">
+                      {partner.mark}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="truncate font-serif text-[1.02rem] leading-none tracking-tight text-brand-950 md:text-[1.08rem]">
+                        {partner.name}
+                      </p>
+                      <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-500">Partner</p>
+                    </div>
                   </div>
                 </li>
               ))}
@@ -513,10 +560,36 @@ const Navbar = () => {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatInput, setChatInput] = useState('');
+  const [replyCount, setReplyCount] = useState(0);
+  const [messages, setMessages] = useState<{ role: 'assistant' | 'user'; text: string }[]>(() => [
+    { role: 'assistant', text: t('chat.welcomeMessage') },
+  ]);
+  const chatMessagesRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (!chatOpen) return;
+    const el = chatMessagesRef.current;
+    if (el) el.scrollTop = el.scrollHeight;
+  }, [messages, chatOpen]);
 
   const toggleLanguage = () => {
     const newLang = i18n.language === 'no' ? 'en' : 'no';
     i18n.changeLanguage(newLang);
+  };
+
+  const siteChatLang = i18n.language === 'no' ? 'no' : 'en';
+
+  const sendChat = () => {
+    const text = chatInput.trim();
+    if (!text) return;
+    setMessages((prev) => {
+      const next = appendConversation(prev, text, replyCount, siteChatLang);
+      setReplyCount(next.nextReplyCount);
+      return next.nextMessages;
+    });
+    setChatInput('');
   };
 
   const navLinks = [
@@ -524,12 +597,13 @@ const Navbar = () => {
     { name: t('nav.weddings'), path: '/weddings' },
     { name: t('nav.corporate'), path: '/corporate' },
     { name: t('nav.private'), path: '/packages' },
+    { name: t('nav.facilities'), path: '/facilities' },
     { name: t('nav.gallery'), path: '/gallery' },
-    { name: t('nav.contact'), path: '/contact' },
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-brand-100 shadow-sm">
+    <>
+      <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-brand-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
         <Link
           to="/"
@@ -554,7 +628,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center space-x-10">
+        <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <Link 
               key={link.path} 
@@ -575,9 +649,10 @@ const Navbar = () => {
               )}
             </Link>
           ))}
-          <button 
+          <button
+            type="button"
             onClick={toggleLanguage}
-            className="flex items-center space-x-2 text-brand-700 hover:text-brand-900 transition-colors"
+            className="ml-auto flex items-center space-x-2 text-brand-700 hover:text-brand-900 transition-colors"
           >
             <Globe size={16} />
             <span className="text-[11px] font-bold uppercase tracking-widest">{i18n.language}</span>
@@ -639,7 +714,70 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+      </nav>
+      <button
+        type="button"
+        aria-label={chatOpen ? t('chat.closeAssistant') : t('chat.openAssistant')}
+        title={t('chat.launcherTitle')}
+        onClick={() => setChatOpen((v) => !v)}
+        className="fixed bottom-5 right-5 z-[60] inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-900 text-white shadow-xl transition-all hover:-translate-y-0.5 hover:bg-brand-800 hover:shadow-2xl md:bottom-6 md:right-6 md:h-14 md:w-14"
+      >
+        {chatOpen ? <X size={22} aria-hidden /> : <MessageCircle size={22} aria-hidden />}
+      </button>
+      <AnimatePresence>
+        {chatOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 14, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.98 }}
+            className="fixed bottom-20 right-4 z-[60] w-[min(92vw,24rem)] overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-2xl md:bottom-24 md:right-6"
+          >
+            <div className="border-b border-brand-100 bg-brand-900 px-4 py-3 text-white">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-300">Customer Assistant</p>
+              <h3 className="mt-1 font-serif text-lg leading-tight">Rønningen Selskapslokale Customer Assistant</h3>
+            </div>
+            <div
+              ref={chatMessagesRef}
+              className="max-h-[19rem] space-y-3 overflow-y-auto overflow-x-hidden bg-brand-50/40 px-4 py-3"
+            >
+              {messages.map((msg, i) => (
+                <div key={`${msg.role}-${i}`} className={cn('rounded-xl px-3 py-2 text-sm leading-relaxed', msg.role === 'assistant' ? 'bg-white text-brand-900 border border-brand-100' : 'bg-brand-900 text-white ml-8')}>
+                  {msg.text}
+                </div>
+              ))}
+            </div>
+            <div className="border-t border-brand-100 bg-white p-3">
+              <div className="flex items-center gap-2">
+                <input
+                  value={chatInput}
+                  onChange={(e) => setChatInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') sendChat();
+                  }}
+                  placeholder={
+                    detectLanguage(chatInput, siteChatLang) === 'no'
+                      ? 'Skriv spørsmålet ditt …'
+                      : 'Type your question…'
+                  }
+                  className="h-10 flex-1 rounded-full border border-brand-200 bg-white px-4 text-sm text-brand-900 outline-none focus:border-brand-400"
+                />
+                <button
+                  type="button"
+                  onClick={sendChat}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-900 text-white transition hover:bg-brand-800"
+                  aria-label={t('chat.sendMessage')}
+                >
+                  <SendHorizontal size={16} aria-hidden />
+                </button>
+              </div>
+              <Link to="/contact" className="mt-2 inline-block text-xs font-semibold uppercase tracking-[0.16em] text-brand-700 hover:text-brand-900">
+                {t('chat.directContact')}
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
@@ -757,6 +895,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/facilities" className={linkClass}>
+                  {t('nav.facilities')}
+                </Link>
+              </li>
+              <li>
                 <Link to="/gallery" className={linkClass}>
                   {t('nav.gallery')}
                 </Link>
@@ -796,6 +939,7 @@ export default function App() {
               <Route path="/corporate" element={<CorporatePage />} />
               <Route path="/packages" element={<PrivatePage />} />
               <Route path="/private" element={<Navigate to="/packages" replace />} />
+              <Route path="/facilities" element={<FacilitiesPage />} />
               <Route path="/gallery" element={<GalleryPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/testimonials" element={<TestimonialsPage />} />

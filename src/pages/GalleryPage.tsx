@@ -7,7 +7,7 @@ import { cn } from '../lib/utils';
 import { SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import { BOOKING_URL } from '../lib/booking';
 
-type GalleryCategory = 'wedding' | 'corporate' | 'private';
+type GalleryCategory = 'wedding' | 'corporate' | 'private' | 'facilities';
 
 type GalleryItem = {
   id: string;
@@ -32,9 +32,12 @@ const galleryItems: GalleryItem[] = [
   { id: '10', url: IMG('photo-1465495976277-4387d4b0b4c6'), category: 'corporate' },
   { id: '11', url: IMG('photo-1507003211169-0a1dd7228f2d'), category: 'private' },
   { id: '12', url: IMG('photo-1492684223066-81342ee5ff30'), category: 'wedding' },
+  { id: '13', url: IMG('photo-1522708323590-d24dbb6b0267'), category: 'facilities' },
+  { id: '14', url: IMG('photo-1505691938895-1758d7feb511'), category: 'facilities' },
+  { id: '15', url: IMG('photo-1484154218962-a197022b5858'), category: 'facilities' },
 ];
 
-const FILTERS = ['all', 'wedding', 'corporate', 'private'] as const;
+const FILTERS = ['all', 'wedding', 'corporate', 'private', 'facilities'] as const;
 type Filter = (typeof FILTERS)[number];
 
 function categoryLabel(t: (k: string) => string, c: GalleryCategory) {
@@ -45,6 +48,8 @@ function categoryLabel(t: (k: string) => string, c: GalleryCategory) {
       return t('galleryPage.filterCorporate');
     case 'private':
       return t('galleryPage.filterPrivate');
+    case 'facilities':
+      return t('galleryPage.filterFacilities');
     default:
       return c;
   }
@@ -58,7 +63,7 @@ export const GalleryPage: React.FC = () => {
   const touchStartX = useRef<number | null>(null);
 
   const categoryCounts = useMemo(() => {
-    const counts = { wedding: 0, corporate: 0, private: 0 };
+    const counts = { wedding: 0, corporate: 0, private: 0, facilities: 0 };
     for (const g of galleryItems) {
       counts[g.category]++;
     }
@@ -218,7 +223,7 @@ export const GalleryPage: React.FC = () => {
                       delay: Math.min(i * motionStagger, 0.4),
                     }}
                     className={cn(
-                      'group relative aspect-square w-full overflow-hidden rounded-2xl border border-brand-200/80 bg-brand-100 text-left shadow-sm ring-1 ring-black/[0.03] transition-[box-shadow,transform] duration-300 hover:z-10 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2'
+                      'group relative aspect-square w-full overflow-hidden rounded-lg border border-brand-200/80 bg-brand-100 text-left shadow-sm ring-1 ring-black/[0.03] transition-[box-shadow,transform] duration-300 hover:z-10 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2'
                     )}
                     onClick={() => openLightbox(item.url)}
                     aria-label={`${t('galleryPage.expandHint')}: ${categoryLabel(t, item.category)}`}

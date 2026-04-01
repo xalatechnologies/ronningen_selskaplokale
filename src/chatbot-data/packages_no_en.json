@@ -1,0 +1,23 @@
+[
+  {
+    "id": "basis",
+    "name_no": "Basis",
+    "name_en": "Basis",
+    "guidance_no": "Mer egenorganisering og fleksibilitet.",
+    "guidance_en": "More DIY flexibility."
+  },
+  {
+    "id": "plus",
+    "name_no": "Plus",
+    "name_en": "Plus",
+    "guidance_no": "Balansert praktisk løsning.",
+    "guidance_en": "Balanced practical option."
+  },
+  {
+    "id": "premium",
+    "name_no": "Premium",
+    "name_en": "Premium",
+    "guidance_no": "Mer koordinering og helhet.",
+    "guidance_en": "More coordination and full service feel."
+  }
+]

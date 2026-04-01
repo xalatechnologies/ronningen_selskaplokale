@@ -1,0 +1,110 @@
+[
+  {
+    "id": "parking",
+    "terms": ["parking", "parkering", "parkere", "park", "bil", "car", "lade", "ladestasjon"],
+    "answer_no": "Gratis parkering; mulighet til lading eller at bilen står over natten — avklares ved booking.",
+    "answer_en": "Free parking; charging or overnight parking may be possible — confirm when you book."
+  },
+  {
+    "id": "accessibility",
+    "terms": ["universell", "rullestol", "wheelchair", "accessibility", "tilgjengelighet", "handicap"],
+    "answer_no": "Lokalet er universelt utformet. Si fra om behov ved forespørsel, så tilpasser vi.",
+    "answer_en": "The venue is universally designed. Share needs in your enquiry so we can adapt."
+  },
+  {
+    "id": "music_dance",
+    "terms": ["musikk", "music", "dj", "band", "danse", "dance", "dancefloor", "dansegulv", "fest", "lyd", "sound"],
+    "answer_no": "Bar og dansegulv finnes; musikkprogram og nivå avklares i planlegging med oss.",
+    "answer_en": "Bar and dance floor are available; music plan and levels are agreed during planning."
+  },
+  {
+    "id": "viewing",
+    "terms": ["visning", "omvisning", "viewing", "tour", "besøk", "se lokalet"],
+    "answer_no": "Visning etter avtale. Ta kontakt for tidspunkt.",
+    "answer_en": "Viewings by appointment. Contact us to schedule."
+  },
+  {
+    "id": "overnight",
+    "terms": ["overnatting", "overnight", "sove", "sleep", "brudesuite", "suite", "rom", "room", "hotel"],
+    "answer_no": "Overnatting og brudesuite kan inngå — omfang og tilgjengelighet avklares i tilbud.",
+    "answer_en": "Overnight stays and a bridal suite may be included — scope is confirmed in your quote."
+  },
+  {
+    "id": "barn_animals",
+    "terms": ["barnepass", "barne", "kids", "children", "dyr", "animals", "gård", "farm"],
+    "answer_no": "Barnepass og samvær med dyr er mulig som del av opplegget — detaljer i dialog.",
+    "answer_en": "Childcare and animal encounters can be part of the plan — details in conversation."
+  },
+  {
+    "id": "barn_venue",
+    "terms": ["låve", "laave", "hayloft", "låven"],
+    "answer_no": "Låven er sentral for stemning og program — bruk avklares i planlegging.",
+    "answer_en": "The barn is central for atmosphere and flow — use is agreed in planning."
+  },
+  {
+    "id": "decoration",
+    "terms": ["dekor", "decoration", "blomster", "flowers", "lys", "ballong"],
+    "answer_no": "Dekor tilpasses ønsker; hva som er inkludert vs. leverandør avklares i tilbud.",
+    "answer_en": "Decor follows your wishes; what is included vs. supplier is clarified in the quote."
+  },
+  {
+    "id": "av_tech",
+    "terms": ["prosjektor", "projector", "skjerm", "screen", "chromecast", "tv", "mikrofon", "microphone", "wifi", "wi-fi"],
+    "answer_no": "Lyd til taler inngår; TV/Chromecast kan leies ved tilgjengelighet. Teknisk avklares ved behov.",
+    "answer_en": "Speech sound is included; TV/Chromecast may be rented when available. Tech details on request."
+  },
+  {
+    "id": "photo_video",
+    "terms": ["foto", "photo", "video", "fotograf", "photographer", "drone"],
+    "answer_no": "Foto/video avklares med dere og evt. leverandør; spør om særlige restriksjoner ved booking.",
+    "answer_en": "Photo/video is agreed with you and any supplier; ask about restrictions when booking."
+  },
+  {
+    "id": "timing",
+    "terms": ["tid", "time", "når", "how long", "hours", "kveld", "evening", "stenge", "curfew"],
+    "answer_no": "Tidsrammer og opprydding avtales per arrangement — ikke faste svar her.",
+    "answer_en": "Hours and cleanup are agreed per event — no fixed answer in chat."
+  },
+  {
+    "id": "contract_payment",
+    "terms": ["kontrakt", "contract", "deposit", "depot", "faktura", "invoice", "betaling", "payment", "vilkår", "terms"],
+    "answer_no": "Kontrakt, depositum og betaling følger tilbud og gjeldende vilkår — vi sender konkret ved forespørsel.",
+    "answer_en": "Contract, deposit, and payment follow the quote and terms — we send specifics on request."
+  },
+  {
+    "id": "cancellation",
+    "terms": ["avbestilling", "cancellation", "refund", "angre", "utsett"],
+    "answer_no": "Avbestilling og refusjon reguleres i avtalen — kontakt oss for deres dato og pakke.",
+    "answer_en": "Cancellation and refunds follow the agreement — contact us for your date and package."
+  },
+  {
+    "id": "catering_diet",
+    "terms": ["catering", "kokk", "chef", "allergi", "allergy", "vegan", "vegetar", "halal", "kosher", "meny", "menu"],
+    "answer_no": "Mat og allergier planlegges med catering/leverandør; rammer avklares i tilbud.",
+    "answer_en": "Food and allergies are planned with your caterer/supplier; frames are set in the quote."
+  },
+  {
+    "id": "smoking",
+    "terms": ["røyk", "smoking", "tobakk", "vape"],
+    "answer_no": "Røyking kun der lov/regler og våre rutiner tillater — spør oss ved planlegging.",
+    "answer_en": "Smoking only where law and our rules allow — ask us during planning."
+  },
+  {
+    "id": "external_vendors",
+    "terms": ["leverandør", "vendor", "egen", "bring own", "leie inn"],
+    "answer_no": "Eksterne leverandører er ofte mulig; hva som godkjennes avklares i kontrakt/tilbud.",
+    "answer_en": "External vendors are often possible; approvals are set out in the contract/quote."
+  },
+  {
+    "id": "weather_outdoor",
+    "terms": ["ute", "outdoor", "hage", "garden", "vær", "weather", "regn", "rain", "seremoni utendørs"],
+    "answer_no": "Uteområder brukes etter avtale; ha alltid plan B for vær — vi hjelper med logikk.",
+    "answer_en": "Outdoor areas are used by arrangement; always have a weather plan B — we help with flow."
+  },
+  {
+    "id": "directions_transport",
+    "terms": ["tog", "train", "buss", "bus", "veibeskrivelse", "directions", "komme hit", "how to get"],
+    "answer_no": "Adresse: Baneveien 290, 3410 Sylling. Bil er enklest; kollektiv avklares lokalt. Kart på kontaktsiden.",
+    "answer_en": "Address: Baneveien 290, 3410 Sylling. Car is easiest; public options vary. See contact page for map."
+  }
+]

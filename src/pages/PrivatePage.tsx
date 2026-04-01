@@ -229,7 +229,7 @@ export const PrivatePage = () => {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55 }}
-                className="max-w-[min(100%,20rem)] font-serif text-5xl leading-[0.92] tracking-tighter text-balance sm:max-w-none sm:text-7xl md:text-8xl lg:text-9xl"
+                className="max-w-5xl font-serif text-6xl leading-[0.9] tracking-tighter text-balance md:text-9xl"
               >
                 Livets feiringer samlet.
                 <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">Hos oss.</span>

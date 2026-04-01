@@ -1,0 +1,370 @@
+[
+  {
+    "category": "general",
+    "intent": "venue_suitability",
+    "questions_no": ["Hva slags arrangement passer hos dere?", "Passer lokalet til feiringer?", "Hva er lokalet best til?", "hva tilbyr dere", "event types", "hvilke typer", "arrangementstype"],
+    "questions_en": ["What events are suitable at your venue?", "Is your venue suitable for celebrations?", "What is the venue best suited for?", "what do you host", "event types", "what kinds"],
+    "answer_no": "Bryllup, julebord, bedrift, privat (bursdag, konfirmasjon, familie), kultur — ca. 150 sittende avhenger av oppsett.",
+    "answer_en": "Weddings, julebord, corporate, private (birthdays, confirmations, family), culture — about 150 seated depending on layout."
+  },
+  {
+    "category": "capacity",
+    "intent": "capacity_overview",
+    "questions_no": ["Hvor mange gjester har dere plass til?", "Hva er kapasiteten?", "Passer det for 150 gjester?", "maks gjester", "antall personer", "kapasitet"],
+    "questions_en": ["How many guests can you host?", "What is your capacity?", "Is it suitable for 150 guests?", "max guests", "how many people", "capacity"],
+    "answer_no": "Ca. 150 sittende — endelig tall avhenger av oppsett og type arrangement.",
+    "answer_en": "About 150 seated — final count depends on layout and event type."
+  },
+  {
+    "category": "facilities",
+    "intent": "facility_overview",
+    "questions_no": ["Hvilke fasiliteter har dere?", "Har dere kjøkken og bar?", "Hva følger med lokalet?", "utstyr", "servise", "fasiliteter"],
+    "questions_en": ["What facilities do you have?", "Do you have a kitchen and bar?", "What is included at the venue?", "equipment", "tableware", "facilities"],
+    "answer_no": "Storkjøkken, bar, garderobe, toaletter, lekerom, uteplass, lyd til taler; bord, stoler, servise. TV/Chromecast kan leies.",
+    "answer_en": "Kitchen, bar, cloakroom, toilets, playroom, outdoor area, speech sound; tables, chairs, tableware. TV/Chromecast may be rented."
+  },
+  {
+    "category": "weddings",
+    "intent": "wedding_fit",
+    "questions_no": ["Passer lokalet til bryllup?", "Kan vi ha bryllup hos dere?", "bryllupsfest", "vielse", "bryllup"],
+    "questions_en": ["Is the venue suitable for weddings?", "Can we host a wedding at your venue?", "wedding reception", "ceremony", "wedding"],
+    "answer_no": "Ja — personlig ramme; seremoni ute/inne etter avtale.",
+    "answer_en": "Yes — personal setting; indoor/outdoor ceremony by arrangement."
+  },
+  {
+    "category": "corporate",
+    "intent": "corporate_fit",
+    "questions_no": ["Passer lokalet til bedrift?", "Kan vi ha julebord hos dere?", "Er dette bra for firmaevent?", "konferanse", "møte", "bedrift", "firma", "julebord"],
+    "questions_en": ["Is the venue suitable for company events?", "Can we host julebord with you?", "Is this good for corporate gatherings?", "conference", "meeting", "corporate", "company", "julebord"],
+    "answer_no": "Ja — julebord, middager, samlinger; AV og oppsett tilpasses.",
+    "answer_en": "Yes — julebord, dinners, gatherings; AV and layout to match."
+  },
+  {
+    "category": "private",
+    "intent": "private_fit",
+    "questions_no": ["Kan vi ha bursdag eller konfirmasjon hos dere?", "Passer det for familieselskap?", "familie", "bursdag", "konfirmasjon", "privat"],
+    "questions_en": ["Can we host birthdays or confirmations at your venue?", "Is it suitable for family events?", "family", "birthday", "confirmation", "private"],
+    "answer_no": "Ja — bursdag, konfirmasjon, familieselskaper; oppsett etter behov.",
+    "answer_en": "Yes — birthdays, confirmations, family events; layout as needed."
+  },
+  {
+    "category": "baptism_memorial",
+    "intent": "baptism_memorial",
+    "questions_no": ["dåp", "barnedåp", "minnesamling", "bisettelse", "begravelse", "seremoni etter"],
+    "questions_en": ["baptism", "christening", "memorial", "funeral", "wake", "after ceremony"],
+    "answer_no": "Kontakt oss — slike dager avklares individuelt (ønsker, kapasitet, tid).",
+    "answer_en": "Contact us — we align each case (wishes, capacity, timing)."
+  },
+  {
+    "category": "engagement_anniversary",
+    "intent": "engagement_anniversary",
+    "questions_no": ["forlovelsesfest", "jubileum", "årsdag", "forlovelse"],
+    "questions_en": ["engagement party", "anniversary", "celebration year"],
+    "answer_no": "Ja — forlovelse og jubileum passer; oppsett og tid avtales.",
+    "answer_en": "Yes — engagements and anniversaries work; layout and timing by agreement."
+  },
+  {
+    "category": "team_seminar",
+    "intent": "team_seminar",
+    "questions_no": ["teambuilding", "seminar", "kurs", "workshop"],
+    "questions_en": ["team building", "seminar", "workshop", "training"],
+    "answer_no": "Ja — møter og samlinger; teknisk behov og oppsett avtales.",
+    "answer_en": "Yes — meetings and gatherings; tech and layout agreed in advance."
+  },
+  {
+    "category": "pricing",
+    "intent": "pricing_unknown",
+    "questions_no": ["Hva koster det?", "Har dere prisliste?", "Hva er prisen for min dato?", "pris", "honorar", "kostnad"],
+    "questions_en": ["What does it cost?", "Do you have a price list?", "What is the price for my date?", "price", "fee", "cost estimate"],
+    "answer_no": "Pris avhenger av dato, gjester, pakke og omfang — tilbud etter forespørsel.",
+    "answer_en": "Price depends on date, guests, package, and scope — quote on request."
+  },
+  {
+    "category": "availability",
+    "intent": "availability_unknown",
+    "questions_no": ["Er datoen min ledig?", "Kan jeg booke nå?", "Har dere ledig i sommer?", "ledig", "dato", "kalender"],
+    "questions_en": ["Is my date available?", "Can I book now?", "Do you have availability this summer?", "available", "date", "calendar"],
+    "answer_no": "Ledighet sjekkes mot kalender — send forespørsel med dato.",
+    "answer_en": "We check the calendar — send your date in an enquiry."
+  },
+  {
+    "category": "food_drink",
+    "intent": "food_flexibility",
+    "questions_no": ["Kan vi ta med egen mat og drikke?", "Hvordan fungerer catering hos dere?", "alkohol", "drikke", "mat", "catering"],
+    "questions_en": ["Can we bring our own food and drinks?", "How does catering work at your venue?", "alcohol", "drinks", "food", "catering"],
+    "answer_no": "Mat/drikke avtales (egen eller leverandør) i tilbudet.",
+    "answer_en": "Food/drinks are agreed (yours or supplier) in the quote."
+  },
+  {
+    "category": "family",
+    "intent": "family_friendly",
+    "questions_no": ["Er lokalet barnevennlig?", "Har dere lekerom?", "barn", "baby"],
+    "questions_en": ["Is the venue family friendly?", "Do you have a playroom?", "kids", "children"],
+    "answer_no": "Ja — lekerom og familievennlig flyt.",
+    "answer_en": "Yes — playroom and family-friendly layout."
+  },
+  {
+    "category": "comparison",
+    "intent": "why_choose",
+    "questions_no": ["Hvorfor velge dere?", "Hva er unikt?", "fordeler", "konkurranse"],
+    "questions_en": ["Why choose you?", "What is unique?", "benefits", "why this venue"],
+    "answer_no": "Landlig-elegant i Sylling; fleksibel planlegging og helhet (låve, ute, fasiliteter).",
+    "answer_en": "Rural-elegant in Sylling; flexible planning, one cohesive venue."
+  },
+  {
+    "category": "booking_flow",
+    "intent": "how_to_book",
+    "questions_no": ["Hvordan bestiller jeg?", "Hva er neste steg?", "forespørsel", "inquiry", "bestille", "booking", "reservere", "kontakte dere", "e-post", "telefon", "kontaktskjema"],
+    "questions_en": ["How do I book?", "What is the next step?", "inquiry", "request", "book", "reserve", "contact you", "email", "phone", "contact form"],
+    "answer_no": "Kontakt oss på e-post, telefon eller via kontaktskjema på nettsiden — vi svarer raskt og hjelper med booking og detaljer.",
+    "answer_en": "Contact us by email, phone, or the website contact form — we respond promptly and help with booking and details."
+  },
+  {
+    "category": "packages",
+    "intent": "basis_inclusions",
+    "questions_no": ["Hva er inkludert i Basis-pakken?", "Hva følger med Basis?", "basis pakke", "basis-pakken", "inkludert i basis", "hva innebærer basis"],
+    "questions_en": ["What is included in the Basis package?", "What does Basis include?", "basis package", "included in basis"],
+    "answer_no": "Basis omfatter leie i avtalt tidsrom, standard bord og stoler, servise og glass, samt tilgang til storkjøkken og bar. Tillegg og nøyaktig innhold avtales i tilbudet.",
+    "answer_en": "Basis covers hire for the agreed period, standard tables and chairs, tableware and glassware, plus access to the commercial kitchen and bar. Extras and exact scope are agreed in your quote."
+  },
+  {
+    "category": "parking",
+    "intent": "parking",
+    "questions_no": ["Har dere parkering?", "parkeringsplass", "parkering", "parkeringsmuligheter", "ladeplass", "lade elbil"],
+    "questions_en": ["Do you have parking?", "parking spaces", "parking", "park cars", "EV charging", "charging"],
+    "answer_no": "Ja — gratis parkering med god plass til gjester. Lading og særlige behov avklares ved forespørsel.",
+    "answer_en": "Yes — free parking with plenty of space for guests. Charging and special needs are clarified when you enquire."
+  },
+  {
+    "category": "partners",
+    "intent": "partners_catering",
+    "questions_no": ["egen catering", "egen leverandør", "fotograf", "dj", "blomster", "samarbeidspartnere", "styling", "musikk"],
+    "questions_en": ["own caterer", "own supplier", "photographer", "DJ", "flowers", "partners", "styling", "music"],
+    "answer_no": "Dere kan ofte bruke egen catering eller leverandør — rammer avtales i tilbud. Ønsker dere anbefalinger (f.eks. foto, musikk, blomster), hjelper vi gjerne ved direkte kontakt.",
+    "answer_en": "You can often use your own caterer or supplier — terms are set in the quote. If you want recommendations (e.g. photo, music, flowers), we’re happy to help when you contact us directly."
+  },
+  {
+    "category": "packages",
+    "intent": "plus_premium_diff",
+    "questions_no": ["Hva er forskjellen på Plus og Premium?", "Hva inkluderer Plus?", "Hva inkluderer Premium?", "plus pakke", "premium pakke"],
+    "questions_en": ["What is the difference between Plus and Premium?", "What does Plus include?", "What does Premium include?", "plus package", "premium package"],
+    "answer_no": "Plus er en balansert praktisk løsning; Premium gir mer koordinering og helhet. Nøyaktig innhold og pris settes i tilbud etter behov.",
+    "answer_en": "Plus is a balanced practical option; Premium adds more coordination and a fuller service feel. Exact inclusions and price are set in your quote based on needs."
+  },
+  {
+    "category": "accessibility",
+    "intent": "accessibility_universal",
+    "questions_no": ["Er lokalet universelt utformet?", "Kan rullestolbrukere komme inn?", "tilrettelegging", "handicap", "rullestol"],
+    "questions_en": ["Is the venue accessible?", "wheelchair access", "universal design", "accessibility", "mobility"],
+    "answer_no": "Vi legger vekt på tilgjengelighet. Konkrete behov (adkomst, toalett, plassering) avklares best i dialog — ta kontakt.",
+    "answer_en": "We focus on accessibility. Specific needs (access, toilets, seating) are best confirmed in conversation — please contact us."
+  },
+  {
+    "category": "pets",
+    "intent": "pets_policy",
+    "questions_no": ["Kan vi ha med hund?", "dyr på arrangement", "husdyr"],
+    "questions_en": ["Can we bring a dog?", "pets at the venue", "animals"],
+    "answer_no": "Dyr på arrangement avklares ut fra type arrangement og praktiske forhold — ta kontakt for å avtale.",
+    "answer_en": "Animals at events depend on the type of event and practical factors — contact us to agree what works."
+  },
+  {
+    "category": "entertainment",
+    "intent": "music_dance",
+    "questions_no": ["Kan vi ha live band?", "dansegulv", "DJ", "musikk om kvelden", "toastmaster"],
+    "questions_en": ["live band", "dance floor", "DJ", "music in the evening", "toastmaster"],
+    "answer_no": "Musikk, DJ og danseflate avtales i forhold til oppsett og praktiske rammer. Detaljer og begrensinger avklares i tilbud og kontrakt.",
+    "answer_en": "Music, DJ, and dance floor use are agreed with layout and practical limits. Details are set in your quote and agreement."
+  },
+  {
+    "category": "outdoor",
+    "intent": "outdoor_area",
+    "questions_no": ["Kan vi ha seremoni ute?", "uteområde", "uteplass", "hage", "vær og regn"],
+    "questions_en": ["outdoor ceremony", "garden", "outdoor space", "weather and rain"],
+    "answer_no": "Uteplass kan brukes etter avtale og værforhold. Plan B og praktiske detaljer avklares direkte.",
+    "answer_en": "Outdoor space can be used by arrangement and weather. Backup plans and details are confirmed with us directly."
+  },
+  {
+    "category": "timing",
+    "intent": "timing_schedule",
+    "questions_no": ["Hvor lenge kan vi være der?", "oppstilling før fest", "når må vi være ute", "sluttid", "varighet"],
+    "questions_en": ["how long can we stay", "setup time before event", "end time", "duration", "when must we leave"],
+    "answer_no": "Tidsrom, rigg og nedrigging avtales per arrangement — eksakte klokkeslett og tillegg kommer i tilbud.",
+    "answer_en": "Time slot, setup, and teardown are agreed per event — exact times and extras are included in your quote."
+  },
+  {
+    "category": "payment",
+    "intent": "payment_cancel",
+    "questions_no": ["Må vi betale depositum?", "avbestilling", "refusjon", "faktura", "betalingsbetingelser"],
+    "questions_en": ["deposit", "cancellation", "refund", "invoice", "payment terms"],
+    "answer_no": "Betalingsvilkår, depositum og avbestilling reguleres i tilbud og kontrakt — ta kontakt for gjeldende praksis.",
+    "answer_en": "Payment terms, deposits, and cancellation are set in your quote and contract — contact us for the current policy."
+  },
+  {
+    "category": "viewing",
+    "intent": "viewing_tour",
+    "questions_no": ["Kan vi få omvisning?", "se lokalet før vi bestiller", "visning", "befaring"],
+    "questions_en": ["can we get a tour", "see the venue before booking", "viewing", "site visit"],
+    "answer_no": "Ja — visning avtales. Ta kontakt så finner vi et tidspunkt som passer.",
+    "answer_en": "Yes — viewings are by appointment. Contact us to find a time that works."
+  },
+  {
+    "category": "transport",
+    "intent": "transport_public",
+    "questions_no": ["Hvordan kommer man seg dit med kollektiv?", "tog buss", "parkere buss"],
+    "questions_en": ["public transport", "train bus", "coach parking", "how to get there"],
+    "answer_no": "Lokalet ligger i Sylling (Lier) med god adkomst; detaljer om reise og buss avklares ved behov — ta kontakt.",
+    "answer_en": "The venue is in Sylling (Lier) with good access; travel and coach details can be discussed when you enquire."
+  },
+  {
+    "category": "tech",
+    "intent": "wifi_av",
+    "questions_no": ["Har dere wifi?", "internett", "projektor", "mikrofon", "skjerm til presentasjon"],
+    "questions_en": ["do you have wifi", "internet", "projector", "microphone", "presentation screen"],
+    "answer_no": "Lyd til taler er tilgjengelig; WiFi, skjerm/projektor og ekstra AV avtales etter behov i tilbudet.",
+    "answer_en": "Speech sound is available; Wi‑Fi, screen/projector, and extra AV are agreed as needed in your quote."
+  },
+  {
+    "category": "decoration",
+    "intent": "decoration",
+    "questions_no": ["Kan vi pynte selv?", "dekorasjon", "lys og blomster", "ballonger"],
+    "questions_en": ["can we decorate ourselves", "decorations", "flowers candles", "balloons"],
+    "answer_no": "Dekorasjon avtales med hensyn til sikkerhet og lokalet — rammer og eventuelle begrensinger avklares i tilbud.",
+    "answer_en": "Decorations are agreed with safety and venue rules in mind — frames and any limits are clarified in your quote."
+  },
+  {
+    "category": "smoking",
+    "intent": "smoking_policy",
+    "questions_no": ["Kan man røyke inne?", "røykelov", "e-sigarett"],
+    "questions_en": ["smoking inside", "smoking policy", "e-cigarette"],
+    "answer_no": "Røyking og bruk av tobakksprodukter følger gjeldende regler og avtales for arrangementet — ta kontakt for praksis.",
+    "answer_en": "Smoking follows applicable rules and is agreed for your event — contact us for how it works in practice."
+  },
+  {
+    "category": "overnight",
+    "intent": "overnight_stay",
+    "questions_no": ["Kan gjester overnatte?", "overnatting", "sove over"],
+    "questions_en": ["can guests stay overnight", "overnight stay", "accommodation"],
+    "answer_no": "Overnatting for gjester kan være aktuelt — kapasitet og praktisk løsning avtales direkte.",
+    "answer_en": "Guest overnight stays may be possible — capacity and practical setup are agreed directly with us."
+  },
+  {
+    "category": "cleanup",
+    "intent": "cleanup_policy",
+    "questions_no": ["Hvem rydder opp etterpå?", "opprydding", "rengjøring"],
+    "questions_en": ["who cleans up after", "cleaning", "tidying"],
+    "answer_no": "Opprydding og renhold avtales som del av leieforholdet — detaljer står i tilbud.",
+    "answer_en": "Cleanup and cleaning are part of the hire agreement — details are in your quote."
+  },
+  {
+    "category": "insurance",
+    "intent": "insurance_damage",
+    "questions_no": ["Forsikring ved skade?", "hvem er ansvarlig", "tyveri"],
+    "questions_en": ["insurance for damage", "who is liable", "theft"],
+    "answer_no": "Ansvar og forsikring avklares i kontrakt og dialog — ta kontakt for korrekt informasjon til deres arrangement.",
+    "answer_en": "Liability and insurance are set in the contract and discussion — contact us for the right information for your event."
+  },
+  {
+    "category": "media",
+    "intent": "photo_video_policy",
+    "questions_no": ["Kan vi ta drone?", "foto og video", "instagram", "opptak"],
+    "questions_en": ["drone", "photo and video", "filming", "recording"],
+    "answer_no": "Foto, video og spesielle opptak avtales med hensyn til sikkerhet, personvern og lokalet — ta kontakt.",
+    "answer_en": "Photo, video, and special recording are agreed with safety, privacy, and venue rules in mind — contact us."
+  },
+  {
+    "category": "layout",
+    "intent": "table_layout",
+    "questions_no": ["Runde eller lange bord?", "hvordan settes bordene", "plassering av gjester"],
+    "questions_en": ["round or long tables", "table layout", "seating plan"],
+    "answer_no": "Bordform og plassering tilpasses arrangementet og kapasitet — vi avklarer sammen i planleggingen.",
+    "answer_en": "Table shapes and layout match your event and capacity — we align this together in planning."
+  },
+  {
+    "category": "season",
+    "intent": "season_pricing_hint",
+    "questions_no": ["Er det dyrere i helg?", "høysesong", "ukedag vs helg", "sesongpris"],
+    "questions_en": ["more expensive on weekends", "high season", "weekday vs weekend", "seasonal pricing"],
+    "answer_no": "Pris kan variere med dato, sesong og omfang — konkret prissetting får du i tilbud.",
+    "answer_en": "Price can vary by date, season, and scope — you’ll get exact pricing in a quote."
+  },
+  {
+    "category": "noise",
+    "intent": "noise_neighbors",
+    "questions_no": ["Hvor høyt kan musikken være?", "støy til naboer", "lydnivå"],
+    "questions_en": ["how loud can music be", "noise to neighbours", "sound limits"],
+    "answer_no": "Lydnivå og kveldsprogram avtales innen gjeldende rammer — ta kontakt for praktisk avklaring.",
+    "answer_en": "Sound levels and evening programme are agreed within applicable limits — contact us to align practically."
+  },
+  {
+    "category": "vendors",
+    "intent": "external_vendor",
+    "questions_no": ["Kan vi bruke egen tekniker?", "egen leverandør lyd", "leie ekstra utstyr"],
+    "questions_en": ["own technician", "external vendor", "rent extra equipment"],
+    "answer_no": "Eksterne leverandører og ekstra utstyr kan ofte ordnes — avklares i tilbud med sikkerhet og praktiske forhold.",
+    "answer_en": "External suppliers and extra equipment can often be arranged — agreed in your quote with safety and logistics in mind."
+  },
+  {
+    "category": "bridal",
+    "intent": "dressing_bridal",
+    "questions_no": ["Har dere brudesuite?", "forberedelser før vielse", "sminkerom"],
+    "questions_en": ["bridal suite", "getting ready room", "makeup room"],
+    "answer_no": "Rom til forberedelser kan inngå etter avtale — detaljer og tilgjengelighet avklares direkte.",
+    "answer_en": "Preparation rooms may be included by arrangement — details and availability are confirmed directly."
+  },
+  {
+    "category": "logistics",
+    "intent": "gift_table_coat",
+    "questions_no": ["Gavebord", "garderobeplass", "kleshengere"],
+    "questions_en": ["gift table", "cloakroom space", "coat hooks"],
+    "answer_no": "Garderobe og praktiske soner tilpasses oppsettet — si fra om behov i planleggingen.",
+    "answer_en": "Cloakroom and practical zones follow your layout — tell us your needs when planning."
+  },
+  {
+    "category": "general",
+    "intent": "address_directions",
+    "questions_no": ["adresse", "hvor ligger dere", "kart", "finne fram", "kjørerute"],
+    "questions_en": ["address", "where are you located", "map", "directions", "how to find"],
+    "answer_no": "Adresse: Baneveien 290, 3410 Sylling (Lier). Nøyaktige kjøre- og ankomsttips kan vi sende ved forespørsel.",
+    "answer_en": "Address: Baneveien 290, 3410 Sylling (Lier). We can send precise driving and arrival tips on request."
+  },
+  {
+    "category": "general",
+    "intent": "opening_hours_office",
+    "questions_no": ["åpningstider", "når svarer dere", "kundeservice"],
+    "questions_en": ["opening hours", "when do you reply", "office hours"],
+    "answer_no": "Henvendelser besvares så raskt vi kan; hastesaker og konkrete tidspunkter avklares best på telefon eller e-post.",
+    "answer_en": "We reply to enquiries as soon as we can; urgent matters and timing are best handled by phone or email."
+  },
+  {
+    "category": "food_drink",
+    "intent": "bring_own_alcohol",
+    "questions_no": ["Kan vi ta med egen vin?", "skjenke", "sprit", "øl og vin"],
+    "questions_en": ["bring own wine", "serving alcohol", "beer and wine"],
+    "answer_no": "Skjenking og salg av alkohol reguleres av avtale og gjeldende regler — ta kontakt for å avklare deres opplegg.",
+    "answer_en": "Serving alcohol is governed by your agreement and applicable rules — contact us to align your setup."
+  },
+  {
+    "category": "corporate",
+    "intent": "presentation_meeting",
+    "questions_no": ["presentasjon på storskjerm", "flipover", "workshop-oppsett"],
+    "questions_en": ["presentation on screen", "flipchart", "workshop setup"],
+    "answer_no": "Møte- og workshop-oppsett med presentasjonsbehov avtales — teknisk utstyr bestilles etter behov.",
+    "answer_en": "Meeting and workshop layouts with presentation needs are agreed — technical kit is ordered as required."
+  },
+  {
+    "category": "private",
+    "intent": "kids_entertainment",
+    "questions_no": ["aktiviteter for barn", "barneunderholdning", "lek"],
+    "questions_en": ["activities for children", "kids entertainment", "play"],
+    "answer_no": "Lekerom og familievennlige løsninger finnes — aktiviteter utover det avtales etter ønske.",
+    "answer_en": "Playroom and family-friendly options are available — extra activities are agreed based on your wishes."
+  },
+  {
+    "category": "comparison",
+    "intent": "what_to_prepare",
+    "questions_no": ["Hva må vi forberede?", "sjekkliste", "hva bør vi tenke på"],
+    "questions_en": ["what should we prepare", "checklist", "what to think about"],
+    "answer_no": "Vi hjelper dere med en praktisk gjennomgang etter type arrangement — start med dato, antall gjester og ønsket opplegg, ta kontakt.",
+    "answer_en": "We’ll walk you through practical steps for your event type — start with date, guest count, and plans, then contact us."
+  }
+]

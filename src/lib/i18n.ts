@@ -12,6 +12,7 @@ const resources = {
         corporate: 'Corporate',
         private: 'Private',
         packages: 'Packages',
+        facilities: 'Facilities',
         gallery: 'Gallery',
         faq: 'FAQ',
         contact: 'Contact',
@@ -30,6 +31,18 @@ const resources = {
       },
       common: {
         redirectingBooking: 'Redirecting to booking…',
+      },
+      chat: {
+        openAssistant: 'Open customer assistant',
+        closeAssistant: 'Close customer assistant',
+        launcherTitle: 'Customer Assistant — Norwegian or English',
+        panelBadge: 'Customer Assistant · Kundehjelp',
+        panelTitle: 'Rønningen Selskapslokale',
+        panelHint: 'General guidance — contact us for quotes and binding details',
+        welcomeMessage:
+          'Hello. Welcome to Rønningen Selskapslokale. I can help with general questions about the venue. For quotes, dates, and specific arrangements, please use the contact link below or reach out to us directly.',
+        sendMessage: 'Send message',
+        directContact: 'Contact us directly',
       },
       footer: {
         rights: 'All rights reserved',
@@ -92,6 +105,7 @@ const resources = {
         filterWedding: 'Weddings',
         filterCorporate: 'Corporate',
         filterPrivate: 'Private',
+        filterFacilities: 'Facilities',
         expandHint: 'Open',
         emptyTitle: 'No images in this category yet',
         emptyBody: 'Try another filter or check back soon.',
@@ -119,6 +133,7 @@ const resources = {
         corporate: 'Bedrift',
         private: 'Privat',
         packages: 'Pakker',
+        facilities: 'Fasiliteter',
         gallery: 'Galleri',
         faq: 'FAQ',
         contact: 'Kontakt',
@@ -138,6 +153,18 @@ const resources = {
       common: {
         redirectingBooking: 'Sender deg til booking …',
       },
+      chat: {
+        openAssistant: 'Åpne kundehjelp',
+        closeAssistant: 'Lukk kundehjelp',
+        launcherTitle: 'Kundehjelp — norsk eller engelsk',
+        panelBadge: 'Kundehjelp · Customer Assistant',
+        panelTitle: 'Rønningen Selskapslokale',
+        panelHint: 'Generell veiledning — kontakt oss for tilbud og bindende avtaler',
+        welcomeMessage:
+          'Hei. Velkommen til Rønningen Selskapslokale. Jeg kan hjelpe deg med generelle spørsmål om lokalet. For tilbud, datoer og konkrete avtaler, bruk kontaktlenken under eller ta kontakt med oss direkte.',
+        sendMessage: 'Send melding',
+        directContact: 'Kontakt oss direkte',
+      },
       footer: {
         rights: 'Alle rettigheter reservert',
         contact: 'Kontakt oss',
@@ -150,7 +177,7 @@ const resources = {
       },
       contactPage: {
         intro:
-          'Vi hjelper dere fra første spørsmål til gjennomført arrangement. Ta kontakt for omvisning, tilbud eller en uforpliktende prat om planene deres.',
+          'Få en omvisning helt uforpliktende - i dag!',
         sectionHeading: 'Slik når dere oss',
         phoneLabel: 'Telefon',
         phoneValue: '+47 123 45 678',
@@ -199,6 +226,7 @@ const resources = {
         filterWedding: 'Bryllup',
         filterCorporate: 'Bedrift',
         filterPrivate: 'Privat',
+        filterFacilities: 'Fasiliteter',
         expandHint: 'Åpne',
         emptyTitle: 'Ingen bilder i denne kategorien ennå',
         emptyBody: 'Prøv et annet filter eller kom tilbake senere.',

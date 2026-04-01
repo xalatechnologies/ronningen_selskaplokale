@@ -37,7 +37,7 @@ export const EventPage: React.FC<EventPageProps> = ({ title, subtitle, descripti
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-6xl md:text-8xl font-serif mb-6 tracking-tight"
+            className="mb-6 font-serif text-6xl leading-[0.9] tracking-tighter md:text-9xl"
           >
             {title}
           </motion.h1>

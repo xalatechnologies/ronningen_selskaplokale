@@ -42,6 +42,27 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  /** Thin horizontal scrollbar — clearer scroll affordance than fully hidden bars */
+  .scrollbar-facilities {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-brand-500) var(--color-brand-100);
+  }
+  .scrollbar-facilities::-webkit-scrollbar {
+    height: 7px;
+  }
+  .scrollbar-facilities::-webkit-scrollbar-track {
+    margin-inline: 0.5rem;
+    border-radius: 9999px;
+    background: var(--color-brand-100);
+  }
+  .scrollbar-facilities::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background-color: var(--color-brand-500);
+  }
+  .scrollbar-facilities::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-brand-600);
+  }
   
   @keyframes marquee {
     0% { transform: translateX(0); }
@@ -68,6 +89,20 @@
     height: 100svh;
   }
 
+  /*
+   * Home hero sits inside main with pt-20 (nav offset). Using 100svh alone makes the
+   * section taller than the visible area below the nav — gallery ends below the fold.
+   */
+  .home-hero.section-viewport-hero {
+    height: calc(100svh - var(--site-nav-pad));
+    max-height: calc(100svh - var(--site-nav-pad));
+    min-height: 0;
+  }
+
+  .home-hero .section-viewport-scroll {
+    overflow: hidden;
+  }
+
   /* Compact laptop: each primary section ≤ one viewport below fixed nav (internal scroll). */
   @media (min-width: 768px) and ((max-width: 1366px) or (max-height: 864px)) {
     .section-viewport {
@@ -90,6 +125,10 @@
       min-height: 0;
       overflow-y: auto;
       overscroll-behavior-y: contain;
+    }
+
+    .home-hero .section-viewport-scroll {
+      overflow-y: hidden;
     }
   }
 }
