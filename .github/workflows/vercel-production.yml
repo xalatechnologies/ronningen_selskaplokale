@@ -1,0 +1,50 @@
+# Deploys to Vercel on every push to `main` using the Vercel CLI.
+# Use this when the Vercel ↔ GitHub integration does not trigger (wrong repo linked, webhook issues, etc.).
+#
+# One-time setup (GitHub repo: Settings → Secrets and variables → Actions):
+#   1. VERCEL_TOKEN   — Vercel → Account Settings → Tokens → Create
+#   2. VERCEL_ORG_ID  — Team / Personal ID from vercel.com/docs/rest-api (or run `vercel link` locally and read .vercel/project.json; folder is gitignored)
+#   3. VERCEL_PROJECT_ID — same as above (project id in .vercel/project.json after linking this repo)
+#
+# Link locally once: `npx vercel link` in the project root, then copy ids from .vercel/project.json into GitHub secrets.
+#
+# If you rely ONLY on this workflow, in Vercel: Project → Settings → Git you can keep the repo connected for PR previews,
+# or disconnect duplicates so you do not maintain two different GitHub repositories for the same site.
+
+name: Vercel Production Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+concurrency:
+  group: vercel-production-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Pull Vercel project settings
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build (Vercel)
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy to production
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
