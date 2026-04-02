@@ -75,34 +75,6 @@ const HOME_KONSEPT_ITEMS = [
   },
 ] as const;
 
-/** Hero background: one full-bleed mosaic of several photos (collage in one view) */
-const HOME_HERO_COLLAGE = [
-  {
-    src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=900',
-    alt: '',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=900',
-    alt: '',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=900',
-    alt: '',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=900',
-    alt: '',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=80&w=900',
-    alt: '',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=80&w=900',
-    alt: '',
-  },
-] as const;
-
 const PARTNER_LOGOS = [
   { name: 'Catering & kjøkken', mark: 'CK' },
   { name: 'Blomster & dekor', mark: 'BD' },
@@ -163,24 +135,14 @@ const Home = () => {
       {/* Hero — full-bleed background image + cream wash for readable type */}
       <section className="home-hero section-viewport section-viewport-hero relative flex min-h-0 flex-col overflow-hidden border-b border-brand-800 bg-brand-950 text-white">
         <div className="pointer-events-none absolute inset-0 z-0">
-          <div
-            className="grid h-full w-full grid-cols-3 grid-rows-2 gap-0.5 bg-brand-950 sm:gap-1"
-            role="img"
-            aria-label="Rønningen selskapslokale — utvalg av stemning fra bryllup, selskap og feiring"
-          >
-            {HOME_HERO_COLLAGE.map((item, i) => (
-              <img
-                key={item.src}
-                src={item.src}
-                alt={item.alt}
-                className="h-full min-h-0 w-full min-w-0 object-cover"
-                loading={i < 3 ? 'eager' : 'lazy'}
-                decoding="async"
-                fetchPriority={i === 0 ? 'high' : undefined}
-                referrerPolicy="no-referrer"
-              />
-            ))}
-          </div>
+          <img
+            src="/hero-home-collage-user.png"
+            alt=""
+            className="h-full w-full object-cover"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+          />
           <div
             className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/50 to-black/65"
             aria-hidden
@@ -197,10 +159,10 @@ const Home = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55 }}
-              className="max-w-5xl text-balance font-serif text-6xl leading-[0.9] tracking-tighter text-white [text-shadow:0_2px_32px_rgba(0,0,0,0.45)] md:text-9xl"
+              className="max-w-5xl text-balance font-serif leading-[0.9] tracking-tighter text-white [text-shadow:0_2px_32px_rgba(0,0,0,0.45)]"
             >
-              Velkommen til
-              <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">Rønningen selskapslokale</span>
+              <span className="block text-4xl md:text-6xl">Velkommen til</span>
+              <span className="mt-2 block font-serif italic text-6xl text-brand-200 sm:mt-3 md:text-9xl">Rønningen selskapslokale</span>
             </motion.h1>
             <p className="mx-auto max-w-2xl text-xl font-light italic opacity-90 md:text-3xl [text-shadow:0_1px_24px_rgba(0,0,0,0.35)]">
               Alt du trenger for en vellykket feiring – på ett sted
