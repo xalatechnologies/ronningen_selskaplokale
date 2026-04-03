@@ -809,14 +809,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
           <div className="space-y-4">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
-              <div className="inline-flex w-fit shrink-0 rounded-xl bg-white p-3 shadow-md ring-1 ring-black/5">
-                <img
-                  src="/logo.png"
-                  alt="Rønningen selskapslokale"
-                  className="h-11 w-auto max-h-14 object-contain object-left md:h-14"
-                  decoding="async"
-                />
-              </div>
+              <img
+                src="/logo.png"
+                alt="Rønningen selskapslokale"
+                className="h-11 w-auto max-h-14 shrink-0 rounded-md border border-gray-400/50 object-contain object-left md:h-14"
+                decoding="async"
+              />
               <h2 className="font-serif text-3xl font-semibold tracking-tight text-brand-100 md:text-[2.125rem] md:leading-tight">
                 Rønningen
               </h2>

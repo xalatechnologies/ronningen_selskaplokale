@@ -9,25 +9,6 @@ import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 const CTA_PRIMARY = '/inquiry';
 const CTA_SECONDARY = '/contact';
 
-const quickFit = [
-  {
-    title: 'Konferanse & Seminar',
-    img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=85&w=800',
-  },
-  {
-    title: 'Teambuilding',
-    img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=800',
-  },
-  {
-    title: 'Workshop & idémyldring',
-    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=85&w=800',
-  },
-  {
-    title: 'Styre- & ledermøte',
-    img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=85&w=800',
-  },
-] as const;
-
 const whyThree = [
   'Personlig ramme — ikke anonym konferansesal',
   'Opplegg tilpasset dato, format og antall gjester',
@@ -36,39 +17,39 @@ const whyThree = [
 
 const eventTypes = [
   {
-    title: 'Konferanse & Seminar',
+    title: 'Konferanse & seminar',
     tag: 'Faglig',
-    desc: 'Dagsprogram med tydelig rød tråd: plenum, gruppearbeid eller begge deler — med pauser og måltider som holder fokus og nettverk i én flyt. Vi legger til rette for at dere kan være til stede i innholdet, ikke i logistikken.',
+    desc: 'Gode fasiliteter for faglig innhold, med rom for både presentasjoner og pauser i rolige omgivelser.',
     img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Teambuilding',
     tag: 'Fellesskap',
-    desc: 'Kortere, målrettede økter som løser opp gruppa og bygger tillit — gjerne som del av en større dag med annet program. Vi tilpasser intensitet og form slik at alle kommer med, uten at det føles påklistret.',
+    desc: 'Skap samhold gjennom aktiviteter og gode opplevelser – både inne og ute, tilpasset deres behov.',
     img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Julebord',
     tag: 'Festlig',
-    desc: 'Talere, musikk og bord som tåler både høytid og humor — uten at dere må styre rekkefølgen selv. Vi sørger for at kvelden føles som deres egen tradisjon, ikke en ferdig innpakning fra kjeden nede i gata.',
+    desc: 'Samle kollegaene til en hyggelig kveld med god stemning, mat og fest i lune omgivelser.',
     img: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Sommerfest',
     tag: 'Sosialt',
-    desc: 'Sesongens høydepunkt med luft mellom øktene: mingling, mat og kanskje en enkel aktivitet — rigget slik at dere slipper å «løpe vakt». Perfekt når dere vil feire sammen uten at logistikken stjeler kvelden.',
+    desc: 'Nyt sommeren med kollegaer i åpne og grønne omgivelser, med god plass til både aktiviteter og avslapning.',
     img: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Workshop & kickoff',
     tag: 'Energi',
-    desc: 'Når dere skal lande idéer, prioritere eller skyte året i gang: arbeidsøkter med tydelig mål, kombinert med plenum og energi som samler rommet. Måltider og pauser er en del av rytmen — dere eier budskapet, vi passer på at dagen henger sammen.',
+    desc: 'Start nye prosjekter eller samle teamet med fokus og energi i inspirerende omgivelser.',
     img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Firmamiddag',
     tag: 'Representativt',
-    desc: 'Kveld der tonen skal være fin, men fortsatt menneskelig: hvem dere hedrer, hvordan talene kommer, og hvordan menyen speiler anledningen. Vi er med på å unngå «galla for gallas skyld» — og sørger for at gjestene husker samtalene, ikke bare dresskoden.',
+    desc: 'Inviter til en stilfull middag med gode rammer for både samtaler, feiring og relasjonsbygging.',
     img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1200',
   },
 ];
@@ -273,23 +254,23 @@ export const CorporatePage = () => {
                   >
                     Der profesjon møter <span className="italic text-brand-700">varme</span>
                   </h2>
-                  <p className="max-w-2xl text-pretty text-sm leading-relaxed text-brand-800 md:text-base md:leading-relaxed">
+                  <p className="max-w-2xl text-pretty text-base leading-relaxed text-brand-800 md:text-lg md:leading-relaxed lg:text-xl lg:leading-relaxed">
                     Vertskap som kjenner både formelle og uformelle bedriftskvelder — og lokaler som kan tones opp eller ned etter anledningen.
                   </p>
                 </motion.header>
 
                 <div className="mt-6 border-t border-brand-200/90 pt-6 md:mt-8 md:pt-8">
-                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-brand-500 md:mb-4 md:text-sm md:tracking-[0.22em]">
+                  <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-brand-500 md:mb-4 md:text-base md:tracking-[0.22em]">
                     Tre tydelige fordeler
                   </p>
                   <ul className="space-y-3 md:space-y-3.5" role="list">
                     {whyThree.map((line) => (
                       <li
                         key={line}
-                        className="flex gap-3 text-sm leading-snug text-brand-800 md:gap-3.5 md:text-base md:leading-relaxed"
+                        className="flex gap-3 text-base leading-snug text-brand-800 md:gap-3.5 md:text-lg md:leading-relaxed"
                       >
                         <CheckCircle2
-                          className="mt-0.5 h-4 w-4 shrink-0 text-brand-600 md:mt-1 md:h-5 md:w-5"
+                          className="mt-0.5 h-5 w-5 shrink-0 text-brand-600 md:mt-1 md:h-6 md:w-6"
                           strokeWidth={1.75}
                           aria-hidden
                         />
@@ -297,45 +278,6 @@ export const CorporatePage = () => {
                       </li>
                     ))}
                   </ul>
-                </div>
-
-                <div className="mt-8 w-full max-w-3xl border-t border-brand-200/70 pt-8 md:mt-9 md:pt-9">
-                  <div className="grid grid-cols-2 place-items-center gap-6 sm:grid-cols-4 sm:gap-8 lg:gap-9">
-                    {quickFit.map((c, i) => (
-                      <motion.article
-                        key={c.title}
-                        initial={{ opacity: 0, y: 12 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: Math.min(i * 0.05, 0.2), duration: 0.4 }}
-                        tabIndex={0}
-                        aria-label={c.title}
-                        className="group relative aspect-square w-full max-w-[12rem] outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 sm:max-w-[13.5rem] lg:max-w-[15rem]"
-                      >
-                        <div className="absolute inset-0 overflow-hidden rounded-full border border-brand-200/90 shadow-md transition-[box-shadow,transform] duration-300 group-hover:shadow-xl group-hover:shadow-brand-900/15 group-focus-visible:shadow-xl">
-                          <img
-                            src={c.img}
-                            alt=""
-                            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 group-focus-within:scale-105"
-                            referrerPolicy="no-referrer"
-                          />
-                          <div
-                            className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/55 via-black/15 to-black/25 transition-opacity duration-300 group-hover:opacity-40 group-focus-within:opacity-40"
-                            aria-hidden
-                          />
-                          <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center px-4 text-center sm:px-6">
-                            <div
-                              className="absolute inset-0 rounded-full bg-brand-950/0 transition-[background-color] duration-300 group-hover:bg-brand-950/55 group-focus-within:bg-brand-950/55"
-                              aria-hidden
-                            />
-                            <h4 className="relative z-10 max-w-[min(100%,12rem)] font-serif text-sm font-semibold leading-snug text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] sm:max-w-[min(100%,13.5rem)] sm:text-base md:text-lg">
-                              {c.title}
-                            </h4>
-                          </div>
-                        </div>
-                      </motion.article>
-                    ))}
-                  </div>
                 </div>
               </div>
             </div>
@@ -511,10 +453,6 @@ export const CorporatePage = () => {
               );
             })}
           </div>
-
-          <p className="mt-8 text-center text-sm italic text-brand-500">
-            Priser er veiledende — endelig tilbud etter samtale.
-          </p>
         </div>
       </section>
 
