@@ -751,6 +751,7 @@ const resources = {
         directContact: 'Contact us directly',
       },
       footer: {
+        brandSubtitle: 'selskapslokale',
         rights: 'All rights reserved',
         contact: 'Contact Us',
         tagline: 'A premium venue for life’s most beautiful moments.',
@@ -758,7 +759,9 @@ const resources = {
         newsletter: 'Newsletter',
         newsletterDesc: 'Stay updated on our events and news.',
         emailPlaceholder: 'Email',
-        newsletterCta: 'Subscribe'
+        newsletterCta: 'Subscribe',
+        techPartnerLead: 'Technology partner:',
+        techPartnerName: 'Xala Technologies AS',
       },
       contactPage: {
         intro:
@@ -1578,6 +1581,7 @@ const resources = {
         directContact: 'Kontakt oss direkte',
       },
       footer: {
+        brandSubtitle: 'selskapslokale',
         rights: 'Alle rettigheter reservert',
         contact: 'Kontakt oss',
         tagline: 'Et selskapslokale for livets vakreste øyeblikk.',
@@ -1585,7 +1589,9 @@ const resources = {
         newsletter: 'Nyhetsbrev',
         newsletterDesc: 'Hold deg oppdatert på arrangementer og nyheter.',
         emailPlaceholder: 'Din e-post',
-        newsletterCta: 'Meld meg på'
+        newsletterCta: 'Meld meg på',
+        techPartnerLead: 'Teknologipartner:',
+        techPartnerName: 'Xala Technologies AS',
       },
       contactPage: {
         intro:

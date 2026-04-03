@@ -836,8 +836,11 @@ const Footer = () => {
                 className="h-11 w-auto max-h-14 shrink-0 rounded-md border border-gray-400/50 object-contain object-left md:h-14"
                 decoding="async"
               />
-              <h2 className="font-serif text-3xl font-semibold tracking-tight text-brand-100 md:text-[2.125rem] md:leading-tight">
-                Rønningen
+              <h2 className="font-serif font-semibold tracking-tight text-brand-100">
+                <span className="block text-3xl md:text-[2.125rem] md:leading-tight">{t('branding.navLine1')}</span>
+                <span className="mt-1 block text-lg font-medium leading-tight text-brand-300 md:text-xl">
+                  {t('footer.brandSubtitle')}
+                </span>
               </h2>
             </div>
             <p className="max-w-xs text-sm leading-relaxed text-brand-400">{t('footer.tagline')}</p>
@@ -967,8 +970,21 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-brand-800 pt-8 text-center text-xs text-brand-500 md:text-left">
-          © {year} Rønningen Selskapslokale. {t('footer.rights')}.
+        <div className="mt-12 flex flex-col items-center gap-4 border-t border-brand-800 pt-8 text-xs text-brand-500 md:flex-row md:items-center md:justify-between">
+          <p className="m-0 text-center md:text-left">
+            © {year} Rønningen Selskapslokale. {t('footer.rights')}.
+          </p>
+          <p className="m-0 text-center md:text-right">
+            <span className="text-brand-500">{t('footer.techPartnerLead')}</span>{' '}
+            <a
+              href="https://xala.no"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-brand-400 no-underline transition-colors hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900 rounded-sm"
+            >
+              {t('footer.techPartnerName')}
+            </a>
+          </p>
         </div>
       </div>
     </footer>
