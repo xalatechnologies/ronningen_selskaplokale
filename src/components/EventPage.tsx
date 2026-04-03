@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { CheckCircle2, Users, Monitor, Utensils, Car, ShieldCheck } from 'lucide-react';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
+import { HeroScrollHint } from './HeroScrollHint';
 
 interface EventPageProps {
   title: string;
@@ -50,10 +51,12 @@ export const EventPage: React.FC<EventPageProps> = ({ title, subtitle, descripti
             {subtitle}
           </motion.p>
         </div>
+
+        <HeroScrollHint targetId="event-konsept" />
       </section>
 
       {/* Concept Section */}
-      <section className="section-viewport overflow-hidden bg-brand-900 text-white">
+      <section id="event-konsept" className="section-viewport scroll-mt-24 overflow-hidden bg-brand-900 text-white">
         <div className="section-viewport-scroll mx-auto max-w-7xl px-4 py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <motion.div 

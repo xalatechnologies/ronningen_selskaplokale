@@ -7,12 +7,14 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } f
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Globe, Phone, Mail, MapPin, Instagram, Facebook, ArrowRight, ArrowLeft, MessageCircle, SendHorizontal } from 'lucide-react';
-import { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
 import './lib/i18n';
 import { Toaster } from 'sonner';
 
 import { AdminPanel } from './components/AdminPanel';
+import { HeroScrollHint } from './components/HeroScrollHint';
 import { BOOKING_URL } from './lib/booking';
+import { inspirationGallerySlides } from './lib/inspirationGallery';
 import { cn } from './lib/utils';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from './lib/typography';
 
@@ -84,6 +86,7 @@ const PARTNER_LOGOS = [
   { name: 'Koordinering', mark: 'KO' },
   { name: 'Digilist', mark: 'DG' },
   { name: 'Xala technologies', mark: 'XT' },
+  { name: 'Vertskap & personell', mark: 'VP' },
   { name: 'CommitCare', mark: 'CC' },
 ] as const;
 
@@ -169,12 +172,14 @@ const Home = () => {
             </p>
           </motion.div>
         </div>
+
+        <HeroScrollHint targetId="konsepter" />
       </section>
 
       <section
         id="konsepter"
         aria-labelledby="konsepter-heading"
-        className="section-viewport relative overflow-hidden bg-gradient-to-b from-white to-brand-50/50"
+        className="section-viewport scroll-mt-24 relative overflow-hidden bg-gradient-to-b from-white to-brand-50/50"
       >
         <div
           className="pointer-events-none absolute left-[6%] top-[10%] h-[min(44vw,26rem)] w-[min(44vw,26rem)] rounded-full bg-brand-300/20 blur-[90px]"
@@ -396,45 +401,21 @@ const Home = () => {
               ref={galleryRef}
               className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-8 md:gap-8 md:pb-10 md:mx-0 md:px-0"
             >
-              {[
-                {
-                  src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1200',
-                  alt: 'Bryllup i låven — fest og stemning',
-                },
-                {
-                  src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200',
-                  alt: 'Bryllupsmiddag og servering',
-                },
-                {
-                  src: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200',
-                  alt: 'Bryllupsdekor og bord',
-                },
-                {
-                  src: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=1200',
-                  alt: 'Utendørs bryllup og natur',
-                },
-                {
-                  src: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=1200',
-                  alt: 'Bryllup i hagen',
-                },
-                {
-                  src: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=1200',
-                  alt: 'Detaljer fra bryllupsdagen',
-                },
-              ].map((item, i) => (
+              {inspirationGallerySlides.map((item, i) => (
                 <motion.div
-                  key={item.alt}
+                  key={item.key}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.08, duration: 0.7 }}
+                  transition={{ delay: Math.min(i * 0.04, 0.4), duration: 0.7 }}
                   className="group relative aspect-[6/7] min-w-[88%] overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm snap-center transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
                 >
                   <img
                     src={item.src}
                     alt={item.alt}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
+                    loading={i > 4 ? 'lazy' : 'eager'}
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-900/75 via-brand-900/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-85" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
@@ -488,20 +469,26 @@ const Home = () => {
             </header>
 
             <ul
-              className="m-0 grid list-none grid-cols-1 gap-3 p-0 sm:grid-cols-2 sm:gap-4 lg:col-span-7 xl:col-span-8 xl:grid-cols-3 xl:gap-4"
+              className="m-0 grid list-none grid-cols-2 gap-x-1 gap-y-3 p-0 sm:grid-cols-5 sm:gap-x-1 sm:gap-y-3 md:gap-y-3.5 lg:col-span-7 xl:col-span-8 xl:gap-y-4"
               aria-label="Partnerlogoer"
             >
               {PARTNER_LOGOS.map((partner) => (
-                <li key={partner.name}>
-                  <div className="flex min-h-[4.6rem] items-center gap-3 rounded-lg border border-brand-200/90 bg-white/95 px-4 py-3.5 shadow-[0_1px_0_rgba(28,22,19,0.04)] backdrop-blur-[2px] transition-colors hover:border-brand-300 md:min-h-[4.9rem] md:px-5">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-brand-300/80 bg-brand-50 text-[0.7rem] font-bold uppercase tracking-[0.08em] text-brand-800">
+                <li
+                  key={partner.name}
+                  className={cn(
+                    'min-w-0',
+                    partner.name === 'CommitCare' && 'sm:col-start-5 sm:row-start-2',
+                  )}
+                >
+                  <div className="flex flex-col items-center gap-1 text-center">
+                    <div className="flex h-[4.25rem] w-[4.25rem] shrink-0 items-center justify-center rounded-full border-2 border-brand-200/90 bg-linear-to-b from-white to-brand-50/90 text-[0.68rem] font-bold uppercase tracking-[0.08em] text-brand-800 shadow-[0_8px_24px_-12px_rgba(33,24,22,0.25)] ring-1 ring-brand-900/[0.06] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-[0_12px_28px_-10px_rgba(33,24,22,0.3)] md:h-[4.75rem] md:w-[4.75rem] md:text-[0.75rem]">
                       {partner.mark}
                     </div>
-                    <div className="min-w-0">
-                      <p className="truncate font-serif text-[1.02rem] leading-none tracking-tight text-brand-950 md:text-[1.08rem]">
+                    <div className="min-w-0 max-w-[11rem]">
+                      <p className="text-balance font-serif text-[0.98rem] leading-snug tracking-tight text-brand-950 md:text-[1.05rem]">
                         {partner.name}
                       </p>
-                      <p className="mt-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-500">Partner</p>
+                      <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-500">Partner</p>
                     </div>
                   </div>
                 </li>
@@ -530,11 +517,35 @@ const ScrollToTop = () => {
   return null;
 };
 
+/** True when the main content behind the chat FAB reads as a dark surface → use a light FAB for contrast. */
+function isDarkSurfaceBehindChatFab(hitTarget: Element | null): boolean {
+  let node: Element | null = hitTarget;
+  while (node && node !== document.documentElement) {
+    if (node instanceof HTMLElement) {
+      const tag = node.tagName;
+      const c = typeof node.className === 'string' ? node.className : '';
+      if (tag === 'SECTION') {
+        if (c.includes('bg-brand-900') || c.includes('bg-brand-950')) return true;
+        if (
+          c.includes('section-viewport-hero') &&
+          (c.includes('home-hero') || c.includes('hero-below-nav'))
+        ) {
+          return true;
+        }
+      }
+      if (tag === 'FOOTER' && c.includes('bg-brand-900')) return true;
+    }
+    node = node.parentElement;
+  }
+  return false;
+}
+
 const Navbar = () => {
   const { t, i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const [chatOpen, setChatOpen] = useState(false);
+  const [chatFabOnDark, setChatFabOnDark] = useState(false);
   const [chatInput, setChatInput] = useState('');
   const [replyCount, setReplyCount] = useState(0);
   const [messages, setMessages] = useState<{ role: 'assistant' | 'user'; text: string }[]>(() => [
@@ -542,11 +553,36 @@ const Navbar = () => {
   ]);
   const chatMessagesRef = useRef<HTMLDivElement>(null);
 
+  const updateChatFabContrast = useCallback(() => {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    const x = Math.max(4, window.innerWidth - 88);
+    const y = Math.max(4, window.innerHeight - 32);
+    const hit = document.elementFromPoint(x, y);
+    setChatFabOnDark(isDarkSurfaceBehindChatFab(hit));
+  }, []);
+
   useLayoutEffect(() => {
     if (!chatOpen) return;
     const el = chatMessagesRef.current;
     if (el) el.scrollTop = el.scrollHeight;
   }, [messages, chatOpen]);
+
+  useEffect(() => {
+    updateChatFabContrast();
+    const raf = requestAnimationFrame(updateChatFabContrast);
+    const t = window.setTimeout(updateChatFabContrast, 150);
+    const onMove = () => updateChatFabContrast();
+    window.addEventListener('scroll', onMove, { passive: true });
+    document.addEventListener('scroll', onMove, { passive: true, capture: true });
+    window.addEventListener('resize', onMove);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.clearTimeout(t);
+      window.removeEventListener('scroll', onMove);
+      document.removeEventListener('scroll', onMove, { capture: true });
+      window.removeEventListener('resize', onMove);
+    };
+  }, [location.pathname, chatOpen, updateChatFabContrast]);
 
   const toggleLanguage = () => {
     const newLang = i18n.language === 'no' ? 'en' : 'no';
@@ -694,7 +730,12 @@ const Navbar = () => {
         aria-label={chatOpen ? t('chat.closeAssistant') : t('chat.openAssistant')}
         title={t('chat.launcherTitle')}
         onClick={() => setChatOpen((v) => !v)}
-        className="fixed bottom-5 right-5 z-[60] inline-flex h-12 w-12 items-center justify-center rounded-full bg-brand-900 text-white shadow-xl transition-all hover:-translate-y-0.5 hover:bg-brand-800 hover:shadow-2xl md:bottom-6 md:right-6 md:h-14 md:w-14"
+        className={cn(
+          'fixed bottom-5 right-5 z-[60] inline-flex h-12 w-12 items-center justify-center rounded-full shadow-xl transition-all duration-300 hover:-translate-y-0.5 md:bottom-6 md:right-6 md:h-14 md:w-14',
+          chatFabOnDark
+            ? 'border border-white/25 bg-white/95 text-brand-900 shadow-brand-900/15 hover:border-white/50 hover:bg-white hover:shadow-2xl'
+            : 'bg-brand-900 text-white hover:bg-brand-800 hover:shadow-2xl',
+        )}
       >
         {chatOpen ? <X size={22} aria-hidden /> : <MessageCircle size={22} aria-hidden />}
       </button>

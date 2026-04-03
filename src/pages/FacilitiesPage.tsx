@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
+import { HeroScrollHint } from '../components/HeroScrollHint';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 
@@ -269,9 +270,15 @@ export const FacilitiesPage = () => {
             </motion.div>
           </motion.div>
         </div>
+
+        <HeroScrollHint targetId="facilities-intro" />
       </section>
 
-      <section aria-labelledby="facilities-cards-heading" className="section-viewport border-b border-brand-200/80 bg-linear-to-b from-white via-brand-50/50 to-brand-100/40">
+      <section
+        id="facilities-intro"
+        aria-labelledby="facilities-cards-heading"
+        className="section-viewport scroll-mt-24 border-b border-brand-200/80 bg-linear-to-b from-white via-brand-50/50 to-brand-100/40"
+      >
         <div className="section-viewport-scroll mx-auto w-full max-w-[1800px] px-5 py-14 md:px-10 md:py-20 lg:px-14 lg:py-24">
           <div className="mb-10 flex flex-col gap-6 md:mb-12 md:flex-row md:items-end md:justify-between md:gap-8">
             <div className="max-w-5xl">

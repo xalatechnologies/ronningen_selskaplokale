@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, Expand, X } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import { BOOKING_URL } from '../lib/booking';
+import { inspirationGalleryPageItems } from '../lib/inspirationGallery';
 
 type GalleryCategory = 'wedding' | 'corporate' | 'private' | 'facilities';
 
@@ -15,27 +16,8 @@ type GalleryItem = {
   category: GalleryCategory;
 };
 
-const IMG = (id: string, w = 1400) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&q=85&w=${w}`;
-
-/** Uniform square cards — same size and shape for every image */
-const galleryItems: GalleryItem[] = [
-  { id: '1', url: IMG('photo-1519167758481-83f550bb49b3'), category: 'wedding' },
-  { id: '2', url: IMG('photo-1519741497674-611481863552'), category: 'wedding' },
-  { id: '3', url: IMG('photo-1511578314322-379afb476865'), category: 'corporate' },
-  { id: '4', url: IMG('photo-1530103043960-ef38714abb15'), category: 'private' },
-  { id: '5', url: IMG('photo-1469334031218-e382a71b716b'), category: 'wedding' },
-  { id: '6', url: IMG('photo-1511795409834-ef04bbd61622'), category: 'corporate' },
-  { id: '7', url: IMG('photo-1464366400600-7168b8af9bc3'), category: 'private' },
-  { id: '8', url: IMG('photo-1519225421980-715cb0215aed'), category: 'wedding' },
-  { id: '9', url: IMG('photo-1520854221050-0f4caff449fb'), category: 'wedding' },
-  { id: '10', url: IMG('photo-1465495976277-4387d4b0b4c6'), category: 'corporate' },
-  { id: '11', url: IMG('photo-1507003211169-0a1dd7228f2d'), category: 'private' },
-  { id: '12', url: IMG('photo-1492684223066-81342ee5ff30'), category: 'wedding' },
-  { id: '13', url: IMG('photo-1522708323590-d24dbb6b0267'), category: 'facilities' },
-  { id: '14', url: IMG('photo-1505691938895-1758d7feb511'), category: 'facilities' },
-  { id: '15', url: IMG('photo-1484154218962-a197022b5858'), category: 'facilities' },
-];
+/** Rønningen photos — same set as forsiden / bryllup «Inspirasjon»-karusell */
+const galleryItems: GalleryItem[] = inspirationGalleryPageItems;
 
 const FILTERS = ['all', 'wedding', 'corporate', 'private', 'facilities'] as const;
 type Filter = (typeof FILTERS)[number];

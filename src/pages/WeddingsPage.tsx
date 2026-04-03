@@ -10,7 +10,9 @@ import {
   GlassWater, PartyPopper
 } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { inspirationGallerySlides } from '../lib/inspirationGallery';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
+import { HeroScrollHint } from '../components/HeroScrollHint';
 
 export const WeddingsPage = () => {
   const GALLERY_EDGE_TOLERANCE = 2;
@@ -234,6 +236,8 @@ export const WeddingsPage = () => {
             </div>
           </motion.div>
         </div>
+
+        <HeroScrollHint targetId="atmosfaeren" />
       </section>
 
       {/* Atmosfæren — samme bakgrunn og typografi som forsiden «Våre konsepter» for tydelig kontrast */}
@@ -604,27 +608,21 @@ export const WeddingsPage = () => {
               ref={galleryRef}
               className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-8 md:gap-8 md:pb-10 md:mx-0 md:px-0"
             >
-              {[
-                'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1200',
-                'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=1200',
-                'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200',
-                'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=1200',
-                'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=1200',
-                'https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=1200',
-              ].map((img, i) => (
+              {inspirationGallerySlides.map((item, i) => (
                 <motion.div
-                  key={img}
+                  key={item.key}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.08, duration: 0.7 }}
+                  transition={{ delay: Math.min(i * 0.04, 0.4), duration: 0.7 }}
                   className="group relative aspect-[6/7] min-w-[88%] snap-center overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
                 >
                   <img
-                    src={img}
-                    alt={`Bryllupsinspirasjon ${i + 1}`}
+                    src={item.src}
+                    alt={item.alt}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
+                    loading={i > 4 ? 'lazy' : 'eager'}
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-900/75 via-brand-900/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-85" />
                   <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">

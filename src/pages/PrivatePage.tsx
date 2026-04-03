@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
+import { HeroScrollHint } from '../components/HeroScrollHint';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import {
   ArrowLeft,
@@ -28,9 +29,14 @@ const quickFit = [
     img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=800',
   },
   {
-    title: 'Dåp & navnefest',
-    desc: 'Rolige rammer for den lille høytiden — kaffe, kaker og tid til å være sammen.',
+    title: 'Dåp & Navnefest',
+    desc: 'Rolig ramme etter kirken og feiring av nytt navn — kaffe, kaker og tid til nærmeste.',
     img: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=85&w=800',
+  },
+  {
+    title: 'Minnestund',
+    desc: 'Samling etter livets tunge dager — rolig, verdig, med plass til minneord og å være sammen.',
+    img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=800',
   },
   {
     title: 'Jubileum',
@@ -59,40 +65,34 @@ const privateHighlights = [
 
 const eventTypes = [
   {
-    title: 'Konfirmasjon',
-    tag: 'Tradisjon',
-    desc: 'Etter seremonien samles dere til fest med plass til slekt og venner. Vi hjelper med flyt, bord og tidsrom — slik at konfirmanten og familien kan være til stede, ikke styre logistikk.',
-    img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
     title: 'Bursdag',
     tag: 'Feiring',
     desc: 'Fra barnebursdag med enkel servering til voksne selskap med middag og dans. Vi tilpasser kapasitet, lyd og tidsplan slik at dagen blir deres — ikke en ferdig mal.',
     img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1200',
   },
   {
-    title: 'Dåp',
+    title: 'Konfirmasjon',
+    tag: 'Tradisjon',
+    desc: 'Etter seremonien samles dere til fest med plass til slekt og venner. Vi hjelper med flyt, bord og tidsrom — slik at konfirmanten og familien kan være til stede, ikke styre logistikk.',
+    img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=1200',
+  },
+  {
+    title: 'Dåp & Navnefest',
     tag: 'Familie',
-    desc: 'Rolig og varm ramme når dere vil samle nærmeste etter kirken. Vi avklarer plass til barnestoler, kaffebord og den lille ekstra tiden som ofte betyr mest.',
+    desc: 'Rolig og varm ramme når dere vil samle nærmeste etter kirken — enten det gjelder dåp, navnefest eller begge deler i samme helg. Vi avklarer plass til barnestoler, kaffebord og taler i samme rom.',
     img: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=85&w=1200',
   },
   {
-    title: 'Navnefest',
-    tag: 'Nærhet',
-    desc: 'Feiring av nytt navn med dem dere vil ha rundt dere. Mindre selskap, tydelig vertskap og fleksibilitet for taler, musikk og servering i samme rom.',
-    img: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=85&w=1200',
+    title: 'Minnestund',
+    tag: 'Verdig',
+    desc: 'Samling etter livets tunge dager — en rolig ramme for minneord, kaffe og tid til å være sammen. Vi koordinerer diskret med dere om det dere trenger.',
+    img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Jubileum',
     tag: 'Milepæl',
     desc: 'Sølvbryllup, runde år eller langt ekteskap — vi legger til rette for taler, minner og fest som varer ut kvelden, uten at dere må tenke på alt selv.',
     img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Minnesamvær',
-    tag: 'Verdig',
-    desc: 'Samling etter livets tunge dager — en rolig ramme for minneord, kaffe og tid til å være sammen. Vi koordinerer diskret med dere om det dere trenger.',
-    img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=1200',
   },
 ];
 
@@ -132,7 +132,7 @@ const galleryImgs = [
 const faqs = [
   {
     q: 'Hvilke private feiringer kan vi ha hos dere?',
-    a: 'Blant annet konfirmasjon, bursdag, dåp, navnefest, jubileum og minnesamvær. Vi avklarer antall gjester, tidsrom og ønsket form i en uforpliktende prat.',
+    a: 'Blant annet bursdag, konfirmasjon, dåp og navnefest, minnestund og jubileum. Vi avklarer antall gjester, tidsrom og ønsket form i en uforpliktende prat.',
   },
   {
     q: 'Kan vi ta med egen mat og drikke?',
@@ -248,12 +248,15 @@ export const PrivatePage = () => {
             </motion.div>
           </motion.div>
         </div>
+
+        <HeroScrollHint targetId="private-intro" />
       </section>
 
       {/* 2 — Verdi: editorial + panoramabilde + tre søyler + feiring-rutenett */}
       <section
+        id="private-intro"
         aria-labelledby="private-value-heading"
-        className="section-viewport border-b border-brand-200/80 bg-linear-to-b from-white via-brand-50/50 to-brand-100/40"
+        className="section-viewport scroll-mt-24 border-b border-brand-200/80 bg-linear-to-b from-white via-brand-50/50 to-brand-100/40"
       >
         <div className="section-viewport-scroll mx-auto w-full max-w-[1800px] px-5 py-14 md:px-10 md:py-20 lg:px-14 lg:py-24">
           <div className="mx-auto max-w-3xl text-center">
@@ -282,7 +285,7 @@ export const PrivatePage = () => {
               transition={{ delay: 0.1 }}
               className="mt-6 text-pretty text-base leading-relaxed text-brand-800 md:text-lg md:leading-relaxed"
             >
-              Konfirmasjon, bursdag, dåp og alt imellom — dere samles i lokaler med sjel, der det handler om mennesker og tradisjoner, ikke om standard oppsett fra en katalog.
+              Bursdag, konfirmasjon, dåp og navnefest, minnestund og jubileum — dere samles i lokaler med sjel, der det handler om mennesker og tradisjoner, ikke om standard oppsett fra en katalog.
             </motion.p>
           </div>
 
@@ -340,10 +343,10 @@ export const PrivatePage = () => {
                 Eksempler på feiringer
               </h3>
               <p className="max-w-md text-sm leading-relaxed text-brand-600 md:text-[15px]">
-                Fire utgangspunkt — kombiner gjerne flere i samme helg eller kveld.
+                Fem utgangspunkt — kombiner gjerne flere i samme helg eller kveld.
               </p>
             </div>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 lg:gap-5">
               {quickFit.map((c, i) => (
                 <motion.article
                   key={c.title}
@@ -400,7 +403,7 @@ export const PrivatePage = () => {
               Anledninger vi ofte <span className="italic text-brand-400">skaper sammen</span>
             </motion.h2>
             <p className="mt-5 max-w-2xl text-base font-light leading-relaxed text-brand-200 md:text-lg md:leading-relaxed">
-              Fra konfirmasjon og bursdag til dåp og jubileum — utgangspunkter dere kan blande og tilpasse. Vi lander detaljene i dialog med dere.
+              Fra bursdag og konfirmasjon til dåp og navnefest, minnestund og jubileum — utgangspunkter dere kan blande og tilpasse. Vi lander detaljene i dialog med dere.
             </p>
           </div>
 

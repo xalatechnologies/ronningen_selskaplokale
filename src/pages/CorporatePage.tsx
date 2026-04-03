@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
+import { HeroScrollHint } from '../components/HeroScrollHint';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 
@@ -10,68 +11,68 @@ const CTA_SECONDARY = '/contact';
 
 const quickFit = [
   {
-    title: 'Julebord',
-    desc: 'Varm stemning, tydelig flyt og plass til tradisjon og litt ekstra.',
-    img: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=85&w=800',
+    title: 'Konferanse & Seminar',
+    desc: 'Program, pauser og måltider i én flyt — med ro til faglig innhold og nettverk.',
+    img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=85&w=800',
   },
   {
-    title: 'Teambuilding & teamdag',
-    desc: 'Ut av møterommet — tillit og fellesskap i rolige omgivelser.',
+    title: 'Teambuilding',
+    desc: 'Kortere økter som løsner gruppa — ofte kombinert med annet program samme dag.',
     img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=800',
   },
   {
-    title: 'Firmamiddag',
-    desc: 'Vertskap med sjel når dere vil vise frem bedriften på en ekte måte.',
-    img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=800',
+    title: 'Workshop & idémyldring',
+    desc: 'Arbeidsøkter med tydelig mål: prioritere, planlegge eller utvikle noe sammen.',
+    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=85&w=800',
   },
   {
-    title: 'Feiringer & milepæler',
-    desc: 'Jubileum og høytider med taler, latter og fest — deres ramme, ikke en mal.',
-    img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=800',
+    title: 'Styre- og ledermøte',
+    desc: 'Diskret ramme for styre, ledergruppe eller internt forum — møte og måltid på samme sted.',
+    img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=85&w=800',
   },
 ] as const;
 
 const whyThree = [
   'Personlig ramme — ikke anonym konferansesal',
   'Opplegg tilpasset dato, format og antall gjester',
-  'Én destinasjon fra ankomst til siste toast',
+  'Koordinering på stedet — færre parallelle tråder for dere å holde i',
 ];
 
 const eventTypes = [
   {
     title: 'Julebord',
     tag: 'Festlig',
-    desc: 'Julebord med plass til både tradisjon og det lille ekstra. Vi hjelper dere å sette stemningen — fra velkomst til siste tale — i lokaler som føles særegne, ikke standard hotell.',
+    desc: 'Talere, musikk og bord som tåler både høytid og humor — uten at dere må styre rekkefølgen selv. Vi sørger for at kvelden føles som deres egen tradisjon, ikke en ferdig innpakning fra kjeden nede i gata.',
     img: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Sommerfest',
     tag: 'Sosialt',
-    desc: 'Når været tillater det, kan dere bruke uteareal og inne i samme flyt. Hel dag med aktiviteter eller ren kveldsfest — vi avklarer rigg, mat og tidsplan slik at alle slipper å tenke på logistikken.',
+    desc: 'Grill, kø og kanskje en konkurranse eller to — vi legger tidsvinduer og rigg slik at dere kan være til stede i samtalene. Perfekt når dere vil markere sesongen uten at noen må «løpe vakt» for logistikken.',
     img: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Kick-off',
     tag: 'Energi',
-    desc: 'Samle laget for ny sesong eller nytt prosjekt. Vi legger til rette for tydelig program, pauser og måltider — slik at dere kan bruke tiden på budskap og samhold, ikke på praktiske avklaringer.',
+    desc: 'Tydelig startskudd for det som kommer: plenumsdel, gruppearbeid eller begge deler, med måltider som holder energien oppe. Dere eier budskapet; vi passer på at pauser, plass og timing henger sammen.',
     img: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Teamdag',
-    tag: 'Fleksibelt',
-    desc: 'Workshop, mingling og mat i ett sammenhengende løp. Rom og tid kan tilpasses gruppens størrelse og ønsket form — fra uformelt til mer strukturert, alt på samme sted.',
+    tag: 'Fellesskap',
+    desc: 'Heldag på huset med veksling mellom fokus og luft: økter, diskusjon eller enkel aktivitet etter avtale, og felles måltid som samler tråden. Til forskjell fra korte teambuilding-økter får dere rom til å gå litt dypere.',
     img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Firmamiddag',
-    tag: 'Formelt',
-    desc: 'Når kvelden skal være representativ, men fortsatt personlig. Vi samarbeider om meny, flyt og vertskap slik at gjester og verter føler seg ivaretatt — uten at det blir stivt.',
+    tag: 'Representativt',
+    desc: 'Kveld der tonen skal være fin, men fortsatt menneskelig: hvem dere hedrer, hvordan talene kommer, og hvordan menyen speiler anledningen. Vi er med på å unngå «galla for gallas skyld».',
     img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Kundeevent',
     tag: 'Profesjonelt',
-    desc: 'Lanseringer, takketilstelninger eller møter der merkevaren deres skal stå tydelig. Vi er med på plan og gjennomføring slik at dere kan være vertskap uten å miste oversikten over detaljene.',
+    desc: 'Når eksterne gjester skal se dere på deres beste: tydelig rød tråd fra velkomst til mingling, med ramme som understreker merkevaren. Dere er synlige i rommet; vi sikrer at det tekniske og praktiske ikke stjeler oppmerksomheten.',
     img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=85&w=1200',
   },
 ];
@@ -112,11 +113,11 @@ const galleryImgs = [
 const faqs = [
   {
     q: 'Hvilke typer bedriftsarrangement passer?',
-    a: 'Blant annet julebord, sommerfest, kick-off, teamdag, firmamiddag og kundearrangement. Vi avklarer kapasitet og format i dialog.',
+    a: 'Sirkelraden over viser møte- og programformer; kortene under viser feiringer og større sammenkomster. Kapasitet og form avklarer vi ut fra deres behov.',
   },
   {
     q: 'Kan opplegget tilpasses?',
-    a: 'Ja. Rom, tid og praktiske detaljer settes opp ut fra type selskap og antall gjester.',
+    a: 'Ja — dato, antall gjester og ønsket form styrer hvordan vi setter opp lokaler og praktisk rundt arrangementet.',
   },
   {
     q: 'Kan vi komme på omvisning?',
@@ -228,12 +229,15 @@ export const CorporatePage = () => {
             </motion.div>
           </motion.div>
         </div>
+
+        <HeroScrollHint targetId="corporate-intro" />
       </section>
 
       {/* 2 — Verdi: bilde venstre + kompakt innhold (samme informasjon) */}
       <section
+        id="corporate-intro"
         aria-labelledby="corporate-value-heading"
-        className="section-viewport border-b border-brand-100 bg-linear-to-b from-white via-brand-50/30 to-brand-50/50"
+        className="section-viewport scroll-mt-24 border-b border-brand-100 bg-linear-to-b from-white via-brand-50/30 to-brand-50/50"
       >
         <div className="section-viewport-scroll mx-auto w-full max-w-[min(92rem,calc(100vw-2.5rem))] px-5 py-12 md:px-8 md:py-16 lg:py-20">
           <div className="flex flex-col gap-8 md:gap-10">
@@ -277,7 +281,7 @@ export const CorporatePage = () => {
                     Der profesjon møter <span className="italic text-brand-700">varme</span>
                   </h2>
                   <p className="max-w-2xl text-pretty text-sm leading-relaxed text-brand-800 md:text-base md:leading-relaxed">
-                    Hos oss får dere én destinasjon der alt kan ligge i samme flyt — med vertskap som gjør det enklere å lykkes på dagen.
+                    Vertskap som kjenner både formelle og uformelle bedriftskvelder — og lokaler som kan tones opp eller ned etter anledningen.
                   </p>
                 </motion.header>
 
@@ -309,7 +313,7 @@ export const CorporatePage = () => {
                 id="corporate-quickfit-heading"
                 className="mb-4 text-center font-serif text-xl text-brand-950 md:mb-5 md:text-left md:text-2xl"
               >
-                Typiske anledninger
+                Møter, verksted og innhold
               </h3>
               <div className="grid grid-cols-2 place-items-center gap-8 sm:grid-cols-4 sm:gap-10 lg:gap-12">
                 {quickFit.map((c, i) => (
@@ -377,10 +381,10 @@ export const CorporatePage = () => {
               viewport={{ once: true }}
               className={SECTION_H2_ON_DARK_CLASS}
             >
-              Arrangementer som <span className="italic text-brand-400">passer hos oss</span>
+              Feiringer og sammenkomster <span className="italic text-brand-400">for bedriften</span>
             </motion.h2>
             <p className="mt-5 max-w-2xl text-base font-light leading-relaxed text-brand-200 md:text-lg md:leading-relaxed">
-              Utgangspunkter dere kan kombinere og tilpasse — vi lander detaljene sammen.
+              Når dere vil samle folk rundt mat, musikk, taler eller eksterne gjester — se eksempler under og velg utgangspunkt. Kombiner og tilpass; vi lander flyt og vertskap sammen med dere.
             </p>
           </div>
 
