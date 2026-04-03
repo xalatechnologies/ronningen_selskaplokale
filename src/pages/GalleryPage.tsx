@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { ChevronLeft, ChevronRight, Expand, X } from 'lucide-react';
@@ -22,6 +22,14 @@ const galleryItems: GalleryItem[] = inspirationGalleryPageItems;
 const FILTERS = ['all', 'wedding', 'corporate', 'private', 'facilities'] as const;
 type Filter = (typeof FILTERS)[number];
 
+const GALLERY_CATEGORY_PARAM = 'category';
+
+function filterFromSearchParams(params: URLSearchParams): Filter {
+  const cat = params.get(GALLERY_CATEGORY_PARAM);
+  if (cat === 'wedding' || cat === 'corporate' || cat === 'private' || cat === 'facilities') return cat;
+  return 'all';
+}
+
 function categoryLabel(t: (k: string) => string, c: GalleryCategory) {
   switch (c) {
     case 'wedding':
@@ -40,7 +48,19 @@ function categoryLabel(t: (k: string) => string, c: GalleryCategory) {
 export const GalleryPage: React.FC = () => {
   const { t } = useTranslation();
   const prefersReducedMotion = useReducedMotion();
-  const [filter, setFilter] = useState<Filter>('all');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filter = useMemo(() => filterFromSearchParams(searchParams), [searchParams]);
+
+  const setFilter = useCallback(
+    (f: Filter) => {
+      const next = new URLSearchParams(searchParams);
+      if (f === 'all') next.delete(GALLERY_CATEGORY_PARAM);
+      else next.set(GALLERY_CATEGORY_PARAM, f);
+      setSearchParams(next, { replace: true });
+    },
+    [searchParams, setSearchParams],
+  );
+
   const [lightboxUrl, setLightboxUrl] = useState<string | null>(null);
   const touchStartX = useRef<number | null>(null);
 
@@ -130,7 +150,7 @@ export const GalleryPage: React.FC = () => {
         <div className="section-viewport-scroll relative z-10 mx-auto w-full max-w-[min(92rem,calc(100vw-2.5rem))] px-5 pb-16 pt-12 sm:px-6 md:pb-28 md:pt-16 lg:pt-20">
           <header className="mx-auto max-w-3xl text-center">
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-600">
-              Rønningen
+              {t('galleryPage.heroEyebrow')}
             </p>
             <h1
               id="gallery-heading"
@@ -142,16 +162,13 @@ export const GalleryPage: React.FC = () => {
             <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-brand-800 md:text-lg">
               {t('galleryPage.intro')}
             </p>
-            <p className="mt-4 text-sm font-medium tabular-nums text-brand-600">
-              {t('galleryPage.photoCount', { count: categoryCounts.all })}
-            </p>
           </header>
 
-          <div className="mx-auto mt-12 w-full overflow-x-auto overflow-y-hidden pb-2 scrollbar-hide">
+          <div className="mx-auto mt-12 w-full overflow-x-auto overflow-y-hidden py-3 scrollbar-hide">
             <div
               className="mx-auto flex w-max flex-nowrap items-center gap-3 sm:gap-3.5"
               role="tablist"
-              aria-label={t('nav.gallery')}
+              aria-label={t('galleryPage.filterTablistAria')}
             >
               {FILTERS.map((f) => (
                 <button
@@ -161,10 +178,10 @@ export const GalleryPage: React.FC = () => {
                   aria-selected={filter === f}
                   onClick={() => setFilter(f)}
                   className={cn(
-                    'inline-flex shrink-0 min-h-[48px] items-center gap-2.5 rounded-full px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] transition-all sm:min-h-[52px] sm:px-7 sm:py-3.5 sm:text-[13px] sm:tracking-[0.12em]',
+                    'inline-flex shrink-0 min-h-[48px] items-center gap-2.5 rounded-full border-2 px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 sm:min-h-[52px] sm:px-7 sm:py-3.5 sm:text-[13px] sm:tracking-[0.12em]',
                     filter === f
-                      ? 'bg-brand-900 text-white shadow-[0_6px_24px_rgba(33,24,22,0.38)] ring-[3px] ring-brand-900 ring-offset-[3px] ring-offset-[#faf8f5]'
-                      : 'border-2 border-brand-400/90 bg-white text-brand-950 shadow-[0_2px_12px_rgba(33,24,22,0.08)] hover:border-brand-800 hover:bg-brand-50 hover:shadow-[0_4px_16px_rgba(33,24,22,0.12)]'
+                      ? 'border-white/35 bg-brand-900 text-white shadow-none'
+                      : 'border-brand-400/90 bg-white text-brand-950 shadow-[0_2px_12px_rgba(33,24,22,0.08)] hover:border-brand-800 hover:bg-brand-50 hover:shadow-[0_4px_16px_rgba(33,24,22,0.12)]'
                   )}
                 >
                   <span>{filterLabel(f)}</span>
@@ -230,14 +247,6 @@ export const GalleryPage: React.FC = () => {
                     <div className="absolute inset-0 bg-linear-to-t from-brand-950/80 via-brand-950/15 to-transparent opacity-85 transition duration-300 group-hover:opacity-100" />
                     <div className="absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-brand-900 opacity-0 shadow-md ring-1 ring-black/5 transition duration-300 group-hover:opacity-100 group-hover:scale-100 scale-90 sm:right-3 sm:top-3 sm:h-10 sm:w-10">
                       <Expand size={16} strokeWidth={2} className="sm:h-[18px] sm:w-[18px]" aria-hidden />
-                    </div>
-                    <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-1.5 p-3 sm:gap-2 sm:p-4">
-                      <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/95 drop-shadow-sm">
-                        {categoryLabel(t, item.category)}
-                      </span>
-                      <span className="rounded-full bg-white/95 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-900 opacity-0 shadow-sm transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 translate-y-1">
-                        {t('galleryPage.expandHint')}
-                      </span>
                     </div>
                   </motion.button>
                 ))}
@@ -338,7 +347,7 @@ export const GalleryPage: React.FC = () => {
           <motion.div
             role="dialog"
             aria-modal="true"
-            aria-label={t('nav.gallery')}
+            aria-label={t('galleryPage.lightboxDialog')}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

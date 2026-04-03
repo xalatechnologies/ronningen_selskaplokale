@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { HeroScrollHint } from '../components/HeroScrollHint';
+import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import {
   ArrowLeft,
@@ -17,109 +19,49 @@ import {
 const CTA_PRIMARY = '/inquiry';
 const CTA_SECONDARY = '/contact';
 
-const quickFit = [
-  {
-    title: 'Bursdag',
-    desc: 'Barnebursdag, runde år eller overraskelsesfest — plass til både mat, taler og dans.',
-    img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=800',
-  },
-  {
-    title: 'Konfirmasjon',
-    desc: 'Samling etter kirken med rom til slekt, venner og den gode middagen.',
-    img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=800',
-  },
-  {
-    title: 'Dåp & Navnefest',
-    desc: 'Rolig ramme etter kirken og feiring av nytt navn — kaffe, kaker og tid til nærmeste.',
-    img: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=85&w=800',
-  },
-  {
-    title: 'Minnestund',
-    desc: 'Samling etter livets tunge dager — rolig, verdig, med plass til minneord og å være sammen.',
-    img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=800',
-  },
-  {
-    title: 'Jubileum',
-    desc: 'Sølvbryllup, runde dager og milepæler — feiring som føles ekte, ikke pyntet.',
-    img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=800',
-  },
+const PRIVATE_INTRO_HIGHLIGHT_CONFIG = [
+  { key: 'proximity', icon: Heart },
+  { key: 'tradition', icon: Gift },
+  { key: 'gathered', icon: Sparkles },
 ] as const;
 
-const privateHighlights = [
-  {
-    icon: Heart,
-    title: 'Nærhet',
-    desc: 'Rom som føles personlige — ikke anonyme festlokaler. Her handler det om dere og gjestene.',
-  },
-  {
-    icon: Gift,
-    title: 'Deres tradisjon',
-    desc: 'Opplegg tilpasset familie, gjester og høytider dere bryr dere om — uten ferdig mal fra oss.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Samlet på ett sted',
-    desc: 'Én destinasjon fra ankomst til siste klem: mindre stress, mer tid til å være til stede.',
-  },
-];
+const PRIVATE_EVENT_KEYS = [
+  'birthday',
+  'confirmation',
+  'baptismNaming',
+  'memorial',
+  'anniversary',
+  'gathering',
+] as const;
 
-const eventTypes = [
-  {
-    title: 'Bursdag',
-    tag: 'Feiring',
-    desc: 'Fra barnebursdag med enkel servering til voksne selskap med middag og dans. Vi tilpasser kapasitet, lyd og tidsplan slik at dagen blir deres — ikke en ferdig mal.',
-    img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Konfirmasjon',
-    tag: 'Tradisjon',
-    desc: 'Etter seremonien samles dere til fest med plass til slekt og venner. Vi hjelper med flyt, bord og tidsrom — slik at konfirmanten og familien kan være til stede, ikke styre logistikk.',
-    img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Dåp & Navnefest',
-    tag: 'Familie',
-    desc: 'Rolig og varm ramme når dere vil samle nærmeste etter kirken — enten det gjelder dåp, navnefest eller begge deler i samme helg. Vi avklarer plass til barnestoler, kaffebord og taler i samme rom.',
-    img: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Minnestund',
-    tag: 'Verdig',
-    desc: 'Samling etter livets tunge dager — en rolig ramme for minneord, kaffe og tid til å være sammen. Vi koordinerer diskret med dere om det dere trenger.',
-    img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Jubileum',
-    tag: 'Milepæl',
-    desc: 'Sølvbryllup, runde år eller langt ekteskap — vi legger til rette for taler, minner og fest som varer ut kvelden, uten at dere må tenke på alt selv.',
-    img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1200',
-  },
-];
+type PrivateEventKey = (typeof PRIVATE_EVENT_KEYS)[number];
 
-const packages = [
-  {
-    name: 'Lokalleie',
-    price: 'På forespørsel',
-    detail: 'Tilbud etter samtale',
-    fit: 'Dere velger selv catering og detaljer — vi stiller med rommet.',
-    bullets: ['Eksklusiv bruk av avtalte lokaler', 'Grunnleggende bord og stoler', 'Avtalt tidsramme'],
-  },
-  {
-    name: 'Fleksibelt opplegg',
-    price: 'På forespørsel',
-    detail: 'Tilpasses behov',
-    fit: 'Lokale pluss praktisk støtte til familiefeiringer.',
-    bullets: ['Tilpasset rigg og flyt', 'Koordinering med oss', 'Kan utvides med det dere trenger'],
-    featured: true,
-  },
-  {
-    name: 'Skreddersøm',
-    price: 'Individuelt',
-    detail: 'Etter omfang',
-    fit: 'Fra idé til gjennomføring — når dere vil ha alt samlet.',
-    bullets: ['Dialog om konsept og budsjett', 'Samarbeid med leverandører', 'Oppfølging på dagen'],
-  },
-];
+const PRIVATE_EVENT_IMAGES: Record<PrivateEventKey, string> = {
+  birthday:
+    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1200',
+  confirmation:
+    'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=1200',
+  baptismNaming:
+    'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=85&w=1200',
+  memorial:
+    'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=1200',
+  anniversary:
+    'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1200',
+  gathering:
+    'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=85&w=1200',
+};
+
+const PRIVATE_PACKAGE_KEYS = ['venueRental', 'flexiblePackage', 'bespoke'] as const;
+
+type PrivatePackageKey = (typeof PRIVATE_PACKAGE_KEYS)[number];
+
+const PRIVATE_PACKAGE_FEATURED: Record<PrivatePackageKey, boolean> = {
+  venueRental: false,
+  flexiblePackage: true,
+  bespoke: false,
+};
+
+const PRIVATE_PACKAGE_BULLET_KEYS = ['bullet1', 'bullet2', 'bullet3'] as const;
 
 const galleryImgs = [
   'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1600',
@@ -129,33 +71,27 @@ const galleryImgs = [
   'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=1200',
 ];
 
-const faqs = [
-  {
-    q: 'Hvilke private feiringer kan vi ha hos dere?',
-    a: 'Blant annet bursdag, konfirmasjon, dåp og navnefest, minnestund og jubileum. Vi avklarer antall gjester, tidsrom og ønsket form i en uforpliktende prat.',
-  },
-  {
-    q: 'Kan vi ta med egen mat og drikke?',
-    a: 'Det avklarer vi ut fra valgt opplegg og lokale. Mange kombinerer egen kake og drikke med catering — vi hjelper dere å finne en ryddig løsning.',
-  },
-  {
-    q: 'Passer det for både små og store selskap?',
-    a: 'Ja. Vi tilpasser bordoppsett og rom etter antall gjester — fra intime samlinger til større familielag.',
-  },
-  {
-    q: 'Hvordan booker vi?',
-    a: 'Send forespørsel med dato, omtrentlig antall og type feiring. Vi kommer tilbake med forslag og neste steg.',
-  },
-];
+const PRIVATE_FAQ_KEYS = ['celebrations', 'ownFoodDrink', 'capacity', 'howToBook'] as const;
 
 const GALLERY_EDGE_TOLERANCE = 2;
 
 export const PrivatePage = () => {
+  const { t, i18n } = useTranslation();
+  const gallerySlides = useMemo<GalleryLightboxSlide[]>(
+    () =>
+      galleryImgs.map((src, i) => ({
+        src,
+        alt: t('privatePage.gallerySection.slideAlt', { n: i + 1 }),
+      })),
+    [t, i18n.language],
+  );
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const [galleryHasOverflow, setGalleryHasOverflow] = useState(false);
   const [showGalleryLeft, setShowGalleryLeft] = useState(false);
   const [showGalleryRight, setShowGalleryRight] = useState(true);
+  const { lightboxIndex, setLightboxIndex, closeLightbox, lightboxShowPrev, lightboxShowNext } =
+    useGalleryLightboxState(galleryImgs.length);
 
   const handleGalleryScroll = () => {
     if (galleryRef.current) {
@@ -198,7 +134,7 @@ export const PrivatePage = () => {
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=2000"
-            alt=""
+            alt={t('privatePage.heroImageAlt')}
             className="h-full w-full scale-105 object-cover brightness-[0.42]"
             referrerPolicy="no-referrer"
           />
@@ -224,8 +160,10 @@ export const PrivatePage = () => {
               transition={{ duration: 0.55 }}
               className="max-w-5xl font-serif text-6xl leading-[0.9] tracking-tighter text-balance md:text-9xl"
             >
-              Livets feiringer samlet.
-              <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">Hos oss.</span>
+              {t('privatePage.heroTitleLine1')}
+              <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">
+                {t('privatePage.heroTitleLine2')}
+              </span>
             </motion.h1>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -237,19 +175,19 @@ export const PrivatePage = () => {
                 to={CTA_SECONDARY}
                 className="rounded-full bg-white px-10 py-5 text-center text-sm font-bold uppercase tracking-widest text-brand-900 shadow-xl transition hover:bg-brand-50"
               >
-                Book nå
+                {t('hero.bookNow')}
               </Link>
               <Link
                 to={CTA_PRIMARY}
                 className="rounded-full border-2 border-white/35 bg-white/5 px-10 py-5 text-center text-sm font-bold uppercase tracking-widest text-white backdrop-blur-[2px] transition hover:bg-white/10"
               >
-                Send forespørsel
+                {t('hero.cta')}
               </Link>
             </motion.div>
           </motion.div>
         </div>
 
-        <HeroScrollHint targetId="private-intro" />
+        <HeroScrollHint targetId="private-intro" ariaLabel={t('privatePage.heroScrollHintAria')} />
       </section>
 
       {/* 2 — Verdi: editorial + panoramabilde + tre søyler + feiring-rutenett */}
@@ -266,7 +204,7 @@ export const PrivatePage = () => {
               viewport={{ once: true }}
               className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-600 md:text-xs md:tracking-[0.32em]"
             >
-              Privat hos Rønningen
+              {t('privatePage.introSection.eyebrow')}
             </motion.p>
             <motion.h2
               id="private-value-heading"
@@ -276,7 +214,8 @@ export const PrivatePage = () => {
               transition={{ delay: 0.05 }}
               className={cn(SECTION_H2_CLASS, 'mt-5 text-balance')}
             >
-              Der feiringen får <span className="italic text-brand-700">personlighet</span>
+              {t('privatePage.introSection.headingBefore')}
+              <span className="italic text-brand-700">{t('privatePage.introSection.headingAccent')}</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -285,7 +224,7 @@ export const PrivatePage = () => {
               transition={{ delay: 0.1 }}
               className="mt-6 text-pretty text-base leading-relaxed text-brand-800 md:text-lg md:leading-relaxed"
             >
-              Bursdag, konfirmasjon, dåp og navnefest, minnestund og jubileum — dere samles i lokaler med sjel, der det handler om mennesker og tradisjoner, ikke om standard oppsett fra en katalog.
+              {t('privatePage.introSection.intro')}
             </motion.p>
           </div>
 
@@ -298,7 +237,7 @@ export const PrivatePage = () => {
           >
             <img
               src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=2000"
-              alt="Feststemning og dekkede bord i selskapslokalet"
+              alt={t('privatePage.introSection.panoramaAlt')}
               className="h-full w-full object-cover object-center"
               loading="lazy"
               decoding="async"
@@ -308,16 +247,17 @@ export const PrivatePage = () => {
               aria-hidden
             />
             <p className="absolute bottom-5 left-5 right-5 max-w-xl text-left text-sm font-light leading-relaxed text-white/95 md:bottom-8 md:left-8 md:text-base">
-              Lys, treverk og plass til både taler og latter — en ramme som lar dagen puste.
+              {t('privatePage.introSection.panoramaCaption')}
             </p>
           </motion.div>
 
           <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-3 md:mt-16 md:gap-6 lg:gap-8">
-            {privateHighlights.map((item, i) => {
+            {PRIVATE_INTRO_HIGHLIGHT_CONFIG.map((item, i) => {
               const Icon = item.icon;
+              const base = `privatePage.introSection.highlights.${item.key}`;
               return (
                 <motion.div
-                  key={item.title}
+                  key={item.key}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -327,56 +267,13 @@ export const PrivatePage = () => {
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-brand-200/80 bg-brand-50 text-brand-800">
                     <Icon size={22} strokeWidth={1.75} aria-hidden />
                   </div>
-                  <h3 className="font-serif text-xl tracking-tight text-brand-950 md:text-[1.35rem]">{item.title}</h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-brand-700 md:text-base">{item.desc}</p>
+                  <h3 className="font-serif text-xl tracking-tight text-brand-950 md:text-[1.35rem]">
+                    {t(`${base}.title`)}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-brand-700 md:text-base">{t(`${base}.desc`)}</p>
                 </motion.div>
               );
             })}
-          </div>
-
-          <div className="mt-16 md:mt-20" aria-labelledby="private-quickfit-heading">
-            <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
-              <h3
-                id="private-quickfit-heading"
-                className="font-serif text-2xl tracking-tight text-brand-950 md:text-3xl"
-              >
-                Eksempler på feiringer
-              </h3>
-              <p className="max-w-md text-sm leading-relaxed text-brand-600 md:text-[15px]">
-                Fem utgangspunkt — kombiner gjerne flere i samme helg eller kveld.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 lg:gap-5">
-              {quickFit.map((c, i) => (
-                <motion.article
-                  key={c.title}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: Math.min(i * 0.06, 0.18) }}
-                  tabIndex={0}
-                  aria-label={`${c.title}. ${c.desc}`}
-                  className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-brand-200/90 shadow-md outline-none transition-shadow duration-300 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
-                >
-                  <img
-                    src={c.img}
-                    alt=""
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div
-                    className="pointer-events-none absolute inset-0 bg-linear-to-t from-brand-950/90 via-brand-950/25 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-95"
-                    aria-hidden
-                  />
-                  <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-6">
-                    <h4 className="font-display text-lg uppercase tracking-wide text-white md:text-xl">{c.title}</h4>
-                    <p className="mt-2 text-sm leading-relaxed text-brand-100/95 opacity-0 transition-all duration-300 group-hover:opacity-100 group-focus-within:opacity-100 md:text-[15px]">
-                      {c.desc}
-                    </p>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -400,49 +297,55 @@ export const PrivatePage = () => {
               viewport={{ once: true }}
               className={SECTION_H2_ON_DARK_CLASS}
             >
-              Anledninger vi ofte <span className="italic text-brand-400">skaper sammen</span>
+              {t('privatePage.eventsSection.headingBefore')}
+              <span className="italic text-brand-400">{t('privatePage.eventsSection.headingAccent')}</span>
             </motion.h2>
             <p className="mt-5 max-w-2xl text-base font-light leading-relaxed text-brand-200 md:text-lg md:leading-relaxed">
-              Fra bursdag og konfirmasjon til dåp og navnefest, minnestund og jubileum — utgangspunkter dere kan blande og tilpasse. Vi lander detaljene i dialog med dere.
+              {t('privatePage.eventsSection.intro')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-4 xl:gap-5">
-            {eventTypes.map((e, i) => (
-              <motion.div
-                key={e.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-white/28 transition-all duration-500 hover:border-white/45"
-              >
-                <img
-                  src={e.img}
-                  alt={e.title}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                  decoding="async"
-                  referrerPolicy="no-referrer"
-                />
+            {PRIVATE_EVENT_KEYS.map((eventKey, i) => {
+              const itemBase = `privatePage.eventsSection.items.${eventKey}`;
+              const eventTitle = t(`${itemBase}.title`);
+              return (
+                <motion.div
+                  key={eventKey}
+                  tabIndex={0}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-white/28 outline-none transition-all duration-500 hover:border-white/45 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900"
+                >
+                  <img
+                    src={PRIVATE_EVENT_IMAGES[eventKey]}
+                    alt={eventTitle}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus-within:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
+                  />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0" />
 
-                <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100" />
 
-                <div className="absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6 md:p-7 lg:p-6">
-                  <h3 className="mt-auto shrink-0 font-display text-2xl uppercase tracking-wide text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.85)] transition-all duration-500 group-hover:mt-0 sm:text-3xl md:text-[1.85rem] lg:text-2xl lg:leading-tight xl:text-[1.75rem]">
-                    {e.title}
-                  </h3>
+                  <div className="absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6 md:p-7 lg:p-6">
+                    <h3 className="mt-auto shrink-0 font-display text-2xl uppercase tracking-wide text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.85)] transition-all duration-500 group-hover:mt-0 group-focus-within:mt-0 sm:text-3xl md:text-[1.85rem] lg:text-2xl lg:leading-tight xl:text-[1.75rem]">
+                      {eventTitle}
+                    </h3>
 
-                  <div className="mt-3 flex-grow opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100">
-                    <p className="line-clamp-6 text-sm font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:line-clamp-7">
-                      {e.desc}
-                    </p>
+                    <div className="mt-3 flex-grow opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100 group-focus-within:opacity-100">
+                      <p className="line-clamp-[10] whitespace-pre-line text-base font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-lg md:text-[1.125rem] md:leading-relaxed lg:line-clamp-[9]">
+                        {t(`${itemBase}.desc`)}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -469,19 +372,20 @@ export const PrivatePage = () => {
             className="mb-10 max-w-2xl space-y-4 md:mb-12 md:space-y-5"
           >
             <h2 id="private-packages-heading" className={cn(SECTION_H2_CLASS, 'mb-5 text-balance')}>
-              Våre private pakker
+              {t('privatePage.packagesSection.heading')}
             </h2>
             <p className="max-w-2xl text-base leading-relaxed text-brand-700 md:text-lg md:leading-relaxed">
-              Tre utgangspunkt — vi tilpasser i dialog med dere.
+              {t('privatePage.packagesSection.intro')}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 gap-6 md:gap-7 lg:grid-cols-3 lg:gap-8">
-            {packages.map((pkg, i) => {
-              const featured = 'featured' in pkg && pkg.featured;
+            {PRIVATE_PACKAGE_KEYS.map((pkgKey, i) => {
+              const featured = PRIVATE_PACKAGE_FEATURED[pkgKey];
+              const itemBase = `privatePage.packagesSection.items.${pkgKey}`;
               return (
                 <motion.div
-                  key={pkg.name}
+                  key={pkgKey}
                   initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -495,7 +399,7 @@ export const PrivatePage = () => {
                 >
                   {featured && (
                     <div className="absolute right-4 top-4 rounded-full bg-brand-700 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em]">
-                      Mest populær
+                      {t('privatePage.packagesSection.featuredBadge')}
                     </div>
                   )}
 
@@ -506,7 +410,7 @@ export const PrivatePage = () => {
                         featured ? 'text-brand-400' : 'text-brand-500',
                       )}
                     >
-                      {pkg.detail}
+                      {t(`${itemBase}.detail`)}
                     </p>
                     <h3
                       className={cn(
@@ -514,26 +418,26 @@ export const PrivatePage = () => {
                         featured ? 'text-white' : 'text-brand-950',
                       )}
                     >
-                      {pkg.name}
+                      {t(`${itemBase}.name`)}
                     </h3>
                     <p className={cn('mt-3 font-serif text-2xl md:text-3xl', featured ? 'text-brand-100' : 'text-brand-900')}>
-                      {pkg.price}
+                      {t(`${itemBase}.price`)}
                     </p>
                     <p className={cn('mt-4 text-[15px] leading-relaxed md:text-base', featured ? 'text-brand-100' : 'text-brand-700')}>
-                      {pkg.fit}
+                      {t(`${itemBase}.fit`)}
                     </p>
                   </div>
 
                   <div className={cn('mb-6 h-px w-full', featured ? 'bg-brand-700' : 'bg-brand-200')} />
 
                   <ul className="mb-8 grow space-y-3.5">
-                    {pkg.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-3">
+                    {PRIVATE_PACKAGE_BULLET_KEYS.map((bulletKey) => (
+                      <li key={bulletKey} className="flex items-start gap-3">
                         <div className={cn('mt-0.5 shrink-0', featured ? 'text-brand-400' : 'text-brand-600')}>
                           <CheckCircle2 size={18} strokeWidth={2.25} aria-hidden />
                         </div>
                         <span className={cn('text-[15px] leading-relaxed', featured ? 'text-brand-100' : 'text-brand-800')}>
-                          {b}
+                          {t(`${itemBase}.${bulletKey}`)}
                         </span>
                       </li>
                     ))}
@@ -546,7 +450,7 @@ export const PrivatePage = () => {
                       featured ? 'bg-white text-brand-900 hover:bg-brand-100' : 'bg-brand-900 text-white hover:bg-brand-800',
                     )}
                   >
-                    Be om tilbud
+                    {t('privatePage.packagesSection.requestQuote')}
                   </Link>
                 </motion.div>
               );
@@ -554,7 +458,7 @@ export const PrivatePage = () => {
           </div>
 
           <p className="mt-8 text-center text-sm italic text-brand-500">
-            Priser er veiledende — endelig tilbud etter samtale.
+            {t('privatePage.packagesSection.priceNote')}
           </p>
         </div>
       </section>
@@ -572,9 +476,9 @@ export const PrivatePage = () => {
             viewport={{ once: true }}
             className="mb-12 max-w-3xl"
           >
-            <h2 className={cn(SECTION_H2_CLASS, 'mb-6')}>Stemning fra lokalet</h2>
+            <h2 className={cn(SECTION_H2_CLASS, 'mb-6')}>{t('privatePage.gallerySection.heading')}</h2>
             <p className="text-lg leading-relaxed text-brand-600 md:text-xl">
-              Fest, samvær og kveldsstemning — et glimt av hvordan private selskap kan ta form hos oss.
+              {t('privatePage.gallerySection.intro')}
             </p>
           </motion.div>
 
@@ -591,7 +495,7 @@ export const PrivatePage = () => {
                       ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
                       : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70',
                   )}
-                  aria-label="Forrige bilde"
+                  aria-label={t('privatePage.gallerySection.prevImageAria')}
                   aria-disabled={!showGalleryLeft}
                 >
                   <ArrowLeft size={20} />
@@ -606,7 +510,7 @@ export const PrivatePage = () => {
                       ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
                       : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70',
                   )}
-                  aria-label="Neste bilde"
+                  aria-label={t('privatePage.gallerySection.nextImageAria')}
                   aria-disabled={!showGalleryRight}
                 >
                   <ArrowRight size={20} />
@@ -618,9 +522,9 @@ export const PrivatePage = () => {
               ref={galleryRef}
               className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-8 md:mx-0 md:gap-8 md:px-0 md:pb-10"
             >
-              {galleryImgs.map((src, i) => (
+              {gallerySlides.map((slide, i) => (
                 <motion.div
-                  key={src}
+                  key={slide.src}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -628,17 +532,19 @@ export const PrivatePage = () => {
                   className="group relative aspect-[6/7] min-w-[88%] snap-center overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
                 >
                   <img
-                    src={src}
-                    alt={`Stemning fra lokalet ${i + 1}`}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    src={slide.src}
+                    alt={slide.alt}
+                    className="pointer-events-none h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                     decoding="async"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-900/75 via-brand-900/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-85" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
-                    <p className="font-serif text-lg text-white md:text-xl">Privat selskap {i + 1}</p>
-                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setLightboxIndex(i)}
+                    className="absolute inset-0 z-10 cursor-pointer rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                    aria-label={t('privatePage.gallerySection.openLargeImage', { caption: slide.alt })}
+                  />
                 </motion.div>
               ))}
             </div>
@@ -652,10 +558,12 @@ export const PrivatePage = () => {
             className="mt-10 text-center md:mt-12"
           >
             <Link
-              to="/gallery"
+              to="/gallery?category=private"
               className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">Se hele galleriet</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">
+                {t('privatePage.gallerySection.fullGalleryCta')}
+              </span>
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white transition-transform group-hover:translate-x-1">
                 <ArrowRight size={16} />
               </div>
@@ -678,67 +586,71 @@ export const PrivatePage = () => {
               viewport={{ once: true }}
               className={cn(SECTION_H2_CLASS, 'mb-4')}
             >
-              Ofte stilte <span className="italic text-brand-600">spørsmål</span>
+              {t('privatePage.faqSection.headingBefore')}
+              <span className="italic text-brand-600">{t('privatePage.faqSection.headingAccent')}</span>
             </motion.h2>
             <div className="mx-auto h-px w-16 bg-brand-200" />
           </div>
 
           <div className="space-y-3">
-            {faqs.map((faq, i) => (
-              <motion.div
-                key={faq.q}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className={cn(
-                  'overflow-hidden rounded-md border transition-all duration-500',
-                  openFaq === i
-                    ? 'border-brand-200 bg-white shadow-md'
-                    : 'border-brand-100 bg-white/40 hover:border-brand-200 hover:bg-white/60',
-                )}
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="group flex w-full items-center justify-between gap-4 px-5 py-4 text-left md:px-6 md:py-4"
-                >
-                  <span
-                    className={cn(
-                      'font-serif text-lg transition-colors duration-300 md:text-xl',
-                      openFaq === i ? 'text-brand-900' : 'text-brand-800 group-hover:text-brand-900',
-                    )}
-                  >
-                    {faq.q}
-                  </span>
-                  <div
-                    className={cn(
-                      'flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all duration-500',
-                      openFaq === i
-                        ? 'rotate-180 border-brand-900 bg-brand-900 text-white'
-                        : 'border-brand-200 text-brand-400 group-hover:border-brand-400 group-hover:text-brand-900',
-                    )}
-                  >
-                    <ChevronDown size={18} />
-                  </div>
-                </button>
-                <AnimatePresence>
-                  {openFaq === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
-                    >
-                      <div className="px-5 pb-5 text-[15px] font-light leading-relaxed text-brand-600 md:px-6 md:pb-6 md:text-base">
-                        <div className="mb-3 h-px w-10 bg-brand-100" />
-                        {faq.a}
-                      </div>
-                    </motion.div>
+            {PRIVATE_FAQ_KEYS.map((faqKey, i) => {
+              const itemBase = `privatePage.faqSection.items.${faqKey}`;
+              return (
+                <motion.div
+                  key={faqKey}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className={cn(
+                    'overflow-hidden rounded-md border transition-all duration-500',
+                    openFaq === i
+                      ? 'border-brand-200 bg-white shadow-md'
+                      : 'border-brand-100 bg-white/40 hover:border-brand-200 hover:bg-white/60',
                   )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    className="group flex w-full items-center justify-between gap-4 px-5 py-4 text-left md:px-6 md:py-4"
+                  >
+                    <span
+                      className={cn(
+                        'font-serif text-lg transition-colors duration-300 md:text-xl',
+                        openFaq === i ? 'text-brand-900' : 'text-brand-800 group-hover:text-brand-900',
+                      )}
+                    >
+                      {t(`${itemBase}.q`)}
+                    </span>
+                    <div
+                      className={cn(
+                        'flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all duration-500',
+                        openFaq === i
+                          ? 'rotate-180 border-brand-900 bg-brand-900 text-white'
+                          : 'border-brand-200 text-brand-400 group-hover:border-brand-400 group-hover:text-brand-900',
+                      )}
+                    >
+                      <ChevronDown size={18} />
+                    </div>
+                  </button>
+                  <AnimatePresence>
+                    {openFaq === i && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
+                      >
+                        <div className="px-5 pb-5 text-[15px] font-light leading-relaxed text-brand-600 md:px-6 md:pb-6 md:text-base">
+                          <div className="mb-3 h-px w-10 bg-brand-100" />
+                          {t(`${itemBase}.a`)}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -756,7 +668,7 @@ export const PrivatePage = () => {
             <div className="absolute inset-0 z-0 opacity-30">
               <img
                 src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2000"
-                alt=""
+                alt={t('privatePage.closingCta.bgImageAlt')}
                 className="h-full w-full object-cover"
                 referrerPolicy="no-referrer"
               />
@@ -767,33 +679,44 @@ export const PrivatePage = () => {
               <div className="absolute -bottom-[20%] -right-[10%] h-[50%] w-[50%] rounded-full bg-rose-400/10 blur-[120px]" />
             </div>
             <div className="relative z-10 mx-auto max-w-3xl space-y-6 md:space-y-8">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-300">Neste steg</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-300">
+                {t('privatePage.closingCta.eyebrow')}
+              </p>
               <h2 className={cn(SECTION_H2_ON_DARK_CLASS, 'm-0')}>
-                Lyst å <span className="italic text-brand-400">planlegge</span>
+                {t('privatePage.closingCta.headingLine1Before')}
+                <span className="italic text-brand-400">{t('privatePage.closingCta.headingLine1Accent')}</span>
                 <br />
-                feiringen hos oss?
+                {t('privatePage.closingCta.headingLine2')}
               </h2>
               <p className="text-lg font-light leading-relaxed text-brand-100 md:text-xl">
-                Fortell kort hva dere feirer og når — så foreslår vi ramme og opplegg som passer familie og gjester.
+                {t('privatePage.closingCta.body')}
               </p>
               <div className="flex flex-col items-center justify-center gap-4 pt-2 sm:flex-row sm:gap-5">
                 <Link
                   to={CTA_PRIMARY}
                   className="w-full rounded-full bg-white px-10 py-5 text-xs font-bold uppercase tracking-[0.28em] text-brand-900 shadow-xl transition hover:bg-brand-50 sm:w-auto"
                 >
-                  Send forespørsel
+                  {t('hero.cta')}
                 </Link>
                 <Link
                   to={CTA_SECONDARY}
                   className="w-full rounded-full border border-white/30 px-10 py-5 text-xs font-bold uppercase tracking-[0.28em] text-white transition hover:bg-white/10 sm:w-auto"
                 >
-                  Book nå
+                  {t('hero.bookNow')}
                 </Link>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
+
+      <GalleryLightbox
+        slides={gallerySlides}
+        activeIndex={lightboxIndex}
+        onClose={closeLightbox}
+        onGoPrev={lightboxShowPrev}
+        onGoNext={lightboxShowNext}
+      />
     </div>
   );
 };

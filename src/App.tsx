@@ -13,8 +13,12 @@ import { Toaster } from 'sonner';
 
 import { AdminPanel } from './components/AdminPanel';
 import { HeroScrollHint } from './components/HeroScrollHint';
+import {
+  InspirationGalleryLightbox,
+  useInspirationGalleryLightboxState,
+} from './components/InspirationGalleryLightbox';
 import { BOOKING_URL } from './lib/booking';
-import { inspirationGallerySlides } from './lib/inspirationGallery';
+import { inspirationGallerySlides, inspirationSlideFileNumber } from './lib/inspirationGallery';
 import { cn } from './lib/utils';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from './lib/typography';
 
@@ -42,60 +46,92 @@ const InquiryPage = () => {
   );
 };
 
-const HOME_KONSEPT_ITEMS = [
-  {
-    metaDate: 'Bryllup',
-    metaType: 'Klassisk',
-    title: 'Bryllup',
-    description: 'Vielse, fest og mingling på ett sted — vi hjelper dere med helhetsplan fra ønskeliste til siste dans.',
+const HOME_CONCEPT_KEYS = ['weddings', 'corporate', 'private', 'facilities'] as const;
+
+type HomeConceptKey = (typeof HOME_CONCEPT_KEYS)[number];
+
+const HOME_CONCEPT_ROUTES: Record<HomeConceptKey, { path: string; img: string }> = {
+  weddings: {
     path: '/weddings',
     img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1200',
   },
-  {
-    metaDate: 'Firmaeventer',
-    metaType: 'Profesjonelt',
-    title: 'Firmaeventer',
-    description: 'Konferanse, teambuilding, julebord og sommerfest med profesjonelt vertskap og fleksible rammer.',
+  corporate: {
     path: '/corporate',
     img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200',
   },
-  {
-    metaDate: 'Private selskaper',
-    metaType: 'Personlig',
-    title: 'Private selskaper',
-    description: 'Jubileer, konfirmasjon og familieselskap med plass til barn og voksne — rolige, hjemlige omgivelser på gården.',
+  private: {
     path: '/packages',
     img: 'https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=80&w=1200',
   },
-  {
-    metaDate: 'Fasiliteter',
-    metaType: 'Fleksibelt',
-    title: 'Fasiliteter',
-    description: 'Alt fra storkjøkken og dansegulv til gode parkeringsmuligheter og fleksible løsninger rundt opphold.',
+  facilities: {
     path: '/facilities',
     img: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=80&w=1200',
   },
+};
+
+const HOME_SERVICE_KEYS = [
+  'soundLight',
+  'catering',
+  'barDancefloor',
+  'coordination',
+  'decoration',
+  'overnight',
 ] as const;
 
-const PARTNER_LOGOS = [
-  { name: 'Catering & kjøkken', mark: 'CK' },
-  { name: 'Blomster & dekor', mark: 'BD' },
-  { name: 'Foto & film', mark: 'FF' },
-  { name: 'Lyd & lys', mark: 'LL' },
-  { name: 'Bar & servering', mark: 'BS' },
-  { name: 'Koordinering', mark: 'KO' },
-  { name: 'Digilist', mark: 'DG' },
-  { name: 'Xala technologies', mark: 'XT' },
-  { name: 'Vertskap & personell', mark: 'VP' },
-  { name: 'CommitCare', mark: 'CC' },
+type HomeServiceKey = (typeof HOME_SERVICE_KEYS)[number];
+
+const HOME_SERVICE_IMAGES: Record<HomeServiceKey, string> = {
+  soundLight:
+    'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=800',
+  catering:
+    'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800',
+  barDancefloor:
+    'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800',
+  coordination:
+    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800',
+  decoration:
+    'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800',
+  overnight:
+    'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800',
+};
+
+const PARTNER_KEYS = [
+  'cateringKitchen',
+  'flowersDecor',
+  'photoVideo',
+  'soundLight',
+  'barService',
+  'coordination',
+  'digilist',
+  'xala',
+  'hostingStaff',
+  'commitcare',
 ] as const;
+
+type PartnerKey = (typeof PARTNER_KEYS)[number];
+
+const PARTNER_MARKS: Record<PartnerKey, string> = {
+  cateringKitchen: 'CK',
+  flowersDecor: 'BD',
+  photoVideo: 'FF',
+  soundLight: 'LL',
+  barService: 'BS',
+  coordination: 'KO',
+  digilist: 'DG',
+  xala: 'XT',
+  hostingStaff: 'VP',
+  commitcare: 'CC',
+};
 
 const Home = () => {
+  const { t } = useTranslation();
   const galleryRef = useRef<HTMLDivElement>(null);
 
   const [showGalleryLeft, setShowGalleryLeft] = useState(false);
   const [showGalleryRight, setShowGalleryRight] = useState(true);
   const [galleryHasOverflow, setGalleryHasOverflow] = useState(false);
+  const { lightboxIndex, setLightboxIndex, closeLightbox, lightboxShowPrev, lightboxShowNext } =
+    useInspirationGalleryLightboxState();
 
   const handleGalleryScroll = () => {
     if (galleryRef.current) {
@@ -165,19 +201,19 @@ const Home = () => {
               className="max-w-5xl text-balance font-serif leading-[0.9] tracking-tighter text-white [text-shadow:0_2px_32px_rgba(0,0,0,0.45)]"
             >
               <span className="block text-2xl font-normal tracking-wide text-white/90 sm:text-3xl md:text-4xl lg:text-5xl">
-                Velkommen til
+                {t('homeHero.welcomeLine')}
               </span>
               <span className="mt-2 block font-serif italic text-5xl text-brand-200 sm:mt-3 sm:text-6xl md:text-7xl lg:text-8xl">
-                Rønningen selskapslokale
+                {t('homeHero.venueName')}
               </span>
             </motion.h1>
             <p className="mx-auto max-w-2xl text-xl font-light italic opacity-90 md:text-3xl [text-shadow:0_1px_24px_rgba(0,0,0,0.35)]">
-              Alt du trenger for en vellykket feiring
+              {t('homeHero.tagline')}
             </p>
           </motion.div>
         </div>
 
-        <HeroScrollHint targetId="konsepter" />
+        <HeroScrollHint targetId="konsepter" ariaLabel={t('homeHero.scrollHintAria')} />
       </section>
 
       <section
@@ -198,44 +234,48 @@ const Home = () => {
           <div className="mx-auto flex w-full max-w-[1920px] flex-col px-5 py-16 sm:px-8 sm:py-20 md:px-12 md:py-24 lg:px-16 xl:px-20">
             <header className="max-w-2xl space-y-4 md:space-y-5">
               <h2 id="konsepter-heading" className={SECTION_H2_CLASS}>
-                Våre konsepter
+                {t('homeConcepts.heading')}
               </h2>
               <p className="text-base leading-relaxed text-brand-600 md:text-lg md:leading-relaxed">
-                Her starter de beste feiringene - omgitt av natur
+                {t('homeConcepts.intro')}
               </p>
             </header>
 
             <div className="mt-10 md:mt-12">
               <ul className="m-0 grid list-none grid-cols-1 gap-x-6 gap-y-10 pl-0 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-14">
-                {HOME_KONSEPT_ITEMS.map((item) => (
-                  <li key={item.title} className="min-w-0">
-                    <Link
-                      to={item.path}
-                      className="group flex flex-col items-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-2xl"
-                    >
-                      <div className="relative mx-auto mb-7 w-full max-w-[17rem] sm:mb-8 sm:max-w-[18rem] md:max-w-[19rem]">
-                        <div className="relative aspect-square overflow-hidden rounded-full border-[3px] border-white/90 shadow-[0_20px_50px_-12px_rgba(33,24,22,0.35)] ring-1 ring-brand-900/10 transition-[transform,box-shadow] duration-500 ease-out group-hover:scale-[1.03] group-hover:shadow-[0_28px_60px_-8px_rgba(33,24,22,0.42)]">
-                          <img
-                            src={item.img}
-                            alt={item.title}
-                            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                            referrerPolicy="no-referrer"
-                          />
-                          <div
-                            className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent"
-                            aria-hidden
-                          />
+                {HOME_CONCEPT_KEYS.map((key) => {
+                  const { path, img } = HOME_CONCEPT_ROUTES[key];
+                  const title = t(`homeConcepts.items.${key}.title`);
+                  return (
+                    <li key={key} className="min-w-0">
+                      <Link
+                        to={path}
+                        className="group flex flex-col items-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-2xl"
+                      >
+                        <div className="relative mx-auto mb-7 w-full max-w-[17rem] sm:mb-8 sm:max-w-[18rem] md:max-w-[19rem]">
+                          <div className="relative aspect-square overflow-hidden rounded-full border-[3px] border-white/90 shadow-[0_20px_50px_-12px_rgba(33,24,22,0.35)] ring-1 ring-brand-900/10 transition-[transform,box-shadow] duration-500 ease-out group-hover:scale-[1.03] group-hover:shadow-[0_28px_60px_-8px_rgba(33,24,22,0.42)]">
+                            <img
+                              src={img}
+                              alt=""
+                              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                              referrerPolicy="no-referrer"
+                            />
+                            <div
+                              className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent"
+                              aria-hidden
+                            />
+                          </div>
+                          <h3 className="absolute bottom-0 left-1/2 z-10 w-[min(92%,15.5rem)] -translate-x-1/2 translate-y-1/2 rounded-sm border-2 border-[#c9a352] bg-[linear-gradient(180deg,#faf8f4_0%,#f3efe6_55%,#f0ebe0_100%)] px-4 py-2 text-center font-serif text-[11px] font-normal uppercase leading-snug tracking-[0.12em] text-brand-950 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.55),inset_0_0_0_2px_rgba(169,132,66,0.35),0_4px_14px_rgba(33,24,22,0.12)] sm:px-5 sm:py-2.5 sm:text-xs md:text-[0.8125rem]">
+                            {title}
+                          </h3>
                         </div>
-                        <h3 className="absolute bottom-0 left-1/2 z-10 w-[min(92%,15.5rem)] -translate-x-1/2 translate-y-1/2 rounded-sm border-2 border-[#c9a352] bg-[linear-gradient(180deg,#faf8f4_0%,#f3efe6_55%,#f0ebe0_100%)] px-4 py-2 text-center font-serif text-[11px] font-normal uppercase leading-snug tracking-[0.12em] text-brand-950 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.55),inset_0_0_0_2px_rgba(169,132,66,0.35),0_4px_14px_rgba(33,24,22,0.12)] sm:px-5 sm:py-2.5 sm:text-xs md:text-[0.8125rem]">
-                          {item.title}
-                        </h3>
-                      </div>
-                      <p className="mt-5 max-w-[24rem] text-balance text-[0.9375rem] font-medium leading-[1.65] text-brand-900 md:text-base md:leading-relaxed sm:mt-6">
-                        {item.description}
-                      </p>
-                    </Link>
-                  </li>
-                ))}
+                        <p className="mt-5 max-w-[24rem] text-balance text-[0.9375rem] leading-relaxed text-brand-900 sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:text-lg lg:leading-relaxed sm:mt-6">
+                          {t(`homeConcepts.items.${key}.description`)}
+                        </p>
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
 
@@ -253,91 +293,48 @@ const Home = () => {
               viewport={{ once: true }}
               className={SECTION_H2_ON_DARK_CLASS}
             >
-              Eksklusive tjenester
+              {t('homeServices.heading')}
             </motion.h2>
           </div>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-4 xl:gap-5">
-            {[
-              {
-                title: "Lyd og Lys",
-                description: "Vi setter opp lyd og lys som passer formatet deres - fra tydelige presentasjoner til kveld med musikk, dans og stemning.",
-                img: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=800"
-              },
-              {
-                title: "Catering og servering",
-                description: "Vi kobler dere med kvalitetscatering og trygg servering, slik at meny, flyt og vertskap henger sammen gjennom hele dagen.",
-                img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800"
-              },
-              {
-                title: "Bar og dansegulv",
-                description: "Fra første skål til siste låt: vi tilrettelegger barområde og dansegulv som gir god energi og naturlig flyt utover kvelden.",
-                img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800"
-              },
-              {
-                title: "Event koordinering",
-                description: "Vi holder oversikt på detaljer, tidsplan og leverandører, så dere kan være vertskap uten å bruke dagen på logistikk.",
-                img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800"
-              },
-              {
-                title: "Dekorasjon",
-                description: "Blomster, bord og detaljer settes opp etter uttrykket dere ønsker - fra klassisk og rent til varmt og festlig.",
-                img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800"
-              },
-              {
-                title: "Overnatting",
-                description: "Vi hjelper med anbefalte overnattingsmuligheter i nærheten og plan for transport, slik at gjestene kommer trygt frem og tilbake.",
-                img: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800"
-              }
-            ].map((service, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-white/28 transition-all duration-500 hover:border-white/45"
-              >
-                {/* Background Image */}
-                <img 
-                  src={service.img} 
-                  alt={service.title} 
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
-                
-                {/* Default Bottom Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0" />
-                
-                {/* Hover Overlay (Teal/Blue Gradient) */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                
-                {/* Content Container */}
-                <div className="absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6 md:p-7 lg:p-6">
-                  {/* Title - Repositions on hover */}
-                  <h3 className="mt-auto shrink-0 font-display text-2xl uppercase tracking-wide text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.85)] transition-all duration-500 group-hover:mt-0 sm:text-3xl md:text-[1.85rem] lg:text-2xl lg:leading-tight xl:text-[1.75rem]">
-                    {service.title}
-                  </h3>
-                  
-                  {/* Description - Appears on hover */}
-                  <div className="mt-3 flex-grow opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100">
-                    <p className="line-clamp-5 text-sm font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:line-clamp-4">
-                      {service.description}
-                    </p>
-                  </div>
-                  
-                  {/* Read More - Appears on hover at bottom */}
-                  <div className="mt-auto flex items-center gap-3 opacity-0 transition-opacity delay-200 duration-500 group-hover:opacity-100 group/btn">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/70 bg-black/10 backdrop-blur-[2px] transition-colors group-hover/btn:bg-white group-hover/btn:text-[#4F9DA6] sm:h-11 sm:w-11">
-                      <ArrowRight size={20} strokeWidth={2.25} />
+            {HOME_SERVICE_KEYS.map((key, index) => {
+              const title = t(`homeServices.items.${key}.title`);
+              return (
+                <motion.div
+                  key={key}
+                  tabIndex={0}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-white/28 outline-none transition-all duration-500 hover:border-white/45 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900"
+                >
+                  <img
+                    src={HOME_SERVICE_IMAGES[key]}
+                    alt=""
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus-within:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0" />
+
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100" />
+
+                  <div className="absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6 md:p-7 lg:p-6">
+                    <h3 className="mt-auto shrink-0 font-display text-2xl uppercase tracking-wide text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.85)] transition-all duration-500 group-hover:mt-0 group-focus-within:mt-0 sm:text-3xl md:text-[1.85rem] lg:text-2xl lg:leading-tight xl:text-[1.75rem]">
+                      {title}
+                    </h3>
+
+                    <div className="mt-3 flex-grow opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100 group-focus-within:opacity-100">
+                      <p className="line-clamp-[10] whitespace-pre-line text-base font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-lg md:text-[1.125rem] md:leading-relaxed lg:line-clamp-[9]">
+                        {t(`homeServices.items.${key}.description`)}
+                      </p>
                     </div>
-                    <span className="text-sm font-semibold uppercase tracking-[0.14em] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.5)] sm:text-base">
-                      Les mer
-                    </span>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -360,10 +357,10 @@ const Home = () => {
             className="mb-12 max-w-3xl"
           >
             <h2 id="inspirasjon-galleri-heading" className={cn(SECTION_H2_CLASS, 'mb-6')}>
-              Galleri
+              {t('homeGallery.heading')}
             </h2>
             <p className="text-lg leading-relaxed text-brand-600 md:text-xl">
-              Et lite utvalg fra tidligere arrangementer hos oss.
+              {t('homeGallery.intro')}
             </p>
           </motion.div>
 
@@ -379,7 +376,7 @@ const Home = () => {
                       ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
                       : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70'
                   }`}
-                  aria-label="Forrige bilde"
+                  aria-label={t('galleryPage.lightboxPrev')}
                   aria-disabled={!showGalleryLeft}
                 >
                   <ArrowLeft size={20} />
@@ -393,7 +390,7 @@ const Home = () => {
                       ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
                       : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70'
                   }`}
-                  aria-label="Neste bilde"
+                  aria-label={t('galleryPage.lightboxNext')}
                   aria-disabled={!showGalleryRight}
                 >
                   <ArrowRight size={20} />
@@ -405,24 +402,37 @@ const Home = () => {
               ref={galleryRef}
               className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-8 md:gap-8 md:pb-10 md:mx-0 md:px-0"
             >
-              {inspirationGallerySlides.map((item, i) => (
-                <motion.div
-                  key={item.key}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: Math.min(i * 0.04, 0.4), duration: 0.7 }}
-                  className="group relative aspect-[6/7] min-w-[88%] overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm snap-center transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
-                >
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading={i > 4 ? 'lazy' : 'eager'}
-                    decoding="async"
-                  />
-                </motion.div>
-              ))}
+              {inspirationGallerySlides.map((item, i) => {
+                const slideDescription = t('inspirationGallery.slideAlt', {
+                  n: inspirationSlideFileNumber(item.key),
+                });
+                return (
+                  <motion.div
+                    key={item.key}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: Math.min(i * 0.04, 0.4), duration: 0.7 }}
+                    className="group relative aspect-[6/7] min-w-[88%] overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm snap-center transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
+                  >
+                    <img
+                      src={item.src}
+                      alt={slideDescription}
+                      className="pointer-events-none h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading={i > 4 ? 'lazy' : 'eager'}
+                      decoding="async"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setLightboxIndex(i)}
+                      className="absolute inset-0 z-10 cursor-pointer rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                      aria-label={t('inspirationGallery.openImageAria', {
+                        description: slideDescription,
+                      })}
+                    />
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
@@ -437,7 +447,9 @@ const Home = () => {
               to="/gallery"
               className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">Se hele galleriet</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">
+                {t('homeGallery.ctaFullGallery')}
+              </span>
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white transition-transform group-hover:translate-x-1">
                 <ArrowRight size={16} />
               </div>
@@ -461,34 +473,36 @@ const Home = () => {
           <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-16 xl:gap-20">
             <header className="text-center lg:col-span-5 xl:col-span-4 lg:text-left">
               <h2 id="partnere-heading" className={cn(SECTION_H2_CLASS, 'mb-4 md:mb-5')}>
-                Våre partnere
+                {t('homePartners.heading')}
               </h2>
               <p className="mx-auto max-w-xl text-base leading-[1.65] text-brand-600 md:text-lg md:leading-relaxed lg:mx-0 lg:max-w-none">
-                Vi jobber med anbefalte leverandører innen mat, dekor, foto og mer — slik at dere får ett koordinert team rundt arrangementet på Rønningen.
+                {t('homePartners.intro')}
               </p>
             </header>
 
             <ul
               className="m-0 grid list-none grid-cols-2 gap-x-1 gap-y-3 p-0 sm:grid-cols-5 sm:gap-x-1 sm:gap-y-3 md:gap-y-3.5 lg:col-span-7 xl:col-span-8 xl:gap-y-4"
-              aria-label="Partnerlogoer"
+              aria-label={t('homePartners.listAria')}
             >
-              {PARTNER_LOGOS.map((partner) => (
+              {PARTNER_KEYS.map((key) => (
                 <li
-                  key={partner.name}
+                  key={key}
                   className={cn(
                     'min-w-0',
-                    partner.name === 'CommitCare' && 'sm:col-start-5 sm:row-start-2',
+                    key === 'commitcare' && 'sm:col-start-5 sm:row-start-2',
                   )}
                 >
                   <div className="flex flex-col items-center gap-1 text-center">
                     <div className="flex h-[4.25rem] w-[4.25rem] shrink-0 items-center justify-center rounded-full border-2 border-brand-200/90 bg-linear-to-b from-white to-brand-50/90 text-[0.68rem] font-bold uppercase tracking-[0.08em] text-brand-800 shadow-[0_8px_24px_-12px_rgba(33,24,22,0.25)] ring-1 ring-brand-900/[0.06] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-[0_12px_28px_-10px_rgba(33,24,22,0.3)] md:h-[4.75rem] md:w-[4.75rem] md:text-[0.75rem]">
-                      {partner.mark}
+                      {PARTNER_MARKS[key]}
                     </div>
                     <div className="min-w-0 max-w-[11rem]">
                       <p className="text-balance font-serif text-[0.98rem] leading-snug tracking-tight text-brand-950 md:text-[1.05rem]">
-                        {partner.name}
+                        {t(`homePartners.items.${key}`)}
                       </p>
-                      <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-500">Partner</p>
+                      <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-500">
+                        {t('homePartners.badge')}
+                      </p>
                     </div>
                   </div>
                 </li>
@@ -497,6 +511,13 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <InspirationGalleryLightbox
+        activeIndex={lightboxIndex}
+        onClose={closeLightbox}
+        onGoPrev={lightboxShowPrev}
+        onGoNext={lightboxShowNext}
+      />
     </div>
   );
 };

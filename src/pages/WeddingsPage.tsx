@@ -2,17 +2,69 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  CheckCircle2, Users, Heart, Sparkles, Camera, 
-  Music, Utensils, Clock,
-  ArrowRight, ArrowLeft, HelpCircle, MessageSquare,
-  Wine, Car, ChevronDown, ChevronUp,
-  GlassWater, PartyPopper
+import {
+  CheckCircle2,
+  Users,
+  Utensils,
+  ArrowRight,
+  ArrowLeft,
+  HelpCircle,
+  MessageSquare,
+  ChevronDown,
+  ChevronUp,
+  GlassWater,
+  PartyPopper,
 } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { inspirationGallerySlides } from '../lib/inspirationGallery';
+import { inspirationGallerySlides, inspirationSlideFileNumber } from '../lib/inspirationGallery';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import { HeroScrollHint } from '../components/HeroScrollHint';
+import {
+  InspirationGalleryLightbox,
+  useInspirationGalleryLightboxState,
+} from '../components/InspirationGalleryLightbox';
+
+const WEDDINGS_ATMOSPHERE_WHY_KEYS = ['item1', 'item2', 'item3', 'item4'] as const;
+const WEDDINGS_ATMOSPHERE_WHY_NUMBERS = ['01', '02', '03', '04'] as const;
+
+const WEDDINGS_DAY_TIMELINE_KEYS = ['item1', 'item2', 'item3', 'item4'] as const;
+
+const WEDDINGS_DAY_TIMELINE_IMAGES = [
+  'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1000',
+  'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=1000',
+] as const;
+
+const WEDDINGS_DAY_TIMELINE_ICONS = [Users, Utensils, GlassWater, PartyPopper] as const;
+
+const WEDDINGS_SERVICE_KEYS = [
+  'kitchen',
+  'photography',
+  'decoration',
+  'bar',
+  'soundLight',
+  'tableSetting',
+] as const;
+
+const WEDDINGS_SERVICE_IMAGES = [
+  'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800',
+  'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&q=80&w=800',
+  'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800',
+  'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800',
+  'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800',
+  'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800',
+] as const;
+
+const WEDDINGS_PACKAGE_IDS = ['basic', 'plus', 'premium'] as const;
+
+const WEDDINGS_PACKAGE_FEATURE_COUNT: Record<(typeof WEDDINGS_PACKAGE_IDS)[number], number> = {
+  basic: 3,
+  plus: 4,
+  premium: 6,
+};
+
+const WEDDINGS_FAQ_KEYS = ['item1', 'item2', 'item3', 'item4', 'item5', 'item6'] as const;
 
 export const WeddingsPage = () => {
   const GALLERY_EDGE_TOLERANCE = 2;
@@ -22,6 +74,8 @@ export const WeddingsPage = () => {
   const [galleryHasOverflow, setGalleryHasOverflow] = useState(false);
   const [showGalleryLeft, setShowGalleryLeft] = useState(false);
   const [showGalleryRight, setShowGalleryRight] = useState(true);
+  const { lightboxIndex, setLightboxIndex, closeLightbox, lightboxShowPrev, lightboxShowNext } =
+    useInspirationGalleryLightboxState();
 
   const handleGalleryScroll = () => {
     if (galleryRef.current) {
@@ -58,153 +112,6 @@ export const WeddingsPage = () => {
     }
   };
 
-  const whyUs = [
-    {
-      number: "01",
-      title: "Atmosfære",
-      desc: "Et gjennomført lokale med varme detaljer og god romfølelse. Her får dere en ramme som fungerer like godt til små som store arrangementer.",
-    },
-    {
-      number: "02",
-      title: "Omgivelser",
-      desc: "Omgitt av natur og rolige omgivelser, med flotte uteområder og nærliggende lokasjoner som gir en ekstra dimensjon til dagen.",
-    },
-    {
-      number: "03",
-      title: "Fleksibilitet",
-      desc: "Dere står fritt til å forme dagen slik dere ønsker. Lokalet tilpasses både type arrangement, oppsett og stil.",
-    },
-    {
-      number: "04",
-      title: "Enkelt å gjennomføre",
-      desc: "Vi legger til rette for en smidig gjennomføring, slik at dere kan fokusere på gjestene og opplevelsen – ikke logistikken.",
-    },
-  ];
-
-  const dayFlow = [
-    {
-      title: "Vielse & fotografering",
-      desc: "Omgitt av våre vakre uteområder, samt fossefall i umiddelbar nærhet.",
-      icon: <Users size={32} />
-    },
-    {
-      title: "Middag & taler",
-      desc: "Festmiddag med lokale råvarer og god plass til taler og toasts.",
-      icon: <Utensils size={32} />
-    },
-    {
-      title: "Kaffe & dessert",
-      desc: "Kaffe og dessert i rolige fellesområder før kvelden tar over.",
-      icon: <GlassWater size={32} />
-    },
-    {
-      title: "Dans & feiring",
-      desc: "Drikke og dans med god stemning utover kvelden.",
-      icon: <PartyPopper size={32} />
-    }
-  ];
-
-  const services = [
-    {
-      title: "Storkjøkken & catering",
-      desc: `Dere står fritt til å ta med egen mat eller benytte vårt fullt utstyrte storkjøkken.
-
-Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, eller stå for matlaging på stedet med erfarne kokker og serveringspersonell.`,
-      img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800",
-      icon: <Utensils size={24} />
-    },
-    {
-      title: "Fotografering",
-      desc: "Anbefalte fotografer som kjenner både lyset og rommene her — fra portretter og vielse til fest og små øyeblikk dere vil huske.",
-      img: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&q=80&w=800",
-      icon: <Camera size={24} />
-    },
-    {
-      title: "Dekorasjon",
-      desc: "Vi tilbyr fleksible dekorasjonsløsninger som kan tilpasses deres stil og uttrykk. Sammen med våre samarbeidspartnere kan vi skape en helhetlig og gjennomført atmosfære – fra bordpynt til dekorasjon av hele lokalet.",
-      img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800",
-      icon: <Sparkles size={24} />
-    },
-    {
-      title: "Bar & dansegulv",
-      desc: "Dere står fritt til å ta med egen drikke og bruke barområdet. Med eget dansegulv ligger alt til rette for god stemning gjennom hele kvelden.",
-      img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800",
-      icon: <Wine size={24} />
-    },
-    {
-      title: "Lyd & Lys",
-      desc: "Vi har et kraftig lydanlegg som passer perfekt til fest og musikk, kombinert med belysning som skaper riktig stemning gjennom hele arrangementet.",
-      img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800",
-      icon: <Music size={24} />
-    },
-    {
-      title: "Oppdekking & bordpynt",
-      desc: "Ferdig oppdekket med duker, stoltrekk, servise, glass og det dere trenger på bordet — pluss bordpynt, menykort og små detaljer som binder det hele sammen. Vi avstemmer uttrykket med stilen på dagen deres, så gjestene møter komplette bord fra første minutt.",
-      img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800",
-      icon: <Utensils size={24} />
-    }
-  ];
-
-  const packages = [
-    {
-      name: 'Basic',
-      price: 'kr 26 000',
-      desc: 'For deg som vil gjøre det meste selv',
-      features: ['Lokalleie', 'Parkering', 'Uteområde'],
-    },
-    {
-      name: 'Plus',
-      price: 'kr 33 000',
-      desc: 'Enklere og mer ferdig løsning',
-      features: [
-        'Alt i Basic',
-        'Oppdekking (bord, stoler, duk, stoltrekk, servietter)',
-        'Tilgang til kjøkken med utstyr og kjølerom',
-        'Ekstra tid før eller etter arrangement',
-      ],
-    },
-    {
-      name: 'Premium',
-      price: 'kr 44 000',
-      desc: 'Full pakke – vi tar oss av det meste',
-      features: [
-        'Alt i Plus',
-        'Koordinering og planlegging',
-        'Lydanlegg',
-        'Sluttrengjøring',
-        'Dekorasjon og bordpynt',
-        '1 serveringspersonell',
-      ],
-    },
-  ] as const;
-
-  const faqs = [
-    {
-      q: "Har dere overnattingsmuligheter?",
-      a: "Vi tilbyr overnatting i egne leiligheter, samt mulighet for overnatting i tilknytning til lokalet. Dette kan leies separat etter behov."
-    },
-    {
-      q: "Kan vi ta med egen mat og drikke?",
-      a: "Ja, dere står fritt til å ta med egen mat og drikke. Samtidig samarbeider vi med lokale cateringsselskaper som kan levere mat og stå for servering dersom dere ønsker en enklere løsning."
-    },
-    {
-      q: "Hvor mange gjester er det plass til?",
-      a: "Vi har plass til inntil 300 gjester og muligheter for 200 ekstra i partitelt og bryllupslåve.",
-    },
-    {
-      q: "Er det mulig med vielse på gården?",
-      a: "Absolutt! Vi har flere vakre steder utendørs som egner seg perfekt for vielse, samt gode muligheter for flotte bilder i vakker natur med og nærliggende fossefall."
-    },
-    {
-      q: "Når får vi tilgang til lokalet?",
-      a: "Vi er fleksible og gir dere gjerne tilgang før og etter arrangementet for planlegging og gjennomføring. Samtidig tilbyr vi tjenester som gjør at dere kan fokusere på festen og gjestene."
-    },
-    {
-      q: "Har dere parkeringsmuligheter og elbillader?",
-      a: "Vi har gode parkeringsmuligheter med god plass til alle gjester. Det er også mulig å lade elbil eller la bilen stå igjen for en enklere og trygg avslutning på kvelden.",
-    }
-  ];
-
   return (
     <div className="flex flex-col bg-white">
       {/* 1. Hero */}
@@ -212,7 +119,7 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
         <div className="absolute inset-0 z-0">
           <img
             src="/hero-wedding-venue-night.png"
-            alt="Selskapslokale om kvelden med varmt lys, stjernehimmel og feststemning"
+            alt={t('weddingsPage.heroImageAlt')}
             className="h-full w-full object-cover brightness-[0.52] contrast-[1.03]"
           />
           <div
@@ -231,31 +138,34 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55 }}
-              className="max-w-5xl text-balance font-serif text-6xl leading-[0.9] tracking-tighter text-white [text-shadow:0_2px_32px_rgba(0,0,0,0.45)] md:text-9xl"
+              className="max-w-5xl text-balance font-serif text-5xl leading-[0.92] tracking-tighter text-white [text-shadow:0_2px_32px_rgba(0,0,0,0.45)] sm:text-6xl md:text-7xl lg:text-8xl"
             >
-              Bryllup i vakre og <br className="hidden md:block" /> unike omgivelser
+              {t('weddingsPage.heroTitleLine1')}
+              {' '}
+              <br className="hidden md:block" />
+              {t('weddingsPage.heroTitleLine2')}
             </motion.h1>
             <p className="mx-auto max-w-2xl text-xl font-light italic opacity-90 md:text-3xl [text-shadow:0_1px_24px_rgba(0,0,0,0.35)]">
-              Skap en feiring som føles personlig, varm og minneverdig.
+              {t('weddingsPage.heroTagline')}
             </p>
             <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
               <Link
                 to="/contact"
                 className="w-full rounded-full bg-white px-10 py-5 text-sm font-bold uppercase tracking-widest text-brand-900 shadow-2xl transition-all hover:-translate-y-1 hover:bg-brand-50 sm:w-auto"
               >
-                Book nå
+                {t('hero.bookNow')}
               </Link>
               <Link
                 to="/contact"
                 className="w-full rounded-full border-2 border-white bg-transparent px-10 py-5 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-white/10 sm:w-auto"
               >
-                Send forespørsel
+                {t('hero.cta')}
               </Link>
             </div>
           </motion.div>
         </div>
 
-        <HeroScrollHint targetId="atmosfaeren" />
+        <HeroScrollHint targetId="atmosfaeren" ariaLabel={t('weddingsPage.heroScrollHintAria')} />
       </section>
 
       {/* Atmosfæren — samme bakgrunn og typografi som forsiden «Våre konsepter» for tydelig kontrast */}
@@ -277,16 +187,14 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-14 xl:gap-20 items-start">
             <div className="order-2 lg:order-1 max-w-3xl">
               <h2 id="atmosfaeren-heading" className={cn(SECTION_H2_CLASS, 'mb-6 text-balance')}>
-                Vielse og fest <br /> på samme sted
+                {t('weddingsPage.atmosphere.headingLine1')} <br /> {t('weddingsPage.atmosphere.headingLine2')}
               </h2>
-              <div className="space-y-4">
-                <p className="text-pretty text-base leading-relaxed text-brand-800/95 md:text-lg md:leading-relaxed">
-                  Samle hele dagen på ett sted – fra vielse til middag og fest. Dere bestemmer rekkefølgen og stilen.
-                  Omgitt av rolige omgivelser i vakker natur, med kort vei mellom seremoni og dans.
+              <div className="space-y-5 md:space-y-6">
+                <p className="text-pretty text-lg leading-relaxed text-brand-800/95 md:text-xl md:leading-relaxed lg:text-[1.35rem] lg:leading-[1.65]">
+                  {t('weddingsPage.atmosphere.intro1')}
                 </p>
-                <p className="text-pretty text-base leading-relaxed text-brand-800/95 md:text-lg md:leading-relaxed">
-                  Vi hjelper dere med planlegging og gjennomføring, slik at dere kan fokusere på det som betyr mest.
-                  Ta kontakt for omvisning og en uforpliktende prat om hvordan dagen kan gjennomføres hos oss.
+                <p className="text-pretty text-lg leading-relaxed text-brand-800/95 md:text-xl md:leading-relaxed lg:text-[1.35rem] lg:leading-[1.65]">
+                  {t('weddingsPage.atmosphere.intro2')}
                 </p>
               </div>
             </div>
@@ -295,7 +203,7 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
               <div className="aspect-[3/4] w-full rounded-md border border-brand-100 bg-brand-50 shadow-lg sm:aspect-[4/5] lg:aspect-[3/4] xl:aspect-auto xl:h-[min(78vh,720px,50dvh)] overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1600"
-                  alt="Feiring og stemning på Rønningen — lokalet og omgivelsene"
+                  alt={t('weddingsPage.atmosphere.figureAlt')}
                   className="h-full w-full object-cover object-center"
                   referrerPolicy="no-referrer"
                 />
@@ -304,20 +212,20 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
           </div>
 
           <ul className="mt-16 md:mt-20 grid list-none grid-cols-1 gap-10 border-t border-brand-200/90 pt-12 sm:grid-cols-2 sm:gap-12 md:pt-14 lg:gap-14 m-0 p-0">
-            {whyUs.map((item, i) => (
-              <li key={i} className="flex gap-5 md:gap-6">
+            {WEDDINGS_ATMOSPHERE_WHY_KEYS.map((whyKey, i) => (
+              <li key={whyKey} className="flex gap-5 md:gap-6">
                 <span
                   className="w-11 shrink-0 pt-0.5 text-right font-serif text-3xl tabular-nums leading-none text-brand-400 md:w-12 md:text-4xl"
                   aria-hidden
                 >
-                  {item.number}
+                  {WEDDINGS_ATMOSPHERE_WHY_NUMBERS[i]}
                 </span>
                 <div className="min-w-0 border-l border-brand-300/90 pl-5 md:pl-6">
                   <h3 className="mb-2 font-serif text-xl tracking-tight text-brand-950 md:text-2xl md:leading-snug">
-                    {item.title}
+                    {t(`weddingsPage.atmosphere.why.${whyKey}.title`)}
                   </h3>
                   <p className="text-base leading-[1.7] text-brand-800 md:text-[17px]">
-                    {item.desc}
+                    {t(`weddingsPage.atmosphere.why.${whyKey}.desc`)}
                   </p>
                 </div>
               </li>
@@ -337,9 +245,9 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
                 viewport={{ once: true }}
                 className={cn(SECTION_H2_ON_DARK_CLASS, 'm-0')}
               >
-                <span className="block">Slik kan</span>
+                <span className="block">{t('weddingsPage.dayTimeline.headingLine1')}</span>
                 <span className="mt-1 block pl-6 italic text-brand-400 sm:pl-10 md:pl-14 lg:pl-16">
-                  dagen se ut
+                  {t('weddingsPage.dayTimeline.headingLine2')}
                 </span>
               </motion.h2>
             </div>
@@ -350,48 +258,45 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
             <div className="absolute top-1/2 left-0 w-full h-px bg-white/10 z-0 hidden lg:block"></div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
-              {dayFlow.map((item, i) => {
+              {WEDDINGS_DAY_TIMELINE_KEYS.map((stepKey, i) => {
+                const Icon = WEDDINGS_DAY_TIMELINE_ICONS[i];
+                const stepTitle = t(`weddingsPage.dayTimeline.${stepKey}.title`);
                 return (
-                  <motion.div 
-                    key={i}
+                  <motion.div
+                    key={stepKey}
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.2, duration: 0.8 }}
                     className="group relative h-[min(600px,50dvh)] min-h-[260px] overflow-hidden rounded-lg border border-white/28 transition-all duration-500 hover:border-white/45"
                   >
-                    {/* Visual Background */}
                     <div className="absolute inset-0 z-0">
-                      <img 
-                        src={i === 0 ? "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1000" : 
-                             i === 1 ? "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=1000" :
-                             i === 2 ? "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1000" :
-                             "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=1000"} 
-                        alt={item.title} 
-                        className="w-full h-full object-cover group-hover:scale-110 transition-all duration-1000"
+                      <img
+                        src={WEDDINGS_DAY_TIMELINE_IMAGES[i]}
+                        alt={stepTitle}
+                        className="h-full w-full object-cover transition-all duration-1000 group-hover:scale-110"
                         referrerPolicy="no-referrer"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-brand-950/50 to-transparent opacity-90 transition-opacity duration-700 group-hover:opacity-75" />
                     </div>
 
-                    {/* Content Overlay */}
-                    <div className="relative z-10 h-full p-12 flex flex-col justify-between">
-                      <div className="flex justify-between items-start">
+                    <div className="relative z-10 flex h-full flex-col justify-between p-12">
+                      <div className="flex items-start justify-between">
                         <div className="flex flex-col">
-                          <span className="text-6xl font-serif tabular-nums text-brand-200 [text-shadow:0_2px_24px_rgba(0,0,0,0.55)] transition-colors duration-500 group-hover:text-brand-100">
+                          <span className="font-serif text-6xl tabular-nums text-brand-200 [text-shadow:0_2px_24px_rgba(0,0,0,0.55)] transition-colors duration-500 group-hover:text-brand-100">
                             0{i + 1}
                           </span>
                           <div className="mt-4 h-px w-12 bg-brand-300/70 opacity-90 transition-all duration-500 group-hover:w-24 group-hover:bg-brand-200/80" />
                         </div>
                         <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-white/10 text-brand-200 backdrop-blur-md transition-all duration-500 group-hover:border-white/40 group-hover:bg-white group-hover:text-brand-900">
-                          {item.icon}
+                          <Icon size={32} />
                         </div>
                       </div>
-                      
+
                       <div className="space-y-6">
-                        <h3 className="text-3xl font-serif tracking-tight leading-none">{item.title}</h3>
-                        <p className="text-white/80 text-base font-light leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-8 group-hover:translate-y-0">
-                          {item.desc}
+                        <h3 className="font-serif text-3xl leading-none tracking-tight">{stepTitle}</h3>
+                        <p className="translate-y-8 text-base font-light leading-relaxed text-white/80 opacity-0 transition-all duration-700 group-hover:translate-y-0 group-hover:opacity-100">
+                          {t(`weddingsPage.dayTimeline.${stepKey}.desc`)}
                         </p>
                       </div>
                     </div>
@@ -419,45 +324,51 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
               viewport={{ once: true }}
               className={SECTION_H2_CLASS}
             >
-              {'Tilpasset deres '}
-              <span className="italic text-brand-800">ønsker</span>
+              {t('weddingsPage.servicesSection.headingBefore')}
+              <span className="italic text-brand-800">
+                {t('weddingsPage.servicesSection.headingAccent')}
+              </span>
             </motion.h2>
           </div>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-4 xl:gap-5">
-            {services.map((service, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group relative aspect-[4/3] overflow-hidden rounded-lg border border-black/10 transition-all duration-500 hover:border-black/20"
-              >
-                <img
-                  src={service.img}
-                  alt={service.title}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  referrerPolicy="no-referrer"
-                />
+            {WEDDINGS_SERVICE_KEYS.map((serviceKey, i) => {
+              const serviceTitle = t(`weddingsPage.servicesSection.items.${serviceKey}.title`);
+              return (
+                <motion.div
+                  key={serviceKey}
+                  tabIndex={0}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-black/10 outline-none transition-all duration-500 hover:border-black/20 focus-visible:ring-2 focus-visible:ring-brand-700 focus-visible:ring-offset-2 focus-visible:ring-offset-[#F5F5F5]"
+                >
+                  <img
+                    src={WEDDINGS_SERVICE_IMAGES[i]}
+                    alt={serviceTitle}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus-within:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0" />
 
-                <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100" />
 
-                <div className="absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6 md:p-7 lg:p-6">
-                  <h3 className="mt-auto shrink-0 font-display text-2xl uppercase tracking-wide text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.85)] transition-all duration-500 group-hover:mt-0 sm:text-3xl md:text-[1.85rem] lg:text-2xl lg:leading-tight xl:text-[1.75rem]">
-                    {service.title}
-                  </h3>
+                  <div className="absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6 md:p-7 lg:p-6">
+                    <h3 className="mt-auto shrink-0 font-display text-2xl uppercase tracking-wide text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.85)] transition-all duration-500 group-hover:mt-0 group-focus-within:mt-0 sm:text-3xl md:text-[1.85rem] lg:text-2xl lg:leading-tight xl:text-[1.75rem]">
+                      {serviceTitle}
+                    </h3>
 
-                  <div className="mt-3 flex-grow opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100">
-                    <p className="line-clamp-[10] whitespace-pre-line text-base font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-lg md:text-[1.125rem] md:leading-relaxed lg:line-clamp-[9]">
-                      {service.desc}
-                    </p>
+                    <div className="mt-3 flex-grow opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100 group-focus-within:opacity-100">
+                      <p className="line-clamp-[10] whitespace-pre-line text-base font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-lg md:text-[1.125rem] md:leading-relaxed lg:line-clamp-[9]">
+                        {t(`weddingsPage.servicesSection.items.${serviceKey}.desc`)}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -484,78 +395,84 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
             className="mb-10 max-w-2xl md:mb-12"
           >
             <h2 id="bryllupspakker-heading" className={cn(SECTION_H2_CLASS, 'mb-5')}>
-              Våre pakker
+              {t('weddingsPage.packagesSection.heading')}
             </h2>
             <p className="text-base leading-relaxed text-brand-700 md:text-lg md:leading-relaxed">
-              Tre utgangspunkt med tydelig innhold — ta kontakt for tilpasning, dato og endelig tilbud.
+              {t('weddingsPage.packagesSection.intro')}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 gap-6 md:gap-7 lg:grid-cols-3 lg:gap-8">
-            {packages.map((pkg, i) => (
-              <motion.div
-                key={pkg.name}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className={`relative flex h-full flex-col rounded-2xl border p-8 md:p-9 ${
-                  i === 1
-                    ? 'z-[1] border-brand-800 bg-brand-900 text-white shadow-2xl shadow-brand-900/30 ring-2 ring-brand-400/20'
-                    : 'border-brand-200/90 bg-white/95 text-brand-900 shadow-[0_1px_0_rgba(28,22,19,0.04)] ring-1 ring-brand-900/[0.04]'
-                }`}
-              >
-                {i === 1 && (
-                  <div className="absolute right-4 top-4 rounded-full bg-brand-700 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em]">
-                    Mest populær
-                  </div>
-                )}
-
-                <div className="mb-6">
-                  <h3
-                    className={`font-serif text-2xl tracking-tight md:text-[1.65rem] ${i === 1 ? 'text-white' : 'text-brand-950'}`}
-                  >
-                    <span className="block">{pkg.name}</span>
-                    <span
-                      className={`mt-2 block text-[1.35rem] font-light tabular-nums tracking-tight md:text-2xl ${
-                        i === 1 ? 'text-brand-200' : 'text-brand-600'
-                      }`}
-                    >
-                      {pkg.price}
-                    </span>
-                  </h3>
-                  <p className={`mt-4 text-[15px] leading-relaxed md:text-base ${i === 1 ? 'text-brand-100' : 'text-brand-700'}`}>
-                    {pkg.desc}
-                  </p>
-                </div>
-
-                <div className={`mb-6 h-px w-full ${i === 1 ? 'bg-brand-700' : 'bg-brand-200'}`} />
-
-                <ul className="mb-8 grow space-y-3.5">
-                  {pkg.features.map((feature, j) => (
-                    <li key={j} className="flex items-start gap-3">
-                      <div className={`mt-0.5 shrink-0 ${i === 1 ? 'text-brand-400' : 'text-brand-600'}`}>
-                        <CheckCircle2 size={18} strokeWidth={2.25} aria-hidden />
-                      </div>
-                      <span className={`text-[15px] leading-relaxed ${i === 1 ? 'text-brand-100' : 'text-brand-800'}`}>
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  to="/contact"
-                  className={`mt-auto inline-flex items-center justify-center rounded-full px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] transition-colors ${
-                    i === 1
-                      ? 'bg-white text-brand-900 hover:bg-brand-100'
-                      : 'bg-brand-900 text-white hover:bg-brand-800'
+            {WEDDINGS_PACKAGE_IDS.map((pkgId, i) => {
+              const isPlus = pkgId === 'plus';
+              const featureCount = WEDDINGS_PACKAGE_FEATURE_COUNT[pkgId];
+              return (
+                <motion.div
+                  key={pkgId}
+                  initial={{ opacity: 0, y: 28 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className={`relative flex h-full flex-col rounded-2xl border p-8 md:p-9 ${
+                    isPlus
+                      ? 'z-[1] border-brand-800 bg-brand-900 text-white shadow-2xl shadow-brand-900/30 ring-2 ring-brand-400/20'
+                      : 'border-brand-200/90 bg-white/95 text-brand-900 shadow-[0_1px_0_rgba(28,22,19,0.04)] ring-1 ring-brand-900/[0.04]'
                   }`}
                 >
-                  Be om tilbud
-                </Link>
-              </motion.div>
-            ))}
+                  {isPlus && (
+                    <div className="absolute right-4 top-4 rounded-full bg-brand-700 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em]">
+                      {t('weddingsPage.packagesSection.popularBadge')}
+                    </div>
+                  )}
+
+                  <div className="mb-6">
+                    <h3
+                      className={`font-serif text-2xl tracking-tight md:text-[1.65rem] ${isPlus ? 'text-white' : 'text-brand-950'}`}
+                    >
+                      <span className="block">{t(`weddingsPage.packagesSection.items.${pkgId}.name`)}</span>
+                      <span
+                        className={`mt-2 block text-[1.35rem] font-light tabular-nums tracking-tight md:text-2xl ${
+                          isPlus ? 'text-brand-200' : 'text-brand-600'
+                        }`}
+                      >
+                        {t(`weddingsPage.packagesSection.items.${pkgId}.price`)}
+                      </span>
+                    </h3>
+                    <p
+                      className={`mt-4 text-[15px] leading-relaxed md:text-base ${isPlus ? 'text-brand-100' : 'text-brand-700'}`}
+                    >
+                      {t(`weddingsPage.packagesSection.items.${pkgId}.desc`)}
+                    </p>
+                  </div>
+
+                  <div className={`mb-6 h-px w-full ${isPlus ? 'bg-brand-700' : 'bg-brand-200'}`} />
+
+                  <ul className="mb-8 grow space-y-3.5">
+                    {Array.from({ length: featureCount }, (_, j) => (
+                      <li key={`${pkgId}-f${j + 1}`} className="flex items-start gap-3">
+                        <div className={`mt-0.5 shrink-0 ${isPlus ? 'text-brand-400' : 'text-brand-600'}`}>
+                          <CheckCircle2 size={18} strokeWidth={2.25} aria-hidden />
+                        </div>
+                        <span className={`text-[15px] leading-relaxed ${isPlus ? 'text-brand-100' : 'text-brand-800'}`}>
+                          {t(`weddingsPage.packagesSection.items.${pkgId}.f${j + 1}`)}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Link
+                    to="/contact"
+                    className={`mt-auto inline-flex items-center justify-center rounded-full px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] transition-colors ${
+                      isPlus
+                        ? 'bg-white text-brand-900 hover:bg-brand-100'
+                        : 'bg-brand-900 text-white hover:bg-brand-800'
+                    }`}
+                  >
+                    {t('weddingsPage.packagesSection.ctaQuote')}
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -574,9 +491,9 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
             viewport={{ once: true }}
             className="mb-12 max-w-3xl"
           >
-            <h2 className={cn(SECTION_H2_CLASS, 'mb-6')}>Inspirasjon og Galleri</h2>
+            <h2 className={cn(SECTION_H2_CLASS, 'mb-6')}>{t('weddingsPage.gallerySection.heading')}</h2>
             <p className="text-lg leading-relaxed text-brand-600 md:text-xl">
-              Et lite utvalg fra tidligere bryllup hos oss.
+              {t('weddingsPage.gallerySection.intro')}
             </p>
           </motion.div>
 
@@ -592,7 +509,7 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
                       ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
                       : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70'
                   }`}
-                  aria-label="Forrige bilde"
+                  aria-label={t('galleryPage.lightboxPrev')}
                   aria-disabled={!showGalleryLeft}
                 >
                   <ArrowLeft size={20} />
@@ -606,7 +523,7 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
                       ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
                       : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70'
                   }`}
-                  aria-label="Neste bilde"
+                  aria-label={t('galleryPage.lightboxNext')}
                   aria-disabled={!showGalleryRight}
                 >
                   <ArrowRight size={20} />
@@ -618,24 +535,37 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
               ref={galleryRef}
               className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-8 md:gap-8 md:pb-10 md:mx-0 md:px-0"
             >
-              {inspirationGallerySlides.map((item, i) => (
-                <motion.div
-                  key={item.key}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: Math.min(i * 0.04, 0.4), duration: 0.7 }}
-                  className="group relative aspect-[6/7] min-w-[88%] snap-center overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
-                >
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading={i > 4 ? 'lazy' : 'eager'}
-                    decoding="async"
-                  />
-                </motion.div>
-              ))}
+              {inspirationGallerySlides.map((item, i) => {
+                const slideDescription = t('inspirationGallery.slideAlt', {
+                  n: inspirationSlideFileNumber(item.key),
+                });
+                return (
+                  <motion.div
+                    key={item.key}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: Math.min(i * 0.04, 0.4), duration: 0.7 }}
+                    className="group relative aspect-[6/7] min-w-[88%] snap-center overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
+                  >
+                    <img
+                      src={item.src}
+                      alt={slideDescription}
+                      className="pointer-events-none h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading={i > 4 ? 'lazy' : 'eager'}
+                      decoding="async"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setLightboxIndex(i)}
+                      className="absolute inset-0 z-10 cursor-pointer rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                      aria-label={t('inspirationGallery.openImageAria', {
+                        description: slideDescription,
+                      })}
+                    />
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
@@ -647,10 +577,12 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
             className="mt-10 text-center md:mt-12"
           >
             <Link
-              to="/gallery"
+              to="/gallery?category=wedding"
               className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">Se hele galleriet</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">
+                {t('weddingsPage.gallerySection.ctaFullGallery')}
+              </span>
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white transition-transform group-hover:translate-x-1">
                 <ArrowRight size={16} />
               </div>
@@ -676,32 +608,36 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
               viewport={{ once: true }}
               className={cn(SECTION_H2_CLASS, 'mb-4')}
             >
-              Ofte stilte{' '}
-              <span className="italic text-brand-600">spørsmål</span>
+              {t('weddingsPage.faqSection.headingBefore')}
+              <span className="italic text-brand-600">{t('weddingsPage.faqSection.headingAccent')}</span>
             </motion.h2>
             <div className="h-px w-16 bg-brand-200 mx-auto"></div>
           </div>
 
           <div className="space-y-3">
-            {faqs.map((faq, i) => (
-              <motion.div 
-                key={i}
+            {WEDDINGS_FAQ_KEYS.map((faqKey, i) => (
+              <motion.div
+                key={faqKey}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
                 className={`rounded-md overflow-hidden border transition-all duration-500
-                  ${openFaq === i 
-                    ? 'bg-white border-brand-200 shadow-md' 
+                  ${openFaq === i
+                    ? 'bg-white border-brand-200 shadow-md'
                     : 'bg-white/40 border-brand-100 hover:border-brand-200 hover:bg-white/60'
                   }`}
               >
-                <button 
+                <button
+                  type="button"
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full px-5 py-4 md:px-6 md:py-4 flex items-center justify-between gap-4 text-left group"
+                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left group md:px-6 md:py-4"
+                  aria-expanded={openFaq === i}
                 >
-                  <span className={`font-serif text-lg md:text-xl transition-colors duration-300 ${openFaq === i ? 'text-brand-900' : 'text-brand-800 group-hover:text-brand-900'}`}>
-                    {faq.q}
+                  <span
+                    className={`font-serif text-lg transition-colors duration-300 md:text-xl ${openFaq === i ? 'text-brand-900' : 'text-brand-800 group-hover:text-brand-900'}`}
+                  >
+                    {t(`weddingsPage.faqSection.items.${faqKey}.q`)}
                   </span>
                   <div className={`w-9 h-9 shrink-0 rounded-full border flex items-center justify-center transition-all duration-500
                     ${openFaq === i 
@@ -720,9 +656,9 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
                     >
-                      <div className="px-5 pb-5 md:px-6 md:pb-6 text-brand-600 text-[15px] md:text-base font-light leading-relaxed">
-                        <div className="h-px w-10 bg-brand-100 mb-3"></div>
-                        {faq.a}
+                      <div className="px-5 pb-5 text-[15px] font-light leading-relaxed text-brand-600 md:px-6 md:pb-6 md:text-base">
+                        <div className="mb-3 h-px w-10 bg-brand-100"></div>
+                        {t(`weddingsPage.faqSection.items.${faqKey}.a`)}
                       </div>
                     </motion.div>
                   )}
@@ -745,11 +681,11 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
         >
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0 opacity-30">
-            <img 
-              src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=2000" 
-              alt="CTA BG" 
-              className="w-full h-full object-cover" 
-              referrerPolicy="no-referrer" 
+            <img
+              src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=2000"
+              alt={t('weddingsPage.finalCta.bgImageAlt')}
+              className="h-full w-full object-cover"
+              referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-brand-900/80 via-brand-900/40 to-brand-900/90"></div>
           </div>
@@ -768,18 +704,18 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
               transition={{ delay: 0.1 }}
               className={SECTION_H2_ON_DARK_CLASS}
             >
-              Skal vi skape <br />
-              <span className="italic text-brand-400">magi sammen?</span>
+              {t('weddingsPage.finalCta.headingLine1')} <br />
+              <span className="italic text-brand-400">{t('weddingsPage.finalCta.headingLine2')}</span>
             </motion.h2>
-            
-            <motion.p 
+
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-brand-100 text-xl md:text-2xl font-light max-w-2xl mx-auto leading-relaxed"
+              className="mx-auto max-w-2xl text-xl font-light leading-relaxed text-brand-100 md:text-2xl"
             >
-              Ta gjerne kontakt for en uforpliktende prat eller for å avtale en privat visning av selskapslokalet.
+              {t('weddingsPage.finalCta.body')}
             </motion.p>
             
             <motion.div 
@@ -789,23 +725,30 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
               transition={{ delay: 0.3 }}
               className="flex flex-col items-center justify-center gap-5 pt-4 sm:flex-row sm:gap-6 sm:pt-6"
             >
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 className="w-full rounded-full bg-white px-10 py-5 text-xs font-bold uppercase tracking-[0.3em] text-brand-900 shadow-xl transition-all hover:scale-[1.02] hover:bg-brand-50 active:scale-[0.98] sm:w-auto sm:px-14"
               >
-                Book nå
+                {t('hero.bookNow')}
               </Link>
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 className="w-full rounded-full border border-white/30 bg-transparent px-10 py-5 text-xs font-bold uppercase tracking-[0.3em] text-white transition-all hover:bg-white/10 sm:w-auto sm:px-14"
               >
-                Send forespørsel
+                {t('hero.cta')}
               </Link>
             </motion.div>
           </div>
         </motion.div>
         </div>
       </section>
+
+      <InspirationGalleryLightbox
+        activeIndex={lightboxIndex}
+        onClose={closeLightbox}
+        onGoPrev={lightboxShowPrev}
+        onGoNext={lightboxShowNext}
+      />
     </div>
   );
 };

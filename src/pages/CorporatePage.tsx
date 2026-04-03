@@ -1,83 +1,55 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { HeroScrollHint } from '../components/HeroScrollHint';
+import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 
 const CTA_PRIMARY = '/inquiry';
 const CTA_SECONDARY = '/contact';
 
-const whyThree = [
-  'Personlig ramme — ikke anonym konferansesal',
-  'Opplegg tilpasset dato, format og antall gjester',
-  'Koordinering på stedet — færre parallelle tråder for dere å holde i',
-];
+const CORPORATE_INTRO_BENEFIT_KEYS = ['item1', 'item2', 'item3'] as const;
 
-const eventTypes = [
-  {
-    title: 'Konferanse & seminar',
-    tag: 'Faglig',
-    desc: 'Gode fasiliteter for faglig innhold, med rom for både presentasjoner og pauser i rolige omgivelser.',
-    img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Teambuilding',
-    tag: 'Fellesskap',
-    desc: 'Skap samhold gjennom aktiviteter og gode opplevelser – både inne og ute, tilpasset deres behov.',
-    img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Julebord',
-    tag: 'Festlig',
-    desc: 'Samle kollegaene til en hyggelig kveld med god stemning, mat og fest i lune omgivelser.',
-    img: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Sommerfest',
-    tag: 'Sosialt',
-    desc: 'Nyt sommeren med kollegaer i åpne og grønne omgivelser, med god plass til både aktiviteter og avslapning.',
-    img: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Workshop & kickoff',
-    tag: 'Energi',
-    desc: 'Start nye prosjekter eller samle teamet med fokus og energi i inspirerende omgivelser.',
-    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Firmamiddag',
-    tag: 'Representativt',
-    desc: 'Inviter til en stilfull middag med gode rammer for både samtaler, feiring og relasjonsbygging.',
-    img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1200',
-  },
-];
+const CORPORATE_EVENT_KEYS = [
+  'conference',
+  'teambuilding',
+  'christmasParty',
+  'summerParty',
+  'workshopKickoff',
+  'companyDinner',
+] as const;
 
-const packages = [
-  {
-    name: 'Lokalleie',
-    price: 'På forespørsel',
-    detail: 'Tilbud etter samtale',
-    fit: 'Dere styrer leverandører selv.',
-    bullets: ['Eksklusiv bruk av avtalte lokaler', 'Grunnleggende bord og stoler', 'Avtalt tidsramme'],
-  },
-  {
-    name: 'Fleksibelt opplegg',
-    price: 'På forespørsel',
-    detail: 'Tilpasses behov',
-    fit: 'Sted pluss utvalgt støtte fra oss.',
-    bullets: ['Tilpasset rigg og plan', 'Koordinering med oss', 'Kan utvides'],
-    featured: true,
-  },
-  {
-    name: 'Skreddersøm',
-    price: 'Individuelt',
-    detail: 'Etter omfang',
-    fit: 'Helheten fra idé til gjennomføring.',
-    bullets: ['Dialog om konsept og budsjett', 'Samarbeid med leverandører', 'Oppfølging på dagen'],
-  },
-];
+type CorporateEventKey = (typeof CORPORATE_EVENT_KEYS)[number];
+
+const CORPORATE_EVENT_IMAGES: Record<CorporateEventKey, string> = {
+  conference:
+    'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=85&w=1200',
+  teambuilding:
+    'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=1200',
+  christmasParty:
+    'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=85&w=1200',
+  summerParty:
+    'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=85&w=1200',
+  workshopKickoff:
+    'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=85&w=1200',
+  companyDinner:
+    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1200',
+};
+
+const CORPORATE_PACKAGE_KEYS = ['venueRental', 'flexiblePackage', 'bespoke'] as const;
+
+type CorporatePackageKey = (typeof CORPORATE_PACKAGE_KEYS)[number];
+
+const CORPORATE_PACKAGE_FEATURED: Record<CorporatePackageKey, boolean> = {
+  venueRental: false,
+  flexiblePackage: true,
+  bespoke: false,
+};
+
+const CORPORATE_PACKAGE_BULLET_KEYS = ['bullet1', 'bullet2', 'bullet3'] as const;
 
 const galleryImgs = [
   'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1600',
@@ -87,33 +59,27 @@ const galleryImgs = [
   'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=1200',
 ];
 
-const faqs = [
-  {
-    q: 'Hvilke typer bedriftsarrangement passer?',
-    a: 'Kortene viser typiske former — fra konferanser, teambuilding og workshop til julebord, sommerfest og firmamiddag. Kapasitet og detaljer i opplegget avklarer vi ut fra dato, antall og hva dere vil oppnå.',
-  },
-  {
-    q: 'Kan opplegget tilpasses?',
-    a: 'Ja — dato, antall gjester og ønsket form styrer hvordan vi setter opp lokaler og praktisk rundt arrangementet.',
-  },
-  {
-    q: 'Kan vi komme på omvisning?',
-    a: 'Ja. Ta kontakt så finner vi et tidspunkt som passer.',
-  },
-  {
-    q: 'Hvordan sender vi forespørsel?',
-    a: 'Bruk skjemaet vårt med dato, omtrentlig antall og plan. Vi tar kontakt med forslag.',
-  },
-];
+const CORPORATE_FAQ_KEYS = ['eventTypes', 'tailored', 'viewing', 'howToInquire'] as const;
 
 const GALLERY_EDGE_TOLERANCE = 2;
 
 export const CorporatePage = () => {
+  const { t, i18n } = useTranslation();
+  const gallerySlides = useMemo<GalleryLightboxSlide[]>(
+    () =>
+      galleryImgs.map((src, i) => ({
+        src,
+        alt: t('corporatePage.gallerySection.slideAlt', { n: i + 1 }),
+      })),
+    [t, i18n.language],
+  );
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const [galleryHasOverflow, setGalleryHasOverflow] = useState(false);
   const [showGalleryLeft, setShowGalleryLeft] = useState(false);
   const [showGalleryRight, setShowGalleryRight] = useState(true);
+  const { lightboxIndex, setLightboxIndex, closeLightbox, lightboxShowPrev, lightboxShowNext } =
+    useGalleryLightboxState(galleryImgs.length);
 
   const handleGalleryScroll = () => {
     if (galleryRef.current) {
@@ -156,7 +122,7 @@ export const CorporatePage = () => {
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=2000"
-            alt=""
+            alt={t('corporatePage.heroImageAlt')}
             className="h-full w-full scale-105 object-cover brightness-[0.42]"
             referrerPolicy="no-referrer"
           />
@@ -182,8 +148,10 @@ export const CorporatePage = () => {
               transition={{ duration: 0.55 }}
               className="max-w-5xl font-serif text-6xl leading-[0.9] tracking-tighter text-balance md:text-9xl"
             >
-              Fra julebord til kick-off.
-              <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">Alt på ett sted.</span>
+              {t('corporatePage.heroTitleLine1')}
+              <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">
+                {t('corporatePage.heroTitleLine2')}
+              </span>
             </motion.h1>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -195,19 +163,19 @@ export const CorporatePage = () => {
                 to={CTA_SECONDARY}
                 className="rounded-full bg-white px-10 py-5 text-center text-sm font-bold uppercase tracking-widest text-brand-900 shadow-xl transition hover:bg-brand-50"
               >
-                Book nå
+                {t('hero.bookNow')}
               </Link>
               <Link
                 to={CTA_PRIMARY}
                 className="rounded-full border-2 border-white/35 bg-white/5 px-10 py-5 text-center text-sm font-bold uppercase tracking-widest text-white backdrop-blur-[2px] transition hover:bg-white/10"
               >
-                Send forespørsel
+                {t('hero.cta')}
               </Link>
             </motion.div>
           </motion.div>
         </div>
 
-        <HeroScrollHint targetId="corporate-intro" />
+        <HeroScrollHint targetId="corporate-intro" ariaLabel={t('corporatePage.heroScrollHintAria')} />
       </section>
 
       {/* 2 — Verdi: bilde venstre + kompakt innhold (samme informasjon) */}
@@ -228,7 +196,7 @@ export const CorporatePage = () => {
                 >
                   <img
                     src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1600"
-                    alt="Selskapslokale med varmt lys og dekket til fest — stemning som passer bedriftsarrangement hos Rønningen"
+                    alt={t('corporatePage.introSection.figureAlt')}
                     className="absolute inset-0 h-full w-full object-cover"
                     loading="lazy"
                     decoding="async"
@@ -252,21 +220,22 @@ export const CorporatePage = () => {
                     id="corporate-value-heading"
                     className={cn(SECTION_H2_CLASS, 'text-balance')}
                   >
-                    Der profesjon møter <span className="italic text-brand-700">varme</span>
+                    {t('corporatePage.introSection.headingBefore')}
+                    <span className="italic text-brand-700">{t('corporatePage.introSection.headingAccent')}</span>
                   </h2>
                   <p className="max-w-2xl text-pretty text-base leading-relaxed text-brand-800 md:text-lg md:leading-relaxed lg:text-xl lg:leading-relaxed">
-                    Vertskap som kjenner både formelle og uformelle bedriftskvelder — og lokaler som kan tones opp eller ned etter anledningen.
+                    {t('corporatePage.introSection.intro')}
                   </p>
                 </motion.header>
 
                 <div className="mt-6 border-t border-brand-200/90 pt-6 md:mt-8 md:pt-8">
                   <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-brand-500 md:mb-4 md:text-base md:tracking-[0.22em]">
-                    Tre tydelige fordeler
+                    {t('corporatePage.introSection.benefitsEyebrow')}
                   </p>
                   <ul className="space-y-3 md:space-y-3.5" role="list">
-                    {whyThree.map((line) => (
+                    {CORPORATE_INTRO_BENEFIT_KEYS.map((key) => (
                       <li
-                        key={line}
+                        key={key}
                         className="flex gap-3 text-base leading-snug text-brand-800 md:gap-3.5 md:text-lg md:leading-relaxed"
                       >
                         <CheckCircle2
@@ -274,7 +243,7 @@ export const CorporatePage = () => {
                           strokeWidth={1.75}
                           aria-hidden
                         />
-                        <span>{line}</span>
+                        <span>{t(`corporatePage.introSection.benefits.${key}`)}</span>
                       </li>
                     ))}
                   </ul>
@@ -304,46 +273,51 @@ export const CorporatePage = () => {
               viewport={{ once: true }}
               className={SECTION_H2_ON_DARK_CLASS}
             >
-              Typiske bedriftsarrangement <span className="italic text-brand-400">hos oss</span>
+              {t('corporatePage.eventsSection.headingBefore')}
+              <span className="italic text-brand-400">{t('corporatePage.eventsSection.headingAccent')}</span>
             </motion.h2>
           </div>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-4 xl:gap-5">
-            {eventTypes.map((e, i) => (
-              <motion.div
-                key={e.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-white/28 transition-all duration-500 hover:border-white/45"
-              >
-                <img
-                  src={e.img}
-                  alt={e.title}
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                  decoding="async"
-                  referrerPolicy="no-referrer"
-                />
+            {CORPORATE_EVENT_KEYS.map((eventKey, i) => {
+              const eventTitle = t(`corporatePage.eventsSection.items.${eventKey}.title`);
+              return (
+                <motion.div
+                  key={eventKey}
+                  tabIndex={0}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-white/28 outline-none transition-all duration-500 hover:border-white/45 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900"
+                >
+                  <img
+                    src={CORPORATE_EVENT_IMAGES[eventKey]}
+                    alt={eventTitle}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus-within:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                    referrerPolicy="no-referrer"
+                  />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0" />
 
-                <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100" />
 
-                <div className="absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6 md:p-7 lg:p-6">
-                  <h3 className="mt-auto shrink-0 font-display text-2xl uppercase tracking-wide text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.85)] transition-all duration-500 group-hover:mt-0 sm:text-3xl md:text-[1.85rem] lg:text-2xl lg:leading-tight xl:text-[1.75rem]">
-                    {e.title}
-                  </h3>
+                  <div className="absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6 md:p-7 lg:p-6">
+                    <h3 className="mt-auto shrink-0 font-display text-2xl uppercase tracking-wide text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.85)] transition-all duration-500 group-hover:mt-0 group-focus-within:mt-0 sm:text-3xl md:text-[1.85rem] lg:text-2xl lg:leading-tight xl:text-[1.75rem]">
+                      {eventTitle}
+                    </h3>
 
-                  <div className="mt-3 flex-grow opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100">
-                    <p className="line-clamp-6 text-sm font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:line-clamp-7">
-                      {e.desc}
-                    </p>
+                    <div className="mt-3 flex-grow opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100 group-focus-within:opacity-100">
+                      <p className="line-clamp-[10] whitespace-pre-line text-base font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-lg md:text-[1.125rem] md:leading-relaxed lg:line-clamp-[9]">
+                        {t(`corporatePage.eventsSection.items.${eventKey}.desc`)}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -370,19 +344,20 @@ export const CorporatePage = () => {
             className="mb-10 max-w-2xl space-y-4 md:mb-12 md:space-y-5"
           >
             <h2 id="corporate-packages-heading" className={cn(SECTION_H2_CLASS, 'mb-5 text-balance')}>
-              Våre bedriftspakker
+              {t('corporatePage.packagesSection.heading')}
             </h2>
             <p className="max-w-2xl text-base leading-relaxed text-brand-700 md:text-lg md:leading-relaxed">
-              Tre utgangspunkt — vi tilpasser i dialog med dere.
+              {t('corporatePage.packagesSection.intro')}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 gap-6 md:gap-7 lg:grid-cols-3 lg:gap-8">
-            {packages.map((pkg, i) => {
-              const featured = 'featured' in pkg && pkg.featured;
+            {CORPORATE_PACKAGE_KEYS.map((pkgKey, i) => {
+              const featured = CORPORATE_PACKAGE_FEATURED[pkgKey];
+              const itemBase = `corporatePage.packagesSection.items.${pkgKey}`;
               return (
                 <motion.div
-                  key={pkg.name}
+                  key={pkgKey}
                   initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -396,7 +371,7 @@ export const CorporatePage = () => {
                 >
                   {featured && (
                     <div className="absolute right-4 top-4 rounded-full bg-brand-700 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em]">
-                      Mest populær
+                      {t('corporatePage.packagesSection.featuredBadge')}
                     </div>
                   )}
 
@@ -407,7 +382,7 @@ export const CorporatePage = () => {
                         featured ? 'text-brand-400' : 'text-brand-500',
                       )}
                     >
-                      {pkg.detail}
+                      {t(`${itemBase}.detail`)}
                     </p>
                     <h3
                       className={cn(
@@ -415,26 +390,26 @@ export const CorporatePage = () => {
                         featured ? 'text-white' : 'text-brand-950',
                       )}
                     >
-                      {pkg.name}
+                      {t(`${itemBase}.name`)}
                     </h3>
                     <p className={cn('mt-3 font-serif text-2xl md:text-3xl', featured ? 'text-brand-100' : 'text-brand-900')}>
-                      {pkg.price}
+                      {t(`${itemBase}.price`)}
                     </p>
                     <p className={cn('mt-4 text-[15px] leading-relaxed md:text-base', featured ? 'text-brand-100' : 'text-brand-700')}>
-                      {pkg.fit}
+                      {t(`${itemBase}.fit`)}
                     </p>
                   </div>
 
                   <div className={cn('mb-6 h-px w-full', featured ? 'bg-brand-700' : 'bg-brand-200')} />
 
                   <ul className="mb-8 grow space-y-3.5">
-                    {pkg.bullets.map((b) => (
-                      <li key={b} className="flex items-start gap-3">
+                    {CORPORATE_PACKAGE_BULLET_KEYS.map((bulletKey) => (
+                      <li key={bulletKey} className="flex items-start gap-3">
                         <div className={cn('mt-0.5 shrink-0', featured ? 'text-brand-400' : 'text-brand-600')}>
                           <CheckCircle2 size={18} strokeWidth={2.25} aria-hidden />
                         </div>
                         <span className={cn('text-[15px] leading-relaxed', featured ? 'text-brand-100' : 'text-brand-800')}>
-                          {b}
+                          {t(`${itemBase}.${bulletKey}`)}
                         </span>
                       </li>
                     ))}
@@ -447,7 +422,7 @@ export const CorporatePage = () => {
                       featured ? 'bg-white text-brand-900 hover:bg-brand-100' : 'bg-brand-900 text-white hover:bg-brand-800',
                     )}
                   >
-                    Be om tilbud
+                    {t('corporatePage.packagesSection.requestQuote')}
                   </Link>
                 </motion.div>
               );
@@ -469,9 +444,9 @@ export const CorporatePage = () => {
             viewport={{ once: true }}
             className="mb-12 max-w-3xl"
           >
-            <h2 className={cn(SECTION_H2_CLASS, 'mb-6')}>Stemning fra lokalet</h2>
+            <h2 className={cn(SECTION_H2_CLASS, 'mb-6')}>{t('corporatePage.gallerySection.heading')}</h2>
             <p className="text-lg leading-relaxed text-brand-600 md:text-xl">
-              Selskap, mingling og kveld — ikke bare tomme rom. Bla gjennom et utvalg av stemning fra arrangement hos oss.
+              {t('corporatePage.gallerySection.intro')}
             </p>
           </motion.div>
 
@@ -488,7 +463,7 @@ export const CorporatePage = () => {
                       ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
                       : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70',
                   )}
-                  aria-label="Forrige bilde"
+                  aria-label={t('corporatePage.gallerySection.prevImageAria')}
                   aria-disabled={!showGalleryLeft}
                 >
                   <ArrowLeft size={20} />
@@ -503,7 +478,7 @@ export const CorporatePage = () => {
                       ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
                       : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70',
                   )}
-                  aria-label="Neste bilde"
+                  aria-label={t('corporatePage.gallerySection.nextImageAria')}
                   aria-disabled={!showGalleryRight}
                 >
                   <ArrowRight size={20} />
@@ -515,9 +490,9 @@ export const CorporatePage = () => {
               ref={galleryRef}
               className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-8 md:mx-0 md:gap-8 md:px-0 md:pb-10"
             >
-              {galleryImgs.map((src, i) => (
+              {gallerySlides.map((slide, i) => (
                 <motion.div
-                  key={src}
+                  key={slide.src}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -525,12 +500,18 @@ export const CorporatePage = () => {
                   className="group relative aspect-[6/7] min-w-[88%] snap-center overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
                 >
                   <img
-                    src={src}
-                    alt={`Stemning fra lokalet ${i + 1}`}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    src={slide.src}
+                    alt={slide.alt}
+                    className="pointer-events-none h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     loading="lazy"
                     decoding="async"
                     referrerPolicy="no-referrer"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setLightboxIndex(i)}
+                    className="absolute inset-0 z-10 cursor-pointer rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                    aria-label={t('corporatePage.gallerySection.openLargeImage', { caption: slide.alt })}
                   />
                 </motion.div>
               ))}
@@ -545,10 +526,12 @@ export const CorporatePage = () => {
             className="mt-10 text-center md:mt-12"
           >
             <Link
-              to="/gallery"
+              to="/gallery?category=corporate"
               className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">Se hele galleriet</span>
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">
+                {t('corporatePage.gallerySection.fullGalleryCta')}
+              </span>
               <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white transition-transform group-hover:translate-x-1">
                 <ArrowRight size={16} />
               </div>
@@ -571,67 +554,71 @@ export const CorporatePage = () => {
               viewport={{ once: true }}
               className={cn(SECTION_H2_CLASS, 'mb-4')}
             >
-              Ofte stilte <span className="italic text-brand-600">spørsmål</span>
+              {t('corporatePage.faqSection.headingBefore')}
+              <span className="italic text-brand-600">{t('corporatePage.faqSection.headingAccent')}</span>
             </motion.h2>
             <div className="mx-auto h-px w-16 bg-brand-200" />
           </div>
 
           <div className="space-y-3">
-            {faqs.map((faq, i) => (
-              <motion.div
-                key={faq.q}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className={cn(
-                  'overflow-hidden rounded-md border transition-all duration-500',
-                  openFaq === i
-                    ? 'border-brand-200 bg-white shadow-md'
-                    : 'border-brand-100 bg-white/40 hover:border-brand-200 hover:bg-white/60',
-                )}
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="group flex w-full items-center justify-between gap-4 px-5 py-4 text-left md:px-6 md:py-4"
-                >
-                  <span
-                    className={cn(
-                      'font-serif text-lg transition-colors duration-300 md:text-xl',
-                      openFaq === i ? 'text-brand-900' : 'text-brand-800 group-hover:text-brand-900',
-                    )}
-                  >
-                    {faq.q}
-                  </span>
-                  <div
-                    className={cn(
-                      'flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all duration-500',
-                      openFaq === i
-                        ? 'rotate-180 border-brand-900 bg-brand-900 text-white'
-                        : 'border-brand-200 text-brand-400 group-hover:border-brand-400 group-hover:text-brand-900',
-                    )}
-                  >
-                    <ChevronDown size={18} />
-                  </div>
-                </button>
-                <AnimatePresence>
-                  {openFaq === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
-                    >
-                      <div className="px-5 pb-5 text-[15px] font-light leading-relaxed text-brand-600 md:px-6 md:pb-6 md:text-base">
-                        <div className="mb-3 h-px w-10 bg-brand-100" />
-                        {faq.a}
-                      </div>
-                    </motion.div>
+            {CORPORATE_FAQ_KEYS.map((faqKey, i) => {
+              const itemBase = `corporatePage.faqSection.items.${faqKey}`;
+              return (
+                <motion.div
+                  key={faqKey}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className={cn(
+                    'overflow-hidden rounded-md border transition-all duration-500',
+                    openFaq === i
+                      ? 'border-brand-200 bg-white shadow-md'
+                      : 'border-brand-100 bg-white/40 hover:border-brand-200 hover:bg-white/60',
                   )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    className="group flex w-full items-center justify-between gap-4 px-5 py-4 text-left md:px-6 md:py-4"
+                  >
+                    <span
+                      className={cn(
+                        'font-serif text-lg transition-colors duration-300 md:text-xl',
+                        openFaq === i ? 'text-brand-900' : 'text-brand-800 group-hover:text-brand-900',
+                      )}
+                    >
+                      {t(`${itemBase}.q`)}
+                    </span>
+                    <div
+                      className={cn(
+                        'flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all duration-500',
+                        openFaq === i
+                          ? 'rotate-180 border-brand-900 bg-brand-900 text-white'
+                          : 'border-brand-200 text-brand-400 group-hover:border-brand-400 group-hover:text-brand-900',
+                      )}
+                    >
+                      <ChevronDown size={18} />
+                    </div>
+                  </button>
+                  <AnimatePresence>
+                    {openFaq === i && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
+                      >
+                        <div className="px-5 pb-5 text-[15px] font-light leading-relaxed text-brand-600 md:px-6 md:pb-6 md:text-base">
+                          <div className="mb-3 h-px w-10 bg-brand-100" />
+                          {t(`${itemBase}.a`)}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -649,7 +636,7 @@ export const CorporatePage = () => {
             <div className="absolute inset-0 z-0 opacity-30">
               <img
                 src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=2000"
-                alt=""
+                alt={t('corporatePage.closingCta.bgImageAlt')}
                 className="h-full w-full object-cover"
                 referrerPolicy="no-referrer"
               />
@@ -660,33 +647,44 @@ export const CorporatePage = () => {
               <div className="absolute -bottom-[20%] -right-[10%] h-[50%] w-[50%] rounded-full bg-rose-400/10 blur-[120px]" />
             </div>
             <div className="relative z-10 mx-auto max-w-3xl space-y-6 md:space-y-8">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-300">Neste steg</p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-300">
+                {t('corporatePage.closingCta.eyebrow')}
+              </p>
               <h2 className={cn(SECTION_H2_ON_DARK_CLASS, 'm-0')}>
-                Klar for å <span className="italic text-brand-400">planlegge</span>
+                {t('corporatePage.closingCta.headingLine1Before')}
+                <span className="italic text-brand-400">{t('corporatePage.closingCta.headingLine1Accent')}</span>
                 <br />
-                bedriftens dag hos oss?
+                {t('corporatePage.closingCta.headingLine2')}
               </h2>
               <p className="text-lg font-light leading-relaxed text-brand-100 md:text-xl">
-                Kort fortalt hva dere tenker på — så foreslår vi opplegg som passer team og gjester.
+                {t('corporatePage.closingCta.body')}
               </p>
               <div className="flex flex-col items-center justify-center gap-4 pt-2 sm:flex-row sm:gap-5">
                 <Link
                   to={CTA_PRIMARY}
                   className="w-full rounded-full bg-white px-10 py-5 text-xs font-bold uppercase tracking-[0.28em] text-brand-900 shadow-xl transition hover:bg-brand-50 sm:w-auto"
                 >
-                  Send forespørsel
+                  {t('hero.cta')}
                 </Link>
                 <Link
                   to={CTA_SECONDARY}
                   className="w-full rounded-full border border-white/30 px-10 py-5 text-xs font-bold uppercase tracking-[0.28em] text-white transition hover:bg-white/10 sm:w-auto"
                 >
-                  Book nå
+                  {t('hero.bookNow')}
                 </Link>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
+
+      <GalleryLightbox
+        slides={gallerySlides}
+        activeIndex={lightboxIndex}
+        onClose={closeLightbox}
+        onGoPrev={lightboxShowPrev}
+        onGoNext={lightboxShowNext}
+      />
     </div>
   );
 };

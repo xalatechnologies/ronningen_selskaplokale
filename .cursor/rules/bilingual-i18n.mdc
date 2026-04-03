@@ -1,0 +1,25 @@
+---
+description: User-facing copy must exist in both English and Norwegian (i18n)
+alwaysApply: true
+---
+
+# Bilingual copy (English + Norwegian)
+
+This app uses **react-i18next** with resources in `src/lib/i18n.ts` under **`en.translation`** and **`no.translation`**.
+
+## When you add or change user-visible text
+
+1. **Do not** leave hardcoded Norwegian or English in components for text the user reads (headings, body, buttons, labels, aria-labels that describe UI, empty states, errors).
+2. **Do** add or update **the same key path** in **both** `en` and `no` inside `resources`.
+3. If you introduce a **new key**, add it under the same nested structure in **both** locales before finishing.
+4. If you **rename or remove** a key, update **both** trees so nothing references a missing translation in either language.
+5. **Interpolation** (`{{name}}`, etc.) and key names must match in both locales.
+
+## Quick check before completing a task
+
+- [ ] Every new or changed `t('…')` key exists in **`en.translation`**
+- [ ] The same key exists with Norwegian copy in **`no.translation`**
+
+## Default language
+
+`i18n` defaults to **`no`** with fallback **`no`**; English must still be complete so language switching works.

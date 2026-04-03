@@ -10,6 +10,12 @@ export type InspirationSlide = {
   alt: string;
 };
 
+/** File number from `inspirasjon-XX` (e.g. `inspirasjon-05` → 5). */
+export function inspirationSlideFileNumber(key: string): number {
+  const m = /^inspirasjon-(\d+)$/.exec(key);
+  return m ? parseInt(m[1], 10) : 1;
+}
+
 export const inspirationGallerySlides: InspirationSlide[] = Array.from(
   { length: INSPIRATION_GALLERY_COUNT },
   (_, i) => {
