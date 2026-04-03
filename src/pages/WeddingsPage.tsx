@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   CheckCircle2, Users, Heart, Sparkles, Camera, 
-  Music, Utensils, Calendar, Clock,
+  Music, Utensils, Clock,
   ArrowRight, ArrowLeft, HelpCircle, MessageSquare,
   Wine, Car, ChevronDown, ChevronUp,
   GlassWater, PartyPopper
@@ -106,40 +106,40 @@ export const WeddingsPage = () => {
 
   const services = [
     {
-      title: "Catering & Menyer",
-      desc: "Vi samarbeider med de beste kokkene for å levere alt fra rustikke buffetløsninger til elegante 5-retters middager.",
+      title: "Storkjøkken & catering",
+      desc: "Et godt utstyrt storkjøkken og tett samarbeid med dyktige kokker gir dere frihet til å velge uttrykk — fra lun langbordsbuffet til en gjennomført flerrettersmiddag som føles helt deres.",
       img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800",
       icon: <Utensils size={24} />
     },
     {
       title: "Fotografering",
-      desc: "Våre anbefalte fotografer kjenner lyset og de beste vinklene på gården, og fanger de ekte øyeblikkene.",
+      desc: "Anbefalte fotografer som kjenner både lyset og rommene her — fra portretter og vielse til fest og små øyeblikk dere vil huske.",
       img: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&q=80&w=800",
       icon: <Camera size={24} />
     },
     {
-      title: "Blomster & Dekor",
-      desc: "Våre dekoratører hjelper dere med å skape den perfekte atmosfæren, fra brudebukett til borddekorasjoner.",
+      title: "Dekorasjon",
+      desc: "Sammen med dyktige dekoratører kan dere bygge en helhet som føles personlig — brudebukett, bord og detaljer som binder dagen visuelt sammen.",
       img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800",
       icon: <Sparkles size={24} />
     },
     {
-      title: "Drikke & Bar",
-      desc: "Ta med egne drikkevarer uten korkavgift. Vi kan bistå med profesjonelle bartendere og barutstyr.",
+      title: "Bar & dansegulv",
+      desc: "Ingen korkavgift — dere tar med det dere ønsker å servere. Ved behov ordner vi bartendere og utstyr, og kvelden har naturlig plass til både toastmaster og dans.",
       img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800",
       icon: <Wine size={24} />
     },
     {
       title: "Lyd & Lys",
-      desc: "Vi har profesjonelt utstyr for både tale og dans, samt stemningsbelysning som fremhever låvens arkitektur.",
+      desc: "Utstyr som gjør taler hørbare og musikken levende — med belysning som løfter stemningen og lar treverk og rom komme til sin rett.",
       img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800",
       icon: <Music size={24} />
     },
     {
-      title: "Planlegging",
-      desc: "Vi kan ta oss av all koordinering med leverandører, slik at dere kan nyte dagen fullt ut.",
+      title: "Oppdekking & bordpynt",
+      desc: "Duk, servietter, servise, glass og det dere trenger på bordene — sammen med bordpynt, menykort, lys og små detaljer som gjør helheten komplett. Alt avstemmes med stilen på dagen deres, så bordene står klare når gjestene setter seg.",
       img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800",
-      icon: <Calendar size={24} />
+      icon: <Utensils size={24} />
     }
   ];
 
@@ -166,12 +166,16 @@ export const WeddingsPage = () => {
 
   const faqs = [
     {
-      q: "Kan vi ta med egen drikke?",
-      a: "Ja, vi har ingen korkavgift. Dere står fritt til å ta med egne drikkevarer til hele arrangementet."
+      q: "Har dere overnattingsmuligheter?",
+      a: "Vi har ikke overnatting på selve gården, men det finnes flere hoteller og overnattingssteder kun 10-15 minutter unna."
+    },
+    {
+      q: "Kan vi ta med egen drikke og mat?",
+      a: "Ja. Vi har ingen korkavgift, så dere kan ta med egne drikkevarer. Mat og catering avklarer vi sammen med dere — enten via våre anbefalte samarbeidspartnere eller andre løsninger etter avtale."
     },
     {
       q: "Hvor mange gjester er det plass til?",
-      a: "Vi har plass til inntil 120 sittende gjester ved langbord eller runde bord i låven."
+      a: "Vi har plass til inntil 250 gjester og muligheter for 200 ekstra i partitelt og bryllupslåve.",
     },
     {
       q: "Er det mulig med vielse på gården?",
@@ -182,8 +186,8 @@ export const WeddingsPage = () => {
       a: "Ved helgeleie får dere normalt tilgang fra fredag formiddag for rigging og pynting."
     },
     {
-      q: "Har dere overnattingsmuligheter?",
-      a: "Vi har ikke overnatting på selve gården, men det finnes flere hoteller og overnattingssteder kun 10-15 minutter unna."
+      q: "Har dere mulighet for helikopterlanding i forbindelse med bryllup?",
+      a: "Ja. Det kan avtales helikopterlanding hos oss i forbindelse med bryllup. Ta kontakt i god tid, så avklarer vi praktiske forhold, sikkerhet og eventuelle tillatelser sammen med dere og operatøren."
     }
   ];
 
@@ -304,8 +308,8 @@ export const WeddingsPage = () => {
       {/* 4. What your day can look like - Visual Timeline */}
       <section className="section-viewport relative overflow-hidden bg-brand-900 text-white">
         <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-20 md:px-20">
-          <header className="relative mb-16 grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16 lg:items-start">
-            <div className="lg:col-span-7 xl:col-span-6 flex flex-col gap-5 md:gap-6">
+          <header className="relative mb-16">
+            <div className="flex max-w-4xl flex-col gap-5 md:gap-6">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -318,15 +322,6 @@ export const WeddingsPage = () => {
                 </span>
               </motion.h2>
             </div>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="m-0 lg:col-span-5 xl:col-span-5 text-brand-200 text-lg sm:text-xl font-light leading-relaxed border-l border-brand-800 pl-6 sm:pl-8 lg:max-w-lg lg:pt-2"
-            >
-              Hvert bryllup er unikt, men her er en oversikt over hvordan en typisk feiring hos oss kan utfolde seg.
-            </motion.p>
           </header>
 
           <div className="relative">
@@ -401,7 +396,8 @@ export const WeddingsPage = () => {
               viewport={{ once: true }}
               className={SECTION_H2_CLASS}
             >
-              Alt dere trenger <br /> på ett sted
+              {'Tilpasset deres '}
+              <span className="italic text-brand-800">ønsker</span>
             </motion.h2>
           </div>
 
@@ -413,7 +409,7 @@ export const WeddingsPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-black/10 transition-all duration-500 hover:border-black/20"
+                className="group relative aspect-[4/3] overflow-hidden rounded-lg border border-black/10 transition-all duration-500 hover:border-black/20"
               >
                 <img
                   src={service.img}
@@ -435,17 +431,6 @@ export const WeddingsPage = () => {
                     <p className="line-clamp-5 text-sm font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:line-clamp-4">
                       {service.desc}
                     </p>
-                  </div>
-
-                  <div className="mt-auto flex items-center gap-3 opacity-0 transition-opacity delay-200 duration-500 group-hover:opacity-100 group/btn">
-                    <Link to="/contact" className="contents">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white/70 bg-black/10 backdrop-blur-[2px] transition-colors group-hover/btn:bg-white group-hover/btn:text-[#4F9DA6] sm:h-11 sm:w-11">
-                        <ArrowRight size={20} strokeWidth={2.25} />
-                      </div>
-                      <span className="text-sm font-semibold uppercase tracking-[0.14em] text-white [text-shadow:0_1px_2px_rgba(0,0,0,0.5)] sm:text-base">
-                        Les mer
-                      </span>
-                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -624,10 +609,6 @@ export const WeddingsPage = () => {
                     loading={i > 4 ? 'lazy' : 'eager'}
                     decoding="async"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-900/75 via-brand-900/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-85" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
-                    <p className="font-serif text-lg text-white md:text-xl">Bryllupsinspirasjon {i + 1}</p>
-                  </div>
                 </motion.div>
               ))}
             </div>

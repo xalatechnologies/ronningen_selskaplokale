@@ -164,11 +164,15 @@ const Home = () => {
               transition={{ duration: 0.55 }}
               className="max-w-5xl text-balance font-serif leading-[0.9] tracking-tighter text-white [text-shadow:0_2px_32px_rgba(0,0,0,0.45)]"
             >
-              <span className="block text-4xl md:text-6xl">Velkommen til</span>
-              <span className="mt-2 block font-serif italic text-6xl text-brand-200 sm:mt-3 md:text-9xl">Rønningen selskapslokale</span>
+              <span className="block text-2xl font-normal tracking-wide text-white/90 sm:text-3xl md:text-4xl lg:text-5xl">
+                Velkommen til
+              </span>
+              <span className="mt-2 block font-serif italic text-5xl text-brand-200 sm:mt-3 sm:text-6xl md:text-7xl lg:text-8xl">
+                Rønningen selskapslokale
+              </span>
             </motion.h1>
             <p className="mx-auto max-w-2xl text-xl font-light italic opacity-90 md:text-3xl [text-shadow:0_1px_24px_rgba(0,0,0,0.35)]">
-              Alt du trenger for en vellykket feiring – på ett sted
+              Alt du trenger for en vellykket feiring
             </p>
           </motion.div>
         </div>
@@ -417,10 +421,6 @@ const Home = () => {
                     loading={i > 4 ? 'lazy' : 'eager'}
                     decoding="async"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-900/75 via-brand-900/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-85" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
-                    <p className="font-serif text-lg text-white md:text-xl">Bryllupsinspirasjon {i + 1}</p>
-                  </div>
                 </motion.div>
               ))}
             </div>

@@ -58,7 +58,7 @@ const FACILITY_CARDS = [
     imgAlt: 'Profesjonelt kjøkken til catering og servering',
   },
   {
-    title: 'Universel utformet',
+    title: 'Universelt utformet',
     desc: 'Tilrettelagt slik at gjester med ulike behov kan komme seg inn, delta og føle seg velkomne.',
     img: US_IMG('photo-1584464491033-06628f3a6b7b'),
     imgAlt: 'Tilgjengelig bygning og inngang — universell utforming',
@@ -116,7 +116,7 @@ const packages = [
     price: 'På forespørsel',
     detail: 'Tilbud etter samtale',
     fit: 'Et tydelig grunnoppsett med de viktigste rammene på plass.',
-    bullets: ['Låve', 'Storkjøkken', 'Universel utformet', 'Gratis parkering (mulighet til å lade eller la bilen stå igjen)'],
+    bullets: ['Låve', 'Storkjøkken', 'Universelt utformet', 'Gratis parkering (mulighet til å lade eller la bilen stå igjen)'],
   },
   {
     name: 'Komfort + opphold',

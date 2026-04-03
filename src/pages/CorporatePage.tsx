@@ -206,7 +206,7 @@ export const CorporatePage = () => {
               className="max-w-5xl font-serif text-6xl leading-[0.9] tracking-tighter text-balance md:text-9xl"
             >
               Fra julebord til kick-off.
-              <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">Ett sted.</span>
+              <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">Alt på ett sted.</span>
             </motion.h1>
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -271,9 +271,6 @@ export const CorporatePage = () => {
                   transition={{ duration: 0.4 }}
                   className="space-y-4 md:space-y-5"
                 >
-                  <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-600 md:text-xs md:tracking-[0.32em]">
-                    Vertskap &amp; ramme
-                  </p>
                   <h2
                     id="corporate-value-heading"
                     className={cn(SECTION_H2_CLASS, 'text-balance')}
@@ -286,17 +283,17 @@ export const CorporatePage = () => {
                 </motion.header>
 
                 <div className="mt-6 border-t border-brand-200/90 pt-6 md:mt-8 md:pt-8">
-                  <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-500 md:mb-4 md:text-[11px] md:tracking-[0.24em]">
+                  <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-brand-500 md:mb-4 md:text-sm md:tracking-[0.22em]">
                     Tre tydelige fordeler
                   </p>
-                  <ul className="space-y-2.5 md:space-y-3" role="list">
+                  <ul className="space-y-3 md:space-y-3.5" role="list">
                     {whyThree.map((line) => (
                       <li
                         key={line}
-                        className="flex gap-2.5 text-[13px] leading-snug text-brand-800 md:gap-3 md:text-[15px] md:leading-snug"
+                        className="flex gap-3 text-sm leading-snug text-brand-800 md:gap-3.5 md:text-base md:leading-relaxed"
                       >
                         <CheckCircle2
-                          className="mt-0.5 h-4 w-4 shrink-0 text-brand-600"
+                          className="mt-0.5 h-4 w-4 shrink-0 text-brand-600 md:mt-1 md:h-5 md:w-5"
                           strokeWidth={1.75}
                           aria-hidden
                         />
@@ -308,13 +305,7 @@ export const CorporatePage = () => {
               </div>
             </div>
 
-            <div className="w-full" aria-labelledby="corporate-quickfit-heading">
-              <h3
-                id="corporate-quickfit-heading"
-                className="mb-4 text-center font-serif text-xl text-brand-950 md:mb-5 md:text-left md:text-2xl"
-              >
-                Møter, verksted og innhold
-              </h3>
+            <div className="w-full">
               <div className="grid grid-cols-2 place-items-center gap-8 sm:grid-cols-4 sm:gap-10 lg:gap-12">
                 {quickFit.map((c, i) => (
                   <motion.article
@@ -383,9 +374,6 @@ export const CorporatePage = () => {
             >
               Feiringer og sammenkomster <span className="italic text-brand-400">for bedriften</span>
             </motion.h2>
-            <p className="mt-5 max-w-2xl text-base font-light leading-relaxed text-brand-200 md:text-lg md:leading-relaxed">
-              Når dere vil samle folk rundt mat, musikk, taler eller eksterne gjester — se eksempler under og velg utgangspunkt. Kombiner og tilpass; vi lander flyt og vertskap sammen med dere.
-            </p>
           </div>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-4 xl:gap-5">
@@ -616,10 +604,6 @@ export const CorporatePage = () => {
                     decoding="async"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-900/75 via-brand-900/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-85" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-7">
-                    <p className="font-serif text-lg text-white md:text-xl">Bedrift og selskap {i + 1}</p>
-                  </div>
                 </motion.div>
               ))}
             </div>
