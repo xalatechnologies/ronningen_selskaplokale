@@ -61,30 +61,30 @@ export const WeddingsPage = () => {
   const whyUs = [
     {
       number: "01",
-      title: "Sjel & Atmosfære",
-      desc: "En intim og autentisk ramme der historiske vegger møter moderne varme, og skaper en følelse av å komme hjem."
+      title: "Atmosfære",
+      desc: "Et gjennomført lokale med varme detaljer og god romfølelse. Her får dere en ramme som fungerer like godt til små som store arrangementer.",
     },
     {
       number: "02",
-      title: "Naturlig Idyll",
-      desc: "Omgitt av et levende kulturlandskap som skaper en tidløs og organisk kulisse for deres mest dyrebare minner."
+      title: "Omgivelser",
+      desc: "Omgitt av natur og rolige omgivelser, med flotte uteområder og nærliggende lokasjoner som gir en ekstra dimensjon til dagen.",
     },
     {
       number: "03",
-      title: "Uendelig Fleksibilitet",
-      desc: "Fra drømmende hageseremonier til storslåtte låvefester – vi former rommet og detaljene etter deres unike visjon."
+      title: "Fleksibilitet",
+      desc: "Dere står fritt til å forme dagen slik dere ønsker. Lokalet tilpasses både type arrangement, oppsett og stil.",
     },
     {
       number: "04",
-      title: "Skapt for Øyeblikk",
-      desc: "Hver detalj er lagt til rette for at dere skal kunne senke skuldrene, være tilstede og feire kjærligheten fullt ut."
-    }
+      title: "Enkelt å gjennomføre",
+      desc: "Vi legger til rette for en smidig gjennomføring, slik at dere kan fokusere på gjestene og opplevelsen – ikke logistikken.",
+    },
   ];
 
   const dayFlow = [
     {
       title: "Vielse & fotografering",
-      desc: "Vielse i hage eller låve, og tid til portretter i fint lys og fine omgivelser.",
+      desc: "Omgitt av våre vakre uteområder, samt fossefall i umiddelbar nærhet.",
       icon: <Users size={32} />
     },
     {
@@ -147,49 +147,61 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
 
   const packages = [
     {
-      name: 'Lokalleie',
-      tag: 'Grunnleggende',
-      desc: 'For dere som ønsker å styre det meste selv og leie kun lokalene.',
-      features: ['Eksklusiv tilgang hele helgen', 'Bord og stoler inkludert', 'Sluttrengjøring', 'Eget vertskap'],
+      name: 'Basic',
+      price: 'kr 26 000',
+      desc: 'For deg som vil gjøre det meste selv',
+      features: ['Lokalleie', 'Parkering', 'Uteområde'],
     },
     {
-      name: 'Fleksibel bryllupspakke',
-      tag: 'Utvidet',
-      desc: 'En solid grunnpakke som kan utvides med de tjenestene dere trenger.',
-      features: ['Alt i lokalleie', 'Oppdekking og servise', 'Lyd og lys-pakke', 'Prosjektleder'],
+      name: 'Plus',
+      price: 'kr 33 000',
+      desc: 'Enklere og mer ferdig løsning',
+      features: [
+        'Alt i Basic',
+        'Oppdekking (bord, stoler, duk, stoltrekk, servietter)',
+        'Tilgang til kjøkken med utstyr og kjølerom',
+        'Ekstra tid før eller etter arrangement',
+      ],
     },
     {
-      name: 'Skreddersydd løsning',
-      tag: 'Full service',
-      desc: 'Vi hjelper dere med alt fra A til Å for en trygg og bekymringsfri feiring.',
-      features: ['Full planlegging', 'Catering og servering', 'Blomster og dekor', 'Koordinering på dagen'],
+      name: 'Premium',
+      price: 'kr 44 000',
+      desc: 'Full pakke – vi tar oss av det meste',
+      features: [
+        'Alt i Plus',
+        'Koordinering og planlegging',
+        'Lydanlegg',
+        'Sluttrengjøring',
+        'Dekorasjon og bordpynt',
+        '1 serveringspersonell',
+      ],
     },
-  ];
+  ] as const;
 
   const faqs = [
     {
       q: "Har dere overnattingsmuligheter?",
-      a: "Vi har ikke overnatting på selve gården, men det finnes flere hoteller og overnattingssteder kun 10-15 minutter unna."
+      a: "Vi tilbyr overnatting i egne leiligheter, samt mulighet for overnatting i tilknytning til lokalet. Dette kan leies separat etter behov."
     },
     {
-      q: "Kan vi ta med egen drikke og mat?",
-      a: "Ja. Vi har ingen korkavgift, så dere kan ta med egne drikkevarer. Mat og catering avklarer vi sammen med dere — enten via våre anbefalte samarbeidspartnere eller andre løsninger etter avtale."
+      q: "Kan vi ta med egen mat og drikke?",
+      a: "Ja, dere står fritt til å ta med egen mat og drikke. Samtidig samarbeider vi med lokale cateringsselskaper som kan levere mat og stå for servering dersom dere ønsker en enklere løsning."
     },
     {
       q: "Hvor mange gjester er det plass til?",
-      a: "Vi har plass til inntil 250 gjester og muligheter for 200 ekstra i partitelt og bryllupslåve.",
+      a: "Vi har plass til inntil 300 gjester og muligheter for 200 ekstra i partitelt og bryllupslåve.",
     },
     {
       q: "Er det mulig med vielse på gården?",
-      a: "Absolutt! Vi har flere vakre steder utendørs som egner seg perfekt for vielse, samt mulighet for innendørs vielse i låven."
+      a: "Absolutt! Vi har flere vakre steder utendørs som egner seg perfekt for vielse, samt gode muligheter for flotte bilder i vakker natur med og nærliggende fossefall."
     },
     {
       q: "Når får vi tilgang til lokalet?",
-      a: "Ved helgeleie får dere normalt tilgang fra fredag formiddag for rigging og pynting."
+      a: "Vi er fleksible og gir dere gjerne tilgang før og etter arrangementet for planlegging og gjennomføring. Samtidig tilbyr vi tjenester som gjør at dere kan fokusere på festen og gjestene."
     },
     {
-      q: "Har dere mulighet for helikopterlanding i forbindelse med bryllup?",
-      a: "Ja. Det kan avtales helikopterlanding hos oss i forbindelse med bryllup. Ta kontakt i god tid, så avklarer vi praktiske forhold, sikkerhet og eventuelle tillatelser sammen med dere og operatøren."
+      q: "Har dere parkeringsmuligheter og elbillader?",
+      a: "Vi har gode parkeringsmuligheter med god plass til alle gjester. Det er også mulig å lade elbil eller la bilen stå igjen for en enklere og trygg avslutning på kvelden.",
     }
   ];
 
@@ -267,9 +279,16 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
               <h2 id="atmosfaeren-heading" className={cn(SECTION_H2_CLASS, 'mb-6 text-balance')}>
                 Vielse og fest <br /> på samme sted
               </h2>
-              <p className="text-pretty text-base leading-relaxed text-brand-800/95 md:text-lg md:leading-relaxed">
-                Historisk låv og lokaler med komfort og utstyr som holder i dag. Samme sted til vielse, mat og fest. Dere bestemmer rekkefølgen og stilen. Rolige omgivelser i kulturlandskap, kort vei mellom seremoni og dans. Vi hjelper dere med planlegging og gjennomføring slik at dere kan konsentrere dere om hverandre. Ta kontakt for omvisning og en prat om hvordan dagen kan legges opp hos oss.
-              </p>
+              <div className="space-y-4">
+                <p className="text-pretty text-base leading-relaxed text-brand-800/95 md:text-lg md:leading-relaxed">
+                  Samle hele dagen på ett sted – fra vielse til middag og fest. Dere bestemmer rekkefølgen og stilen.
+                  Omgitt av rolige omgivelser i vakker natur, med kort vei mellom seremoni og dans.
+                </p>
+                <p className="text-pretty text-base leading-relaxed text-brand-800/95 md:text-lg md:leading-relaxed">
+                  Vi hjelper dere med planlegging og gjennomføring, slik at dere kan fokusere på det som betyr mest.
+                  Ta kontakt for omvisning og en uforpliktende prat om hvordan dagen kan gjennomføres hos oss.
+                </p>
+              </div>
             </div>
 
             <figure className="order-1 lg:order-2 m-0 w-full">
@@ -443,7 +462,7 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
         </div>
       </section>
 
-      {/* 6. Pakker — uten priser, tydelig tilbud etter samtale */}
+      {/* 6. Pakker */}
       <section
         aria-labelledby="bryllupspakker-heading"
         className="section-viewport relative overflow-hidden border-y border-brand-200/80 bg-gradient-to-b from-white to-brand-50/50"
@@ -465,10 +484,10 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
             className="mb-10 max-w-2xl md:mb-12"
           >
             <h2 id="bryllupspakker-heading" className={cn(SECTION_H2_CLASS, 'mb-5')}>
-              Våre bryllupspakker
+              Våre pakker
             </h2>
             <p className="text-base leading-relaxed text-brand-700 md:text-lg md:leading-relaxed">
-              Tre tydelige utgangspunkt — tilpasset dagen, ønskene og budsjettet deres.
+              Tre utgangspunkt med tydelig innhold — ta kontakt for tilpasning, dato og endelig tilbud.
             </p>
           </motion.div>
 
@@ -493,15 +512,17 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
                 )}
 
                 <div className="mb-6">
-                  <p
-                    className={`mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] ${
-                      i === 1 ? 'text-brand-400' : 'text-brand-500'
-                    }`}
+                  <h3
+                    className={`font-serif text-2xl tracking-tight md:text-[1.65rem] ${i === 1 ? 'text-white' : 'text-brand-950'}`}
                   >
-                    {pkg.tag}
-                  </p>
-                  <h3 className={`font-serif text-2xl tracking-tight md:text-[1.65rem] ${i === 1 ? 'text-white' : 'text-brand-950'}`}>
-                    {pkg.name}
+                    <span className="block">{pkg.name}</span>
+                    <span
+                      className={`mt-2 block text-[1.35rem] font-light tabular-nums tracking-tight md:text-2xl ${
+                        i === 1 ? 'text-brand-200' : 'text-brand-600'
+                      }`}
+                    >
+                      {pkg.price}
+                    </span>
                   </h3>
                   <p className={`mt-4 text-[15px] leading-relaxed md:text-base ${i === 1 ? 'text-brand-100' : 'text-brand-700'}`}>
                     {pkg.desc}
@@ -758,7 +779,7 @@ Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, elle
               transition={{ delay: 0.2 }}
               className="text-brand-100 text-xl md:text-2xl font-light max-w-2xl mx-auto leading-relaxed"
             >
-              Ta kontakt for en uforpliktende samtale eller for å avtale en privat visning på gården. Vi gleder oss til å høre deres historie.
+              Ta gjerne kontakt for en uforpliktende prat eller for å avtale en privat visning av selskapslokalet.
             </motion.p>
             
             <motion.div 

@@ -26,7 +26,7 @@ export const ContactPage: React.FC = () => {
       label: t('contactPage.phoneLabel'),
       value: t('contactPage.phoneValue'),
       hint: t('contactPage.phoneHint'),
-      href: 'tel:+4712345678',
+      href: 'tel:+4796665001',
     },
     {
       icon: Mail,
@@ -110,7 +110,7 @@ export const ContactPage: React.FC = () => {
                 <ArrowUpRight size={16} strokeWidth={2} aria-hidden />
               </a>
               <a
-                href="tel:+4712345678"
+                href="tel:+4796665001"
                 className="inline-flex items-center justify-center rounded-full border border-brand-300 bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.22em] text-brand-900 transition hover:border-brand-400 hover:bg-brand-50"
               >
                 {t('contactPage.ctaRing')}

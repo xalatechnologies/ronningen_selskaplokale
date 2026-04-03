@@ -748,8 +748,8 @@ const Navbar = () => {
             className="fixed bottom-20 right-4 z-[60] w-[min(92vw,24rem)] overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-2xl md:bottom-24 md:right-6"
           >
             <div className="border-b border-brand-100 bg-brand-900 px-4 py-3 text-white">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-300">Customer Assistant</p>
-              <h3 className="mt-1 font-serif text-lg leading-tight">Rønningen Selskapslokale Customer Assistant</h3>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-300">{t('chat.panelEyebrow')}</p>
+              <h3 className="mt-1 font-serif text-lg leading-tight">{t('chat.panelHeading')}</h3>
             </div>
             <div
               ref={chatMessagesRef}
@@ -808,9 +808,19 @@ const Footer = () => {
       <div className="mx-auto max-w-7xl px-4 py-14 md:px-6 md:py-16">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
           <div className="space-y-4">
-            <h2 className="font-serif text-3xl font-semibold tracking-tight text-brand-100 md:text-[2.125rem] md:leading-tight">
-              Rønningen
-            </h2>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
+              <div className="inline-flex w-fit shrink-0 rounded-xl bg-white p-3 shadow-md ring-1 ring-black/5">
+                <img
+                  src="/logo.png"
+                  alt="Rønningen selskapslokale"
+                  className="h-11 w-auto max-h-14 object-contain object-left md:h-14"
+                  decoding="async"
+                />
+              </div>
+              <h2 className="font-serif text-3xl font-semibold tracking-tight text-brand-100 md:text-[2.125rem] md:leading-tight">
+                Rønningen
+              </h2>
+            </div>
             <p className="max-w-xs text-sm leading-relaxed text-brand-400">{t('footer.tagline')}</p>
             <div className="flex flex-wrap items-center gap-3 text-brand-500">
               <a
@@ -879,18 +889,18 @@ const Footer = () => {
             <p className={labelClass}>{t('footer.contact')}</p>
             <ul className="space-y-2.5 text-sm text-brand-300">
               <li>
-                <a href="tel:+4712345678" className={linkClass}>
+                <a href="tel:+4796665001" className={linkClass}>
                   <span className="inline-flex items-center gap-2.5">
                     <Phone size={15} className="shrink-0 text-brand-500" aria-hidden />
-                    +47 123 45 678
+                    +47 96 66 50 01
                   </span>
                 </a>
               </li>
               <li>
-                <a href="mailto:post@ronningen.no" className={linkClass}>
+                <a href="mailto:r.selskapslokale@gmail.com" className={linkClass}>
                   <span className="inline-flex items-center gap-2.5">
                     <Mail size={15} className="shrink-0 text-brand-500" aria-hidden />
-                    post@ronningen.no
+                    r.selskapslokale@gmail.com
                   </span>
                 </a>
               </li>
@@ -905,6 +915,16 @@ const Footer = () => {
             <p className={labelClass}>{t('footer.quickLinks')}</p>
             <ul className="space-y-2 text-sm">
               <li>
+                <Link to="/weddings" className={linkClass}>
+                  {t('nav.weddings')}
+                </Link>
+              </li>
+              <li>
+                <Link to="/corporate" className={linkClass}>
+                  {t('nav.corporate')}
+                </Link>
+              </li>
+              <li>
                 <Link to="/packages" className={linkClass}>
                   {t('nav.private')}
                 </Link>
@@ -917,11 +937,6 @@ const Footer = () => {
               <li>
                 <Link to="/gallery" className={linkClass}>
                   {t('nav.gallery')}
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq" className={linkClass}>
-                  {t('nav.faq')}
                 </Link>
               </li>
               <li>

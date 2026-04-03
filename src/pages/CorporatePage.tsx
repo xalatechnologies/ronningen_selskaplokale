@@ -12,22 +12,18 @@ const CTA_SECONDARY = '/contact';
 const quickFit = [
   {
     title: 'Konferanse & Seminar',
-    desc: 'Program, pauser og måltider i én flyt — med ro til faglig innhold og nettverk.',
     img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=85&w=800',
   },
   {
     title: 'Teambuilding',
-    desc: 'Kortere økter som løsner gruppa — ofte kombinert med annet program samme dag.',
     img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=800',
   },
   {
     title: 'Workshop & idémyldring',
-    desc: 'Arbeidsøkter med tydelig mål: prioritere, planlegge eller utvikle noe sammen.',
     img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=85&w=800',
   },
   {
-    title: 'Styre- og ledermøte',
-    desc: 'Diskret ramme for styre, ledergruppe eller internt forum — møte og måltid på samme sted.',
+    title: 'Styre- & ledermøte',
     img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=85&w=800',
   },
 ] as const;
@@ -40,6 +36,18 @@ const whyThree = [
 
 const eventTypes = [
   {
+    title: 'Konferanse & Seminar',
+    tag: 'Faglig',
+    desc: 'Dagsprogram med tydelig rød tråd: plenum, gruppearbeid eller begge deler — med pauser og måltider som holder fokus og nettverk i én flyt. Vi legger til rette for at dere kan være til stede i innholdet, ikke i logistikken.',
+    img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=85&w=1200',
+  },
+  {
+    title: 'Teambuilding',
+    tag: 'Fellesskap',
+    desc: 'Kortere, målrettede økter som løser opp gruppa og bygger tillit — gjerne som del av en større dag med annet program. Vi tilpasser intensitet og form slik at alle kommer med, uten at det føles påklistret.',
+    img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=1200',
+  },
+  {
     title: 'Julebord',
     tag: 'Festlig',
     desc: 'Talere, musikk og bord som tåler både høytid og humor — uten at dere må styre rekkefølgen selv. Vi sørger for at kvelden føles som deres egen tradisjon, ikke en ferdig innpakning fra kjeden nede i gata.',
@@ -48,32 +56,20 @@ const eventTypes = [
   {
     title: 'Sommerfest',
     tag: 'Sosialt',
-    desc: 'Grill, kø og kanskje en konkurranse eller to — vi legger tidsvinduer og rigg slik at dere kan være til stede i samtalene. Perfekt når dere vil markere sesongen uten at noen må «løpe vakt» for logistikken.',
+    desc: 'Sesongens høydepunkt med luft mellom øktene: mingling, mat og kanskje en enkel aktivitet — rigget slik at dere slipper å «løpe vakt». Perfekt når dere vil feire sammen uten at logistikken stjeler kvelden.',
     img: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=85&w=1200',
   },
   {
-    title: 'Kick-off',
+    title: 'Workshop & kickoff',
     tag: 'Energi',
-    desc: 'Tydelig startskudd for det som kommer: plenumsdel, gruppearbeid eller begge deler, med måltider som holder energien oppe. Dere eier budskapet; vi passer på at pauser, plass og timing henger sammen.',
-    img: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Teamdag',
-    tag: 'Fellesskap',
-    desc: 'Heldag på huset med veksling mellom fokus og luft: økter, diskusjon eller enkel aktivitet etter avtale, og felles måltid som samler tråden. Til forskjell fra korte teambuilding-økter får dere rom til å gå litt dypere.',
-    img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=1200',
+    desc: 'Når dere skal lande idéer, prioritere eller skyte året i gang: arbeidsøkter med tydelig mål, kombinert med plenum og energi som samler rommet. Måltider og pauser er en del av rytmen — dere eier budskapet, vi passer på at dagen henger sammen.',
+    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=85&w=1200',
   },
   {
     title: 'Firmamiddag',
     tag: 'Representativt',
-    desc: 'Kveld der tonen skal være fin, men fortsatt menneskelig: hvem dere hedrer, hvordan talene kommer, og hvordan menyen speiler anledningen. Vi er med på å unngå «galla for gallas skyld».',
+    desc: 'Kveld der tonen skal være fin, men fortsatt menneskelig: hvem dere hedrer, hvordan talene kommer, og hvordan menyen speiler anledningen. Vi er med på å unngå «galla for gallas skyld» — og sørger for at gjestene husker samtalene, ikke bare dresskoden.',
     img: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1200',
-  },
-  {
-    title: 'Kundeevent',
-    tag: 'Profesjonelt',
-    desc: 'Når eksterne gjester skal se dere på deres beste: tydelig rød tråd fra velkomst til mingling, med ramme som understreker merkevaren. Dere er synlige i rommet; vi sikrer at det tekniske og praktiske ikke stjeler oppmerksomheten.',
-    img: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=85&w=1200',
   },
 ];
 
@@ -113,7 +109,7 @@ const galleryImgs = [
 const faqs = [
   {
     q: 'Hvilke typer bedriftsarrangement passer?',
-    a: 'Sirkelraden over viser møte- og programformer; kortene under viser feiringer og større sammenkomster. Kapasitet og form avklarer vi ut fra deres behov.',
+    a: 'Kortene viser typiske former — fra konferanser, teambuilding og workshop til julebord, sommerfest og firmamiddag. Kapasitet og detaljer i opplegget avklarer vi ut fra dato, antall og hva dere vil oppnå.',
   },
   {
     q: 'Kan opplegget tilpasses?',
@@ -302,51 +298,45 @@ export const CorporatePage = () => {
                     ))}
                   </ul>
                 </div>
-              </div>
-            </div>
 
-            <div className="w-full">
-              <div className="grid grid-cols-2 place-items-center gap-8 sm:grid-cols-4 sm:gap-10 lg:gap-12">
-                {quickFit.map((c, i) => (
-                  <motion.article
-                    key={c.title}
-                    initial={{ opacity: 0, y: 12 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: Math.min(i * 0.05, 0.2), duration: 0.4 }}
-                    tabIndex={0}
-                    aria-label={`${c.title}. ${c.desc}`}
-                    className="group relative aspect-square w-full max-w-[13.5rem] outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 sm:max-w-[15rem] lg:max-w-[16.5rem]"
-                  >
-                    <div className="absolute inset-0 overflow-hidden rounded-full border border-brand-200/90 shadow-md transition-[box-shadow,transform] duration-300 group-hover:shadow-xl group-hover:shadow-brand-900/15 group-focus-visible:shadow-xl">
-                      <img
-                        src={c.img}
-                        alt=""
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 group-focus-within:scale-105"
-                        referrerPolicy="no-referrer"
-                      />
-                      <div
-                        className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/55 via-black/15 to-black/25 transition-opacity duration-300 group-hover:opacity-40 group-focus-within:opacity-40"
-                        aria-hidden
-                      />
-                      {/* Midtstilt som før: tittel alltid, brødtekst ved hover */}
-                      <div className="pointer-events-none absolute inset-0 z-20 flex flex-col items-center justify-center px-4 text-center sm:px-6">
-                        <div
-                          className="absolute inset-0 rounded-full bg-brand-950/0 transition-[background-color] duration-300 group-hover:bg-brand-950/88 group-focus-within:bg-brand-950/88"
-                          aria-hidden
-                        />
-                        <div className="relative z-10 flex max-h-[90%] flex-col items-center justify-center gap-2">
-                          <h4 className="max-w-[min(100%,14rem)] font-serif text-base font-semibold leading-snug text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] sm:text-lg md:text-xl">
-                            {c.title}
-                          </h4>
-                          <p className="max-w-[min(100%,18rem)] text-[11px] leading-snug text-brand-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 sm:text-xs md:text-[13px] md:leading-relaxed">
-                            {c.desc}
-                          </p>
+                <div className="mt-8 w-full max-w-3xl border-t border-brand-200/70 pt-8 md:mt-9 md:pt-9">
+                  <div className="grid grid-cols-2 place-items-center gap-6 sm:grid-cols-4 sm:gap-8 lg:gap-9">
+                    {quickFit.map((c, i) => (
+                      <motion.article
+                        key={c.title}
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: Math.min(i * 0.05, 0.2), duration: 0.4 }}
+                        tabIndex={0}
+                        aria-label={c.title}
+                        className="group relative aspect-square w-full max-w-[12rem] outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 sm:max-w-[13.5rem] lg:max-w-[15rem]"
+                      >
+                        <div className="absolute inset-0 overflow-hidden rounded-full border border-brand-200/90 shadow-md transition-[box-shadow,transform] duration-300 group-hover:shadow-xl group-hover:shadow-brand-900/15 group-focus-visible:shadow-xl">
+                          <img
+                            src={c.img}
+                            alt=""
+                            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 group-focus-within:scale-105"
+                            referrerPolicy="no-referrer"
+                          />
+                          <div
+                            className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/55 via-black/15 to-black/25 transition-opacity duration-300 group-hover:opacity-40 group-focus-within:opacity-40"
+                            aria-hidden
+                          />
+                          <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center px-4 text-center sm:px-6">
+                            <div
+                              className="absolute inset-0 rounded-full bg-brand-950/0 transition-[background-color] duration-300 group-hover:bg-brand-950/55 group-focus-within:bg-brand-950/55"
+                              aria-hidden
+                            />
+                            <h4 className="relative z-10 max-w-[min(100%,12rem)] font-serif text-sm font-semibold leading-snug text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] sm:max-w-[min(100%,13.5rem)] sm:text-base md:text-lg">
+                              {c.title}
+                            </h4>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </motion.article>
-                ))}
+                      </motion.article>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -372,7 +362,7 @@ export const CorporatePage = () => {
               viewport={{ once: true }}
               className={SECTION_H2_ON_DARK_CLASS}
             >
-              Feiringer og sammenkomster <span className="italic text-brand-400">for bedriften</span>
+              Typiske bedriftsarrangement <span className="italic text-brand-400">hos oss</span>
             </motion.h2>
           </div>
 

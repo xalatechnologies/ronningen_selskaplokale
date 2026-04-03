@@ -336,11 +336,11 @@ const SiteSettings = () => {
           </div>
           <div className="space-y-2">
             <label className="text-sm font-bold text-gray-700 uppercase tracking-widest">Contact Email</label>
-            <input type="email" defaultValue="post@ronningen.no" className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-brand-500 outline-none" />
+            <input type="email" defaultValue="r.selskapslokale@gmail.com" className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-brand-500 outline-none" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-bold text-gray-700 uppercase tracking-widest">Phone Number</label>
-            <input type="text" defaultValue="+47 123 45 678" className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-brand-500 outline-none" />
+            <input type="text" defaultValue="+47 96 66 50 01" className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-brand-500 outline-none" />
           </div>
           <div className="pt-4">
             <button type="submit" className="bg-brand-800 text-white px-8 py-3 rounded-lg font-medium hover:bg-brand-900 transition-colors">
