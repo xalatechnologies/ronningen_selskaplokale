@@ -974,8 +974,15 @@ const Footer = () => {
           <p className="m-0 text-center md:text-left">
             © {year} Rønningen Selskapslokale. {t('footer.rights')}.
           </p>
-          <p className="m-0 text-center md:text-right">
-            <span className="text-brand-500">{t('footer.techPartnerLead')}</span>{' '}
+          <p className="m-0 flex flex-wrap items-center justify-center gap-2 text-center text-xs text-brand-500 md:justify-end md:text-right">
+            <img
+              src="/partners/xala-logo.png"
+              alt=""
+              decoding="async"
+              aria-hidden
+              className="h-6 w-auto shrink-0 mix-blend-lighten md:h-7"
+            />
+            <span>{t('footer.techPartnerLead')}</span>{' '}
             <a
               href="https://xala.no"
               target="_blank"
