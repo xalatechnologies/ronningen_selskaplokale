@@ -83,23 +83,23 @@ export const WeddingsPage = () => {
 
   const dayFlow = [
     {
-      title: "Vielse / ankomst",
-      desc: "Start dagen med en stemningsfull seremoni i hagen eller på låven.",
+      title: "Vielse & fotografering",
+      desc: "Vielse i hage eller låve, og tid til portretter i fint lys og fine omgivelser.",
       icon: <Users size={32} />
     },
     {
-      title: "Middag og taler",
-      desc: "Nyt en festmiddag med lokale råvarer i historiske omgivelser.",
+      title: "Middag & taler",
+      desc: "Festmiddag med lokale råvarer og god plass til taler og toasts.",
       icon: <Utensils size={32} />
     },
     {
-      title: "Kaffe og kaker",
-      desc: "Senk skuldrene med kaffe og kaker i våre hyggelige fellesområder.",
+      title: "Kaffe & dessert",
+      desc: "Kaffe og dessert i rolige fellesområder før kvelden tar over.",
       icon: <GlassWater size={32} />
     },
     {
-      title: "Dans og feiring",
-      desc: "Avslutt kvelden med musikk, dans og god stemning på låven.",
+      title: "Dans & feiring",
+      desc: "Drikke og dans med god stemning utover kvelden.",
       icon: <PartyPopper size={32} />
     }
   ];
@@ -107,7 +107,9 @@ export const WeddingsPage = () => {
   const services = [
     {
       title: "Storkjøkken & catering",
-      desc: "Et godt utstyrt storkjøkken og tett samarbeid med dyktige kokker gir dere frihet til å velge uttrykk — fra lun langbordsbuffet til en gjennomført flerrettersmiddag som føles helt deres.",
+      desc: `Dere står fritt til å ta med egen mat eller benytte vårt fullt utstyrte storkjøkken.
+
+Vi samarbeider også med lokale cateringaktører som kan levere ferdig mat, eller stå for matlaging på stedet med erfarne kokker og serveringspersonell.`,
       img: "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800",
       icon: <Utensils size={24} />
     },
@@ -119,25 +121,25 @@ export const WeddingsPage = () => {
     },
     {
       title: "Dekorasjon",
-      desc: "Sammen med dyktige dekoratører kan dere bygge en helhet som føles personlig — brudebukett, bord og detaljer som binder dagen visuelt sammen.",
+      desc: "Vi tilbyr fleksible dekorasjonsløsninger som kan tilpasses deres stil og uttrykk. Sammen med våre samarbeidspartnere kan vi skape en helhetlig og gjennomført atmosfære – fra bordpynt til dekorasjon av hele lokalet.",
       img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800",
       icon: <Sparkles size={24} />
     },
     {
       title: "Bar & dansegulv",
-      desc: "Ingen korkavgift — dere tar med det dere ønsker å servere. Ved behov ordner vi bartendere og utstyr, og kvelden har naturlig plass til både toastmaster og dans.",
+      desc: "Dere står fritt til å ta med egen drikke og bruke barområdet. Med eget dansegulv ligger alt til rette for god stemning gjennom hele kvelden.",
       img: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800",
       icon: <Wine size={24} />
     },
     {
       title: "Lyd & Lys",
-      desc: "Utstyr som gjør taler hørbare og musikken levende — med belysning som løfter stemningen og lar treverk og rom komme til sin rett.",
+      desc: "Vi har et kraftig lydanlegg som passer perfekt til fest og musikk, kombinert med belysning som skaper riktig stemning gjennom hele arrangementet.",
       img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800",
       icon: <Music size={24} />
     },
     {
       title: "Oppdekking & bordpynt",
-      desc: "Duk, servietter, servise, glass og det dere trenger på bordene — sammen med bordpynt, menykort, lys og små detaljer som gjør helheten komplett. Alt avstemmes med stilen på dagen deres, så bordene står klare når gjestene setter seg.",
+      desc: "Ferdig oppdekket med duker, stoltrekk, servise, glass og det dere trenger på bordet — pluss bordpynt, menykort og små detaljer som binder det hele sammen. Vi avstemmer uttrykket med stilen på dagen deres, så gjestene møter komplette bord fra første minutt.",
       img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800",
       icon: <Utensils size={24} />
     }
@@ -357,8 +359,10 @@ export const WeddingsPage = () => {
                     <div className="relative z-10 h-full p-12 flex flex-col justify-between">
                       <div className="flex justify-between items-start">
                         <div className="flex flex-col">
-                          <span className="text-6xl font-serif text-brand-400 opacity-50 transition-opacity duration-500 group-hover:opacity-100">0{i + 1}</span>
-                          <div className="mt-4 h-px w-12 bg-brand-400/40 opacity-60 transition-all duration-500 group-hover:w-24 group-hover:opacity-100" />
+                          <span className="text-6xl font-serif tabular-nums text-brand-200 [text-shadow:0_2px_24px_rgba(0,0,0,0.55)] transition-colors duration-500 group-hover:text-brand-100">
+                            0{i + 1}
+                          </span>
+                          <div className="mt-4 h-px w-12 bg-brand-300/70 opacity-90 transition-all duration-500 group-hover:w-24 group-hover:bg-brand-200/80" />
                         </div>
                         <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-white/10 text-brand-200 backdrop-blur-md transition-all duration-500 group-hover:border-white/40 group-hover:bg-white group-hover:text-brand-900">
                           {item.icon}
@@ -428,7 +432,7 @@ export const WeddingsPage = () => {
                   </h3>
 
                   <div className="mt-3 flex-grow opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100">
-                    <p className="line-clamp-5 text-sm font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:line-clamp-4">
+                    <p className="line-clamp-[10] whitespace-pre-line text-base font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-lg md:text-[1.125rem] md:leading-relaxed lg:line-clamp-[9]">
                       {service.desc}
                     </p>
                   </div>
