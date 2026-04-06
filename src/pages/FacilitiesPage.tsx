@@ -6,7 +6,7 @@ import { cn } from '../lib/utils';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
-import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ChevronDown } from 'lucide-react';
 
 const CTA_PRIMARY = '/inquiry';
 const CTA_SECONDARY = '/contact';
@@ -69,11 +69,6 @@ const USE_CASE_IMAGES: Record<UseCaseKey, string> = {
   livelyEvening:
     'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=85&w=1200',
 };
-
-const FACILITY_PACKAGE_KEYS = ['basic', 'comfortStay', 'completeFamily'] as const;
-type FacilityPackageKey = (typeof FACILITY_PACKAGE_KEYS)[number];
-const FACILITY_PACKAGE_FEATURED: FacilityPackageKey = 'comfortStay';
-const FACILITY_PACKAGE_BULLET_KEYS = ['bullet1', 'bullet2', 'bullet3', 'bullet4'] as const;
 
 const galleryImgs = [
   'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1600',
@@ -387,62 +382,6 @@ export const FacilitiesPage = () => {
                   </div>
                 </div>
               </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="facilities-packages-heading" className="section-viewport relative overflow-hidden border-b border-brand-200/80 bg-gradient-to-b from-white to-brand-50/50">
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-5 py-16 sm:px-8 sm:py-20 md:px-14 md:py-24 lg:px-16 xl:px-20">
-          <div className="mb-10 max-w-2xl space-y-4 md:mb-12 md:space-y-5">
-            <h2 id="facilities-packages-heading" className={cn(SECTION_H2_CLASS, 'text-balance')}>
-              {t('facilitiesPage.packagesSection.heading')}
-            </h2>
-            <p className="max-w-2xl text-base leading-relaxed text-brand-700 md:text-lg md:leading-relaxed">
-              {t('facilitiesPage.packagesSection.intro')}
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-5 md:gap-6 lg:grid-cols-3 lg:items-stretch">
-            {FACILITY_PACKAGE_KEYS.map((pkgKey, i) => {
-              const featured = pkgKey === FACILITY_PACKAGE_FEATURED;
-              const itemBase = `facilitiesPage.packagesSection.items.${pkgKey}`;
-              return (
-                <motion.div
-                  key={pkgKey}
-                  initial={{ opacity: 0, y: 26 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.07 }}
-                  className={cn(
-                    'flex h-full flex-col rounded-2xl border p-6 shadow-[0_14px_34px_-24px_rgba(33,24,22,0.45)] md:p-8',
-                    featured ? 'border-brand-800 bg-brand-900 text-white' : 'border-brand-200/90 bg-white text-brand-900',
-                  )}
-                >
-                  <p className={cn('mb-2 text-[11px] font-semibold uppercase tracking-[0.2em]', featured ? 'text-brand-400' : 'text-brand-500')}>
-                    {t(`${itemBase}.detail`)}
-                  </p>
-                  <h3 className={cn('font-serif text-2xl tracking-tight md:text-[1.65rem]', featured ? 'text-white' : 'text-brand-950')}>
-                    {t(`${itemBase}.name`)}
-                  </h3>
-                  <p className={cn('mt-3 font-serif text-2xl md:text-3xl', featured ? 'text-brand-100' : 'text-brand-900')}>
-                    {t(`${itemBase}.price`)}
-                  </p>
-                  <p className={cn('mt-4 text-[15px] leading-relaxed md:text-base', featured ? 'text-brand-100' : 'text-brand-700')}>
-                    {t(`${itemBase}.fit`)}
-                  </p>
-                  <div className={cn('my-6 h-px w-full', featured ? 'bg-brand-700' : 'bg-brand-200')} />
-                  <ul className="m-0 grow space-y-3 pl-0">
-                    {FACILITY_PACKAGE_BULLET_KEYS.map((bulletKey) => (
-                      <li key={bulletKey} className="flex items-start gap-3">
-                        <CheckCircle2 size={18} className={cn('mt-0.5 shrink-0', featured ? 'text-brand-400' : 'text-brand-600')} aria-hidden />
-                        <span className={cn('text-[15px] leading-relaxed', featured ? 'text-brand-100' : 'text-brand-800')}>
-                          {t(`${itemBase}.${bulletKey}`)}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
               );
             })}
           </div>

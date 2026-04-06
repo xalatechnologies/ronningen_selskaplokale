@@ -70,11 +70,11 @@ const HOME_CONCEPT_ROUTES: Record<HomeConceptKey, { path: string; img: string }>
 };
 
 const HOME_SERVICE_KEYS = [
-  'soundLight',
   'catering',
+  'decoration',
+  'soundLight',
   'barDancefloor',
   'coordination',
-  'decoration',
   'overnight',
 ] as const;
 
@@ -88,11 +88,11 @@ const HOME_SERVICE_IMAGES: Record<HomeServiceKey, string> = {
   barDancefloor:
     'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800',
   coordination:
-    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800',
+    'https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&q=80&w=800',
   decoration:
     'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800',
   overnight:
-    'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=800',
+    'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&q=80&w=800',
 };
 
 const PARTNER_KEYS = [

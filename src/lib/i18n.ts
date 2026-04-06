@@ -65,32 +65,32 @@ const resources = {
           soundLight: {
             title: 'Sound & lighting',
             description:
-              'We set up sound and lighting to suit your format — from clear presentations to evenings with music, dancing, and atmosphere.',
+              'Powerful sound and lighting that sets the right mood from start to finish.',
           },
           catering: {
             title: 'Catering & service',
             description:
-              'We connect you with quality catering and attentive service so menu, flow, and hosting stay in step throughout the day.',
+              'Bring your own food, or use our partners for catering and service tailored to your event.',
           },
           barDancefloor: {
             title: 'Bar & dance floor',
             description:
-              'From the first toast to the last song: we lay out bar and dance floor so energy stays high and the evening flows naturally.',
+              'Bring your own drinks and enjoy the evening with music and dancing in a great setting.',
           },
           coordination: {
-            title: 'Event coordination',
+            title: 'Time with the animals',
             description:
-              'We keep details, timelines, and suppliers on track so you can be hosts without spending the day on logistics.',
+              'Get close to the animals on the estate — a memorable touch for guests young and old.',
           },
           decoration: {
-            title: 'Decoration',
+            title: 'Decoration & photography',
             description:
-              'Flowers, tables, and finishing touches styled to your look — from classic and understated to warm and festive.',
+              'Create the right atmosphere with décor in your style, and optional photographers to capture the day.',
           },
           overnight: {
-            title: 'Accommodation',
+            title: 'Nature & activities',
             description:
-              'We help with recommended places to stay nearby and transport plans so guests travel safely there and back.',
+              'Enjoy peaceful surroundings with great walks and activities indoors and out — ideal for breaks, team building, and experiences throughout the day.',
           },
         },
       },
@@ -401,19 +401,19 @@ const resources = {
           items: {
             eventTypes: {
               q: 'What types of corporate events work well?',
-              a: 'The cards show typical formats — from conferences, team building and workshops to Christmas parties, summer parties and company dinners. We clarify capacity and programme details based on date, numbers and what you want to achieve.',
+              a: 'We suit everything from conferences and seminars to Christmas parties, summer parties, workshops and company dinners. The programme is tailored to your needs.',
             },
             tailored: {
               q: 'Can the programme be tailored?',
-              a: 'Yes — date, guest count and desired format guide how we set up the space and practical arrangements.',
+              a: 'Yes. We adapt layout, timing and content based on your wishes and the type of event.',
             },
             viewing: {
               q: 'Can we book a viewing?',
-              a: 'Yes. Get in touch and we’ll find a time that works.',
+              a: 'Yes — we offer private viewings by appointment. Get in touch and we’ll find a time that works.',
             },
             howToInquire: {
               q: 'How do we send an enquiry?',
-              a: 'Use our form with date, approximate numbers and plans. We’ll get back to you with a proposal.',
+              a: 'You can email us or use the contact form. Please share date, guest count and type of event, and we’ll follow up quickly.',
             },
           },
         },
@@ -424,7 +424,7 @@ const resources = {
           headingLine1Before: 'Ready to ',
           headingLine1Accent: 'plan',
           headingLine2: "your company's day with us?",
-          body: 'Tell us briefly what you have in mind — we’ll suggest options that suit your team and guests.',
+          body: 'Tell us briefly what you envision, and we’ll put together a programme that suits both your team and guests.',
         },
       },
       privatePage: {
@@ -433,29 +433,26 @@ const resources = {
         heroTitleLine1: "Life's celebrations, gathered.",
         heroTitleLine2: 'With us.',
         heroTagline:
-          "Celebrate life's moments together in a setting that feels personal, warm, and unmistakably yours.",
+          "Bring life's big moments together in one place, in a setting that feels personal and right for you.",
         heroScrollHintAria: 'Scroll down to the introduction',
         introSection: {
-          eyebrow: 'Private at Rønningen',
           headingBefore: 'Where your celebration gains ',
           headingAccent: 'personality',
           intro:
-            'Birthdays, confirmations, baptisms and naming days, memorial gatherings and anniversaries — you come together in spaces with soul, where it is about people and traditions, not a standard setup from a catalogue.',
+            'Birthdays, confirmations, baptisms, memorial gatherings and anniversaries — gather in spaces that leave room for your style and how you celebrate, without a standard package setup.',
           panoramaAlt: 'Celebration atmosphere and set tables in the venue',
-          panoramaCaption:
-            'Light, wood and room for both speeches and laughter — a setting that lets the day breathe.',
           highlights: {
             proximity: {
               title: 'Closeness',
-              desc: 'Rooms that feel personal — not anonymous party venues. Here it is about you and your guests.',
+              desc: 'Rooms that feel personal — here it is about you and your guests, not a standard setup.',
             },
             tradition: {
               title: 'Your traditions',
-              desc: 'Programmes tailored to family, guests and the celebrations you care about — without a ready-made template from us.',
+              desc: 'Your celebration is shaped around your wishes, family and traditions — without fixed templates.',
             },
             gathered: {
               title: 'All in one place',
-              desc: 'One destination from arrival to the last hug: less stress, more time to be present.',
+              desc: 'Everything happens in one place, from start to finish — less stress, more time to be together.',
             },
           },
         },
@@ -463,38 +460,38 @@ const resources = {
           headingBefore: 'Occasions we often ',
           headingAccent: 'create together',
           intro:
-            'From birthdays and confirmations to baptisms and naming days, memorials and anniversaries — starting points you can mix and match. We work out the details in dialogue with you.',
+            'From birthdays and confirmations to baptisms, memorial gatherings and anniversaries — we tailor the programme together with you.',
           items: {
             birthday: {
               title: 'Birthday',
-              desc: "From children's parties with simple service to adult celebrations with dinner and dancing. We adapt capacity, sound and timing so the day is yours — not a ready-made template.",
+              desc: 'Celebrate the day with friends and family in a great setting, with room for both dinner and a party.',
             },
             confirmation: {
               title: 'Confirmation',
-              desc: 'After the ceremony, gather for a celebration with room for family and friends. We help with flow, tables and timing so the confirmand and family can be present, not run logistics.',
+              desc: 'An important day gathered in one place, with room for both the formal parts and the social side.',
             },
             baptismNaming: {
               title: 'Baptism & naming day',
-              desc: 'A calm, warm setting when you want to bring loved ones together after church — whether for a baptism, naming day, or both in the same weekend. We clarify space for high chairs, coffee tables and speeches in the same room.',
+              desc: 'Calm, beautiful surroundings for a personal celebration with family and those closest to you.',
             },
             memorial: {
               title: 'Memorial gathering',
-              desc: "Coming together after life's hardest days — a quiet setting for tributes, coffee and time to be together. We coordinate discreetly around what you need.",
+              desc: 'A safe, dignified place to come together, with a focus on calm, closeness and good conversation.',
             },
             anniversary: {
               title: 'Anniversary',
-              desc: 'Silver weddings, milestone years or long marriages — we set the stage for speeches, memories and a celebration that lasts into the evening, without you having to think of everything yourselves.',
+              desc: 'Mark big and small milestones with an evening that brings people together and creates lasting memories.',
             },
             gathering: {
               title: 'Gatherings & mingling',
-              desc: 'From intimate dinners to larger parties with mingling — you choose the format, and we shape the space, sound and flow so the mood feels right from arrival to goodbye.',
+              desc: 'Informal get-togethers with an easy flow, where guests can move freely and enjoy the evening.',
             },
           },
         },
         packagesSection: {
           heading: 'Our private packages',
           intro:
-            'Choose from three private options — we tailor to your celebration, guests and wishes in a no-obligation conversation.',
+            'Choose from three options. We tailor to your celebration, guests and wishes — straightforward and with no obligation.',
           featuredBadge: 'Most popular',
           requestQuote: 'Request a quote',
           priceNote: 'Prices are indicative — final quote after a conversation.',
@@ -531,7 +528,7 @@ const resources = {
         gallerySection: {
           heading: 'Mood from the venue',
           intro:
-            'Celebration, togetherness and evening atmosphere — a glimpse of how private gatherings can take shape with us.',
+            'Celebration, togetherness and evening — see how private gatherings take shape with us.',
           slideAlt: 'Mood from the venue {{n}}',
           prevImageAria: 'Previous image',
           nextImageAria: 'Next image',
@@ -544,30 +541,29 @@ const resources = {
           items: {
             celebrations: {
               q: 'What private celebrations can we host with you?',
-              a: 'Including birthdays, confirmations, baptisms and naming days, memorial gatherings and anniversaries. We clarify guest numbers, timing and preferred format in a no-obligation chat.',
+              a: 'Everything from birthdays and confirmations to baptisms, memorial gatherings and anniversaries. The programme is tailored to your type of celebration.',
             },
             ownFoodDrink: {
               q: 'Can we bring our own food and drink?',
-              a: 'We clarify this based on your chosen package and the venue. Many combine their own cake and drinks with catering — we help you find a clear arrangement.',
+              a: 'Yes, you are welcome to. We also work with catering partners who can provide food and service.',
             },
             capacity: {
               q: 'Does it work for both small and large parties?',
-              a: 'Yes. We tailor tables and rooms to your guest count — from intimate gatherings to larger family events.',
+              a: 'Yes. The venue works well for both smaller and larger groups, with flexible layouts.',
             },
             howToBook: {
               q: 'How do we book?',
-              a: 'Send an enquiry with date, approximate numbers and type of celebration. We will get back to you with suggestions and next steps.',
+              a: 'Send us an enquiry with date, guest count and type of event, and we’ll take it from there.',
             },
           },
         },
         closingCta: {
           bgImageAlt:
             'Private celebration at the venue — background image for the contact call-to-action',
-          eyebrow: 'Next step',
           headingLine1Before: 'Want to ',
           headingLine1Accent: 'plan',
           headingLine2: 'your celebration with us?',
-          body: 'Tell us briefly what you are celebrating and when — we will suggest a setting and programme that suit family and guests.',
+          body: 'Tell us briefly what you are celebrating and when, and we will suggest a setting and a programme that suit you and your guests.',
         },
       },
       facilitiesPage: {
@@ -576,7 +572,7 @@ const resources = {
         heroTitleLine1: 'All in one place.',
         heroTitleLine2: 'For the whole celebration.',
         heroTagline:
-          'Childcare, kitchen, suites, barn and more — everything your celebration needs in one venue.',
+          'Childcare, kitchen, accommodation and great facilities — everything you need gathered in one place.',
         heroScrollHintAria: 'Scroll down to the introduction',
         introCardsSection: {
           headingBefore: 'From preparations to the last dance — ',
@@ -588,53 +584,53 @@ const resources = {
           items: {
             childCare: {
               title: 'Childcare',
-              desc: 'Safe arrangements for little ones so parents can be present at the celebration without worrying about logistics.',
+              desc: 'Safe solutions for little ones so parents can relax and be fully present at the celebration.',
               imgAlt: 'Children playing together — childcare and family gatherings',
             },
             accommodation: {
               title: 'Accommodation',
-              desc: 'Guests travelling from afar can stay overnight — easy to bring the whole weekend together in one place.',
+              desc: 'Overnight stays for guests travelling from afar — easy to bring the whole weekend together in one place.',
               imgAlt: 'Calm bedroom — guest accommodation',
             },
             bridalSuite: {
               title: 'Bridal suite',
-              desc: 'Space for preparation, calm and private moments before the ceremony and party — a natural hub for the bride and her party.',
+              desc: 'A dedicated room for preparations and quiet moments before the ceremony and party.',
               imgAlt: 'Elegant detail — preparations and bridal suite',
             },
             activities: {
               title: 'Activities',
-              desc: 'Options that engage different ages and add breaks and energy through the day.',
+              desc: 'Options indoors and out that add breaks and variety through the day.',
               imgAlt: 'Outdoor space and nature — activities and breaks',
             },
             animals: {
               title: 'Time with animals',
-              desc: 'Close to animals and outdoor areas for a relaxing, distinctive setting around your event.',
+              desc: 'Close to animals and outdoor areas for a calm, distinctive setting around your event.',
               imgAlt: 'Animals on the farm — natural setting for events',
             },
             barDanceFloor: {
               title: 'Bar & dance floor',
-              desc: 'Natural flow from dinner into the evening with room for music, toastmaster and dancing without changing venue.',
+              desc: 'A natural transition from dinner to party, with room for music, speeches and dancing.',
               imgAlt: 'Party and bar atmosphere',
             },
             kitchen: {
               title: 'Commercial kitchen',
-              desc: 'Well-equipped kitchen that makes catering, buffet and service on a larger scale straightforward.',
+              desc: 'A fully equipped kitchen that makes catering and service straightforward.',
               imgAlt: 'Professional kitchen for catering and service',
             },
             universalDesign: {
               title: 'Universally designed',
-              desc: 'Arranged so guests with different needs can access, take part and feel welcome.',
+              desc: 'All on one level with access to an accessible WC — arranged so every guest can take part and feel welcome.',
               imgAlt: 'Accessible building and entrance — universal design',
             },
             parking: {
-              title: 'Free parking (option to charge or leave your car)',
-              desc: 'Plenty of room for cars, charging options and the possibility to agree leaving vehicles — practical for everyone driving.',
+              title: 'Parking',
+              desc: 'Plenty of parking, with EV charging and the option to leave your car.',
               imgAlt: 'Cars and parking — guest arrival',
             },
             barn: {
-              title: 'The barn',
-              desc: 'The main room with authentic atmosphere — ideal for dinner, speeches, dancing and gathering under one roof.',
-              imgAlt: 'Party venue and atmosphere in barn or events space',
+              title: 'Celebration hall',
+              desc: 'The main room with space for dinner, speeches and dancing — all in one place.',
+              imgAlt: 'Main celebration room with dinner and party atmosphere',
             },
           },
         },
@@ -644,70 +640,33 @@ const resources = {
           items: {
             familyCelebration: {
               title: 'Family celebration',
-              desc: 'Room for young and old alike: an authentic barn, safe childcare and outdoor areas for breaks and play — so the whole family can be present without stress.',
+              desc: 'Bring family and friends together for a full celebration with time for meals, company and calm.',
               imgAlt: 'Family gathering — facilities for celebrations with children and adults',
             },
             weddingWeekend: {
               title: 'Wedding weekend',
-              desc: 'From preparations to the last dance: a suite for you, beds for guests and an evening on the dance floor — one place, one seamless flow you can relax into.',
+              desc: 'Celebrate over several days with ceremony, dinner, party and overnight stays all in one place.',
               imgAlt: 'Wedding celebration — weekend use of the venue',
             },
             corporateEvening: {
               title: 'Corporate evening',
-              desc: 'Impress the team with a professional kitchen, clear room flow and technical setup — an event that feels polished, without logistics stealing the spotlight.',
+              desc: 'Start with professional content or dinner, and finish the evening with social time and a party.',
               imgAlt: 'Corporate event at the venue',
             },
             outdoorsIndoors: {
               title: 'Outdoors and indoors',
-              desc: 'Let guests catch their breath outside among nature and animals, then gather for dinner and programme inside the barn — a whole that feels relaxed and a little different.',
+              desc: 'Combine outdoor areas and the venue through the day — from activity and mingling to dinner and party.',
               imgAlt: 'Indoor and outdoor spaces at the venue',
             },
             weekendGuests: {
               title: 'Weekend with guests',
-              desc: 'When people travel from afar: accommodation, parking and celebration on the same farm — fewer arrangements and drives, more time to host.',
+              desc: 'Let guests stay over and enjoy a relaxed weekend with more time together.',
               imgAlt: 'Guests staying overnight — weekend at the venue',
             },
             livelyEvening: {
               title: 'An evening with energy',
-              desc: 'Natural flow from dinner and speeches to bar and dancing — without packing up and moving guests. The atmosphere can build all evening.',
+              desc: 'From dinner to music and dancing — an evening with great energy and life in the venue.',
               imgAlt: 'Evening party — bar and dance floor',
-            },
-          },
-        },
-        packagesSection: {
-          heading: 'Choose your facilities level',
-          intro:
-            'Three levels to combine — we adjust scope and content with you so the facilities suit the event and budget.',
-          items: {
-            basic: {
-              name: 'Core facilities',
-              price: 'On request',
-              detail: 'Quote after conversation',
-              fit: 'A clear baseline with the most important frameworks in place.',
-              bullet1: 'The barn',
-              bullet2: 'Commercial kitchen',
-              bullet3: 'Universally designed',
-              bullet4: 'Free parking (option to charge or leave your car)',
-            },
-            comfortStay: {
-              name: 'Comfort & stay',
-              price: 'On request',
-              detail: 'Tailored to needs',
-              fit: 'When you want more comfort for hosts and guests over time.',
-              bullet1: 'Accommodation',
-              bullet2: 'Bridal suite',
-              bullet3: 'Bar & dance floor',
-              bullet4: 'Activities',
-            },
-            completeFamily: {
-              name: 'Complete family package',
-              price: 'Individually priced',
-              detail: 'By scope',
-              fit: 'For those who want a cohesive setup for both children and adults.',
-              bullet1: 'Childcare',
-              bullet2: 'Time with animals',
-              bullet3: 'Activities',
-              bullet4: 'Tailored flow between outdoors and indoors',
             },
           },
         },
@@ -728,7 +687,7 @@ const resources = {
             },
             universalDesign: {
               q: 'Is the venue universally designed?',
-              a: 'Yes — we emphasise that the venue should be accessible for guests with different needs.',
+              a: 'Yes — the venue is arranged on one level with access to an accessible WC, so every guest can take part and feel welcome.',
             },
             parkingCharging: {
               q: 'Do you have parking and charging?',
@@ -800,11 +759,9 @@ const resources = {
         hoursHint: 'Contact us to schedule a visit to the venue.',
         mapTitle: 'Location',
         mapPillLabel: 'Rønningen',
-        mapOpen: 'Open in Google Maps',
+        mapAddressLine: 'Rønningen Selskapslokale – Baneveien 290, 3410 Sylling',
         ctaRing: 'Call now',
         ctaMail: 'Send email',
-        bottomLine:
-          'Questions about capacity, dates, or catering? We are happy to help — no obligation.',
         formSectionTitle: 'Contact form',
         formSectionIntro: 'Write a few lines and we will get back to you as soon as we can.',
         formNameLabel: 'Name',
@@ -889,24 +846,24 @@ const resources = {
           weddings: {
             title: 'Bryllup',
             description:
-              'Vielse, fest og mingling på ett sted — vi hjelper dere med helhetsplan fra ønskeliste til siste dans.',
+              'Samle hele dagen på ett sted – fra vielse til middag og fest. Fleksible løsninger som gir dere frihet til å skape deres egen dag.',
             imgAlt:
               'Brud og brudgom som danser sammen mens rødt og gullfarget konfetti faller i en lys festsal',
           },
           corporate: {
             title: 'Firmaeventer',
             description:
-              'Konferanse, teambuilding, julebord og sommerfest med profesjonelt vertskap og fleksible rammer.',
+              'Konferanser, sommerfester og julebord i gode rammer. Vi legger til rette for både faglig innhold og sosialt samvær.',
           },
           private: {
             title: 'Private selskaper',
             description:
-              'Jubileer, konfirmasjon og familieselskap med plass til barn og voksne — rolige, hjemlige omgivelser på gården.',
+              'Perfekt for bursdager, konfirmasjoner og jubileer. God plass, fleksible løsninger og en uformell atmosfære.',
           },
           facilities: {
             title: 'Fasiliteter',
             description:
-              'Alt fra storkjøkken og dansegulv til gode parkeringsmuligheter og fleksible løsninger rundt opphold.',
+              'Alt dere trenger samlet på ett sted – fra storkjøkken og dansegulv til gode parkeringsmuligheter og uteområder.',
           },
         },
       },
@@ -914,34 +871,34 @@ const resources = {
         heading: 'Eksklusive tjenester',
         items: {
           soundLight: {
-            title: 'Lyd og lys',
+            title: 'Lyd & lys',
             description:
-              'Vi setter opp lyd og lys som passer formatet deres - fra tydelige presentasjoner til kveld med musikk, dans og stemning.',
+              'Kraftig lydanlegg og belysning som skaper riktig stemning fra start til slutt.',
           },
           catering: {
-            title: 'Catering og servering',
+            title: 'Catering & servering',
             description:
-              'Vi kobler dere med kvalitetscatering og trygg servering, slik at meny, flyt og vertskap henger sammen gjennom hele dagen.',
+              'Dere kan ta med egen mat, eller benytte våre samarbeidspartnere som leverer catering og servering tilpasset deres arrangement.',
           },
           barDancefloor: {
-            title: 'Bar og dansegulv',
+            title: 'Bar & dansegulv',
             description:
-              'Fra første skål til siste låt: vi tilrettelegger barområde og dansegulv som gir god energi og naturlig flyt utover kvelden.',
+              'Ta med egen drikke og nyt kvelden med musikk og dans i gode omgivelser.',
           },
           coordination: {
-            title: 'Event koordinering',
+            title: 'Samvær med dyr',
             description:
-              'Vi holder oversikt på detaljer, tidsplan og leverandører, så dere kan være vertskap uten å bruke dagen på logistikk.',
+              'Opplev nærkontakt med dyrene på området – et hyggelig innslag for både store og små.',
           },
           decoration: {
-            title: 'Dekorasjon',
+            title: 'Dekorasjon & Fotografering',
             description:
-              'Blomster, bord og detaljer settes opp etter uttrykket dere ønsker - fra klassisk og rent til varmt og festlig.',
+              'Skap riktig stemning med dekor tilpasset deres stil, og mulighet for fotografer som fanger øyeblikkene gjennom dagen.',
           },
           overnight: {
-            title: 'Overnatting',
+            title: 'Natur & aktiviteter',
             description:
-              'Vi hjelper med anbefalte overnattingsmuligheter i nærheten og plan for transport, slik at gjestene kommer trygt frem og tilbake.',
+              'Nyt rolige omgivelser med gode turmuligheter og aktiviteter både inne og ute – perfekt for pauser, teambuilding og opplevelser gjennom dagen.',
           },
         },
       },
@@ -1203,7 +1160,7 @@ const resources = {
         packagesSection: {
           heading: 'Våre bedriftspakker',
           intro:
-            'Velg blant tre bedriftsopplegg — i samtalen avklarer vi behov, antall gjester, dato og det praktiske, og setter sammen et forslag som passer dere.',
+            'Velg mellom tre pakker. Vi tar en prat om behov, antall gjester og dato, og setter sammen et opplegg som passer dere.',
           featuredBadge: 'Mest populær',
           requestQuote: 'Be om tilbud',
           items: {
@@ -1239,7 +1196,7 @@ const resources = {
         gallerySection: {
           heading: 'Stemning fra lokalet',
           intro:
-            'Selskap, mingling og kveld — ikke bare tomme rom. Bla gjennom et utvalg av stemning fra arrangement hos oss.',
+            'Selskap, mingling og kveld – se hvordan lokalet brukes under ulike arrangementer hos oss.',
           slideAlt: 'Stemning fra lokalet {{n}}',
           prevImageAria: 'Forrige bilde',
           nextImageAria: 'Neste bilde',
@@ -1252,19 +1209,19 @@ const resources = {
           items: {
             eventTypes: {
               q: 'Hvilke typer bedriftsarrangement passer?',
-              a: 'Kortene viser typiske former — fra konferanser, teambuilding og workshop til julebord, sommerfest og firmamiddag. Kapasitet og detaljer i opplegget avklarer vi ut fra dato, antall og hva dere vil oppnå.',
+              a: 'Vi passer til alt fra konferanser og seminarer til julebord, sommerfester, workshops og firmamiddager. Opplegget tilpasses etter behov.',
             },
             tailored: {
               q: 'Kan opplegget tilpasses?',
-              a: 'Ja — dato, antall gjester og ønsket form styrer hvordan vi setter opp lokaler og praktisk rundt arrangementet.',
+              a: 'Ja. Vi tilpasser oppsett, tidspunkt og innhold basert på deres ønsker og type arrangement.',
             },
             viewing: {
               q: 'Kan vi komme på omvisning?',
-              a: 'Ja. Ta kontakt så finner vi et tidspunkt som passer.',
+              a: 'Ja, vi tilbyr private visninger etter avtale. Ta kontakt, så finner vi et tidspunkt som passer.',
             },
             howToInquire: {
               q: 'Hvordan sender vi forespørsel?',
-              a: 'Bruk skjemaet vårt med dato, omtrentlig antall og plan. Vi tar kontakt med forslag.',
+              a: 'Du kan sende oss en e-post eller fylle ut kontaktskjema. Oppgi gjerne dato, antall gjester og type arrangement, så følger vi opp raskt.',
             },
           },
         },
@@ -1274,7 +1231,7 @@ const resources = {
           headingLine1Before: 'Klar for å ',
           headingLine1Accent: 'planlegge',
           headingLine2: 'bedriftens dag hos oss?',
-          body: 'Kort fortalt hva dere tenker på — så foreslår vi opplegg som passer team og gjester.',
+          body: 'Fortell oss kort hva dere ser for dere, så setter vi sammen et opplegg som passer både team og gjester.',
         },
       },
       privatePage: {
@@ -1283,29 +1240,26 @@ const resources = {
         heroTitleLine1: 'Livets feiringer samlet.',
         heroTitleLine2: 'Hos oss.',
         heroTagline:
-          'Feir livets øyeblikk sammen i en ramme som føles personlig, varm og tydelig deres.',
+          'Samle de store øyeblikkene på ett sted, i en ramme som føles personlig og riktig for dere.',
         heroScrollHintAria: 'Rull ned til introduksjonen',
         introSection: {
-          eyebrow: 'Privat hos Rønningen',
           headingBefore: 'Der feiringen får ',
           headingAccent: 'personlighet',
           intro:
-            'Bursdag, konfirmasjon, dåp og navnefest, minnestund og jubileum — dere samles i lokaler med sjel, der det handler om mennesker og tradisjoner, ikke om standard oppsett fra en katalog.',
+            'Bursdag, konfirmasjon, dåp, minnestund og jubileum – samle dere i lokaler som gir rom for deres stil og måte å feire på, uten standardoppsett.',
           panoramaAlt: 'Feststemning og dekkede bord i selskapslokalet',
-          panoramaCaption:
-            'Lys, treverk og plass til både taler og latter — en ramme som lar dagen puste.',
           highlights: {
             proximity: {
               title: 'Nærhet',
-              desc: 'Rom som føles personlige — ikke anonyme festlokaler. Her handler det om dere og gjestene.',
+              desc: 'Rom som føles personlige – her handler det om dere og gjestene, ikke standard oppsett.',
             },
             tradition: {
               title: 'Deres tradisjon',
-              desc: 'Opplegg tilpasset familie, gjester og høytider dere bryr dere om — uten ferdig mal fra oss.',
+              desc: 'Arrangementet formes etter deres ønsker, familie og tradisjoner – uten faste rammer.',
             },
             gathered: {
               title: 'Samlet på ett sted',
-              desc: 'Én destinasjon fra ankomst til siste klem: mindre stress, mer tid til å være til stede.',
+              desc: 'Alt skjer på ett sted, fra start til slutt – mindre stress, mer tid til å være sammen.',
             },
           },
         },
@@ -1313,38 +1267,38 @@ const resources = {
           headingBefore: 'Anledninger vi ofte ',
           headingAccent: 'skaper sammen',
           intro:
-            'Fra bursdag og konfirmasjon til dåp og navnefest, minnestund og jubileum — utgangspunkter dere kan blande og tilpasse. Vi lander detaljene i dialog med dere.',
+            'Fra bursdag og konfirmasjon til dåp, minnestund og jubileum – vi tilpasser opplegget sammen med dere.',
           items: {
             birthday: {
               title: 'Bursdag',
-              desc: 'Fra barnebursdag med enkel servering til voksne selskap med middag og dans. Vi tilpasser kapasitet, lyd og tidsplan slik at dagen blir deres — ikke en ferdig mal.',
+              desc: 'Feir dagen med venner og familie i gode omgivelser, med plass til både middag og fest.',
             },
             confirmation: {
               title: 'Konfirmasjon',
-              desc: 'Etter seremonien samles dere til fest med plass til slekt og venner. Vi hjelper med flyt, bord og tidsrom — slik at konfirmanten og familien kan være til stede, ikke styre logistikk.',
+              desc: 'En viktig dag samlet på ett sted, med rom for både det formelle og det sosiale.',
             },
             baptismNaming: {
-              title: 'Dåp & Navnefest',
-              desc: 'Rolig og varm ramme når dere vil samle nærmeste etter kirken — enten det gjelder dåp, navnefest eller begge deler i samme helg. Vi avklarer plass til barnestoler, kaffebord og taler i samme rom.',
+              title: 'Dåp & navnefest',
+              desc: 'Rolige og fine rammer for en personlig markering med familie og nære.',
             },
             memorial: {
               title: 'Minnestund',
-              desc: 'Samling etter livets tunge dager — en rolig ramme for minneord, kaffe og tid til å være sammen. Vi koordinerer diskret med dere om det dere trenger.',
+              desc: 'Et trygt og verdig sted å samles, med fokus på ro, nærhet og gode samtaler.',
             },
             anniversary: {
               title: 'Jubileum',
-              desc: 'Sølvbryllup, runde år eller langt ekteskap — vi legger til rette for taler, minner og fest som varer ut kvelden, uten at dere må tenke på alt selv.',
+              desc: 'Marker store og små milepæler med en kveld som samler folk og skaper gode minner.',
             },
             gathering: {
               title: 'Selskap & mingling',
-              desc: 'Fra intime middager til større lag med mingling — dere bestemmer formen, vi tilpasser rom, lyd og flyt slik at stemningen blir riktig fra ankomst til avskjed.',
+              desc: 'Uformelle sammenkomster med god flyt, der gjestene kan bevege seg fritt og nyte kvelden.',
             },
           },
         },
         packagesSection: {
           heading: 'Våre private pakker',
           intro:
-            'Velg blant tre private opplegg — vi tilpasser til feiringen, gjestene og ønskene deres i en uforpliktende prat.',
+            'Velg mellom tre opplegg. Vi tilpasser til feiringen, gjestene og ønskene deres – enkelt og uforpliktende.',
           featuredBadge: 'Mest populær',
           requestQuote: 'Be om tilbud',
           priceNote: 'Priser er veiledende — endelig tilbud etter samtale.',
@@ -1381,7 +1335,7 @@ const resources = {
         gallerySection: {
           heading: 'Stemning fra lokalet',
           intro:
-            'Fest, samvær og kveldsstemning — et glimt av hvordan private selskap kan ta form hos oss.',
+            'Fest, samvær og kveldsstemning – se hvordan private selskap tar form hos oss.',
           slideAlt: 'Stemning fra lokalet {{n}}',
           prevImageAria: 'Forrige bilde',
           nextImageAria: 'Neste bilde',
@@ -1394,29 +1348,28 @@ const resources = {
           items: {
             celebrations: {
               q: 'Hvilke private feiringer kan vi ha hos dere?',
-              a: 'Blant annet bursdag, konfirmasjon, dåp og navnefest, minnestund og jubileum. Vi avklarer antall gjester, tidsrom og ønsket form i en uforpliktende prat.',
+              a: 'Alt fra bursdager og konfirmasjoner til dåp, minnestund og jubileer. Opplegget tilpasses etter type feiring.',
             },
             ownFoodDrink: {
               q: 'Kan vi ta med egen mat og drikke?',
-              a: 'Det avklarer vi ut fra valgt opplegg og lokale. Mange kombinerer egen kake og drikke med catering — vi hjelper dere å finne en ryddig løsning.',
+              a: 'Ja, dere står fritt til det. Vi samarbeider også med cateringleverandører som kan levere mat og servering.',
             },
             capacity: {
               q: 'Passer det for både små og store selskap?',
-              a: 'Ja. Vi tilpasser bordoppsett og rom etter antall gjester — fra intime samlinger til større familielag.',
+              a: 'Ja. Lokalet fungerer godt for både mindre og større grupper, med fleksible oppsett.',
             },
             howToBook: {
               q: 'Hvordan booker vi?',
-              a: 'Send forespørsel med dato, omtrentlig antall og type feiring. Vi kommer tilbake med forslag og neste steg.',
+              a: 'Send oss en forespørsel med dato, antall gjester og type arrangement, så tar vi det derfra.',
             },
           },
         },
         closingCta: {
           bgImageAlt: 'Privat feiring på lokalet — bakgrunnsbilde for kontaktoppfordring',
-          eyebrow: 'Neste steg',
           headingLine1Before: 'Lyst å ',
           headingLine1Accent: 'planlegge',
           headingLine2: 'feiringen hos oss?',
-          body: 'Fortell kort hva dere feirer og når — så foreslår vi ramme og opplegg som passer familie og gjester.',
+          body: 'Fortell kort hva dere skal feire og når, så foreslår vi en ramme og et opplegg som passer dere og gjestene.',
         },
       },
       facilitiesPage: {
@@ -1425,7 +1378,7 @@ const resources = {
         heroTitleLine1: 'Alt på ett sted.',
         heroTitleLine2: 'For hele feiringen.',
         heroTagline:
-          'Barnepass, kjøkken, suiter, låve og mer — alt feiringen trenger på samme tun.',
+          'Barnepass, kjøkken, overnatting og gode fasiliteter – alt dere trenger samlet på ett sted.',
         heroScrollHintAria: 'Rull ned til introduksjonen',
         introCardsSection: {
           headingBefore: 'Fra forberedelser til siste dans — ',
@@ -1437,53 +1390,53 @@ const resources = {
           items: {
             childCare: {
               title: 'Barnepass',
-              desc: 'Trygt opplegg for de minste, slik at foreldre kan være til stede i feiringen uten å bekymre seg for logistikken.',
-              imgAlt: 'Barn som leker sammen — illustrerer barnepass og familieselskap',
+              desc: 'Trygge løsninger for de minste, slik at foreldre kan slappe av og være til stede i feiringen.',
+              imgAlt: 'Barn som leker sammen — barnepass og familieselskap',
             },
             accommodation: {
               title: 'Overnatting',
-              desc: 'Gjester som kommer langveisfra kan bli natten over — enkelt å samle hele helgen på samme sted.',
+              desc: 'Mulighet for overnatting for gjester som kommer langveisfra – enkelt å samle hele helgen på ett sted.',
               imgAlt: 'Rolig soverom — overnatting for gjester',
             },
             bridalSuite: {
               title: 'Brudesuite',
-              desc: 'Rom for forberedelser, ro og private øyeblikk før vielse og fest — et naturlig knutepunkt for bruden og følget.',
+              desc: 'Et eget rom for forberedelser og rolige øyeblikk før vielse og fest.',
               imgAlt: 'Elegant detalj — forberedelser og brudesuite',
             },
             activities: {
               title: 'Aktiviteter',
-              desc: 'Mulighet for opplegg som engasjerer ulike aldre og gir pauser og energi gjennom dagen.',
+              desc: 'Muligheter for aktiviteter både inne og ute, som gir pauser og variasjon gjennom dagen.',
               imgAlt: 'Uteområde og natur — aktiviteter og pauser',
             },
             animals: {
               title: 'Samvær med dyr',
-              desc: 'Nærhet til dyr og uteområder som gir en avslappende og særegen ramme rundt arrangementet.',
-              imgAlt: 'Dyr på bondegård — naturlig ramme for arrangement',
+              desc: 'Nærhet til dyr og uteområder gir en rolig og unik ramme rundt arrangementet.',
+              imgAlt: 'Dyr og uteområder — naturlig ramme for arrangement',
             },
             barDanceFloor: {
-              title: 'Bar & Dansegulv',
-              desc: 'Naturlig flyt fra middag til kveld med plass til musikk, toastmaster og dans uten å skifte lokasjon.',
+              title: 'Bar & dansegulv',
+              desc: 'Naturlig overgang fra middag til fest, med plass til musikk, taler og dans.',
               imgAlt: 'Stemning fra fest og bar',
             },
             kitchen: {
               title: 'Storkjøkken',
-              desc: 'Godt utstyrt kjøkken som gjør det enkelt for catering, buffét og servering i større skala.',
+              desc: 'Fullt utstyrt kjøkken som gjør det enkelt for catering og servering.',
               imgAlt: 'Profesjonelt kjøkken til catering og servering',
             },
             universalDesign: {
               title: 'Universelt utformet',
-              desc: 'Tilrettelagt slik at gjester med ulike behov kan komme seg inn, delta og føle seg velkomne.',
+              desc: 'Alt på samme plan med tilgang til HC-toalett. Tilrettelagt slik at alle gjester kan delta og føle seg velkomne.',
               imgAlt: 'Tilgjengelig bygning og inngang — universell utforming',
             },
             parking: {
-              title: 'Gratis parkering (mulighet til å lade eller la bilen stå igjen)',
-              desc: 'God plass til biler, lademuligheter og mulighet til å avtale at bilen kan stå — praktisk for alle som kjører.',
+              title: 'Parkering',
+              desc: 'God plass til parkering, med mulighet for elbillading og å la bilen stå igjen.',
               imgAlt: 'Biler og parkering — ankomst for gjester',
             },
             barn: {
-              title: 'Låve',
-              desc: 'Hovedrommet med autentisk stemning — ideelt til middag, taler, dans og fellesskap under samme tak.',
-              imgAlt: 'Festlokale og feststemning i låve eller selskapslokale',
+              title: 'Selskapslokale',
+              desc: 'Hovedrommet med god plass til middag, taler og fest – alt samlet på ett sted.',
+              imgAlt: 'Selskapslokale med plass til middag og fest',
             },
           },
         },
@@ -1493,70 +1446,33 @@ const resources = {
           items: {
             familyCelebration: {
               title: 'Familiefeiring',
-              desc: 'Rom for både små og store: autentisk låve, trygt barnepass og uteområder som gir pauser og lek — slik at hele familien kan være til stede uten stress.',
+              desc: 'Samle familie og venner til en helhetlig feiring med god tid til både måltid, samvær og ro.',
               imgAlt: 'Familiefeiring — fasiliteter for feiring med barn og voksne',
             },
             weddingWeekend: {
               title: 'Bryllupshelg',
-              desc: 'Fra forberedelser til siste dans: suite til dere, sengeplass for gjester og kveld på dansegulvet — ett sted, ett sammenhengende løp dere kan slappe av i.',
+              desc: 'Feir over flere dager med vielse, middag, fest og overnatting samlet på ett sted.',
               imgAlt: 'Bryllupsfeiring — helg på lokalet',
             },
             corporateEvening: {
               title: 'Bedriftskveld',
-              desc: 'Imponer teamet med profesjonelt kjøkken, tydelig romflyt og teknisk oppsett — dere får et arrangement som føles gjennomført, uten at logistikken stjeler oppmerksomheten.',
+              desc: 'Start med faglig innhold eller middag, og avslutt kvelden med sosialt samvær og fest.',
               imgAlt: 'Bedriftsarrangement på lokalet',
             },
             outdoorsIndoors: {
               title: 'Ute og inne',
-              desc: 'La gjestene trekke pusten ute blant natur og dyr, og samle dere til middag og program inne i låven — en helhet som føles avslappet og litt annerledes.',
+              desc: 'Kombiner uteområder og lokalet gjennom dagen – fra aktivitet og mingling til middag og fest.',
               imgAlt: 'Ute- og innendørs rom på lokalet',
             },
             weekendGuests: {
               title: 'Helg med gjester',
-              desc: 'Når folk kommer langveisfra: overnatting, parkering og fest på samme tun — færre avtaler og kjøring, mer tid til å være vertskap.',
+              desc: 'La gjestene bli over, og skap en avslappet helg med mer tid sammen.',
               imgAlt: 'Gjester på overnatting — helg på lokalet',
             },
             livelyEvening: {
               title: 'Kveld med puls',
-              desc: 'Naturlig flyt fra middag og taler til bar og dans — uten å pakke sammen og flytte gjestene. Stemningen får lov til å bygge seg hele kvelden.',
+              desc: 'Fra middag til musikk og dans – en kveld med god energi og liv i lokalet.',
               imgAlt: 'Kveldsfest — bar og dansegulv',
-            },
-          },
-        },
-        packagesSection: {
-          heading: 'Velg nivå for fasiliteter',
-          intro:
-            'Tre nivåer å kombinere — vi justerer omfang og innhold med dere slik at fasilitetene passer arrangementet og budsjettet.',
-          items: {
-            basic: {
-              name: 'Basis fasiliteter',
-              price: 'På forespørsel',
-              detail: 'Tilbud etter samtale',
-              fit: 'Et tydelig grunnoppsett med de viktigste rammene på plass.',
-              bullet1: 'Låve',
-              bullet2: 'Storkjøkken',
-              bullet3: 'Universelt utformet',
-              bullet4: 'Gratis parkering (mulighet til å lade eller la bilen stå igjen)',
-            },
-            comfortStay: {
-              name: 'Komfort + opphold',
-              price: 'På forespørsel',
-              detail: 'Tilpasses behov',
-              fit: 'Når dere ønsker mer komfort for vertskap og gjester over tid.',
-              bullet1: 'Overnatting',
-              bullet2: 'Brudesuite',
-              bullet3: 'Bar & Dansegulv',
-              bullet4: 'Aktiviteter',
-            },
-            completeFamily: {
-              name: 'Komplett familiesett',
-              price: 'Individuelt',
-              detail: 'Etter omfang',
-              fit: 'For dere som ønsker et helhetlig oppsett for både barn og voksne.',
-              bullet1: 'Barnepass',
-              bullet2: 'Samvær med dyr',
-              bullet3: 'Aktiviteter',
-              bullet4: 'Tilpasset flyt mellom ute og inne',
             },
           },
         },
@@ -1577,7 +1493,7 @@ const resources = {
             },
             universalDesign: {
               q: 'Er lokalet universelt utformet?',
-              a: 'Ja, vi legger vekt på at lokalet skal være tilgjengelig for gjester med ulike behov.',
+              a: 'Ja, lokalet er tilrettelagt med alt på ett plan og tilgang til HC-toalett, slik at alle gjester kan delta og føle seg velkomne.',
             },
             parkingCharging: {
               q: 'Har dere parkering og lademuligheter?',
@@ -1649,11 +1565,9 @@ const resources = {
         hoursHint: 'Ta kontakt for å avtale visning på gården.',
         mapTitle: 'Her finner dere oss',
         mapPillLabel: 'Rønningen',
-        mapOpen: 'Åpne i Google Maps',
+        mapAddressLine: 'Rønningen Selskapslokale – Baneveien 290, 3410 Sylling',
         ctaRing: 'Ring nå',
         ctaMail: 'Send e-post',
-        bottomLine:
-          'Spørsmål om kapasitet, dato eller meny? Vi hjelper gjerne — helt uforpliktende.',
         formSectionTitle: 'Kontakt skjema',
         formSectionIntro: 'Skriv noen linjer, så tar vi kontakt så snart vi kan.',
         formNameLabel: 'Navn',

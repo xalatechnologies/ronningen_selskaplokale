@@ -192,21 +192,13 @@ export const PrivatePage = () => {
       >
         <div className="section-viewport-scroll mx-auto w-full max-w-[1800px] px-5 py-14 md:px-10 md:py-20 lg:px-14 lg:py-24">
           <div className="mx-auto max-w-3xl text-center">
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-[11px] font-bold uppercase tracking-[0.3em] text-brand-600 md:text-xs md:tracking-[0.32em]"
-            >
-              {t('privatePage.introSection.eyebrow')}
-            </motion.p>
             <motion.h2
               id="private-value-heading"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.05 }}
-              className={cn(SECTION_H2_CLASS, 'mt-5 text-balance')}
+              className={cn(SECTION_H2_CLASS, 'text-balance')}
             >
               {t('privatePage.introSection.headingBefore')}
               <span className="italic text-brand-700">{t('privatePage.introSection.headingAccent')}</span>
@@ -236,13 +228,6 @@ export const PrivatePage = () => {
               loading="lazy"
               decoding="async"
             />
-            <div
-              className="pointer-events-none absolute inset-0 bg-linear-to-t from-brand-950/75 via-brand-950/15 to-transparent"
-              aria-hidden
-            />
-            <p className="absolute bottom-5 left-5 right-5 max-w-xl text-left text-sm font-light leading-relaxed text-white/95 md:bottom-8 md:left-8 md:text-base">
-              {t('privatePage.introSection.panoramaCaption')}
-            </p>
           </motion.div>
 
           <div className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-3 md:mt-16 md:gap-6 lg:gap-8">
@@ -673,9 +658,6 @@ export const PrivatePage = () => {
               <div className="absolute -bottom-[20%] -right-[10%] h-[50%] w-[50%] rounded-full bg-rose-400/10 blur-[120px]" />
             </div>
             <div className="relative z-10 mx-auto max-w-3xl space-y-6 md:space-y-8">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-300">
-                {t('privatePage.closingCta.eyebrow')}
-              </p>
               <h2 className={cn(SECTION_H2_ON_DARK_CLASS, 'm-0')}>
                 {t('privatePage.closingCta.headingLine1Before')}
                 <span className="italic text-brand-400">{t('privatePage.closingCta.headingLine1Accent')}</span>

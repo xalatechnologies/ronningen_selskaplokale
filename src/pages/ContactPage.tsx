@@ -169,10 +169,6 @@ export const ContactPage: React.FC = () => {
                       );
                     })}
                   </ul>
-
-                  <p className="text-sm font-medium leading-relaxed text-brand-900 md:text-[15px]">
-                    {t('contactPage.bottomLine')}
-                  </p>
                 </div>
 
                 {/* Right: kontakt skjema — wider column */}
@@ -196,25 +192,17 @@ export const ContactPage: React.FC = () => {
 
               {/* Full-width map below both columns */}
               <div className="border-t border-brand-200/80 pt-10">
-                <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                <div className="mb-4">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-700">
                     {t('contactPage.mapTitle')}
                   </p>
-                  <a
-                    href={mapsSearchUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs font-semibold text-brand-900 underline decoration-brand-400/80 underline-offset-4 transition hover:text-brand-950"
-                  >
-                    {t('contactPage.mapOpen')}
-                  </a>
                 </div>
                 <ContactMap
                   pillLabel={t('contactPage.mapPillLabel')}
                   ariaLabel={t('contactPage.mapTitle')}
                 />
                 <p className="mt-3 text-center text-sm font-medium text-brand-800 sm:text-left">
-                  {t('contactPage.addressValue')} — {t('contactPage.mapOpen')}
+                  {t('contactPage.mapAddressLine')}
                 </p>
               </div>
             </div>
