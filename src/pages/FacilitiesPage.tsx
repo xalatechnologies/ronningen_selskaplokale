@@ -188,25 +188,49 @@ export const FacilitiesPage = () => {
           <img
             src="https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=80&w=2000"
             alt={t('facilitiesPage.heroImageAlt')}
-            className="h-full w-full scale-105 object-cover brightness-[0.42]"
+            className="h-full w-full object-cover brightness-[0.52] contrast-[1.03]"
             referrerPolicy="no-referrer"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/25 to-black/[0.62]" aria-hidden />
+          <div
+            className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/40 via-black/10 to-transparent"
+            aria-hidden
+          />
         </div>
         <div className="section-viewport-scroll relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-center px-4 py-6 text-center text-white">
-          <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.75 }} className="flex w-full flex-col items-center space-y-7 md:space-y-9">
-            <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }} className="max-w-5xl font-serif text-6xl leading-[0.9] tracking-tighter text-balance md:text-9xl">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.75 }}
+            className="flex w-full flex-col items-center space-y-7 md:space-y-9"
+          >
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+              className="max-w-5xl text-balance font-serif text-5xl leading-[0.92] tracking-tighter text-white [text-shadow:0_2px_32px_rgba(0,0,0,0.45)] sm:text-6xl md:text-7xl lg:text-8xl"
+            >
               {t('facilitiesPage.heroTitleLine1')}
-              <span className="mt-2 block font-serif italic text-brand-200 sm:mt-3">{t('facilitiesPage.heroTitleLine2')}</span>
+              {' '}
+              <br className="hidden md:block" />
+              {t('facilitiesPage.heroTitleLine2')}
             </motion.h1>
-            <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.45 }} className="flex w-full flex-col items-stretch justify-center gap-4 pt-1 sm:flex-row sm:items-center sm:gap-6">
-              <Link to={CTA_SECONDARY} className="rounded-full bg-white px-10 py-5 text-center text-sm font-bold uppercase tracking-widest text-brand-900 shadow-xl transition hover:bg-brand-50">
+            <p className="mx-auto max-w-2xl text-xl font-light italic opacity-90 md:text-3xl [text-shadow:0_1px_24px_rgba(0,0,0,0.35)]">
+              {t('facilitiesPage.heroTagline')}
+            </p>
+            <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
+              <Link
+                to={CTA_SECONDARY}
+                className="w-full rounded-full bg-white px-10 py-5 text-sm font-bold uppercase tracking-widest text-brand-900 shadow-2xl transition-all hover:-translate-y-1 hover:bg-brand-50 sm:w-auto"
+              >
                 {t('hero.bookNow')}
               </Link>
-              <Link to={CTA_PRIMARY} className="rounded-full border-2 border-white/35 bg-white/5 px-10 py-5 text-center text-sm font-bold uppercase tracking-widest text-white backdrop-blur-[2px] transition hover:bg-white/10">
+              <Link
+                to={CTA_PRIMARY}
+                className="w-full rounded-full border-2 border-white bg-transparent px-10 py-5 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-white/10 sm:w-auto"
+              >
                 {t('hero.cta')}
               </Link>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
 

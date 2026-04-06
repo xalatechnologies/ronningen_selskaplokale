@@ -39,6 +39,8 @@ const resources = {
             title: 'Weddings',
             description:
               'Ceremony, reception, and mingling in one place — we help you plan the whole journey from wish list to last dance.',
+            imgAlt:
+              'Bride and groom dancing together as red and gold confetti falls in a bright reception hall',
           },
           corporate: {
             title: 'Corporate events',
@@ -135,7 +137,8 @@ const resources = {
             'Bring the whole day together in one place — from ceremony to dinner and the party. You set the order and the tone. Surrounded by calm, beautiful nature, with only a short distance between the vows and the dance floor.',
           intro2:
             'We support you with planning and delivery so you can focus on what matters most. Get in touch for a tour and a no-obligation chat about how your day can take shape with us.',
-          figureAlt: 'Celebration and atmosphere at Rønningen — the venue and its surroundings',
+          figureAlt:
+            'Wedding rings and lace gown detail beside bride and groom dancing at a reception with guests under warm string lights',
           why: {
             item1: {
               title: 'Atmosphere',
@@ -182,26 +185,36 @@ const resources = {
             kitchen: {
               title: 'Commercial kitchen & catering',
               desc: 'You are welcome to bring your own food or use our fully equipped commercial kitchen.\n\nWe also work with local caterers who can deliver ready-made meals, or cook on site with experienced chefs and serving staff.',
+              imgAlt: 'Professional commercial kitchen equipped for catering and events',
             },
             photography: {
               title: 'Photography',
               desc: 'Recommended photographers who know the light and spaces here — from portraits and ceremony to the reception and small moments you will want to remember.',
+              imgAlt:
+                'Bride and groom on rocks in front of a waterfall in a forested mountain landscape',
             },
             decoration: {
               title: 'Decoration',
               desc: 'Flexible decor options adapted to your style and expression. Together with our partners we can create a cohesive atmosphere — from table details to styling the entire venue.',
+              imgAlt:
+                'Outdoor wedding table with pink and white roses, draped chairs, and a floral arch by the water at golden hour',
             },
             bar: {
               title: 'Bar & dance floor',
               desc: 'You may bring your own drinks and use the bar area. With a dedicated dance floor, everything is set for a great atmosphere all evening.',
+              imgAlt: 'Evening celebration with bar atmosphere and dance floor',
             },
             soundLight: {
               title: 'Sound & lighting',
               desc: 'A powerful sound system suited to parties and music, combined with lighting that creates the right mood throughout your event.',
+              imgAlt:
+                'Banquet hall with white table settings, purple and blue stage lighting, and projections on the walls',
             },
             tableSetting: {
               title: 'Table settings & styling',
               desc: 'Fully dressed tables with linens, chair covers, crockery, glassware, and everything you need — plus table decor, menu cards, and details that tie it all together. We align the look with the style of your day so guests meet complete tables from the very first moment.',
+              imgAlt:
+                'Luxury long dining table with champagne velvet linen, beaded chargers, floral centerpieces, taper candles, and plum glassware in daylight',
             },
           },
         },
@@ -289,6 +302,8 @@ const resources = {
           'Corporate meeting and conference — team collaboration in a professional event setting',
         heroTitleLine1: 'From Christmas parties to kick-offs.',
         heroTitleLine2: 'All in one place.',
+        heroTagline:
+          'Host corporate events that feel organised, welcoming, and firmly on brief.',
         heroScrollHintAria: 'Scroll down to the introduction',
         introSection: {
           figureAlt:
@@ -417,6 +432,8 @@ const resources = {
           'Private celebration and gathering — warm venue atmosphere for birthdays, confirmations, and family events',
         heroTitleLine1: "Life's celebrations, gathered.",
         heroTitleLine2: 'With us.',
+        heroTagline:
+          "Celebrate life's moments together in a setting that feels personal, warm, and unmistakably yours.",
         heroScrollHintAria: 'Scroll down to the introduction',
         introSection: {
           eyebrow: 'Private at Rønningen',
@@ -558,6 +575,8 @@ const resources = {
           'Celebration atmosphere at the venue — lighting and decor suggesting facilities for weddings and events',
         heroTitleLine1: 'All in one place.',
         heroTitleLine2: 'For the whole celebration.',
+        heroTagline:
+          'Childcare, kitchen, suites, barn and more — everything your celebration needs in one venue.',
         heroScrollHintAria: 'Scroll down to the introduction',
         introCardsSection: {
           headingBefore: 'From preparations to the last dance — ',
@@ -871,6 +890,8 @@ const resources = {
             title: 'Bryllup',
             description:
               'Vielse, fest og mingling på ett sted — vi hjelper dere med helhetsplan fra ønskeliste til siste dans.',
+            imgAlt:
+              'Brud og brudgom som danser sammen mens rødt og gullfarget konfetti faller i en lys festsal',
           },
           corporate: {
             title: 'Firmaeventer',
@@ -967,7 +988,8 @@ const resources = {
             'Samle hele dagen på ett sted – fra vielse til middag og fest. Dere bestemmer rekkefølgen og stilen. Omgitt av rolige omgivelser i vakker natur, med kort vei mellom seremoni og dans.',
           intro2:
             'Vi hjelper dere med planlegging og gjennomføring, slik at dere kan fokusere på det som betyr mest. Ta kontakt for omvisning og en uforpliktende prat om hvordan dagen kan gjennomføres hos oss.',
-          figureAlt: 'Feiring og stemning på Rønningen — lokalet og omgivelsene',
+          figureAlt:
+            'Vielsesringer og blondekjole i nærbilde ved siden av brudepar som danser på fest med gjester under varme lyslenker',
           why: {
             item1: {
               title: 'Atmosfære',
@@ -1014,26 +1036,36 @@ const resources = {
             kitchen: {
               title: 'Storkjøkken & catering',
               desc: 'Dere står fritt til å ta med egen mat eller benytte vårt fullt utstyrte storkjøkken.\n\nVi samarbeider også med lokale cateringaktører som kan levere ferdig mat, eller stå for matlaging på stedet med erfarne kokker og serveringspersonell.',
+              imgAlt: 'Profesjonelt storkjøkken utstyrt til catering og arrangement',
             },
             photography: {
               title: 'Fotografering',
               desc: 'Anbefalte fotografer som kjenner både lyset og rommene her — fra portretter og vielse til fest og små øyeblikk dere vil huske.',
+              imgAlt:
+                'Brud og brudgom på steiner foran foss i skogkledd fjellandskap',
             },
             decoration: {
               title: 'Dekorasjon',
               desc: 'Vi tilbyr fleksible dekorasjonsløsninger som kan tilpasses deres stil og uttrykk. Sammen med våre samarbeidspartnere kan vi skape en helhetlig og gjennomført atmosfære – fra bordpynt til dekorasjon av hele lokalet.',
+              imgAlt:
+                'Utendørs bryllupsbord med rosa og hvite roser, pyntede stoler og blomsterbue ved vannet i gyllent lys',
             },
             bar: {
               title: 'Bar & dansegulv',
               desc: 'Dere står fritt til å ta med egen drikke og bruke barområdet. Med eget dansegulv ligger alt til rette for god stemning gjennom hele kvelden.',
+              imgAlt: 'Kveldsfest med barstemning og dansegulv',
             },
             soundLight: {
               title: 'Lyd & Lys',
               desc: 'Vi har et kraftig lydanlegg som passer perfekt til fest og musikk, kombinert med belysning som skaper riktig stemning gjennom hele arrangementet.',
+              imgAlt:
+                'Selskapslokale med hvite festbord, lilla og blå scenelys og lysmønster på veggene',
             },
             tableSetting: {
               title: 'Oppdekking & bordpynt',
               desc: 'Ferdig oppdekket med duker, stoltrekk, servise, glass og det dere trenger på bordet — pluss bordpynt, menykort og små detaljer som binder det hele sammen. Vi avstemmer uttrykket med stilen på dagen deres, så gjestene møter komplette bord fra første minutt.',
+              imgAlt:
+                'Langt festbord med champagnefarget fløyelsduk, perlebesatte tallerkener, blomsterdekorasjoner, stearinlys og mørkerøde glass i dagslys',
             },
           },
         },
@@ -1121,6 +1153,8 @@ const resources = {
           'Bedriftsmøte og konferanse — samarbeid og faglig innhold i profesjonelle rammer',
         heroTitleLine1: 'Fra julebord til kick-off.',
         heroTitleLine2: 'Alt på ett sted.',
+        heroTagline:
+          'Bedriftsarrangementer som føles gjennomførte, varme og på deres premisser.',
         heroScrollHintAria: 'Rull ned til introduksjonen',
         introSection: {
           figureAlt:
@@ -1248,6 +1282,8 @@ const resources = {
           'Privat feiring og selskap — varm stemning i lokalet for bursdag, konfirmasjon og familiearrangement',
         heroTitleLine1: 'Livets feiringer samlet.',
         heroTitleLine2: 'Hos oss.',
+        heroTagline:
+          'Feir livets øyeblikk sammen i en ramme som føles personlig, varm og tydelig deres.',
         heroScrollHintAria: 'Rull ned til introduksjonen',
         introSection: {
           eyebrow: 'Privat hos Rønningen',
@@ -1388,6 +1424,8 @@ const resources = {
           'Feststemning i lokalet — lys og dekor som viser fasiliteter for bryllup og arrangement',
         heroTitleLine1: 'Alt på ett sted.',
         heroTitleLine2: 'For hele feiringen.',
+        heroTagline:
+          'Barnepass, kjøkken, suiter, låve og mer — alt feiringen trenger på samme tun.',
         heroScrollHintAria: 'Rull ned til introduksjonen',
         introCardsSection: {
           headingBefore: 'Fra forberedelser til siste dans — ',

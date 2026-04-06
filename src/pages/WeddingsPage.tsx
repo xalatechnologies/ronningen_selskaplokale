@@ -49,11 +49,11 @@ const WEDDINGS_SERVICE_KEYS = [
 
 const WEDDINGS_SERVICE_IMAGES = [
   'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800',
-  'https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&q=80&w=800',
-  'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800',
+  '/weddings/service-photography-waterfall.png',
+  '/weddings/service-decoration-outdoor-table.png',
   'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800',
-  'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800',
-  'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800',
+  '/weddings/service-sound-light-banquet.png',
+  '/weddings/service-table-setting-luxury.png',
 ] as const;
 
 const WEDDINGS_PACKAGE_IDS = ['basic', 'plus', 'premium'] as const;
@@ -200,12 +200,21 @@ export const WeddingsPage = () => {
             </div>
 
             <figure className="order-1 lg:order-2 m-0 w-full">
-              <div className="aspect-[3/4] w-full rounded-md border border-brand-100 bg-brand-50 shadow-lg sm:aspect-[4/5] lg:aspect-[3/4] xl:aspect-auto xl:h-[min(78vh,720px,50dvh)] overflow-hidden">
+              <div
+                className={cn(
+                  'relative w-full overflow-hidden rounded-md border border-brand-100 bg-brand-50 shadow-lg',
+                  'min-h-[min(56vw,320px)] sm:min-h-[min(52vw,380px)] md:min-h-[420px]',
+                  'lg:min-h-[min(50vh,480px)] xl:min-h-[min(52vh,560px)] 2xl:min-h-[min(52vh,620px)]',
+                )}
+              >
                 <img
-                  src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1600"
+                  src="/weddings/atmosphere-rings-and-celebration.png"
                   alt={t('weddingsPage.atmosphere.figureAlt')}
-                  className="h-full w-full object-cover object-center"
-                  referrerPolicy="no-referrer"
+                  width={1024}
+                  height={573}
+                  decoding="async"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover object-center"
                 />
               </div>
             </figure>
@@ -334,6 +343,7 @@ export const WeddingsPage = () => {
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-4 xl:gap-5">
             {WEDDINGS_SERVICE_KEYS.map((serviceKey, i) => {
               const serviceTitle = t(`weddingsPage.servicesSection.items.${serviceKey}.title`);
+              const serviceImageAlt = t(`weddingsPage.servicesSection.items.${serviceKey}.imgAlt`);
               return (
                 <motion.div
                   key={serviceKey}
@@ -346,7 +356,29 @@ export const WeddingsPage = () => {
                 >
                   <img
                     src={WEDDINGS_SERVICE_IMAGES[i]}
-                    alt={serviceTitle}
+                    alt={serviceImageAlt}
+                    width={
+                      serviceKey === 'photography'
+                        ? 682
+                        : serviceKey === 'decoration' || serviceKey === 'tableSetting'
+                          ? 1024
+                          : serviceKey === 'soundLight'
+                            ? 800
+                            : undefined
+                    }
+                    height={
+                      serviceKey === 'photography'
+                        ? 1024
+                        : serviceKey === 'decoration'
+                          ? 666
+                          : serviceKey === 'soundLight'
+                            ? 600
+                            : serviceKey === 'tableSetting'
+                              ? 698
+                              : undefined
+                    }
+                    decoding="async"
+                    loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus-within:scale-105"
                     referrerPolicy="no-referrer"
                   />

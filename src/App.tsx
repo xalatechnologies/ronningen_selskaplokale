@@ -53,7 +53,7 @@ type HomeConceptKey = (typeof HOME_CONCEPT_KEYS)[number];
 const HOME_CONCEPT_ROUTES: Record<HomeConceptKey, { path: string; img: string }> = {
   weddings: {
     path: '/weddings',
-    img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1200',
+    img: '/concept-weddings-confetti.png',
   },
   corporate: {
     path: '/corporate',
@@ -256,7 +256,13 @@ const Home = () => {
                           <div className="relative aspect-square overflow-hidden rounded-full border-[3px] border-white/90 shadow-[0_20px_50px_-12px_rgba(33,24,22,0.35)] ring-1 ring-brand-900/10 transition-[transform,box-shadow] duration-500 ease-out group-hover:scale-[1.03] group-hover:shadow-[0_28px_60px_-8px_rgba(33,24,22,0.42)]">
                             <img
                               src={img}
-                              alt=""
+                              alt={
+                                key === 'weddings'
+                                  ? t('homeConcepts.items.weddings.imgAlt')
+                                  : ''
+                              }
+                              width={key === 'weddings' ? 682 : undefined}
+                              height={key === 'weddings' ? 1024 : undefined}
                               className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                               referrerPolicy="no-referrer"
                             />
