@@ -128,10 +128,11 @@ export const PrivatePage = () => {
       <section className="hero-below-nav section-viewport section-viewport-hero relative flex min-h-0 flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=2000"
+            src="/private-hero-celebration.png"
             alt={t('privatePage.heroImageAlt')}
-            className="h-full w-full object-cover brightness-[0.52] contrast-[1.03]"
-            referrerPolicy="no-referrer"
+            width={960}
+            height={640}
+            className="h-full w-full object-cover object-center brightness-[0.52] contrast-[1.03]"
           />
           <div
             className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/40 via-black/10 to-transparent"
@@ -216,8 +217,10 @@ export const PrivatePage = () => {
             className="relative mx-auto mt-12 max-h-[min(52vh,480px)] w-full overflow-hidden rounded-2xl border border-brand-200/90 shadow-[0_24px_60px_-20px_rgba(33,24,22,0.35)] md:mt-16 aspect-[16/10] md:aspect-[21/9]"
           >
             <img
-              src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=2000"
+              src="/private-intro-panorama.png"
               alt={t('privatePage.introSection.panoramaAlt')}
+              width={1024}
+              height={460}
               className="h-full w-full object-cover object-center"
               loading="lazy"
               decoding="async"

@@ -476,7 +476,7 @@ const resources = {
       },
       privatePage: {
         heroImageAlt:
-          'Private celebration and gathering — warm venue atmosphere for birthdays, confirmations, and family events',
+          'Banquet room with round white tables, floral centerpieces, candles and fairy lights draped across the ceiling',
         heroTitleLine1: "Life's celebrations, gathered.",
         heroTitleLine2Prefix: '',
         heroTitleLine2Accent: 'With',
@@ -487,7 +487,8 @@ const resources = {
           headingAccent: 'personality',
           intro:
             'Birthdays, confirmations, baptisms, memorial gatherings and anniversaries — gather in spaces that leave room for your style and how you celebrate, without a standard package setup.',
-          panoramaAlt: 'Celebration atmosphere and set tables in the venue',
+          panoramaAlt:
+            'Evening party room with a long candlelit table, fairy lights overhead, cocktail tables, tricolour ceiling banner, tall glass doors and a small lit tree',
           highlights: {
             proximity: {
               title: 'Closeness',
@@ -622,7 +623,7 @@ const resources = {
       },
       facilitiesPage: {
         heroImageAlt:
-          'Celebration atmosphere at the venue — lighting and decor suggesting facilities for weddings and events',
+          'Shuffleboard table with pucks on a polished wooden surface — indoor social activities at the venue',
         heroTitleLine1: 'All in one place.',
         heroTitleLine2Prefix: 'For the ',
         heroTitleLine2Accent: 'whole celebration',
@@ -641,52 +642,61 @@ const resources = {
             childCare: {
               title: 'Childcare',
               desc: 'Safe solutions for little ones so parents can relax and be fully present at the celebration.',
-              imgAlt: 'Children playing together — childcare and family gatherings',
+              imgAlt:
+                'Bright children’s playroom with toys, small table and large window overlooking a green garden',
             },
             accommodation: {
               title: 'Accommodation',
               desc: 'Overnight stays for guests travelling from afar — easy to bring the whole weekend together in one place.',
-              imgAlt: 'Calm bedroom — guest accommodation',
+              imgAlt:
+                'Guest lounge with sofa, TV, wood floor and tall windows — view of trees and Norwegian flag outside',
             },
             bridalSuite: {
               title: 'Bridal suite',
               desc: 'A dedicated room for preparations and quiet moments before the ceremony and party.',
-              imgAlt: 'Elegant detail — preparations and bridal suite',
+              imgAlt:
+                'Attic bedroom with sloped white paneled ceiling, dark grey walls, upholstered bed and woven pendant light',
             },
             activities: {
               title: 'Activities',
               desc: 'Options indoors and out that add breaks and variety through the day.',
-              imgAlt: 'Outdoor space and nature — activities and breaks',
+              imgAlt: 'Shuffleboard table with pucks — indoor games and activities',
             },
             animals: {
               title: 'Time with animals',
               desc: 'Close to animals and outdoor areas for a calm, distinctive setting around your event.',
-              imgAlt: 'Animals on the farm — natural setting for events',
+              imgAlt:
+                'White goats resting by grey wooden shelters on a grassy hillside with green fields beyond',
             },
             barDanceFloor: {
               title: 'Bar & dance floor',
               desc: 'A natural transition from dinner to party, with room for music, speeches and dancing.',
-              imgAlt: 'Party and bar atmosphere',
+              imgAlt:
+                'Event hall with bar counter, cocktail tables, draped ceiling and tall windows to a green garden',
             },
             kitchen: {
               title: 'Commercial kitchen',
               desc: 'A fully equipped kitchen that makes catering and service straightforward.',
-              imgAlt: 'Professional kitchen for catering and service',
+              imgAlt:
+                'Commercial kitchen with stainless steel worktops, combi oven, large exhaust hood and prep stations',
             },
             universalDesign: {
               title: 'Universally designed',
               desc: 'All on one level with access to an accessible WC — arranged so every guest can take part and feel welcome.',
-              imgAlt: 'Accessible building and entrance — universal design',
+              imgAlt:
+                'Wide hallway with level wood floor, floor-to-ceiling built-in cabinets, mirror and open view to a bright kitchen area',
             },
             parking: {
               title: 'Parking',
               desc: 'Plenty of parking, with EV charging and the option to leave your car.',
-              imgAlt: 'Cars and parking — guest arrival',
+              imgAlt:
+                'Tour coaches parked on a gravel lot with forest behind — space for large groups to arrive',
             },
             barn: {
               title: 'Celebration hall',
               desc: 'The main room with space for dinner, speeches and dancing — all in one place.',
-              imgAlt: 'Main celebration room with dinner and party atmosphere',
+              imgAlt:
+                'Aerial view of the estate — main venue, white guest house with pool, red outbuilding, picnic tables, gravel paths, Norwegian flag and forested hills',
             },
           },
         },
@@ -697,32 +707,38 @@ const resources = {
             familyCelebration: {
               title: 'Family celebration',
               desc: 'Bring family and friends together for a full celebration with time for meals, company and calm.',
-              imgAlt: 'Family gathering — facilities for celebrations with children and adults',
+              imgAlt:
+                'Large group of guests in formal dress for a celebration on the patio in front of the modern glass-front venue, countryside beyond',
             },
             weddingWeekend: {
               title: 'Wedding weekend',
               desc: 'Celebrate over several days with ceremony, dinner, party and overnight stays all in one place.',
-              imgAlt: 'Wedding celebration — weekend use of the venue',
+              imgAlt:
+                'Classic green Mini with wedding trim — pennants in the rear window and tin cans on strings, parked on a rural gravel road',
             },
             corporateEvening: {
               title: 'Corporate evening',
               desc: 'Start with professional content or dinner, and finish the evening with social time and a party.',
-              imgAlt: 'Corporate event at the venue',
+              imgAlt:
+                'Banquet hall set for dinner — round tables with white linens, candles and greenery, tall windows and venue sign at the far end',
             },
             outdoorsIndoors: {
               title: 'Outdoors and indoors',
               desc: 'Combine outdoor areas and the venue through the day — from activity and mingling to dinner and party.',
-              imgAlt: 'Indoor and outdoor spaces at the venue',
+              imgAlt:
+                'Waterfall pouring over dark cliffs into a pool where someone is swimming — outdoor nature and activity',
             },
             weekendGuests: {
               title: 'Weekend with guests',
               desc: 'Let guests stay over and enjoy a relaxed weekend with more time together.',
-              imgAlt: 'Guests staying overnight — weekend at the venue',
+              imgAlt:
+                'Bright guest living area with seating and TV — comfortable space for overnight guests',
             },
             livelyEvening: {
               title: 'An evening with energy',
               desc: 'From dinner to music and dancing — an evening with great energy and life in the venue.',
-              imgAlt: 'Evening party — bar and dance floor',
+              imgAlt:
+                'Bright event hall with bar, high tables and garden views — space for party and dancing',
             },
           },
         },
@@ -1423,7 +1439,7 @@ const resources = {
       },
       privatePage: {
         heroImageAlt:
-          'Privat feiring og selskap — varm stemning i lokalet for bursdag, konfirmasjon og familiearrangement',
+          'Bankettsal med runde hvite bord, blomster på bordene, telys og lyslenker i taket mot mørk bakgrunn',
         heroTitleLine1: 'Livets feiringer samlet.',
         heroTitleLine2Prefix: '',
         heroTitleLine2Accent: 'Hos',
@@ -1434,7 +1450,8 @@ const resources = {
           headingAccent: 'personlighet',
           intro:
             'Bursdag, konfirmasjon, dåp, minnestund og jubileum – samle dere i lokaler som gir rom for deres stil og måte å feire på, uten standardoppsett.',
-          panoramaAlt: 'Feststemning og dekkede bord i selskapslokalet',
+          panoramaAlt:
+            'Kveldsfest i lokalet med langt stearinlysdekket bord, lyslenker i taket, ståbord, trefarget banner i taket, høye glassdører og lite opplyst tre i bakgrunnen',
           highlights: {
             proximity: {
               title: 'Nærhet',
@@ -1568,7 +1585,7 @@ const resources = {
       },
       facilitiesPage: {
         heroImageAlt:
-          'Feststemning i lokalet — lys og dekor som viser fasiliteter for bryllup og arrangement',
+          'Shuffleboard-bord med klyper på blankpolert tre — sosiale aktiviteter innendørs i lokalet',
         heroTitleLine1: 'Alt på ett sted.',
         heroTitleLine2Prefix: 'For ',
         heroTitleLine2Accent: 'hele feiringen',
@@ -1587,52 +1604,61 @@ const resources = {
             childCare: {
               title: 'Barnepass',
               desc: 'Trygge løsninger for de minste, slik at foreldre kan slappe av og være til stede i feiringen.',
-              imgAlt: 'Barn som leker sammen — barnepass og familieselskap',
+              imgAlt:
+                'Lyst lekerom med leker, lite bord og stort vindu mot grønn hage — barnepass på lokalet',
             },
             accommodation: {
               title: 'Overnatting',
               desc: 'Mulighet for overnatting for gjester som kommer langveisfra – enkelt å samle hele helgen på ett sted.',
-              imgAlt: 'Rolig soverom — overnatting for gjester',
+              imgAlt:
+                'Oppholdsrom for gjester med sofa, TV, tregulv og høye vinduer — utsikt til trær og norsk flagg ute',
             },
             bridalSuite: {
               title: 'Brudesuite',
               desc: 'Et eget rom for forberedelser og rolige øyeblikk før vielse og fest.',
-              imgAlt: 'Elegant detalj — forberedelser og brudesuite',
+              imgAlt:
+                'Soverom under skråtak med hvitt paneltak, mørkegrå vegger, polstret seng og flettet takpendel',
             },
             activities: {
               title: 'Aktiviteter',
               desc: 'Muligheter for aktiviteter både inne og ute, som gir pauser og variasjon gjennom dagen.',
-              imgAlt: 'Uteområde og natur — aktiviteter og pauser',
+              imgAlt: 'Shuffleboard-bord med klyper — spill og aktiviteter innendørs',
             },
             animals: {
               title: 'Samvær med dyr',
               desc: 'Nærhet til dyr og uteområder gir en rolig og unik ramme rundt arrangementet.',
-              imgAlt: 'Dyr og uteområder — naturlig ramme for arrangement',
+              imgAlt:
+                'Hvite geiter ved grå trehus på en gressbakke med grønne åser i bakgrunnen',
             },
             barDanceFloor: {
               title: 'Bar & dansegulv',
               desc: 'Naturlig overgang fra middag til fest, med plass til musikk, taler og dans.',
-              imgAlt: 'Stemning fra fest og bar',
+              imgAlt:
+                'Selskapslokale med bar, ståbord, drapert tak og høye vinduer mot grønn hage',
             },
             kitchen: {
               title: 'Storkjøkken',
               desc: 'Fullt utstyrt kjøkken som gjør det enkelt for catering og servering.',
-              imgAlt: 'Profesjonelt kjøkken til catering og servering',
+              imgAlt:
+                'Storkjøkken med rustfrie benker, kombidampovn, stor ventilasjonshette og arbeidsstasjoner',
             },
             universalDesign: {
               title: 'Universelt utformet',
               desc: 'Alt på samme plan med tilgang til HC-toalett. Tilrettelagt slik at alle gjester kan delta og føle seg velkomne.',
-              imgAlt: 'Tilgjengelig bygning og inngang — universell utforming',
+              imgAlt:
+                'Bred gang med jevnt tregulv, innebygde skap fra gulv til tak, speil og åpent utsyn mot lyst kjøkkenområde',
             },
             parking: {
               title: 'Parkering',
               desc: 'God plass til parkering, med mulighet for elbillading og å la bilen stå igjen.',
-              imgAlt: 'Biler og parkering — ankomst for gjester',
+              imgAlt:
+                'Turbusser på grusparkering med skog i bakgrunnen — plass til at store grupper kan komme med buss',
             },
             barn: {
               title: 'Selskapslokale',
               desc: 'Hovedrommet med god plass til middag, taler og fest – alt samlet på ett sted.',
-              imgAlt: 'Selskapslokale med plass til middag og fest',
+              imgAlt:
+                'Luftfoto av tunet — hovedbygg, hvitt gjestehus med basseng, rødt driftsbygg, langbord ute, grusveier, norsk flagg og skogkledde åser',
             },
           },
         },
@@ -1643,32 +1669,38 @@ const resources = {
             familyCelebration: {
               title: 'Familiefeiring',
               desc: 'Samle familie og venner til en helhetlig feiring med god tid til både måltid, samvær og ro.',
-              imgAlt: 'Familiefeiring — fasiliteter for feiring med barn og voksne',
+              imgAlt:
+                'Stor gjeng i festantrekk på terrassen foran det moderne lokalet med glassfasade — landskap i bakgrunnen',
             },
             weddingWeekend: {
               title: 'Bryllupshelg',
               desc: 'Feir over flere dager med vielse, middag, fest og overnatting samlet på ett sted.',
-              imgAlt: 'Bryllupsfeiring — helg på lokalet',
+              imgAlt:
+                'Klassisk grønn Mini med bryllupspynt — vimpelrekke i bakruten og boksar på snorer, parkert på grusvei på landet',
             },
             corporateEvening: {
               title: 'Bedriftskveld',
               desc: 'Start med faglig innhold eller middag, og avslutt kvelden med sosialt samvær og fest.',
-              imgAlt: 'Bedriftsarrangement på lokalet',
+              imgAlt:
+                'Bankettsal dekket til middag — runde bord med hvite duker, lys og grønt, høye vinduer og skilt med stedsnavn bakerst i rommet',
             },
             outdoorsIndoors: {
               title: 'Ute og inne',
               desc: 'Kombiner uteområder og lokalet gjennom dagen – fra aktivitet og mingling til middag og fest.',
-              imgAlt: 'Ute- og innendørs rom på lokalet',
+              imgAlt:
+                'Foss over mørke bergvegger ned i badekulpe med en person i vannet — friluft og natur',
             },
             weekendGuests: {
               title: 'Helg med gjester',
               desc: 'La gjestene bli over, og skap en avslappet helg med mer tid sammen.',
-              imgAlt: 'Gjester på overnatting — helg på lokalet',
+              imgAlt:
+                'Lyst oppholdsrom med sittegruppe og TV — komfortabelt for gjester som blir over',
             },
             livelyEvening: {
               title: 'Kveld med puls',
               desc: 'Fra middag til musikk og dans – en kveld med god energi og liv i lokalet.',
-              imgAlt: 'Kveldsfest — bar og dansegulv',
+              imgAlt:
+                'Lyst selskapslokale med bar, ståbord og utsikt mot hage — rom for fest og dans',
             },
           },
         },

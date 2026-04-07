@@ -16,7 +16,7 @@ type GalleryItem = {
   category: GalleryCategory;
 };
 
-/** Rønningen photos — same set as forsiden / bryllup «Inspirasjon»-karusell */
+/** Rønningen photos — full archive; forsiden / bryllup carousels use a smaller curated set */
 const galleryItems: GalleryItem[] = inspirationGalleryPageItems;
 
 const FILTERS = ['all', 'wedding', 'corporate', 'private', 'facilities'] as const;

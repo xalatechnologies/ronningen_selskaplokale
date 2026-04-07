@@ -12,6 +12,21 @@ const CTA_PRIMARY = '/inquiry';
 const CTA_SECONDARY = '/contact';
 const GALLERY_EDGE_TOLERANCE = 2;
 
+const FACILITIES_SHUFFLEBOARD_HERO_IMG = '/facilities-hero-shuffleboard.png';
+const FACILITIES_CHILDCARE_PLAYROOM_IMG = '/facilities-childcare-playroom.png';
+const FACILITIES_ANIMALS_GOATS_IMG = '/facilities-animals-goats.png';
+const FACILITIES_COMMERCIAL_KITCHEN_IMG = '/facilities-commercial-kitchen.png';
+const FACILITIES_BAR_EVENT_HALL_IMG = '/facilities-bar-event-hall.png';
+const FACILITIES_VENUE_AERIAL_IMG = '/facilities-venue-aerial.png';
+const FACILITIES_PARKING_COACHES_IMG = '/facilities-parking-coaches.png';
+const FACILITIES_GUEST_LOUNGE_IMG = '/facilities-guest-lounge.png';
+const FACILITIES_BRIDAL_SUITE_BEDROOM_IMG = '/facilities-bridal-suite-bedroom.png';
+const FACILITIES_UNIVERSAL_DESIGN_HALLWAY_IMG = '/facilities-universal-design-hallway.png';
+const FACILITIES_FAMILY_CELEBRATION_GROUP_IMG = '/facilities-usecase-family-celebration.png';
+const FACILITIES_WEDDING_WEEKEND_MINI_IMG = '/facilities-usecase-wedding-weekend.png';
+const FACILITIES_CORPORATE_EVENING_BANQUET_IMG = '/facilities-usecase-corporate-evening.png';
+const FACILITIES_OUTDOORS_WATERFALL_IMG = '/facilities-usecase-outdoors-waterfall.png';
+
 /** Unsplash: use ixlib + verified photo ids (some legacy ids return 404 from the CDN). */
 const US_IMG = (id: string) =>
   `https://images.unsplash.com/${id}?ixlib=rb-4.1.0&auto=format&fit=crop&q=85&w=1200`;
@@ -32,16 +47,16 @@ const FACILITY_CARD_KEYS = [
 type FacilityCardKey = (typeof FACILITY_CARD_KEYS)[number];
 
 const FACILITY_CARD_IMAGES: Record<FacilityCardKey, string> = {
-  childCare: US_IMG('photo-1503454537195-1dcabb73ffb9'),
-  accommodation: US_IMG('photo-1522708323590-d24dbb6b0267'),
-  bridalSuite: US_IMG('photo-1519741497674-611481863552'),
-  activities: US_IMG('photo-1512909006721-3d6018887383'),
-  animals: US_IMG('photo-1516467508483-a7212febe31a'),
-  barDanceFloor: US_IMG('photo-1514362545857-3bc16c4c7d1b'),
-  kitchen: US_IMG('photo-1556911220-bff31c812dba'),
-  universalDesign: US_IMG('photo-1584464491033-06628f3a6b7b'),
-  parking: US_IMG('photo-1492144534655-ae79c964c9d7'),
-  barn: US_IMG('photo-1519225421980-715cb0215aed'),
+  childCare: FACILITIES_CHILDCARE_PLAYROOM_IMG,
+  accommodation: FACILITIES_GUEST_LOUNGE_IMG,
+  bridalSuite: FACILITIES_BRIDAL_SUITE_BEDROOM_IMG,
+  activities: FACILITIES_SHUFFLEBOARD_HERO_IMG,
+  animals: FACILITIES_ANIMALS_GOATS_IMG,
+  barDanceFloor: FACILITIES_BAR_EVENT_HALL_IMG,
+  kitchen: FACILITIES_COMMERCIAL_KITCHEN_IMG,
+  universalDesign: FACILITIES_UNIVERSAL_DESIGN_HALLWAY_IMG,
+  parking: FACILITIES_PARKING_COACHES_IMG,
+  barn: FACILITIES_VENUE_AERIAL_IMG,
 };
 
 const USE_CASE_KEYS = [
@@ -56,26 +71,20 @@ const USE_CASE_KEYS = [
 type UseCaseKey = (typeof USE_CASE_KEYS)[number];
 
 const USE_CASE_IMAGES: Record<UseCaseKey, string> = {
-  familyCelebration:
-    'https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=85&w=1200',
-  weddingWeekend:
-    'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1200',
-  corporateEvening:
-    'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=1200',
-  outdoorsIndoors:
-    'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=85&w=1200',
-  weekendGuests:
-    'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=85&w=1200',
-  livelyEvening:
-    'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=85&w=1200',
+  familyCelebration: FACILITIES_FAMILY_CELEBRATION_GROUP_IMG,
+  weddingWeekend: FACILITIES_WEDDING_WEEKEND_MINI_IMG,
+  corporateEvening: FACILITIES_CORPORATE_EVENING_BANQUET_IMG,
+  outdoorsIndoors: FACILITIES_OUTDOORS_WATERFALL_IMG,
+  weekendGuests: FACILITIES_GUEST_LOUNGE_IMG,
+  livelyEvening: FACILITIES_BAR_EVENT_HALL_IMG,
 };
 
 const galleryImgs = [
   'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1600',
   'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=1200',
-  'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=85&w=1200',
-  'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=85&w=1200',
-  'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=85&w=1200',
+  FACILITIES_SHUFFLEBOARD_HERO_IMG,
+  FACILITIES_GUEST_LOUNGE_IMG,
+  FACILITIES_BAR_EVENT_HALL_IMG,
 ] as const;
 
 const FACILITY_FAQ_KEYS = [
@@ -181,10 +190,11 @@ export const FacilitiesPage = () => {
       <section className="hero-below-nav section-viewport section-viewport-hero relative flex min-h-0 flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=80&w=2000"
+            src={FACILITIES_SHUFFLEBOARD_HERO_IMG}
             alt={t('facilitiesPage.heroImageAlt')}
+            width={1024}
+            height={682}
             className="h-full w-full object-cover brightness-[0.52] contrast-[1.03]"
-            referrerPolicy="no-referrer"
           />
           <div
             className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/40 via-black/10 to-transparent"

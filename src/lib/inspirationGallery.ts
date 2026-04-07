@@ -1,8 +1,10 @@
+import { inspirationGalleryExtraSlides } from './inspirationGalleryExtras.gen';
+
 /** Local assets under `/public/gallery/inspirasjon-XX.png` (Rønningen photos). */
 export const INSPIRATION_GALLERY_COUNT = 47;
 
-/** Slides omitted from carousels / full gallery (file numbers still used for category indices below). */
-const EXCLUDED_INSPIRATION_KEYS = new Set(['inspirasjon-02']);
+/** Slides omitted from carousels (home / bryllup); still listed on /gallery. */
+const EXCLUDED_INSPIRATION_KEYS = new Set(['inspirasjon-02', 'inspirasjon-24']);
 
 export type InspirationSlide = {
   key: string;
@@ -10,7 +12,7 @@ export type InspirationSlide = {
   alt: string;
 };
 
-/** File number from `inspirasjon-XX` (e.g. `inspirasjon-05` → 5). */
+/** File number from `inspirasjon-{n}` (e.g. `inspirasjon-05` → 5, `inspirasjon-301` → 301). */
 export function inspirationSlideFileNumber(key: string): number {
   const m = /^inspirasjon-(\d+)$/.exec(key);
   return m ? parseInt(m[1], 10) : 1;
@@ -35,6 +37,7 @@ const inspirationGallerySlidesBase: InspirationSlide[] = Array.from(
   },
 ).filter((slide) => !EXCLUDED_INSPIRATION_KEYS.has(slide.key));
 
+/** Home + bryllup carousels only (original set, minus excluded lead). */
 export const inspirationGallerySlides: InspirationSlide[] = (() => {
   const leadSet = new Set<string>(LEAD_INSPIRATION_KEYS);
   const lead: InspirationSlide[] = [];
@@ -55,14 +58,14 @@ export type GalleryPageItem = {
 };
 
 /**
- * Categories for full gallery filters (rest = wedding).
- * Values are 0-based indices matching the original `inspirasjon-XX` file number: XX = i + 1.
+ * Categories for legacy slides (rest = wedding).
+ * 0-based index = file number − 1 (inspirasjon-01 → 0).
  */
-const FACILITIES_INDEX = new Set([12, 24, 29]); // garden, drone, lokale
-const PRIVATE_INDEX = new Set([41]); // IMG_6031
-const CORPORATE_INDEX = new Set([35, 38, 39, 42, 43]); // lokale/hall & seremoni-oppsett
+const FACILITIES_INDEX = new Set([12, 24, 29]);
+const PRIVATE_INDEX = new Set([41]);
+const CORPORATE_INDEX = new Set([35, 38, 39, 42, 43]);
 
-function categoryForGalleryIndex(zeroBasedFileIndex: number): GalleryPageCategory {
+function categoryForLegacyGalleryIndex(zeroBasedFileIndex: number): GalleryPageCategory {
   if (FACILITIES_INDEX.has(zeroBasedFileIndex)) return 'facilities';
   if (PRIVATE_INDEX.has(zeroBasedFileIndex)) return 'private';
   if (CORPORATE_INDEX.has(zeroBasedFileIndex)) return 'corporate';
@@ -74,8 +77,35 @@ function zeroBasedIndexFromSlideKey(key: string): number {
   return m ? parseInt(m[1], 10) - 1 : 0;
 }
 
-export const inspirationGalleryPageItems: GalleryPageItem[] = inspirationGallerySlides.map((slide) => ({
+const CATEGORY_SORT_ORDER: Record<GalleryPageCategory, number> = {
+  wedding: 0,
+  facilities: 1,
+  private: 2,
+  corporate: 3,
+};
+
+function sortGalleryPageItems(items: GalleryPageItem[]): GalleryPageItem[] {
+  return [...items].sort((a, b) => {
+    const byCat = CATEGORY_SORT_ORDER[a.category] - CATEGORY_SORT_ORDER[b.category];
+    if (byCat !== 0) return byCat;
+    return inspirationSlideFileNumber(a.id) - inspirationSlideFileNumber(b.id);
+  });
+}
+
+const legacyGalleryPageItems: GalleryPageItem[] = inspirationGallerySlidesBase.map((slide) => ({
   id: slide.key,
   url: slide.src,
-  category: categoryForGalleryIndex(zeroBasedIndexFromSlideKey(slide.key)),
+  category: categoryForLegacyGalleryIndex(zeroBasedIndexFromSlideKey(slide.key)),
 }));
+
+const extraGalleryPageItems: GalleryPageItem[] = inspirationGalleryExtraSlides.map((slide) => ({
+  id: slide.key,
+  url: slide.src,
+  category: slide.category,
+}));
+
+/** Full /gallery grid: legacy + uploaded batch, grouped by category then image number. */
+export const inspirationGalleryPageItems: GalleryPageItem[] = sortGalleryPageItems([
+  ...legacyGalleryPageItems,
+  ...extraGalleryPageItems,
+]);
