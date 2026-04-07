@@ -1138,7 +1138,7 @@ export default function App() {
           </AnimatePresence>
         </main>
         <Footer />
-        <Toaster position="top-center" />
+        <Toaster position="top-center" duration={3200} />
       </div>
     </Router>
   );

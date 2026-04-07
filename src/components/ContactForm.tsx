@@ -61,8 +61,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({ embedded = false, clas
           ? `[Kontakt] ${data.name.trim()}`
           : `[Contact] ${data.name.trim()}`;
 
-      const hasEmailKey = Boolean(import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim());
-
       let dbOk = false;
       if (isSupabaseConfigured()) {
         const { error } = await supabase.from('inquiries').insert([
@@ -91,19 +89,17 @@ export const ContactForm: React.FC<ContactFormProps> = ({ embedded = false, clas
       }
 
       let emailOk = false;
-      if (hasEmailKey) {
-        try {
-          await sendContactFormEmailNotification({
-            name: data.name.trim(),
-            email: data.email.trim(),
-            phone: data.phone.trim(),
-            message: messageText,
-            subject: emailSubject,
-          });
-          emailOk = true;
-        } catch (emailErr) {
-          console.error('Contact form email notification:', emailErr);
-        }
+      try {
+        await sendContactFormEmailNotification({
+          name: data.name.trim(),
+          email: data.email.trim(),
+          phone: data.phone.trim(),
+          message: messageText,
+          subject: emailSubject,
+        });
+        emailOk = true;
+      } catch (emailErr) {
+        console.error('Contact form email notification:', emailErr);
       }
 
       if (emailOk && dbOk) {
@@ -116,20 +112,10 @@ export const ContactForm: React.FC<ContactFormProps> = ({ embedded = false, clas
         reset();
         return;
       }
-      if (!emailOk && dbOk && hasEmailKey) {
+      if (!emailOk && dbOk) {
         toast.success(t('contactPage.formSuccess'));
         toast.warning(t('contactPage.formEmailNotifyError'));
         reset();
-        return;
-      }
-      if (!emailOk && dbOk && !hasEmailKey) {
-        toast.success(t('contactPage.formSuccess'));
-        reset();
-        return;
-      }
-
-      if (!hasEmailKey && !isSupabaseConfigured()) {
-        toast.error(t('contactPage.formNotConfigured'));
         return;
       }
 

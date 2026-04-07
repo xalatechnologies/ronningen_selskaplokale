@@ -29,22 +29,20 @@ Utdata: `dist/` (brukes av Vercel).
 |----------|-------------|
 | `VITE_SUPABASE_URL` | Supabase-prosjekt-URL |
 | `VITE_SUPABASE_ANON_KEY` | Supabase anon (public) key |
-| `VITE_WEB3FORMS_ACCESS_KEY` | [Web3Forms](https://web3forms.com) access key — kontaktskjema sender e-post til adressen du velger i Web3Forms-dashbordet (f.eks. `r.selskapslokale@gmail.com`). |
+| `VITE_WEB3FORMS_ACCESS_KEY` | Valgfritt — [Web3Forms](https://web3forms.com); mottaker settes i dashbordet. Uten nøkkel brukes [FormSubmit](https://formsubmit.co) til `r.selskapslokale@gmail.com` (aktiver én gang via e-post fra FormSubmit). |
+| `VITE_CONTACT_NOTIFY_EMAIL` | Valgfritt — annen FormSubmit-mottaker når Web3Forms ikke brukes. |
 | `GEMINI_API_KEY` | Valgfritt — brukes ved bygg via Vite `define` hvis du bruker Gemini-funksjoner |
 | `APP_URL` | Valgfritt — egen URL til appen dersom koden bruker den |
 
 `vercel.json` sender ukjente stier til `index.html` slik at **React Router** fungerer ved direkte lenker og refresh.
 
-## Kontaktskjema → e-post (Web3Forms)
+## Kontaktskjema → e-post
 
-Innsending lagres i **Supabase** (`inquiries`) og en kopi sendes via [Web3Forms](https://web3forms.com) (`src/lib/contactEmail.ts`), på samme måte som et vanlig skjema med `access_key` — her kommer nøkkelen fra **`VITE_WEB3FORMS_ACCESS_KEY`** (`.env` lokalt og Vercel → Environment Variables).
+Innsending lagres i **Supabase** (`inquiries`) når URL/nøkkel er satt, og en kopi sendes alltid via e-post (`src/lib/contactEmail.ts`):
 
-1. Opprett nøkkel på web3forms.com og sett **mottaker-e-post** der (f.eks. `r.selskapslokale@gmail.com`).
-2. Lim inn nøkkelen i `VITE_WEB3FORMS_ACCESS_KEY` og deploy / start `npm run dev` på nytt.
-3. Test fra `/contact` og bekreft at e-post kommer; **svar** i klienten bruker besøkendes adresse (`replyto`).
+- **Med** `VITE_WEB3FORMS_ACCESS_KEY`: [Web3Forms](https://web3forms.com) (mottaker i deres dashbord).
+- **Uten** den nøkkelen: [FormSubmit](https://formsubmit.co) til **`r.selskapslokale@gmail.com`** (ingen ekstra Vercel-variabel nødvendig). Første gang: åpne innboksen og klikk **Activate Form** i e-post fra FormSubmit.
 
-Uten satt nøkkel hopper appen over e-poststeget (ingen feil), men Supabase-lagring skjer som før.
-
-Ved feil: sjekk Network-kallet til `api.web3forms.com` og eventuell advarseltoast (`contactPage.formEmailNotifyError`).
+Valgfritt: `VITE_CONTACT_NOTIFY_EMAIL` overstyrer FormSubmit-mottaker. Sjekk Network mot `api.web3forms.com` eller `formsubmit.co` ved feil.
 
 Node-versjon: se `.nvmrc` (anbefalt 22 på Vercel via *Settings → General → Node.js Version* eller automatisk fra `.nvmrc` der det støttes).
