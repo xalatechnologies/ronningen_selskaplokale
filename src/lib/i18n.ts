@@ -849,8 +849,12 @@ const resources = {
         formSubmit: 'Send message',
         formSubmitting: 'Sending…',
         formSuccess: 'Thank you — your message was sent.',
+        formSuccessEmailOnly:
+          'Thank you — your message was sent by email. We could not save a copy in our system just now; we will still reply using the details you provided.',
         formEmailNotifyError:
           'Your message was saved, but we could not send the email notification. We will still see your enquiry in our system.',
+        formNotConfigured:
+          'The contact form is not fully set up yet. Please email us directly or try again later.',
         formError: 'Something went wrong. Please try again.',
         formPrivacy: 'We only use your details to answer your enquiry.',
         formErrName: 'Please enter at least two characters.',
@@ -1812,8 +1816,12 @@ const resources = {
         formSubmit: 'Send melding',
         formSubmitting: 'Sender …',
         formSuccess: 'Takk — meldingen er sendt.',
+        formSuccessEmailOnly:
+          'Takk — meldingen er sendt på e-post. Vi fikk ikke lagret en kopi i systemet akkurat nå, men svarer ut fra det du har sendt.',
         formEmailNotifyError:
           'Meldingen ble lagret, men e-postvarselet kunne ikke sendes. Vi ser fortsatt henvendelsen i systemet vårt.',
+        formNotConfigured:
+          'Kontaktskjemaet er ikke helt satt opp ennå. Send oss gjerne e-post direkte, eller prøv igjen senere.',
         formError: 'Noe gikk galt. Prøv igjen.',
         formPrivacy: 'Vi bruker bare opplysningene til å svare på henvendelsen.',
         formErrName: 'Skriv inn minst to tegn.',

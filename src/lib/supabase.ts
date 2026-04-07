@@ -12,3 +12,12 @@ export const supabase = createClient(
   supabaseUrl || 'https://placeholder.supabase.co',
   supabaseAnonKey || 'placeholder'
 );
+
+/** True when real project URL/key are set (not build-time placeholders). */
+export function isSupabaseConfigured(): boolean {
+  const url = (import.meta.env.VITE_SUPABASE_URL || '').trim();
+  const key = (import.meta.env.VITE_SUPABASE_ANON_KEY || '').trim();
+  if (!url || !key) return false;
+  if (url === 'https://placeholder.supabase.co' || key === 'placeholder') return false;
+  return true;
+}

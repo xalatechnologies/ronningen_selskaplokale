@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { Send } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { isSupabaseConfigured, supabase } from '../lib/supabase';
 import { sendContactFormEmailNotification } from '../lib/contactEmail';
 import { toast } from 'sonner';
 import { cn } from '../lib/utils';
@@ -55,49 +55,85 @@ export const ContactForm: React.FC<ContactFormProps> = ({ embedded = false, clas
     const prefix = lang === 'no' ? '[Kontakt skjema]' : '[Contact form]';
 
     try {
-      const { error } = await supabase.from('inquiries').insert([
-        {
-          name: data.name.trim(),
-          email: data.email.trim(),
-          phone: data.phone.trim() || null,
-          message: `${prefix}\n\n${data.message.trim()}`,
-          language: lang,
-          flexible_date: false,
-          needs_catering: false,
-          needs_decoration: false,
-          needs_staffing: false,
-          needs_viewing: false,
-          event_type_id: null,
-          preferred_date: null,
-          guest_count: null,
-          status: 'new',
-        },
-      ]);
-
-      if (error) throw error;
-
       const messageText = `${prefix}\n\n${data.message.trim()}`;
       const emailSubject =
         lang === 'no'
           ? `[Kontakt] ${data.name.trim()}`
           : `[Contact] ${data.name.trim()}`;
 
-      toast.success(t('contactPage.formSuccess'));
+      const hasEmailKey = Boolean(import.meta.env.VITE_WEB3FORMS_ACCESS_KEY?.trim());
 
-      try {
-        await sendContactFormEmailNotification({
-          name: data.name.trim(),
-          email: data.email.trim(),
-          phone: data.phone.trim(),
-          message: messageText,
-          subject: emailSubject,
-        });
-      } catch (emailErr) {
-        console.error('Contact form email notification:', emailErr);
-        toast.warning(t('contactPage.formEmailNotifyError'));
+      let dbOk = false;
+      if (isSupabaseConfigured()) {
+        const { error } = await supabase.from('inquiries').insert([
+          {
+            name: data.name.trim(),
+            email: data.email.trim(),
+            phone: data.phone.trim() || null,
+            message: messageText,
+            language: lang,
+            flexible_date: false,
+            needs_catering: false,
+            needs_decoration: false,
+            needs_staffing: false,
+            needs_viewing: false,
+            event_type_id: null,
+            preferred_date: null,
+            guest_count: null,
+            status: 'new',
+          },
+        ]);
+        if (error) {
+          console.error('Contact form Supabase:', error);
+        } else {
+          dbOk = true;
+        }
       }
 
-      reset();
+      let emailOk = false;
+      if (hasEmailKey) {
+        try {
+          await sendContactFormEmailNotification({
+            name: data.name.trim(),
+            email: data.email.trim(),
+            phone: data.phone.trim(),
+            message: messageText,
+            subject: emailSubject,
+          });
+          emailOk = true;
+        } catch (emailErr) {
+          console.error('Contact form email notification:', emailErr);
+        }
+      }
+
+      if (emailOk && dbOk) {
+        toast.success(t('contactPage.formSuccess'));
+        reset();
+        return;
+      }
+      if (emailOk && !dbOk) {
+        toast.success(t('contactPage.formSuccessEmailOnly'));
+        reset();
+        return;
+      }
+      if (!emailOk && dbOk && hasEmailKey) {
+        toast.success(t('contactPage.formSuccess'));
+        toast.warning(t('contactPage.formEmailNotifyError'));
+        reset();
+        return;
+      }
+      if (!emailOk && dbOk && !hasEmailKey) {
+        toast.success(t('contactPage.formSuccess'));
+        reset();
+        return;
+      }
+
+      if (!hasEmailKey && !isSupabaseConfigured()) {
+        toast.error(t('contactPage.formNotConfigured'));
+        return;
+      }
+
+      toast.error(t('contactPage.formError'));
     } catch (err) {
       console.error('Contact form submit:', err);
       toast.error(t('contactPage.formError'));
