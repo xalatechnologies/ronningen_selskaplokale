@@ -118,12 +118,12 @@ export const WeddingsPage = () => {
       <section className="hero-below-nav section-viewport section-viewport-hero relative flex min-h-0 flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/hero-wedding-venue-night.png"
+            src="/hero-home-collage-user.png"
             alt={t('weddingsPage.heroImageAlt')}
-            className="h-full w-full object-cover brightness-[0.52] contrast-[1.03]"
+            className="h-full w-full object-cover brightness-[0.64] contrast-[1.03]"
           />
           <div
-            className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/40 via-black/10 to-transparent"
+            className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/28 via-black/5 to-transparent"
             aria-hidden
           />
         </div>
@@ -138,14 +138,17 @@ export const WeddingsPage = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55 }}
-              className="max-w-5xl text-balance font-serif text-5xl leading-[0.92] tracking-tighter text-white [text-shadow:0_2px_32px_rgba(0,0,0,0.45)] sm:text-6xl md:text-7xl lg:text-8xl"
+              className="max-w-5xl text-balance font-serif text-4xl leading-[0.92] tracking-tighter text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.32)] sm:text-5xl md:text-6xl lg:text-7xl"
             >
               {t('weddingsPage.heroTitleLine1')}
               {' '}
               <br className="hidden md:block" />
-              {t('weddingsPage.heroTitleLine2')}
+              <span className="italic text-white/95">
+                {t('weddingsPage.heroTitleLine2Accent')}
+              </span>
+              {t('weddingsPage.heroTitleLine2Rest')}
             </motion.h1>
-            <p className="mx-auto max-w-2xl text-xl font-light italic opacity-90 md:text-3xl [text-shadow:0_1px_24px_rgba(0,0,0,0.35)]">
+            <p className="mx-auto max-w-2xl text-lg font-light italic opacity-90 sm:text-xl md:text-2xl [text-shadow:0_1px_20px_rgba(0,0,0,0.28)]">
               {t('weddingsPage.heroTagline')}
             </p>
             <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
@@ -192,9 +195,6 @@ export const WeddingsPage = () => {
               <div className="space-y-5 md:space-y-6">
                 <p className="text-pretty text-lg leading-relaxed text-brand-800/95 md:text-xl md:leading-relaxed lg:text-[1.35rem] lg:leading-[1.65]">
                   {t('weddingsPage.atmosphere.intro1')}
-                </p>
-                <p className="text-pretty text-lg leading-relaxed text-brand-800/95 md:text-xl md:leading-relaxed lg:text-[1.35rem] lg:leading-[1.65]">
-                  {t('weddingsPage.atmosphere.intro2')}
                 </p>
               </div>
             </div>

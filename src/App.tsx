@@ -46,6 +46,7 @@ import { WeddingsPage } from './pages/WeddingsPage';
 import { CorporatePage } from './pages/CorporatePage';
 import { PrivatePage } from './pages/PrivatePage';
 import { FacilitiesPage } from './pages/FacilitiesPage';
+import { BlogPage } from './pages/BlogPage';
 import { appendConversation, detectLanguage } from './lib/customerAssistant';
 
 const InquiryPage = () => {
@@ -194,15 +195,15 @@ const Home = () => {
       <section className="home-hero section-viewport section-viewport-hero relative flex min-h-0 flex-col overflow-hidden border-b border-brand-800 bg-brand-950 text-white">
         <div className="pointer-events-none absolute inset-0 z-0">
           <img
-            src="/hero-home-collage-user.png"
-            alt=""
+            src="/hero-wedding-venue-night.png"
+            alt={t('homeHero.heroImageAlt')}
             className="h-full w-full object-cover"
             loading="eager"
             decoding="async"
             fetchPriority="high"
           />
           <div
-            className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/50 to-black/65"
+            className="absolute inset-0 bg-gradient-to-b from-black/38 via-black/35 to-black/45"
             aria-hidden
           />
         </div>
@@ -217,16 +218,16 @@ const Home = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55 }}
-              className="max-w-5xl text-balance font-serif leading-[0.9] tracking-tighter text-white [text-shadow:0_2px_32px_rgba(0,0,0,0.45)]"
+              className="max-w-5xl text-balance font-serif leading-[0.9] tracking-tighter text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.32)]"
             >
               <span className="block text-2xl font-normal tracking-wide text-white/90 sm:text-3xl md:text-4xl lg:text-5xl">
                 {t('homeHero.welcomeLine')}
               </span>
-              <span className="mt-2 block font-serif italic text-5xl text-brand-200 sm:mt-3 sm:text-6xl md:text-7xl lg:text-8xl">
+              <span className="mt-2 block font-serif italic text-4xl text-brand-200 sm:mt-3 sm:text-5xl md:text-6xl lg:text-7xl">
                 {t('homeHero.venueName')}
               </span>
             </motion.h1>
-            <p className="mx-auto max-w-2xl text-xl font-light italic opacity-90 md:text-3xl [text-shadow:0_1px_24px_rgba(0,0,0,0.35)]">
+            <p className="mx-auto max-w-2xl text-xl font-light italic opacity-90 md:text-3xl [text-shadow:0_1px_20px_rgba(0,0,0,0.28)]">
               {t('homeHero.tagline')}
             </p>
           </motion.div>
@@ -702,6 +703,7 @@ const Navbar = () => {
     { name: t('nav.private'), path: '/packages' },
     { name: t('nav.facilities'), path: '/facilities' },
     { name: t('nav.gallery'), path: '/gallery' },
+    { name: t('nav.blog'), path: '/blog' },
   ];
 
   return (
@@ -1034,6 +1036,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/blog" className={linkClass}>
+                  {t('nav.blog')}
+                </Link>
+              </li>
+              <li>
                 <Link to="/contact" className={linkClass}>
                   {t('nav.contact')}
                 </Link>
@@ -1086,6 +1093,7 @@ export default function App() {
               <Route path="/private" element={<Navigate to="/packages" replace />} />
               <Route path="/facilities" element={<FacilitiesPage />} />
               <Route path="/gallery" element={<GalleryPage />} />
+              <Route path="/blog" element={<BlogPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/testimonials" element={<TestimonialsPage />} />
               <Route path="/contact" element={<ContactPage />} />

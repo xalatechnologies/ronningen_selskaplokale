@@ -14,6 +14,7 @@ const resources = {
         packages: 'Packages',
         facilities: 'Facilities',
         gallery: 'Gallery',
+        blog: 'Blog',
         faq: 'FAQ',
         contact: 'Contact',
         inquiry: 'Inquiry',
@@ -29,6 +30,8 @@ const resources = {
         welcomeLine: 'Welcome to',
         venueName: 'Rønningen selskapslokale',
         tagline: 'Everything you need for a celebration to remember.',
+        heroImageAlt:
+          'Event venue at night with warm lighting, a starry sky, and a festive atmosphere',
         scrollHintAria: 'Scroll down to our concepts',
       },
       homeConcepts: {
@@ -38,24 +41,24 @@ const resources = {
           weddings: {
             title: 'Weddings',
             description:
-              'Ceremony, reception, and mingling in one place — we help you plan the whole journey from wish list to last dance.',
+              'A full day tailored to you — from ceremony to celebration.',
             imgAlt:
               'Bride and groom dancing together as red and gold confetti falls in a bright reception hall',
           },
           corporate: {
             title: 'Corporate events',
             description:
-              'Conferences, team building, Christmas parties, and summer parties with professional hosting and flexible spaces.',
+              'Conferences, Christmas parties and summer parties in a great setting.',
           },
           private: {
-            title: 'Private celebrations',
+            title: 'Private parties',
             description:
-              'Anniversaries, confirmations, and family gatherings with room for children and adults — calm, homely farm surroundings.',
+              'Birthdays, confirmations and anniversaries in flexible, informal surroundings.',
           },
           facilities: {
             title: 'Facilities',
             description:
-              'From a professional kitchen and dance floor to easy parking and flexible options for overnight stays.',
+              'Everything in one place — kitchen, dance floor, parking and outdoor areas.',
           },
         },
       },
@@ -88,16 +91,16 @@ const resources = {
               'Create the right atmosphere with décor in your style, and optional photographers to capture the day.',
           },
           overnight: {
-            title: 'Nature & activities',
+            title: 'Accommodation & childcare',
             description:
-              'Enjoy peaceful surroundings with great walks and activities indoors and out — ideal for breaks, team building, and experiences throughout the day.',
+              'Overnight stays and childcare can be arranged — ideal for guests travelling from afar and families with young children.',
           },
         },
       },
       homeGallery: {
-        heading: 'Gallery',
+        heading: 'Inspiration',
         intro:
-          'Moments from real celebrations here — weddings, corporate events, and private parties. Let it inspire your own day.',
+          'A selection of moments from real celebrations — inspiration for your own event.',
         ctaFullGallery: 'See the full gallery',
       },
       inspirationGallery: {
@@ -145,18 +148,17 @@ const resources = {
       },
       weddingsPage: {
         heroImageAlt:
-          'Event venue at night with warm lighting, a starry sky, and a festive atmosphere',
+          'Photo collage of celebrations, details and atmosphere at Rønningen',
         heroTitleLine1: 'Weddings in beautiful,',
-        heroTitleLine2: 'unique surroundings',
+        heroTitleLine2Accent: 'unique',
+        heroTitleLine2Rest: ' surroundings',
         heroTagline: 'Create a celebration that feels personal, warm, and unforgettable.',
         heroScrollHintAria: 'Scroll down to the atmosphere section',
         atmosphere: {
           headingLine1: 'Ceremony and celebration',
           headingLine2: 'in one place',
           intro1:
-            'Bring the whole day together in one place — from ceremony to dinner and the party. You set the order and the tone. Surrounded by calm, beautiful nature, with only a short distance between the vows and the dance floor.',
-          intro2:
-            'We support you with planning and delivery so you can focus on what matters most. Get in touch for a tour and a no-obligation chat about how your day can take shape with us.',
+            'Bring the whole day together in one place — from ceremony to dinner and the party. Surrounded by calm, beautiful nature, with only a short distance between the vows and the dance floor.',
           figureAlt:
             'Wedding rings and lace gown detail beside bride and groom dancing at a reception with guests under warm string lights',
           why: {
@@ -276,7 +278,7 @@ const resources = {
           },
         },
         gallerySection: {
-          heading: 'Inspiration & gallery',
+          heading: 'Inspiration',
           intro: 'A small selection from past weddings hosted here.',
           ctaFullGallery: 'See the full gallery',
         },
@@ -294,10 +296,10 @@ const resources = {
             },
             item3: {
               q: 'How many guests can you host?',
-              a: 'We can host up to 300 guests, with space for up to 200 more in a party tent and wedding barn.',
+              a: 'We can host up to 300 guests, with space for up to 200 more in a party tent.',
             },
             item4: {
-              q: 'Can we hold the ceremony on the farm?',
+              q: 'Can we hold the ceremony at the venue or outdoors?',
               a: 'Absolutely! We have several beautiful outdoor spots that are perfect for a ceremony, plus great opportunities for photos in the natural surroundings and at a nearby waterfall.',
             },
             item5: {
@@ -321,7 +323,9 @@ const resources = {
         heroImageAlt:
           'Corporate meeting and conference — team collaboration in a professional event setting',
         heroTitleLine1: 'From Christmas parties to kick-offs.',
-        heroTitleLine2: 'All in one place.',
+        heroTitleLine2Prefix: '',
+        heroTitleLine2Accent: 'All',
+        heroTitleLine2Rest: ' in one place.',
         heroTagline:
           'Host corporate events that feel organised, welcoming, and firmly on brief.',
         heroScrollHintAria: 'Scroll down to the introduction',
@@ -331,17 +335,17 @@ const resources = {
           headingBefore: 'Where professionalism meets ',
           headingAccent: 'warmth',
           intro:
-            'Hosting that knows both formal and informal corporate evenings — and spaces that can be turned up or down to suit the occasion.',
+            'From professional content to activities and social time — the venue gives you room for team building, dinner and celebration in the same setting.',
           benefitsEyebrow: 'Three clear advantages',
           benefits: {
-            item1: 'A personal setting — not an anonymous conference hall',
-            item2: 'Programmes tailored to your date, format, and guest count',
-            item3: 'On-site coordination — fewer parallel threads for you to manage',
+            item1: 'Activities and team building',
+            item2: 'Flexible programme',
+            item3: 'Social wrap-up',
           },
         },
         eventsSection: {
-          headingBefore: 'Typical corporate events ',
-          headingAccent: 'with us',
+          headingBefore: 'Suggestions for ',
+          headingAccent: 'company events',
           items: {
             conference: {
               title: 'Conference & seminar',
@@ -406,9 +410,7 @@ const resources = {
           },
         },
         gallerySection: {
-          heading: 'Mood from the venue',
-          intro:
-            'Company, mingling and evening — not just empty rooms. Browse a selection of atmosphere from events with us.',
+          heading: 'Inspiration',
           slideAlt: 'Mood from the venue {{n}}',
           prevImageAria: 'Previous image',
           nextImageAria: 'Next image',
@@ -451,9 +453,9 @@ const resources = {
         heroImageAlt:
           'Private celebration and gathering — warm venue atmosphere for birthdays, confirmations, and family events',
         heroTitleLine1: "Life's celebrations, gathered.",
-        heroTitleLine2: 'With us.',
-        heroTagline:
-          "Bring life's big moments together in one place, in a setting that feels personal and right for you.",
+        heroTitleLine2Prefix: '',
+        heroTitleLine2Accent: 'With',
+        heroTitleLine2Rest: ' us.',
         heroScrollHintAria: 'Scroll down to the introduction',
         introSection: {
           headingBefore: 'Where your celebration gains ',
@@ -546,9 +548,7 @@ const resources = {
           },
         },
         gallerySection: {
-          heading: 'Mood from the venue',
-          intro:
-            'Celebration, togetherness and evening — see how private gatherings take shape with us.',
+          heading: 'Inspiration',
           slideAlt: 'Mood from the venue {{n}}',
           prevImageAria: 'Previous image',
           nextImageAria: 'Next image',
@@ -590,7 +590,9 @@ const resources = {
         heroImageAlt:
           'Celebration atmosphere at the venue — lighting and decor suggesting facilities for weddings and events',
         heroTitleLine1: 'All in one place.',
-        heroTitleLine2: 'For the whole celebration.',
+        heroTitleLine2Prefix: 'For the ',
+        heroTitleLine2Accent: 'whole celebration',
+        heroTitleLine2Rest: '.',
         heroTagline:
           'Childcare, kitchen, accommodation and great facilities — everything you need gathered in one place.',
         heroScrollHintAria: 'Scroll down to the introduction',
@@ -805,6 +807,10 @@ const resources = {
         formErrPhone: 'If you add a phone number, use at least 8 digits.',
         formErrMessage: 'Please write at least 10 characters.',
       },
+      blogPage: {
+        title: 'Blog',
+        intro: 'Tips, news and inspiration from Rønningen — more posts are on the way.',
+      },
       galleryPage: {
         heroEyebrow: 'Rønningen',
         intro:
@@ -844,6 +850,7 @@ const resources = {
         packages: 'Pakker',
         facilities: 'Fasiliteter',
         gallery: 'Galleri',
+        blog: 'Blogg',
         faq: 'FAQ',
         contact: 'Kontakt',
         inquiry: 'Forespørsel',
@@ -859,6 +866,8 @@ const resources = {
         welcomeLine: 'Velkommen til',
         venueName: 'Rønningen selskapslokale',
         tagline: 'Alt du trenger for en vellykket feiring',
+        heroImageAlt:
+          'Selskapslokale om kvelden med varmt lys, stjernehimmel og feststemning',
         scrollHintAria: 'Rull ned til neste seksjon',
       },
       homeConcepts: {
@@ -867,25 +876,23 @@ const resources = {
         items: {
           weddings: {
             title: 'Bryllup',
-            description:
-              'Samle hele dagen på ett sted – fra vielse til middag og fest. Fleksible løsninger som gir dere frihet til å skape deres egen dag.',
+            description: 'En hel dag tilpasset dere – fra vielse til fest.',
             imgAlt:
               'Brud og brudgom som danser sammen mens rødt og gullfarget konfetti faller i en lys festsal',
           },
           corporate: {
-            title: 'Firmaeventer',
-            description:
-              'Konferanser, sommerfester og julebord i gode rammer. Vi legger til rette for både faglig innhold og sosialt samvær.',
+            title: 'Bedrift',
+            description: 'Konferanser, julebord og sommerfester i gode rammer.',
           },
           private: {
-            title: 'Private selskaper',
+            title: 'Selskap',
             description:
-              'Perfekt for bursdager, konfirmasjoner og jubileer. God plass, fleksible løsninger og en uformell atmosfære.',
+              'Bursdager, konfirmasjoner og jubileer i fleksible og uformelle omgivelser.',
           },
           facilities: {
             title: 'Fasiliteter',
             description:
-              'Alt dere trenger samlet på ett sted – fra storkjøkken og dansegulv til gode parkeringsmuligheter og uteområder.',
+              'Alt samlet på ett sted – kjøkken, dansegulv, parkering og uteområder.',
           },
         },
       },
@@ -918,16 +925,16 @@ const resources = {
               'Skap riktig stemning med dekor tilpasset deres stil, og mulighet for fotografer som fanger øyeblikkene gjennom dagen.',
           },
           overnight: {
-            title: 'Natur & aktiviteter',
+            title: 'Overnatting & barnepass',
             description:
-              'Nyt rolige omgivelser med gode turmuligheter og aktiviteter både inne og ute – perfekt for pauser, teambuilding og opplevelser gjennom dagen.',
+              'Overnatting og barnepass kan avtales – praktisk for gjester som reiser langt og familier med små barn.',
           },
         },
       },
       homeGallery: {
-        heading: 'Galleri',
+        heading: 'Inspirasjon',
         intro:
-          'Øyeblikk fra virkelige feiringer her — bryllup, bedrift og private selskaper. La deg inspirere til deres egen dag.',
+          'Et utvalg øyeblikk fra virkelige feiringer – til inspirasjon for ditt eget selskap.',
         ctaFullGallery: 'Se hele galleriet',
       },
       inspirationGallery: {
@@ -975,18 +982,17 @@ const resources = {
       },
       weddingsPage: {
         heroImageAlt:
-          'Selskapslokale om kvelden med varmt lys, stjernehimmel og feststemning',
+          'Bildekolleksjon av feiringer, detaljer og stemning fra Rønningen',
         heroTitleLine1: 'Bryllup i vakre og',
-        heroTitleLine2: 'unike omgivelser',
+        heroTitleLine2Accent: 'unike',
+        heroTitleLine2Rest: ' omgivelser',
         heroTagline: 'Skap en feiring som føles personlig, varm og minneverdig.',
         heroScrollHintAria: 'Rull ned til atmosfæren',
         atmosphere: {
           headingLine1: 'Vielse og fest',
           headingLine2: 'på samme sted',
           intro1:
-            'Samle hele dagen på ett sted – fra vielse til middag og fest. Dere bestemmer rekkefølgen og stilen. Omgitt av rolige omgivelser i vakker natur, med kort vei mellom seremoni og dans.',
-          intro2:
-            'Vi hjelper dere med planlegging og gjennomføring, slik at dere kan fokusere på det som betyr mest. Ta kontakt for omvisning og en uforpliktende prat om hvordan dagen kan gjennomføres hos oss.',
+            'Samle hele dagen på ett sted – fra vielse til middag og fest. Omgitt av rolige omgivelser i vakker natur, med kort vei mellom seremoni og dans.',
           figureAlt:
             'Vielsesringer og blondekjole i nærbilde ved siden av brudepar som danser på fest med gjester under varme lyslenker',
           why: {
@@ -1106,7 +1112,7 @@ const resources = {
           },
         },
         gallerySection: {
-          heading: 'Inspirasjon og Galleri',
+          heading: 'Inspirasjon',
           intro: 'Et lite utvalg fra tidligere bryllup hos oss.',
           ctaFullGallery: 'Se hele galleriet',
         },
@@ -1124,10 +1130,10 @@ const resources = {
             },
             item3: {
               q: 'Hvor mange gjester er det plass til?',
-              a: 'Vi har plass til inntil 300 gjester og muligheter for 200 ekstra i partitelt og bryllupslåve.',
+              a: 'Vi har plass til inntil 300 gjester og muligheter for 200 ekstra i partitelt.',
             },
             item4: {
-              q: 'Er det mulig med vielse på gården?',
+              q: 'Er det mulig med vielse på lokalet/utendørs?',
               a: 'Absolutt! Vi har flere vakre steder utendørs som egner seg perfekt for vielse, samt gode muligheter for flotte bilder i vakker natur med og nærliggende fossefall.',
             },
             item5: {
@@ -1151,7 +1157,9 @@ const resources = {
         heroImageAlt:
           'Bedriftsmøte og konferanse — samarbeid og faglig innhold i profesjonelle rammer',
         heroTitleLine1: 'Fra julebord til kick-off.',
-        heroTitleLine2: 'Alt på ett sted.',
+        heroTitleLine2Prefix: '',
+        heroTitleLine2Accent: 'Alt',
+        heroTitleLine2Rest: ' på ett sted.',
         heroTagline:
           'Bedriftsarrangementer som føles gjennomførte, varme og på deres premisser.',
         heroScrollHintAria: 'Rull ned til introduksjonen',
@@ -1161,17 +1169,17 @@ const resources = {
           headingBefore: 'Der profesjon møter ',
           headingAccent: 'varme',
           intro:
-            'Vertskap som kjenner både formelle og uformelle bedriftskvelder — og lokaler som kan tones opp eller ned etter anledningen.',
+            'Fra faglig innhold til aktiviteter og sosialt samvær – lokalet gir rom for både teambuilding, middag og fest i samme ramme.',
           benefitsEyebrow: 'Tre tydelige fordeler',
           benefits: {
-            item1: 'Personlig ramme — ikke anonym konferansesal',
-            item2: 'Opplegg tilpasset dato, format og antall gjester',
-            item3: 'Koordinering på stedet — færre parallelle tråder for dere å holde i',
+            item1: 'Aktiviteter og teambuilding',
+            item2: 'Fleksibelt opplegg',
+            item3: 'Sosial avslutning',
           },
         },
         eventsSection: {
-          headingBefore: 'Typiske bedriftsarrangement ',
-          headingAccent: 'hos oss',
+          headingBefore: 'Forslag på ',
+          headingAccent: 'firmaeventer',
           items: {
             conference: {
               title: 'Konferanse & seminar',
@@ -1236,9 +1244,7 @@ const resources = {
           },
         },
         gallerySection: {
-          heading: 'Stemning fra lokalet',
-          intro:
-            'Selskap, mingling og kveld – se hvordan lokalet brukes under ulike arrangementer hos oss.',
+          heading: 'Inspirasjon',
           slideAlt: 'Stemning fra lokalet {{n}}',
           prevImageAria: 'Forrige bilde',
           nextImageAria: 'Neste bilde',
@@ -1280,9 +1286,9 @@ const resources = {
         heroImageAlt:
           'Privat feiring og selskap — varm stemning i lokalet for bursdag, konfirmasjon og familiearrangement',
         heroTitleLine1: 'Livets feiringer samlet.',
-        heroTitleLine2: 'Hos oss.',
-        heroTagline:
-          'Samle de store øyeblikkene på ett sted, i en ramme som føles personlig og riktig for dere.',
+        heroTitleLine2Prefix: '',
+        heroTitleLine2Accent: 'Hos',
+        heroTitleLine2Rest: ' oss.',
         heroScrollHintAria: 'Rull ned til introduksjonen',
         introSection: {
           headingBefore: 'Der feiringen får ',
@@ -1375,9 +1381,7 @@ const resources = {
           },
         },
         gallerySection: {
-          heading: 'Stemning fra lokalet',
-          intro:
-            'Fest, samvær og kveldsstemning – se hvordan private selskap tar form hos oss.',
+          heading: 'Inspirasjon',
           slideAlt: 'Stemning fra lokalet {{n}}',
           prevImageAria: 'Forrige bilde',
           nextImageAria: 'Neste bilde',
@@ -1408,7 +1412,7 @@ const resources = {
         },
         closingCta: {
           bgImageAlt: 'Privat feiring på lokalet — bakgrunnsbilde for kontaktoppfordring',
-          headingLine1Before: 'Lyst å ',
+          headingLine1Before: 'Lyst til å ',
           headingLine1Accent: 'planlegge',
           headingLine2: 'feiringen hos oss?',
           body: 'Fortell kort hva dere skal feire og når, så foreslår vi en ramme og et opplegg som passer dere og gjestene.',
@@ -1418,7 +1422,9 @@ const resources = {
         heroImageAlt:
           'Feststemning i lokalet — lys og dekor som viser fasiliteter for bryllup og arrangement',
         heroTitleLine1: 'Alt på ett sted.',
-        heroTitleLine2: 'For hele feiringen.',
+        heroTitleLine2Prefix: 'For ',
+        heroTitleLine2Accent: 'hele feiringen',
+        heroTitleLine2Rest: '.',
         heroTagline:
           'Barnepass, kjøkken, overnatting og gode fasiliteter – alt dere trenger samlet på ett sted.',
         heroScrollHintAria: 'Rull ned til introduksjonen',
@@ -1632,6 +1638,10 @@ const resources = {
         formErrEmail: 'Oppgi en gyldig e-postadresse.',
         formErrPhone: 'Hvis du fyller inn telefon, bruk minst 8 siffer.',
         formErrMessage: 'Skriv minst 10 tegn.',
+      },
+      blogPage: {
+        title: 'Blogg',
+        intro: 'Tips, nyheter og inspirasjon fra Rønningen — flere innlegg kommer.',
       },
       galleryPage: {
         heroEyebrow: 'Rønningen',

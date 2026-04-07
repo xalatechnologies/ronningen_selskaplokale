@@ -154,16 +154,15 @@ export const PrivatePage = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55 }}
-              className="max-w-5xl text-balance font-serif text-5xl leading-[0.92] tracking-tighter text-white [text-shadow:0_2px_32px_rgba(0,0,0,0.45)] sm:text-6xl md:text-7xl lg:text-8xl"
+              className="max-w-5xl text-balance font-serif text-4xl leading-[0.92] tracking-tighter text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.32)] sm:text-5xl md:text-6xl lg:text-7xl"
             >
               {t('privatePage.heroTitleLine1')}
               {' '}
               <br className="hidden md:block" />
-              {t('privatePage.heroTitleLine2')}
+              {t('privatePage.heroTitleLine2Prefix')}
+              <span className="italic text-white/95">{t('privatePage.heroTitleLine2Accent')}</span>
+              {t('privatePage.heroTitleLine2Rest')}
             </motion.h1>
-            <p className="mx-auto max-w-2xl text-xl font-light italic opacity-90 md:text-3xl [text-shadow:0_1px_24px_rgba(0,0,0,0.35)]">
-              {t('privatePage.heroTagline')}
-            </p>
             <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
               <Link
                 to={CTA_SECONDARY}
@@ -455,10 +454,7 @@ export const PrivatePage = () => {
             viewport={{ once: true }}
             className="mb-12 max-w-3xl"
           >
-            <h2 className={cn(SECTION_H2_CLASS, 'mb-6')}>{t('privatePage.gallerySection.heading')}</h2>
-            <p className="text-lg leading-relaxed text-brand-600 md:text-xl">
-              {t('privatePage.gallerySection.intro')}
-            </p>
+            <h2 className={cn(SECTION_H2_CLASS)}>{t('privatePage.gallerySection.heading')}</h2>
           </motion.div>
 
           <div className="relative">
