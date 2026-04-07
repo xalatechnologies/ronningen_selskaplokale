@@ -21,7 +21,8 @@
 
 @layer base {
   :root {
-    --site-nav-pad: 5rem;
+    /* Fixed top bar (h-24 = 6rem): hero / section viewport math. */
+    --site-nav-pad: 6rem;
     --section-max-h: calc(100dvh - var(--site-nav-pad));
   }
 
@@ -90,7 +91,7 @@
   }
 
   /*
-   * Hero sits inside main with pt-20 (nav offset). Using 100svh alone makes the
+   * Hero sits inside main with pt-24 (h-24 nav offset). Using 100svh alone makes the
    * section taller than the visible area below the nav.
    */
   .home-hero.section-viewport-hero,

@@ -7,9 +7,6 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } f
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  Menu,
-  X,
-  Globe,
   Phone,
   Mail,
   MapPin,
@@ -18,13 +15,12 @@ import {
   ArrowRight,
   ArrowLeft,
   ArrowUpRight,
-  MessageCircle,
-  SendHorizontal,
 } from 'lucide-react';
-import { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import './lib/i18n';
 import { Toaster } from 'sonner';
 
+import { AppNavigation } from './components/AppNavigation';
 import { AdminPanel } from './components/AdminPanel';
 import { HeroScrollHint } from './components/HeroScrollHint';
 import {
@@ -45,10 +41,10 @@ import { TestimonialsPage } from './pages/TestimonialsPage';
 import { WeddingsPage } from './pages/WeddingsPage';
 import { CorporatePage } from './pages/CorporatePage';
 import { PrivatePage } from './pages/PrivatePage';
+import { PricesPage } from './pages/PricesPage';
 import { FacilitiesPage } from './pages/FacilitiesPage';
 import { BlogPage } from './pages/BlogPage';
 import { BlogPostPage } from './pages/BlogPostPage';
-import { appendConversation, detectLanguage } from './lib/customerAssistant';
 
 const InquiryPage = () => {
   const { t } = useTranslation();
@@ -515,7 +511,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Partnere — circle-based layout */}
+      {/* Partnere — curved arc + organic stagger (no rigid grid) */}
       <section
         id="partnere"
         aria-labelledby="partnere-heading"
@@ -525,9 +521,17 @@ const Home = () => {
           className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/60 to-transparent"
           aria-hidden
         />
+        <div
+          className="pointer-events-none absolute -right-[20%] top-1/3 h-[min(70vw,28rem)] w-[min(70vw,28rem)] rounded-[44%_56%_52%_48%/48%_52%_46%_54%] bg-brand-300/12 blur-[100px]"
+          aria-hidden
+        />
+        <div
+          className="pointer-events-none absolute -left-[15%] bottom-[15%] h-[min(55vw,20rem)] w-[min(55vw,22rem)] rounded-[56%_44%_48%_52%/52%_48%_54%_46%] bg-brand-400/10 blur-[90px]"
+          aria-hidden
+        />
 
         <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-20 md:px-20 md:py-28">
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-start lg:gap-16 xl:gap-20">
+          <div className="flex flex-col gap-14 lg:grid lg:grid-cols-12 lg:items-end lg:gap-16 xl:gap-20">
             <header className="text-center lg:col-span-5 xl:col-span-4 lg:text-left">
               <h2 id="partnere-heading" className={cn(SECTION_H2_CLASS, 'mb-4 md:mb-5')}>
                 {t('homePartners.heading')}
@@ -537,81 +541,113 @@ const Home = () => {
               </p>
             </header>
 
-            <ul
-              className="m-0 grid list-none grid-cols-2 gap-x-6 gap-y-10 p-0 sm:grid-cols-4 sm:gap-x-8 sm:gap-y-12 md:gap-y-14 lg:col-span-7 xl:col-span-8"
-              aria-label={t('homePartners.listAria')}
-            >
-              {PARTNER_KEYS.map((key) => {
-                const href = PARTNER_LINKS[key];
-                const linkLabel = t('homePartners.websiteLabel');
-                const name = t(`homePartners.items.${key}.name`);
-                const desc = t(`homePartners.items.${key}.desc`);
-                const srId = `partner-sr-${key}`;
-                return (
-                  <li
-                    key={key}
-                    className="group relative flex min-h-0 justify-center hover:z-30 focus-within:z-30"
-                  >
-                    <div className="relative flex flex-col items-center">
-                      <span id={srId} className="sr-only">
-                        {desc}
-                        {href
-                          ? ` ${linkLabel}: ${href}`
-                          : ` ${t('homePartners.noWebsite')}`}
-                      </span>
-                      <button
-                        type="button"
-                        className={cn(
-                          'relative z-10 flex h-[4rem] w-[4rem] shrink-0 items-center justify-center rounded-full border border-brand-300/80',
-                          'bg-linear-to-br from-white via-brand-50/90 to-[#f0e8d8] font-serif text-xl font-semibold tabular-nums text-brand-900',
-                          'shadow-[0_6px_16px_-10px_rgba(33,24,22,0.35),inset_0_1px_0_rgba(255,255,255,0.9)] ring-1 ring-brand-900/5',
-                          'transition-transform duration-300 outline-none hover:scale-105 group-hover:scale-105',
-                          'focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2',
-                          'md:h-[4.35rem] md:w-[4.35rem] md:text-[1.45rem]'
-                        )}
-                        aria-describedby={srId}
-                        aria-label={name}
+            <div className="relative lg:col-span-7 xl:col-span-8">
+              <div
+                className="pointer-events-none absolute left-1/2 top-[8%] hidden h-[min(48vw,380px)] w-[min(100%,540px)] -translate-x-1/2 rounded-[42%_58%_48%_52%/55%_45%_50%_50%] bg-gradient-to-b from-brand-200/30 via-brand-100/15 to-transparent opacity-80 blur-2xl lg:block"
+                aria-hidden
+              />
+              <ul
+                className={cn(
+                  'relative m-0 list-none p-0',
+                  'flex flex-wrap justify-center gap-x-7 gap-y-12 px-1 py-4 sm:gap-x-10 sm:gap-y-14',
+                  'lg:block lg:min-h-[min(42vw,300px)] lg:w-full lg:max-w-[52rem] lg:px-0 xl:min-h-[min(38vw,320px)] xl:max-w-[56rem]',
+                )}
+                aria-label={t('homePartners.listAria')}
+              >
+                {PARTNER_KEYS.map((key, i) => {
+                  const href = PARTNER_LINKS[key];
+                  const linkLabel = t('homePartners.websiteLabel');
+                  const name = t(`homePartners.items.${key}.name`);
+                  const desc = t(`homePartners.items.${key}.desc`);
+                  const srId = `partner-sr-${key}`;
+                  const n = PARTNER_KEYS.length;
+                  const spread = 152;
+                  const angleDeg = -spread / 2 + (spread / (n - 1)) * i;
+                  const waveY =
+                    i % 3 === 0
+                      ? 'max-lg:translate-y-1'
+                      : i % 3 === 1
+                        ? 'max-lg:-translate-y-4 max-lg:sm:translate-y-2'
+                        : 'max-lg:translate-y-5 max-lg:sm:-translate-y-1';
+                  const waveTilt = i % 2 === 0 ? 'max-lg:-rotate-[3deg]' : 'max-lg:rotate-[3.5deg]';
+
+                  return (
+                    <li
+                      key={key}
+                      className={cn(
+                        'group relative z-10 flex min-h-0 justify-center hover:z-30',
+                        waveY,
+                        waveTilt,
+                        'lg:absolute lg:bottom-[11%] lg:left-1/2 lg:w-0 lg:-translate-x-1/2 lg:translate-y-0 lg:rotate-0',
+                      )}
+                      style={
+                        {
+                          '--partner-arc-a': `${angleDeg}deg`,
+                          '--partner-arc-r': 'clamp(92px, 20vw, 188px)',
+                        } as React.CSSProperties
+                      }
+                    >
+                      <div
+                        className="relative flex flex-col items-center lg:[transform-origin:center_bottom] lg:[transform:rotate(var(--partner-arc-a))_translateY(calc(-1*var(--partner-arc-r)))_rotate(calc(-1*var(--partner-arc-a)))]"
                       >
-                        {PARTNER_INITIALS[key]}
-                      </button>
-                      {/* Overlap (-mt-2 + pt-2) keeps pointer path from circle to panel without closing hover */}
-                      <div className="absolute left-1/2 top-full z-20 -mt-2 w-[min(100vw-2rem,17.5rem)] -translate-x-1/2 pt-2">
-                        <div
+                        <span id={srId} className="sr-only">
+                          {desc}
+                          {href
+                            ? ` ${linkLabel}: ${href}`
+                            : ` ${t('homePartners.noWebsite')}`}
+                        </span>
+                        <button
+                          type="button"
                           className={cn(
-                            'pointer-events-none rounded-2xl border border-brand-200/90 bg-white p-4 text-center shadow-[0_12px_28px_-16px_rgba(33,24,22,0.4)]',
-                            'opacity-0 transition-[opacity,transform] duration-200 translate-y-1',
-                            'group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100',
-                            'group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100'
+                            'relative z-10 flex h-[4rem] w-[4rem] shrink-0 items-center justify-center rounded-2xl border border-brand-300/80 sm:h-[4.25rem] sm:w-[4.25rem]',
+                            'bg-linear-to-br from-white via-brand-50/90 to-[#f0e8d8] font-serif text-xl font-semibold tabular-nums text-brand-900',
+                            'shadow-[0_8px_20px_-12px_rgba(33,24,22,0.4),inset_0_1px_0_rgba(255,255,255,0.92)] ring-1 ring-brand-900/[0.06]',
+                            'transition-transform duration-300 outline-none hover:scale-105 group-hover:scale-105 sm:rounded-[1.35rem]',
+                            'focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2',
+                            'md:h-[4.35rem] md:w-[4.35rem] md:text-[1.45rem]',
                           )}
+                          aria-describedby={srId}
+                          aria-label={name}
                         >
-                          <p className="text-balance font-serif text-[0.99rem] font-semibold leading-snug tracking-tight text-brand-950 md:text-[1.05rem]">
-                            {name}
-                          </p>
-                          <p className="mt-2 text-[11px] leading-relaxed text-brand-700 md:text-[12px]">
-                            {desc}
-                          </p>
-                          {href ? (
-                            <a
-                              href={href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="mt-3 inline-flex items-center justify-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-900 underline decoration-brand-400/70 underline-offset-4 transition hover:text-brand-950"
-                            >
-                              {linkLabel}
-                              <ArrowUpRight className="h-3.5 w-3.5 shrink-0 opacity-80" aria-hidden />
-                            </a>
-                          ) : (
-                            <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-500">
-                              {t('homePartners.noWebsite')}
+                          {PARTNER_INITIALS[key]}
+                        </button>
+                        <div className="absolute left-1/2 top-full z-20 -mt-2 w-[min(100vw-2rem,17.5rem)] -translate-x-1/2 pt-2">
+                          <div
+                            className={cn(
+                              'pointer-events-none rounded-2xl border border-brand-200/90 bg-white p-4 text-center shadow-[0_12px_28px_-16px_rgba(33,24,22,0.4)]',
+                              'opacity-0 transition-[opacity,transform] duration-200 translate-y-1',
+                              'group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100',
+                            )}
+                          >
+                            <p className="text-balance font-serif text-[0.99rem] font-semibold leading-snug tracking-tight text-brand-950 md:text-[1.05rem]">
+                              {name}
                             </p>
-                          )}
+                            <p className="mt-2 text-[11px] leading-relaxed text-brand-700 md:text-[12px]">
+                              {desc}
+                            </p>
+                            {href ? (
+                              <a
+                                href={href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="mt-3 inline-flex items-center justify-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-900 underline decoration-brand-400/70 underline-offset-4 transition hover:text-brand-950"
+                              >
+                                {linkLabel}
+                                <ArrowUpRight className="h-3.5 w-3.5 shrink-0 opacity-80" aria-hidden />
+                              </a>
+                            ) : (
+                              <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-500">
+                                {t('homePartners.noWebsite')}
+                              </p>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -640,289 +676,6 @@ const ScrollToTop = () => {
   }, [pathname]);
 
   return null;
-};
-
-/** True when the main content behind the chat FAB reads as a dark surface → use a light FAB for contrast. */
-function isDarkSurfaceBehindChatFab(hitTarget: Element | null): boolean {
-  let node: Element | null = hitTarget;
-  while (node && node !== document.documentElement) {
-    if (node instanceof HTMLElement) {
-      const tag = node.tagName;
-      const c = typeof node.className === 'string' ? node.className : '';
-      if (tag === 'SECTION') {
-        if (c.includes('bg-brand-900') || c.includes('bg-brand-950')) return true;
-        if (
-          c.includes('section-viewport-hero') &&
-          (c.includes('home-hero') || c.includes('hero-below-nav'))
-        ) {
-          return true;
-        }
-      }
-      if (tag === 'FOOTER' && c.includes('bg-brand-900')) return true;
-    }
-    node = node.parentElement;
-  }
-  return false;
-}
-
-const Navbar = () => {
-  const { t, i18n } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
-  const [chatOpen, setChatOpen] = useState(false);
-  const [chatFabOnDark, setChatFabOnDark] = useState(false);
-  const [chatInput, setChatInput] = useState('');
-  const [replyCount, setReplyCount] = useState(0);
-  const [messages, setMessages] = useState<{ role: 'assistant' | 'user'; text: string }[]>(() => [
-    { role: 'assistant', text: t('chat.welcomeMessage') },
-  ]);
-  const chatMessagesRef = useRef<HTMLDivElement>(null);
-
-  const updateChatFabContrast = useCallback(() => {
-    if (typeof window === 'undefined' || typeof document === 'undefined') return;
-    const x = Math.max(4, window.innerWidth - 88);
-    const y = Math.max(4, window.innerHeight - 32);
-    const hit = document.elementFromPoint(x, y);
-    setChatFabOnDark(isDarkSurfaceBehindChatFab(hit));
-  }, []);
-
-  useLayoutEffect(() => {
-    if (!chatOpen) return;
-    const el = chatMessagesRef.current;
-    if (el) el.scrollTop = el.scrollHeight;
-  }, [messages, chatOpen]);
-
-  useEffect(() => {
-    updateChatFabContrast();
-    const raf = requestAnimationFrame(updateChatFabContrast);
-    const t = window.setTimeout(updateChatFabContrast, 150);
-    const onMove = () => updateChatFabContrast();
-    window.addEventListener('scroll', onMove, { passive: true });
-    document.addEventListener('scroll', onMove, { passive: true, capture: true });
-    window.addEventListener('resize', onMove);
-    return () => {
-      cancelAnimationFrame(raf);
-      window.clearTimeout(t);
-      window.removeEventListener('scroll', onMove);
-      document.removeEventListener('scroll', onMove, { capture: true });
-      window.removeEventListener('resize', onMove);
-    };
-  }, [location.pathname, chatOpen, updateChatFabContrast]);
-
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'no' ? 'en' : 'no';
-    i18n.changeLanguage(newLang);
-  };
-
-  const siteChatLang = i18n.language === 'no' ? 'no' : 'en';
-
-  const sendChat = () => {
-    const text = chatInput.trim();
-    if (!text) return;
-    setMessages((prev) => {
-      const next = appendConversation(prev, text, replyCount, siteChatLang);
-      setReplyCount(next.nextReplyCount);
-      return next.nextMessages;
-    });
-    setChatInput('');
-  };
-
-  const navLinks = [
-    { name: t('nav.home'), path: '/' },
-    { name: t('nav.weddings'), path: '/weddings' },
-    { name: t('nav.corporate'), path: '/corporate' },
-    { name: t('nav.private'), path: '/packages' },
-    { name: t('nav.facilities'), path: '/facilities' },
-    { name: t('nav.gallery'), path: '/gallery' },
-    { name: t('nav.blog'), path: '/blog' },
-  ];
-
-  const isNavActive = (path: string) => {
-    if (path === '/blog') {
-      return location.pathname === '/blog' || location.pathname.startsWith('/blog/');
-    }
-    return location.pathname === path;
-  };
-
-  return (
-    <>
-      <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-brand-100 shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-        <Link
-          to="/"
-          className="flex shrink-0 items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-brand-900 focus-visible:ring-offset-2 rounded-sm md:gap-3"
-        >
-          <img
-            src="/logo.png"
-            alt=""
-            width={120}
-            height={120}
-            className="h-11 w-auto shrink-0 object-contain object-left md:h-[3.25rem]"
-            decoding="async"
-          />
-          <span className="flex min-w-0 flex-col items-start justify-center leading-none">
-            <span className="font-serif text-lg font-bold tracking-tight text-brand-900 md:text-xl">
-              {t('branding.navLine1')}
-            </span>
-            <span className="mt-0.5 font-serif text-[10px] font-medium tracking-wide text-brand-600 md:text-[11px]">
-              {t('branding.navLine2')}
-            </span>
-          </span>
-        </Link>
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10">
-          {navLinks.map((link) => (
-            <Link 
-              key={link.path} 
-              to={link.path}
-              className={cn(
-                "text-[13px] uppercase tracking-[0.2em] transition-all duration-300 relative py-2",
-                isNavActive(link.path)
-                  ? "text-brand-900 font-bold" 
-                  : "text-brand-700 hover:text-brand-900 font-medium"
-              )}
-            >
-              {link.name}
-              {isNavActive(link.path) && (
-                <motion.div 
-                  layoutId="nav-underline"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-800"
-                />
-              )}
-            </Link>
-          ))}
-          <button
-            type="button"
-            onClick={toggleLanguage}
-            className="ml-auto flex items-center space-x-2 text-brand-700 hover:text-brand-900 transition-colors"
-          >
-            <Globe size={16} />
-            <span className="text-[11px] font-bold uppercase tracking-widest">{i18n.language}</span>
-          </button>
-          <Link
-            to="/contact#kontakt-skjema"
-            className="bg-brand-900 text-white px-8 py-3.5 rounded-full text-[11px] uppercase tracking-[0.3em] font-bold hover:bg-brand-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-          >
-            {t('nav.contactUs')}
-          </Link>
-        </div>
-
-        {/* Mobile Nav Toggle */}
-        <div className="md:hidden flex items-center space-x-6">
-          <button onClick={toggleLanguage} className="text-brand-700 hover:text-brand-900 transition-colors">
-            <Globe size={22} />
-          </button>
-          <button onClick={() => setIsOpen(!isOpen)} className="text-brand-900 p-2 -mr-2">
-            {isOpen ? <X size={32} /> : <Menu size={32} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-white border-b border-brand-100 shadow-2xl overflow-hidden"
-          >
-            <div className="flex flex-col p-8 space-y-6">
-              {navLinks.map((link) => (
-                <Link 
-                  key={link.path} 
-                  to={link.path}
-                  onClick={() => setIsOpen(false)}
-                  className={cn(
-                    "text-xl font-serif transition-colors",
-                    isNavActive(link.path) ? "text-brand-900 font-bold" : "text-brand-700"
-                  )}
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <Link
-                to="/contact#kontakt-skjema"
-                onClick={() => setIsOpen(false)}
-                className="bg-brand-900 text-white px-8 py-4 rounded-full text-center text-xs uppercase tracking-[0.3em] font-bold shadow-lg"
-              >
-                {t('nav.contactUs')}
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-      </nav>
-      <button
-        type="button"
-        aria-label={chatOpen ? t('chat.closeAssistant') : t('chat.openAssistant')}
-        title={t('chat.launcherTitle')}
-        onClick={() => setChatOpen((v) => !v)}
-        className={cn(
-          'fixed bottom-5 right-5 z-[60] inline-flex h-12 w-12 items-center justify-center rounded-full shadow-xl transition-all duration-300 hover:-translate-y-0.5 md:bottom-6 md:right-6 md:h-14 md:w-14',
-          chatFabOnDark
-            ? 'border border-white/25 bg-white/95 text-brand-900 shadow-brand-900/15 hover:border-white/50 hover:bg-white hover:shadow-2xl'
-            : 'bg-brand-900 text-white hover:bg-brand-800 hover:shadow-2xl',
-        )}
-      >
-        {chatOpen ? <X size={22} aria-hidden /> : <MessageCircle size={22} aria-hidden />}
-      </button>
-      <AnimatePresence>
-        {chatOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 14, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.98 }}
-            className="fixed bottom-20 right-4 z-[60] w-[min(92vw,24rem)] overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-2xl md:bottom-24 md:right-6"
-          >
-            <div className="border-b border-brand-100 bg-brand-900 px-4 py-3 text-white">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-300">{t('chat.panelEyebrow')}</p>
-              <h3 className="mt-1 font-serif text-lg leading-tight">{t('chat.panelHeading')}</h3>
-            </div>
-            <div
-              ref={chatMessagesRef}
-              className="max-h-[19rem] space-y-3 overflow-y-auto overflow-x-hidden bg-brand-50/40 px-4 py-3"
-            >
-              {messages.map((msg, i) => (
-                <div key={`${msg.role}-${i}`} className={cn('rounded-xl px-3 py-2 text-sm leading-relaxed', msg.role === 'assistant' ? 'bg-white text-brand-900 border border-brand-100' : 'bg-brand-900 text-white ml-8')}>
-                  {msg.text}
-                </div>
-              ))}
-            </div>
-            <div className="border-t border-brand-100 bg-white p-3">
-              <div className="flex items-center gap-2">
-                <input
-                  value={chatInput}
-                  onChange={(e) => setChatInput(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') sendChat();
-                  }}
-                  placeholder={
-                    detectLanguage(chatInput, siteChatLang) === 'no'
-                      ? 'Skriv spørsmålet ditt …'
-                      : 'Type your question…'
-                  }
-                  className="h-10 flex-1 rounded-full border border-brand-200 bg-white px-4 text-sm text-brand-900 outline-none focus:border-brand-400"
-                />
-                <button
-                  type="button"
-                  onClick={sendChat}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-900 text-white transition hover:bg-brand-800"
-                  aria-label={t('chat.sendMessage')}
-                >
-                  <SendHorizontal size={16} aria-hidden />
-                </button>
-              </div>
-              <Link to="/contact" className="mt-2 inline-block text-xs font-semibold uppercase tracking-[0.16em] text-brand-700 hover:text-brand-900">
-                {t('chat.directContact')}
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
 };
 
 const Footer = () => {
@@ -1065,6 +818,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/prices" className={linkClass}>
+                  {t('nav.prices')}
+                </Link>
+              </li>
+              <li>
                 <Link to="/gallery" className={linkClass}>
                   {t('nav.gallery')}
                 </Link>
@@ -1115,29 +873,32 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow pt-20">
-          <AnimatePresence mode="wait">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/weddings" element={<WeddingsPage />} />
-              <Route path="/corporate" element={<CorporatePage />} />
-              <Route path="/packages" element={<PrivatePage />} />
-              <Route path="/private" element={<Navigate to="/packages" replace />} />
-              <Route path="/facilities" element={<FacilitiesPage />} />
-              <Route path="/gallery" element={<GalleryPage />} />
-              <Route path="/blog/:slug" element={<BlogPostPage />} />
-              <Route path="/blog" element={<BlogPage />} />
-              <Route path="/faq" element={<FAQPage />} />
-              <Route path="/testimonials" element={<TestimonialsPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/inquiry" element={<InquiryPage />} />
-              <Route path="/admin/*" element={<AdminPanel />} />
-            </Routes>
-          </AnimatePresence>
-        </main>
-        <Footer />
+      <div className="flex min-h-screen flex-col">
+        <AppNavigation />
+        <div className="flex min-h-screen min-w-0 flex-1 flex-col">
+          <main className="flex-grow pt-24">
+            <AnimatePresence mode="wait">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/weddings" element={<WeddingsPage />} />
+                <Route path="/corporate" element={<CorporatePage />} />
+                <Route path="/packages" element={<PrivatePage />} />
+                <Route path="/private" element={<Navigate to="/packages" replace />} />
+                <Route path="/prices" element={<PricesPage />} />
+                <Route path="/facilities" element={<FacilitiesPage />} />
+                <Route path="/gallery" element={<GalleryPage />} />
+                <Route path="/blog/:slug" element={<BlogPostPage />} />
+                <Route path="/blog" element={<BlogPage />} />
+                <Route path="/faq" element={<FAQPage />} />
+                <Route path="/testimonials" element={<TestimonialsPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/inquiry" element={<InquiryPage />} />
+                <Route path="/admin/*" element={<AdminPanel />} />
+              </Routes>
+            </AnimatePresence>
+          </main>
+          <Footer />
+        </div>
         <Toaster position="top-center" duration={3200} />
       </div>
     </Router>

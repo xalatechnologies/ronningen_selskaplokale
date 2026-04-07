@@ -37,18 +37,6 @@ const CORPORATE_EVENT_IMAGES: Record<CorporateEventKey, string> = {
     'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1200',
 };
 
-const CORPORATE_PACKAGE_KEYS = ['venueRental', 'flexiblePackage', 'bespoke'] as const;
-
-type CorporatePackageKey = (typeof CORPORATE_PACKAGE_KEYS)[number];
-
-const CORPORATE_PACKAGE_FEATURED: Record<CorporatePackageKey, boolean> = {
-  venueRental: false,
-  flexiblePackage: true,
-  bespoke: false,
-};
-
-const CORPORATE_PACKAGE_BULLET_KEYS = ['bullet1', 'bullet2', 'bullet3'] as const;
-
 const galleryImgs = [
   'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1600',
   'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=1200',
@@ -187,7 +175,7 @@ export const CorporatePage = () => {
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
-                  className="relative mx-auto aspect-[7/8] w-full max-w-md overflow-hidden rounded-2xl border border-brand-200/80 shadow-lg lg:mx-0 lg:max-w-none"
+                  className="relative mx-auto aspect-[7/8] w-full max-w-md overflow-hidden rounded-lg border border-brand-200/80 shadow-lg lg:mx-0 lg:max-w-none"
                 >
                   <img
                     src="/corporate-intro-dinner.png"
@@ -335,116 +323,7 @@ export const CorporatePage = () => {
         </div>
       </section>
 
-      {/* 4 — Pakker (samme uttrykk som bryllupspakker) */}
-      <section
-        aria-labelledby="corporate-packages-heading"
-        className="section-viewport relative overflow-hidden border-b border-brand-200/80 bg-gradient-to-b from-white to-brand-50/50"
-      >
-        <div
-          className="pointer-events-none absolute left-[8%] top-[18%] h-[min(38vw,22rem)] w-[min(38vw,22rem)] rounded-full bg-brand-200/25 blur-[90px]"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute bottom-[12%] right-[6%] h-[min(32vw,18rem)] w-[min(32vw,18rem)] rounded-full bg-brand-400/10 blur-[80px]"
-          aria-hidden
-        />
-
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-5 py-16 sm:px-8 sm:py-20 md:px-14 md:py-24 lg:px-16 xl:px-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-10 max-w-2xl space-y-4 md:mb-12 md:space-y-5"
-          >
-            <h2 id="corporate-packages-heading" className={cn(SECTION_H2_CLASS, 'mb-5 text-balance')}>
-              {t('corporatePage.packagesSection.heading')}
-            </h2>
-            <p className="max-w-2xl text-base leading-relaxed text-brand-700 md:text-lg md:leading-relaxed">
-              {t('corporatePage.packagesSection.intro')}
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 gap-6 md:gap-7 lg:grid-cols-3 lg:gap-8">
-            {CORPORATE_PACKAGE_KEYS.map((pkgKey, i) => {
-              const featured = CORPORATE_PACKAGE_FEATURED[pkgKey];
-              const itemBase = `corporatePage.packagesSection.items.${pkgKey}`;
-              return (
-                <motion.div
-                  key={pkgKey}
-                  initial={{ opacity: 0, y: 28 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className={cn(
-                    'relative flex h-full flex-col rounded-2xl border p-8 md:p-9',
-                    featured
-                      ? 'z-[1] border-brand-800 bg-brand-900 text-white shadow-2xl shadow-brand-900/30 ring-2 ring-brand-400/20'
-                      : 'border-brand-200/90 bg-white/95 text-brand-900 shadow-[0_1px_0_rgba(28,22,19,0.04)] ring-1 ring-brand-900/[0.04]',
-                  )}
-                >
-                  {featured && (
-                    <div className="absolute right-4 top-4 rounded-full bg-brand-700 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em]">
-                      {t('corporatePage.packagesSection.featuredBadge')}
-                    </div>
-                  )}
-
-                  <div className="mb-6">
-                    <p
-                      className={cn(
-                        'mb-2 text-[11px] font-semibold uppercase tracking-[0.2em]',
-                        featured ? 'text-brand-400' : 'text-brand-500',
-                      )}
-                    >
-                      {t(`${itemBase}.detail`)}
-                    </p>
-                    <h3
-                      className={cn(
-                        'font-serif text-2xl tracking-tight md:text-[1.65rem]',
-                        featured ? 'text-white' : 'text-brand-950',
-                      )}
-                    >
-                      {t(`${itemBase}.name`)}
-                    </h3>
-                    <p className={cn('mt-3 font-serif text-2xl md:text-3xl', featured ? 'text-brand-100' : 'text-brand-900')}>
-                      {t(`${itemBase}.price`)}
-                    </p>
-                    <p className={cn('mt-4 text-[15px] leading-relaxed md:text-base', featured ? 'text-brand-100' : 'text-brand-700')}>
-                      {t(`${itemBase}.fit`)}
-                    </p>
-                  </div>
-
-                  <div className={cn('mb-6 h-px w-full', featured ? 'bg-brand-700' : 'bg-brand-200')} />
-
-                  <ul className="mb-8 grow space-y-3.5">
-                    {CORPORATE_PACKAGE_BULLET_KEYS.map((bulletKey) => (
-                      <li key={bulletKey} className="flex items-start gap-3">
-                        <div className={cn('mt-0.5 shrink-0', featured ? 'text-brand-400' : 'text-brand-600')}>
-                          <CheckCircle2 size={18} strokeWidth={2.25} aria-hidden />
-                        </div>
-                        <span className={cn('text-[15px] leading-relaxed', featured ? 'text-brand-100' : 'text-brand-800')}>
-                          {t(`${itemBase}.${bulletKey}`)}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <Link
-                    to={CTA_PRIMARY}
-                    className={cn(
-                      'mt-auto inline-flex items-center justify-center rounded-full px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] transition-colors',
-                      featured ? 'bg-white text-brand-900 hover:bg-brand-100' : 'bg-brand-900 text-white hover:bg-brand-800',
-                    )}
-                  >
-                    {t('corporatePage.packagesSection.requestQuote')}
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 5 — Galleri (samme uttrykk som bryllup) */}
+      {/* 4 — Galleri (samme uttrykk som bryllup) */}
       <section className="section-viewport relative overflow-hidden border-b border-brand-100 bg-white">
         <div className="pointer-events-none absolute top-0 right-0 h-full w-full overflow-hidden">
           <div className="absolute top-[40%] -right-[10%] h-[40%] w-[40%] rounded-full bg-brand-100/20 blur-[150px]" />
@@ -550,7 +429,7 @@ export const CorporatePage = () => {
         </div>
       </section>
 
-      {/* 6 — FAQ (samme mål og uttrykk som bryllup) */}
+      {/* 5 — FAQ (samme mål og uttrykk som bryllup) */}
       <section className="section-viewport relative overflow-hidden border-b border-brand-100 bg-brand-50/50">
         <div className="pointer-events-none absolute left-0 top-0 h-full w-full overflow-hidden">
           <div className="absolute left-[5%] top-[10%] h-[20%] w-[20%] rounded-full bg-brand-200/10 blur-[100px]" />
@@ -633,7 +512,7 @@ export const CorporatePage = () => {
         </div>
       </section>
 
-      {/* 7 — Avsluttende CTA (samme uttrykk som galleri) */}
+      {/* 6 — Avsluttende CTA (samme uttrykk som galleri) */}
       <section className="section-viewport px-8 md:px-20">
         <div className="section-viewport-scroll py-8 md:py-12">
           <motion.div

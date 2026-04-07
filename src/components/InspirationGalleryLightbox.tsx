@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowLeft, ArrowRight, X } from 'lucide-react';
@@ -47,8 +47,11 @@ type GalleryLightboxProps = {
   onGoNext: () => void;
 };
 
+const SWIPE_MIN_PX = 40;
+
 export function GalleryLightbox({ slides, activeIndex, onClose, onGoPrev, onGoNext }: GalleryLightboxProps) {
   const { t } = useTranslation();
+  const touchRef = useRef<{ x: number; id: number } | null>(null);
 
   useEffect(() => {
     if (activeIndex === null) return;
@@ -79,8 +82,27 @@ export function GalleryLightbox({ slides, activeIndex, onClose, onGoPrev, onGoNe
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/92 p-4 sm:p-8"
+          className="fixed inset-0 z-[100] flex touch-manipulation items-center justify-center bg-black/92 p-4 sm:p-8"
           onClick={onClose}
+          onTouchStart={(e) => {
+            if ((e.target as HTMLElement).closest('button')) return;
+            const t0 = e.touches[0];
+            if (t0) touchRef.current = { x: t0.clientX, id: t0.identifier };
+          }}
+          onTouchEnd={(e) => {
+            const start = touchRef.current;
+            touchRef.current = null;
+            if (!start) return;
+            const ended = [...e.changedTouches].find((ct) => ct.identifier === start.id);
+            if (!ended) return;
+            const dx = ended.clientX - start.x;
+            if (Math.abs(dx) < SWIPE_MIN_PX) return;
+            if (dx > 0) onGoPrev();
+            else onGoNext();
+          }}
+          onTouchCancel={() => {
+            touchRef.current = null;
+          }}
         >
           <button
             type="button"

@@ -62,7 +62,8 @@ export const GalleryPage: React.FC = () => {
   );
 
   const [lightboxUrl, setLightboxUrl] = useState<string | null>(null);
-  const touchStartX = useRef<number | null>(null);
+  /** Tracks horizontal swipe on the lightbox (identifier matches touchend to the same finger). */
+  const lightboxTouchRef = useRef<{ x: number; id: number } | null>(null);
 
   const categoryCounts = useMemo(() => {
     const counts = { wedding: 0, corporate: 0, private: 0, facilities: 0 };
@@ -351,19 +352,26 @@ export const GalleryPage: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
-            className="fixed inset-0 z-[200] flex items-center justify-center bg-brand-950/97 p-3 backdrop-blur-md sm:p-6 md:p-8"
+            className="fixed inset-0 z-[200] flex touch-manipulation items-center justify-center bg-brand-950/97 p-3 backdrop-blur-md sm:p-6 md:p-8"
             onClick={closeLightbox}
             onTouchStart={(e) => {
-              touchStartX.current = e.changedTouches[0]?.clientX ?? null;
+              if ((e.target as HTMLElement).closest('button')) return;
+              const t = e.touches[0];
+              if (t) lightboxTouchRef.current = { x: t.clientX, id: t.identifier };
             }}
             onTouchEnd={(e) => {
-              if (touchStartX.current === null) return;
-              const endX = e.changedTouches[0]?.clientX ?? touchStartX.current;
-              const dx = endX - touchStartX.current;
-              touchStartX.current = null;
-              if (Math.abs(dx) < 48) return;
+              const start = lightboxTouchRef.current;
+              lightboxTouchRef.current = null;
+              if (!start) return;
+              const ended = [...e.changedTouches].find((ct) => ct.identifier === start.id);
+              if (!ended) return;
+              const dx = ended.clientX - start.x;
+              if (Math.abs(dx) < 40) return;
               if (dx > 0) goPrev();
               else goNext();
+            }}
+            onTouchCancel={() => {
+              lightboxTouchRef.current = null;
             }}
           >
             <button
@@ -399,11 +407,7 @@ export const GalleryPage: React.FC = () => {
               className="relative flex w-full max-w-5xl flex-col px-1"
               onClick={(e) => e.stopPropagation()}
             >
-              <div
-                className="relative overflow-hidden rounded-2xl border border-white/10 bg-brand-950 shadow-2xl ring-1 ring-white/10"
-                onTouchStart={(e) => e.stopPropagation()}
-                onTouchEnd={(e) => e.stopPropagation()}
-              >
+              <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-brand-950 shadow-2xl ring-1 ring-white/10">
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.img
                     key={lightboxUrl}

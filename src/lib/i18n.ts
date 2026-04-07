@@ -12,6 +12,7 @@ const resources = {
         corporate: 'Corporate',
         private: 'Private',
         packages: 'Packages',
+        prices: 'Prices',
         facilities: 'Facilities',
         gallery: 'Gallery',
         blog: 'Blog',
@@ -19,7 +20,10 @@ const resources = {
         contact: 'Contact',
         contactUs: 'Contact us',
         inquiry: 'Inquiry',
-        admin: 'Admin'
+        admin: 'Admin',
+        menuLabel: 'Main menu',
+        menuOpen: 'Open menu',
+        menuClose: 'Close menu',
       },
       hero: {
         title: 'Rønningen Selskapslokale',
@@ -399,42 +403,6 @@ const resources = {
             },
           },
         },
-        packagesSection: {
-          heading: 'Our corporate packages',
-          intro:
-            'Choose from three corporate options — in conversation we clarify your needs, guest count, date, and practical details, and put together a proposal that suits you.',
-          featuredBadge: 'Most popular',
-          requestQuote: 'Request a quote',
-          items: {
-            venueRental: {
-              name: 'Venue hire',
-              price: 'On request',
-              detail: 'Quote after conversation',
-              fit: 'You manage suppliers yourself.',
-              bullet1: 'Exclusive use of agreed spaces',
-              bullet2: 'Basic tables and chairs',
-              bullet3: 'Agreed timeframe',
-            },
-            flexiblePackage: {
-              name: 'Flexible package',
-              price: 'On request',
-              detail: 'Tailored to needs',
-              fit: 'Venue plus selected support from us.',
-              bullet1: 'Tailored setup and plan',
-              bullet2: 'Coordination with us',
-              bullet3: 'Can be expanded',
-            },
-            bespoke: {
-              name: 'Bespoke',
-              price: 'Individually priced',
-              detail: 'By scope',
-              fit: 'The whole journey from idea to delivery.',
-              bullet1: 'Dialogue on concept and budget',
-              bullet2: 'Collaboration with suppliers',
-              bullet3: 'On-the-day follow-up',
-            },
-          },
-        },
         gallerySection: {
           heading: 'Inspiration',
           slideAlt: 'Mood from the venue {{n}}',
@@ -473,6 +441,65 @@ const resources = {
           headingLine1Accent: 'plan',
           headingLine2: "your company's day with us?",
           body: 'Tell us briefly what you envision, and we’ll put together a programme that suits both your team and guests.',
+        },
+      },
+      pricesPage: {
+        heroEyebrow: 'Pricing',
+        title: 'Packages & prices',
+        intro: 'Packages and facility pricing at a glance — we confirm everything in your written quote.',
+        bottomCta: {
+          heading: 'Questions or ready to book?',
+          body: 'Contact us for a no-obligation chat — we will help with date, programme and quote.',
+          primary: 'Contact us',
+        },
+        facilityPricing: {
+          heading: 'Facilities & indicative pricing',
+          intro:
+            'Every space below is part of what makes the venue work for your day. Amounts are typical or starting points — the final price follows your date, guest count and programme.',
+          showMore: 'Show {{count}} more',
+          showLess: 'Show fewer',
+          items: {
+            childCare: {
+              price: 'From NOK 0',
+              note: 'Playroom by arrangement; childcare or staffing quoted separately when booked.',
+            },
+            accommodation: {
+              price: 'From NOK 1,200 / room / night',
+              note: 'Indicative; depends on season, room type and availability.',
+            },
+            bridalSuite: {
+              price: 'Included on wedding day',
+              note: 'Other event types and extra nights are priced on request.',
+            },
+            activities: {
+              price: 'Included',
+              note: 'Indoor games and shuffleboard with standard venue hire.',
+            },
+            animals: {
+              price: 'On request',
+              note: 'Farm visit or animal programme as an add-on — quoted with your event.',
+            },
+            barDanceFloor: {
+              price: 'Included',
+              note: 'Bar area and dance floor with venue hire.',
+            },
+            kitchen: {
+              price: 'Included',
+              note: 'Full commercial kitchen; access level follows your package (see wedding/private cards above).',
+            },
+            universalDesign: {
+              price: 'No surcharge',
+              note: 'Single-level flow and accessible WC — no extra facility fee.',
+            },
+            parking: {
+              price: 'Free',
+              note: 'Guest parking on site; EV charging available.',
+            },
+            barn: {
+              price: 'From NOK 26,000',
+              note: 'Main celebration hall — wedding Basic; Plus & Premium shown in the packages above.',
+            },
+          },
         },
       },
       privatePage: {
@@ -543,43 +570,6 @@ const resources = {
               title: 'Gatherings & mingling',
               desc: 'Informal get-togethers with an easy flow, where guests can move freely and enjoy the evening.',
               imgAlt: 'Open landscape with trees and soft light — space for relaxed outdoor mingling',
-            },
-          },
-        },
-        packagesSection: {
-          heading: 'Our private packages',
-          intro:
-            'Choose from three options. We tailor to your celebration, guests and wishes — straightforward and with no obligation.',
-          featuredBadge: 'Most popular',
-          requestQuote: 'Request a quote',
-          priceNote: 'Prices are indicative — final quote after a conversation.',
-          items: {
-            venueRental: {
-              name: 'Venue hire',
-              price: 'On request',
-              detail: 'Quote after conversation',
-              fit: 'You choose catering and details yourself — we provide the room.',
-              bullet1: 'Exclusive use of agreed spaces',
-              bullet2: 'Basic tables and chairs',
-              bullet3: 'Agreed timeframe',
-            },
-            flexiblePackage: {
-              name: 'Flexible package',
-              price: 'On request',
-              detail: 'Tailored to needs',
-              fit: 'Venue plus practical support for family celebrations.',
-              bullet1: 'Tailored setup and flow',
-              bullet2: 'Coordination with us',
-              bullet3: 'Can be expanded with what you need',
-            },
-            bespoke: {
-              name: 'Bespoke',
-              price: 'Individually priced',
-              detail: 'By scope',
-              fit: 'From idea to delivery — when you want everything in one place.',
-              bullet1: 'Dialogue on concept and budget',
-              bullet2: 'Collaboration with suppliers',
-              bullet3: 'On-the-day follow-up',
             },
           },
         },
@@ -781,7 +771,7 @@ const resources = {
         },
       },
       branding: {
-        navLine1: 'Rønningen',
+        navLine1: 'RØNNINGEN',
         navLine2: 'Selskapslokale'
       },
       common: {
@@ -980,6 +970,7 @@ const resources = {
         corporate: 'Bedrift',
         private: 'Privat',
         packages: 'Pakker',
+        prices: 'Priser',
         facilities: 'Fasiliteter',
         gallery: 'Galleri',
         blog: 'Blogg',
@@ -987,7 +978,10 @@ const resources = {
         contact: 'Kontakt',
         contactUs: 'Kontakt oss',
         inquiry: 'Forespørsel',
-        admin: 'Admin'
+        admin: 'Admin',
+        menuLabel: 'Hovedmeny',
+        menuOpen: 'Åpne meny',
+        menuClose: 'Lukk meny',
       },
       hero: {
         title: 'Rønningen Selskapslokale',
@@ -1365,42 +1359,6 @@ const resources = {
             },
           },
         },
-        packagesSection: {
-          heading: 'Våre bedriftspakker',
-          intro:
-            'Velg mellom tre pakker. Vi tar en prat om behov, antall gjester og dato, og setter sammen et opplegg som passer dere.',
-          featuredBadge: 'Mest populær',
-          requestQuote: 'Be om tilbud',
-          items: {
-            venueRental: {
-              name: 'Lokalleie',
-              price: 'På forespørsel',
-              detail: 'Tilbud etter samtale',
-              fit: 'Dere styrer leverandører selv.',
-              bullet1: 'Eksklusiv bruk av avtalte lokaler',
-              bullet2: 'Grunnleggende bord og stoler',
-              bullet3: 'Avtalt tidsramme',
-            },
-            flexiblePackage: {
-              name: 'Fleksibelt opplegg',
-              price: 'På forespørsel',
-              detail: 'Tilpasses behov',
-              fit: 'Sted pluss utvalgt støtte fra oss.',
-              bullet1: 'Tilpasset rigg og plan',
-              bullet2: 'Koordinering med oss',
-              bullet3: 'Kan utvides',
-            },
-            bespoke: {
-              name: 'Skreddersøm',
-              price: 'Individuelt',
-              detail: 'Etter omfang',
-              fit: 'Helheten fra idé til gjennomføring.',
-              bullet1: 'Dialog om konsept og budsjett',
-              bullet2: 'Samarbeid med leverandører',
-              bullet3: 'Oppfølging på dagen',
-            },
-          },
-        },
         gallerySection: {
           heading: 'Inspirasjon',
           slideAlt: 'Stemning fra lokalet {{n}}',
@@ -1438,6 +1396,65 @@ const resources = {
           headingLine1Accent: 'planlegge',
           headingLine2: 'bedriftens dag hos oss?',
           body: 'Fortell oss kort hva dere ser for dere, så setter vi sammen et opplegg som passer både team og gjester.',
+        },
+      },
+      pricesPage: {
+        heroEyebrow: 'Priser',
+        title: 'Pakker og priser',
+        intro: 'Pakker og fasilitetspriser samlet — alt bekreftes i deres skriftlige tilbud.',
+        bottomCta: {
+          heading: 'Spørsmål eller klar for å booke?',
+          body: 'Ta kontakt for en uforpliktende prat — vi hjelper med dato, opplegg og tilbud.',
+          primary: 'Kontakt oss',
+        },
+        facilityPricing: {
+          heading: 'Fasiliteter og veiledende priser',
+          intro:
+            'Rommene og tjenestene under er en del av det som gjør lokalet komplett for deres dag. Beløp er typiske eller utgangspunkt — endelig pris følger dato, antall gjester og opplegg.',
+          showMore: 'Vis {{count}} flere',
+          showLess: 'Vis færre',
+          items: {
+            childCare: {
+              price: 'Fra kr 0',
+              note: 'Barnerom etter avtale; barnevakt eller bemanning pristes separat ved bestilling.',
+            },
+            accommodation: {
+              price: 'Fra kr 1 200 / rom / natt',
+              note: 'Veiledende; avhenger av sesong, romtype og tilgjengelighet.',
+            },
+            bridalSuite: {
+              price: 'Inkludert på bryllupsdagen',
+              note: 'Andre arrangementstyper og ekstra netter prises på forespørsel.',
+            },
+            activities: {
+              price: 'Inkludert',
+              note: 'Shuffleboard og spill innendørs ved standard lokalleie.',
+            },
+            animals: {
+              price: 'På forespørsel',
+              note: 'Besøk til dyr eller bondeprogram som tillegg — pristes sammen med arrangementet.',
+            },
+            barDanceFloor: {
+              price: 'Inkludert',
+              note: 'Barområde og dansegulv ved lokalleie.',
+            },
+            kitchen: {
+              price: 'Inkludert',
+              note: 'Fullt utstyrt storkjøkken; tilgang følger pakken (se bryllup/private kort over).',
+            },
+            universalDesign: {
+              price: 'Uten tillegg',
+              note: 'Ett plan og tilgjengelig WC — ingen ekstra fasilitetsavgift.',
+            },
+            parking: {
+              price: 'Gratis',
+              note: 'Gjesteparkering på området; elbillading tilgjengelig.',
+            },
+            barn: {
+              price: 'Fra kr 26 000',
+              note: 'Hovedlokale — bryllup Basis; Plus og Premium står i pakkene over.',
+            },
+          },
         },
       },
       privatePage: {
@@ -1508,43 +1525,6 @@ const resources = {
               title: 'Selskap & mingling',
               desc: 'Uformelle sammenkomster med god flyt, der gjestene kan bevege seg fritt og nyte kvelden.',
               imgAlt: 'Åpent landskap med trær og mykt lys — plass til uformelt samvær ute',
-            },
-          },
-        },
-        packagesSection: {
-          heading: 'Våre private pakker',
-          intro:
-            'Velg mellom tre opplegg. Vi tilpasser til feiringen, gjestene og ønskene deres – enkelt og uforpliktende.',
-          featuredBadge: 'Mest populær',
-          requestQuote: 'Be om tilbud',
-          priceNote: 'Priser er veiledende — endelig tilbud etter samtale.',
-          items: {
-            venueRental: {
-              name: 'Lokalleie',
-              price: 'På forespørsel',
-              detail: 'Tilbud etter samtale',
-              fit: 'Dere velger selv catering og detaljer — vi stiller med rommet.',
-              bullet1: 'Eksklusiv bruk av avtalte lokaler',
-              bullet2: 'Grunnleggende bord og stoler',
-              bullet3: 'Avtalt tidsramme',
-            },
-            flexiblePackage: {
-              name: 'Fleksibelt opplegg',
-              price: 'På forespørsel',
-              detail: 'Tilpasses behov',
-              fit: 'Lokale pluss praktisk støtte til familiefeiringer.',
-              bullet1: 'Tilpasset rigg og flyt',
-              bullet2: 'Koordinering med oss',
-              bullet3: 'Kan utvides med det dere trenger',
-            },
-            bespoke: {
-              name: 'Skreddersøm',
-              price: 'Individuelt',
-              detail: 'Etter omfang',
-              fit: 'Fra idé til gjennomføring — når dere vil ha alt samlet.',
-              bullet1: 'Dialog om konsept og budsjett',
-              bullet2: 'Samarbeid med leverandører',
-              bullet3: 'Oppfølging på dagen',
             },
           },
         },
@@ -1745,7 +1725,7 @@ const resources = {
         },
       },
       branding: {
-        navLine1: 'Rønningen',
+        navLine1: 'RØNNINGEN',
         navLine2: 'Selskapslokale'
       },
       common: {

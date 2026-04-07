@@ -7,6 +7,7 @@ import { HeroScrollHint } from '../components/HeroScrollHint';
 import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import { ArrowLeft, ArrowRight, ChevronDown } from 'lucide-react';
+import { FACILITY_CARD_IMAGES, FACILITY_CARD_KEYS } from '../lib/facilityCards';
 
 const CTA_PRIMARY = '/inquiry';
 const CTA_SECONDARY = '/contact';
@@ -30,34 +31,6 @@ const FACILITIES_OUTDOORS_WATERFALL_IMG = '/facilities-usecase-outdoors-waterfal
 /** Unsplash: use ixlib + verified photo ids (some legacy ids return 404 from the CDN). */
 const US_IMG = (id: string) =>
   `https://images.unsplash.com/${id}?ixlib=rb-4.1.0&auto=format&fit=crop&q=85&w=1200`;
-
-const FACILITY_CARD_KEYS = [
-  'childCare',
-  'accommodation',
-  'bridalSuite',
-  'activities',
-  'animals',
-  'barDanceFloor',
-  'kitchen',
-  'universalDesign',
-  'parking',
-  'barn',
-] as const;
-
-type FacilityCardKey = (typeof FACILITY_CARD_KEYS)[number];
-
-const FACILITY_CARD_IMAGES: Record<FacilityCardKey, string> = {
-  childCare: FACILITIES_CHILDCARE_PLAYROOM_IMG,
-  accommodation: FACILITIES_GUEST_LOUNGE_IMG,
-  bridalSuite: FACILITIES_BRIDAL_SUITE_BEDROOM_IMG,
-  activities: FACILITIES_SHUFFLEBOARD_HERO_IMG,
-  animals: FACILITIES_ANIMALS_GOATS_IMG,
-  barDanceFloor: FACILITIES_BAR_EVENT_HALL_IMG,
-  kitchen: FACILITIES_COMMERCIAL_KITCHEN_IMG,
-  universalDesign: FACILITIES_UNIVERSAL_DESIGN_HALLWAY_IMG,
-  parking: FACILITIES_PARKING_COACHES_IMG,
-  barn: FACILITIES_VENUE_AERIAL_IMG,
-};
 
 const USE_CASE_KEYS = [
   'familyCelebration',
