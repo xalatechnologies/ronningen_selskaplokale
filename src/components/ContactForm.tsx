@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { Send } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { sendContactFormEmailNotification } from '../lib/contactEmail';
 import { toast } from 'sonner';
 import { cn } from '../lib/utils';
 
@@ -75,7 +76,27 @@ export const ContactForm: React.FC<ContactFormProps> = ({ embedded = false, clas
 
       if (error) throw error;
 
+      const messageText = `${prefix}\n\n${data.message.trim()}`;
+      const emailSubject =
+        lang === 'no'
+          ? `[Kontakt] ${data.name.trim()}`
+          : `[Contact] ${data.name.trim()}`;
+
       toast.success(t('contactPage.formSuccess'));
+
+      try {
+        await sendContactFormEmailNotification({
+          name: data.name.trim(),
+          email: data.email.trim(),
+          phone: data.phone.trim(),
+          message: messageText,
+          subject: emailSubject,
+        });
+      } catch (emailErr) {
+        console.error('Contact form email notification:', emailErr);
+        toast.warning(t('contactPage.formEmailNotifyError'));
+      }
+
       reset();
     } catch (err) {
       console.error('Contact form submit:', err);

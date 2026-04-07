@@ -290,13 +290,7 @@ export const WeddingsPage = () => {
                     </div>
 
                     <div className="relative z-10 flex h-full flex-col justify-between p-12">
-                      <div className="flex items-start justify-between">
-                        <div className="flex flex-col">
-                          <span className="font-serif text-6xl tabular-nums text-brand-200 [text-shadow:0_2px_24px_rgba(0,0,0,0.55)] transition-colors duration-500 group-hover:text-brand-100">
-                            0{i + 1}
-                          </span>
-                          <div className="mt-4 h-px w-12 bg-brand-300/70 opacity-90 transition-all duration-500 group-hover:w-24 group-hover:bg-brand-200/80" />
-                        </div>
+                      <div className="flex items-start justify-end">
                         <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/25 bg-white/10 text-brand-200 backdrop-blur-md transition-all duration-500 group-hover:border-white/40 group-hover:bg-white group-hover:text-brand-900">
                           <Icon size={32} />
                         </div>

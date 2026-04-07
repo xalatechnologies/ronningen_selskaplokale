@@ -105,22 +105,42 @@ const resources = {
         openImageAria: 'Open large image: {{description}}',
       },
       homePartners: {
+        eyebrow: 'Curated collaborators',
         heading: 'Our partners',
         intro:
-          'We work with trusted suppliers for food, flowers, photo, and more — so you have one coordinated team around your event at Rønningen.',
-        listAria: 'Partner logos',
-        badge: 'Partner',
+          'Trusted partners for catering, styling, technology, and event support — all tailored to your celebration.',
+        listAria: 'Partner list',
+        websiteLabel: 'Visit website',
+        noWebsite: 'Contact us for details',
         items: {
-          cateringKitchen: 'Catering & kitchen',
-          flowersDecor: 'Flowers & decor',
-          photoVideo: 'Photo & video',
-          soundLight: 'Sound & lighting',
-          barService: 'Bar & service',
-          coordination: 'Coordination',
-          digilist: 'Digilist',
-          xala: 'Xala technologies',
-          hostingStaff: 'Hosting & staff',
-          commitcare: 'CommitCare',
+          cateringKitchen: {
+            name: 'Svensefjøset',
+            desc: 'Based in Lierbyen with a focus on local produce. Delivers flavorful food for both small and large events.',
+          },
+          flowersDecor: {
+            name: 'OsloEvent',
+            desc: 'Provides event equipment and practical solutions, from decor elements to technical needs.',
+          },
+          photoVideo: {
+            name: 'Villa Boligstyling',
+            desc: 'Supports table setup and venue styling, tailored to your style and event format.',
+          },
+          soundLight: {
+            name: 'Festpartner',
+            desc: 'Rental of chair covers, table linens and accessories for a complete table setting.',
+          },
+          barService: {
+            name: 'Digilist',
+            desc: 'Booking platform that simplifies guest lists, registrations and practical planning.',
+          },
+          digilist: {
+            name: 'Xala Technologies AS',
+            desc: 'Technology and digital operations partner supporting platform delivery and reliability.',
+          },
+          xala: {
+            name: 'Funny Balloons Drammen',
+            desc: 'Balloon decor and festive details that elevate visual expression in your event space.',
+          },
         },
       },
       weddingsPage: {
@@ -776,6 +796,8 @@ const resources = {
         formSubmit: 'Send message',
         formSubmitting: 'Sending…',
         formSuccess: 'Thank you — your message was sent.',
+        formEmailNotifyError:
+          'Your message was saved, but we could not send the email notification. We will still see your enquiry in our system.',
         formError: 'Something went wrong. Please try again.',
         formPrivacy: 'We only use your details to answer your enquiry.',
         formErrName: 'Please enter at least two characters.',
@@ -913,22 +935,42 @@ const resources = {
         openImageAria: 'Åpne stort bilde: {{description}}',
       },
       homePartners: {
+        eyebrow: 'Utvalgte samarbeidspartnere',
         heading: 'Våre partnere',
         intro:
-          'Vi jobber med anbefalte leverandører innen mat, dekor, foto og mer — slik at dere får ett koordinert team rundt arrangementet på Rønningen.',
-        listAria: 'Partnerlogoer',
-        badge: 'Partner',
+          'Faste samarbeidspartnere innen mat, styling, teknologi og eventstøtte — tilpasset arrangementet deres.',
+        listAria: 'Partnerliste',
+        websiteLabel: 'Besøk nettside',
+        noWebsite: 'Ta kontakt for mer informasjon',
         items: {
-          cateringKitchen: 'Catering & kjøkken',
-          flowersDecor: 'Blomster & dekor',
-          photoVideo: 'Foto & film',
-          soundLight: 'Lyd & lys',
-          barService: 'Bar & servering',
-          coordination: 'Koordinering',
-          digilist: 'Digilist',
-          xala: 'Xala technologies',
-          hostingStaff: 'Vertskap & personell',
-          commitcare: 'CommitCare',
+          cateringKitchen: {
+            name: 'Svensefjøset',
+            desc: 'Lokalisert i Lierbyen, med fokus på lokale råvarer. Leverer smakfull mat til både små og store arrangementer.',
+          },
+          flowersDecor: {
+            name: 'OsloEvent',
+            desc: 'Leverer utstyr og løsninger til arrangementer, fra dekor til praktiske behov.',
+          },
+          photoVideo: {
+            name: 'Villa Boligstyling',
+            desc: 'Hjelper med oppdekking og styling av lokalet, tilpasset deres stil og type arrangement.',
+          },
+          soundLight: {
+            name: 'Festpartner',
+            desc: 'Utleie av stoltrekk, duker og annet tilbehør for en gjennomført borddekking.',
+          },
+          barService: {
+            name: 'Digilist',
+            desc: 'Bookingsystem som gjør det enkelt å håndtere gjestelister, påmeldinger og praktisk planlegging.',
+          },
+          digilist: {
+            name: 'Xala Technologies AS',
+            desc: 'Teknologi- og driftsstøtte som bidrar til stabile plattformer og digitale leveranser.',
+          },
+          xala: {
+            name: 'Funny Balloons Drammen',
+            desc: 'Ballongdekor og festdetaljer som gir et tydelig visuelt uttrykk i lokalet.',
+          },
         },
       },
       weddingsPage: {
@@ -1582,6 +1624,8 @@ const resources = {
         formSubmit: 'Send melding',
         formSubmitting: 'Sender …',
         formSuccess: 'Takk — meldingen er sendt.',
+        formEmailNotifyError:
+          'Meldingen ble lagret, men e-postvarselet kunne ikke sendes. Vi ser fortsatt henvendelsen i systemet vårt.',
         formError: 'Noe gikk galt. Prøv igjen.',
         formPrivacy: 'Vi bruker bare opplysningene til å svare på henvendelsen.',
         formErrName: 'Skriv inn minst to tegn.',

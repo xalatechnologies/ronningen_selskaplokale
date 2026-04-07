@@ -6,7 +6,21 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Globe, Phone, Mail, MapPin, Instagram, Facebook, ArrowRight, ArrowLeft, MessageCircle, SendHorizontal } from 'lucide-react';
+import {
+  Menu,
+  X,
+  Globe,
+  Phone,
+  Mail,
+  MapPin,
+  Instagram,
+  Facebook,
+  ArrowRight,
+  ArrowLeft,
+  ArrowUpRight,
+  MessageCircle,
+  SendHorizontal,
+} from 'lucide-react';
 import { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
 import './lib/i18n';
 import { Toaster } from 'sonner';
@@ -101,26 +115,31 @@ const PARTNER_KEYS = [
   'photoVideo',
   'soundLight',
   'barService',
-  'coordination',
   'digilist',
   'xala',
-  'hostingStaff',
-  'commitcare',
 ] as const;
 
 type PartnerKey = (typeof PARTNER_KEYS)[number];
 
-const PARTNER_MARKS: Record<PartnerKey, string> = {
-  cateringKitchen: 'CK',
-  flowersDecor: 'BD',
-  photoVideo: 'FF',
-  soundLight: 'LL',
-  barService: 'BS',
-  coordination: 'KO',
-  digilist: 'DG',
-  xala: 'XT',
-  hostingStaff: 'VP',
-  commitcare: 'CC',
+const PARTNER_LINKS: Record<PartnerKey, string | null> = {
+  cateringKitchen: 'https://svensefjoset.no/',
+  flowersDecor: 'https://osloeventshop.no/',
+  photoVideo: 'https://villaboligstyling.no/',
+  soundLight: 'https://festpartner.no/',
+  barService: 'https://digilist.no/',
+  digilist: 'https://xala.no/',
+  xala: null,
+};
+
+/** Single-letter marks for partner tiles (stable across locales). */
+const PARTNER_INITIALS: Record<PartnerKey, string> = {
+  cateringKitchen: 'S',
+  flowersDecor: 'O',
+  photoVideo: 'V',
+  soundLight: 'F',
+  barService: 'D',
+  digilist: 'X',
+  xala: 'B',
 };
 
 const Home = () => {
@@ -464,7 +483,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Partnere — kategorier vi kobler dere med */}
+      {/* Partnere — circle-based layout */}
       <section
         id="partnere"
         aria-labelledby="partnere-heading"
@@ -487,32 +506,79 @@ const Home = () => {
             </header>
 
             <ul
-              className="m-0 grid list-none grid-cols-2 gap-x-1 gap-y-3 p-0 sm:grid-cols-5 sm:gap-x-1 sm:gap-y-3 md:gap-y-3.5 lg:col-span-7 xl:col-span-8 xl:gap-y-4"
+              className="m-0 grid list-none grid-cols-2 gap-x-6 gap-y-10 p-0 sm:grid-cols-4 sm:gap-x-8 sm:gap-y-12 md:gap-y-14 lg:col-span-7 xl:col-span-8"
               aria-label={t('homePartners.listAria')}
             >
-              {PARTNER_KEYS.map((key) => (
-                <li
-                  key={key}
-                  className={cn(
-                    'min-w-0',
-                    key === 'commitcare' && 'sm:col-start-5 sm:row-start-2',
-                  )}
-                >
-                  <div className="flex flex-col items-center gap-1 text-center">
-                    <div className="flex h-[4.25rem] w-[4.25rem] shrink-0 items-center justify-center rounded-full border-2 border-brand-200/90 bg-linear-to-b from-white to-brand-50/90 text-[0.68rem] font-bold uppercase tracking-[0.08em] text-brand-800 shadow-[0_8px_24px_-12px_rgba(33,24,22,0.25)] ring-1 ring-brand-900/[0.06] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-[0_12px_28px_-10px_rgba(33,24,22,0.3)] md:h-[4.75rem] md:w-[4.75rem] md:text-[0.75rem]">
-                      {PARTNER_MARKS[key]}
+              {PARTNER_KEYS.map((key) => {
+                const href = PARTNER_LINKS[key];
+                const linkLabel = t('homePartners.websiteLabel');
+                const name = t(`homePartners.items.${key}.name`);
+                const desc = t(`homePartners.items.${key}.desc`);
+                const srId = `partner-sr-${key}`;
+                return (
+                  <li
+                    key={key}
+                    className="group relative flex min-h-0 justify-center hover:z-30 focus-within:z-30"
+                  >
+                    <div className="relative flex flex-col items-center">
+                      <span id={srId} className="sr-only">
+                        {desc}
+                        {href
+                          ? ` ${linkLabel}: ${href}`
+                          : ` ${t('homePartners.noWebsite')}`}
+                      </span>
+                      <button
+                        type="button"
+                        className={cn(
+                          'relative z-10 flex h-[4rem] w-[4rem] shrink-0 items-center justify-center rounded-full border border-brand-300/80',
+                          'bg-linear-to-br from-white via-brand-50/90 to-[#f0e8d8] font-serif text-xl font-semibold tabular-nums text-brand-900',
+                          'shadow-[0_6px_16px_-10px_rgba(33,24,22,0.35),inset_0_1px_0_rgba(255,255,255,0.9)] ring-1 ring-brand-900/5',
+                          'transition-transform duration-300 outline-none hover:scale-105 group-hover:scale-105',
+                          'focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2',
+                          'md:h-[4.35rem] md:w-[4.35rem] md:text-[1.45rem]'
+                        )}
+                        aria-describedby={srId}
+                        aria-label={name}
+                      >
+                        {PARTNER_INITIALS[key]}
+                      </button>
+                      {/* Overlap (-mt-2 + pt-2) keeps pointer path from circle to panel without closing hover */}
+                      <div className="absolute left-1/2 top-full z-20 -mt-2 w-[min(100vw-2rem,17.5rem)] -translate-x-1/2 pt-2">
+                        <div
+                          className={cn(
+                            'pointer-events-none rounded-2xl border border-brand-200/90 bg-white p-4 text-center shadow-[0_12px_28px_-16px_rgba(33,24,22,0.4)]',
+                            'opacity-0 transition-[opacity,transform] duration-200 translate-y-1',
+                            'group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100',
+                            'group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100'
+                          )}
+                        >
+                          <p className="text-balance font-serif text-[0.99rem] font-semibold leading-snug tracking-tight text-brand-950 md:text-[1.05rem]">
+                            {name}
+                          </p>
+                          <p className="mt-2 text-[11px] leading-relaxed text-brand-700 md:text-[12px]">
+                            {desc}
+                          </p>
+                          {href ? (
+                            <a
+                              href={href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="mt-3 inline-flex items-center justify-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-900 underline decoration-brand-400/70 underline-offset-4 transition hover:text-brand-950"
+                            >
+                              {linkLabel}
+                              <ArrowUpRight className="h-3.5 w-3.5 shrink-0 opacity-80" aria-hidden />
+                            </a>
+                          ) : (
+                            <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-500">
+                              {t('homePartners.noWebsite')}
+                            </p>
+                          )}
+                        </div>
+                      </div>
                     </div>
-                    <div className="min-w-0 max-w-[11rem]">
-                      <p className="text-balance font-serif text-[0.98rem] leading-snug tracking-tight text-brand-950 md:text-[1.05rem]">
-                        {t(`homePartners.items.${key}`)}
-                      </p>
-                      <p className="mt-0.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-500">
-                        {t('homePartners.badge')}
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
