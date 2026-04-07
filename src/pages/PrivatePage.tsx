@@ -37,16 +37,11 @@ const PRIVATE_EVENT_KEYS = [
 type PrivateEventKey = (typeof PRIVATE_EVENT_KEYS)[number];
 
 const PRIVATE_EVENT_IMAGES: Record<PrivateEventKey, string> = {
-  birthday:
-    'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1200',
-  confirmation:
-    'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=1200',
-  baptismNaming:
-    'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=85&w=1200',
-  memorial:
-    'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=1200',
-  anniversary:
-    'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1200',
+  birthday: '/private-event-birthday.png',
+  confirmation: '/private-event-confirmation.png',
+  baptismNaming: '/private-event-baptism.png',
+  memorial: '/private-event-memorial.png',
+  anniversary: '/private-event-anniversary.png',
   gathering:
     'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=85&w=1200',
 };
@@ -284,6 +279,8 @@ export const PrivatePage = () => {
             {PRIVATE_EVENT_KEYS.map((eventKey, i) => {
               const itemBase = `privatePage.eventsSection.items.${eventKey}`;
               const eventTitle = t(`${itemBase}.title`);
+              const eventImageSrc = PRIVATE_EVENT_IMAGES[eventKey];
+              const eventImageAlt = t(`${itemBase}.imgAlt`);
               return (
                 <motion.div
                   key={eventKey}
@@ -295,12 +292,32 @@ export const PrivatePage = () => {
                   className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-white/28 outline-none transition-all duration-500 hover:border-white/45 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900"
                 >
                   <img
-                    src={PRIVATE_EVENT_IMAGES[eventKey]}
-                    alt={eventTitle}
+                    src={eventImageSrc}
+                    alt={eventImageAlt}
+                    width={
+                      eventKey === 'birthday' || eventKey === 'baptismNaming'
+                        ? 768
+                        : eventKey === 'confirmation' || eventKey === 'memorial'
+                          ? 1024
+                          : eventKey === 'anniversary'
+                            ? 960
+                            : undefined
+                    }
+                    height={
+                      eventKey === 'birthday' || eventKey === 'baptismNaming'
+                        ? 1024
+                        : eventKey === 'confirmation'
+                          ? 683
+                          : eventKey === 'memorial'
+                            ? 768
+                            : eventKey === 'anniversary'
+                              ? 719
+                              : undefined
+                    }
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus-within:scale-105"
                     loading="lazy"
                     decoding="async"
-                    referrerPolicy="no-referrer"
+                    referrerPolicy={eventImageSrc.startsWith('http') ? 'no-referrer' : undefined}
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0" />

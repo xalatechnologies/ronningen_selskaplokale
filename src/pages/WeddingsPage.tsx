@@ -32,7 +32,7 @@ const WEDDINGS_DAY_TIMELINE_KEYS = ['item1', 'item2', 'item3', 'item4'] as const
 const WEDDINGS_DAY_TIMELINE_IMAGES = [
   'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1000',
   'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=1000',
-  'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=1000',
+  '/weddings/day-timeline-coffee-dessert.png',
   'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=1000',
 ] as const;
 
@@ -50,10 +50,10 @@ const WEDDINGS_SERVICE_KEYS = [
 const WEDDINGS_SERVICE_IMAGES = [
   'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800',
   '/weddings/service-photography-waterfall.png',
-  '/weddings/service-decoration-outdoor-table.png',
-  'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800',
+  '/weddings/service-decoration-balloon-arch.png',
+  '/weddings/service-bar-dancefloor-room.png',
   '/weddings/service-sound-light-banquet.png',
-  '/weddings/service-table-setting-luxury.png',
+  '/weddings/service-table-setting-banquet-hall.png',
 ] as const;
 
 const WEDDINGS_PACKAGE_IDS = ['basic', 'plus', 'premium'] as const;
@@ -208,10 +208,10 @@ export const WeddingsPage = () => {
                 )}
               >
                 <img
-                  src="/weddings/atmosphere-rings-and-celebration.png"
+                  src="/weddings/atmosphere-sparkler-sendoff.png"
                   alt={t('weddingsPage.atmosphere.figureAlt')}
                   width={1024}
-                  height={573}
+                  height={682}
                   decoding="async"
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover object-center"
@@ -270,6 +270,10 @@ export const WeddingsPage = () => {
               {WEDDINGS_DAY_TIMELINE_KEYS.map((stepKey, i) => {
                 const Icon = WEDDINGS_DAY_TIMELINE_ICONS[i];
                 const stepTitle = t(`weddingsPage.dayTimeline.${stepKey}.title`);
+                const stepImageSrc = WEDDINGS_DAY_TIMELINE_IMAGES[i];
+                const stepImageAlt = t(`weddingsPage.dayTimeline.${stepKey}.imgAlt`, {
+                  defaultValue: stepTitle,
+                });
                 return (
                   <motion.div
                     key={stepKey}
@@ -281,10 +285,10 @@ export const WeddingsPage = () => {
                   >
                     <div className="absolute inset-0 z-0">
                       <img
-                        src={WEDDINGS_DAY_TIMELINE_IMAGES[i]}
-                        alt={stepTitle}
+                        src={stepImageSrc}
+                        alt={stepImageAlt}
                         className="h-full w-full object-cover transition-all duration-1000 group-hover:scale-110"
-                        referrerPolicy="no-referrer"
+                        referrerPolicy={stepImageSrc.startsWith('http') ? 'no-referrer' : undefined}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-brand-950/50 to-transparent opacity-90 transition-opacity duration-700 group-hover:opacity-75" />
                     </div>
@@ -338,6 +342,7 @@ export const WeddingsPage = () => {
             {WEDDINGS_SERVICE_KEYS.map((serviceKey, i) => {
               const serviceTitle = t(`weddingsPage.servicesSection.items.${serviceKey}.title`);
               const serviceImageAlt = t(`weddingsPage.servicesSection.items.${serviceKey}.imgAlt`);
+              const serviceImageSrc = WEDDINGS_SERVICE_IMAGES[i];
               return (
                 <motion.div
                   key={serviceKey}
@@ -349,32 +354,34 @@ export const WeddingsPage = () => {
                   className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-black/10 outline-none transition-all duration-500 hover:border-black/20 focus-visible:ring-2 focus-visible:ring-brand-700 focus-visible:ring-offset-2 focus-visible:ring-offset-[#F5F5F5]"
                 >
                   <img
-                    src={WEDDINGS_SERVICE_IMAGES[i]}
+                    src={serviceImageSrc}
                     alt={serviceImageAlt}
                     width={
-                      serviceKey === 'photography'
-                        ? 682
-                        : serviceKey === 'decoration' || serviceKey === 'tableSetting'
+                      serviceKey === 'photography' || serviceKey === 'bar'
+                        ? 1024
+                        : serviceKey === 'tableSetting'
                           ? 1024
-                          : serviceKey === 'soundLight'
-                            ? 800
-                            : undefined
+                          : serviceKey === 'decoration'
+                            ? 852
+                            : serviceKey === 'soundLight'
+                              ? 800
+                              : undefined
                     }
                     height={
-                      serviceKey === 'photography'
-                        ? 1024
+                      serviceKey === 'photography' || serviceKey === 'bar'
+                        ? 682
                         : serviceKey === 'decoration'
-                          ? 666
+                          ? 1024
                           : serviceKey === 'soundLight'
                             ? 600
                             : serviceKey === 'tableSetting'
-                              ? 698
+                              ? 737
                               : undefined
                     }
                     decoding="async"
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus-within:scale-105"
-                    referrerPolicy="no-referrer"
+                    referrerPolicy={serviceImageSrc.startsWith('http') ? 'no-referrer' : undefined}
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0" />

@@ -47,6 +47,7 @@ import { CorporatePage } from './pages/CorporatePage';
 import { PrivatePage } from './pages/PrivatePage';
 import { FacilitiesPage } from './pages/FacilitiesPage';
 import { BlogPage } from './pages/BlogPage';
+import { BlogPostPage } from './pages/BlogPostPage';
 import { appendConversation, detectLanguage } from './lib/customerAssistant';
 
 const InquiryPage = () => {
@@ -65,22 +66,29 @@ const HOME_CONCEPT_KEYS = ['weddings', 'corporate', 'private', 'facilities'] as 
 
 type HomeConceptKey = (typeof HOME_CONCEPT_KEYS)[number];
 
+const HOME_CONCEPT_IMAGE_ALT_KEYS = new Set<HomeConceptKey>([
+  'weddings',
+  'corporate',
+  'private',
+  'facilities',
+]);
+
 const HOME_CONCEPT_ROUTES: Record<HomeConceptKey, { path: string; img: string }> = {
   weddings: {
     path: '/weddings',
-    img: '/concept-weddings-confetti.png',
+    img: '/concept-weddings-cake.png',
   },
   corporate: {
     path: '/corporate',
-    img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200',
+    img: '/concept-corporate-outdoor.png',
   },
   private: {
     path: '/packages',
-    img: 'https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=80&w=1200',
+    img: '/concept-private-dessert-table.png',
   },
   facilities: {
     path: '/facilities',
-    img: 'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=80&w=1200',
+    img: '/concept-facilities-bar.png',
   },
 };
 
@@ -95,19 +103,22 @@ const HOME_SERVICE_KEYS = [
 
 type HomeServiceKey = (typeof HOME_SERVICE_KEYS)[number];
 
+const HOME_SERVICE_IMAGE_ALT_KEYS = new Set<HomeServiceKey>([
+  'barDancefloor',
+  'coordination',
+  'decoration',
+  'overnight',
+]);
+
 const HOME_SERVICE_IMAGES: Record<HomeServiceKey, string> = {
   soundLight:
     'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=800',
   catering:
     'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800',
-  barDancefloor:
-    'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=800',
-  coordination:
-    'https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&q=80&w=800',
-  decoration:
-    'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800',
-  overnight:
-    'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&q=80&w=800',
+  barDancefloor: '/home-service-bar-dancefloor.png',
+  coordination: '/home-service-coordination.png',
+  decoration: '/home-service-decoration.png',
+  overnight: '/home-service-overnight.png',
 };
 
 const PARTNER_KEYS = [
@@ -277,14 +288,28 @@ const Home = () => {
                             <img
                               src={img}
                               alt={
-                                key === 'weddings'
-                                  ? t('homeConcepts.items.weddings.imgAlt')
+                                HOME_CONCEPT_IMAGE_ALT_KEYS.has(key)
+                                  ? t(`homeConcepts.items.${key}.imgAlt`)
                                   : ''
                               }
-                              width={key === 'weddings' ? 682 : undefined}
-                              height={key === 'weddings' ? 1024 : undefined}
+                              width={
+                                key === 'weddings'
+                                  ? 682
+                                  : key === 'private'
+                                    ? 768
+                                    : key === 'facilities'
+                                      ? 1024
+                                      : undefined
+                              }
+                              height={
+                                key === 'weddings' || key === 'private'
+                                  ? 1024
+                                  : key === 'facilities'
+                                    ? 682
+                                    : undefined
+                              }
                               className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                              referrerPolicy="no-referrer"
+                              referrerPolicy={img.startsWith('http') ? 'no-referrer' : undefined}
                             />
                             <div
                               className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent"
@@ -338,9 +363,15 @@ const Home = () => {
                 >
                   <img
                     src={HOME_SERVICE_IMAGES[key]}
-                    alt=""
+                    alt={
+                      HOME_SERVICE_IMAGE_ALT_KEYS.has(key)
+                        ? t(`homeServices.items.${key}.imgAlt`)
+                        : ''
+                    }
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus-within:scale-105"
-                    referrerPolicy="no-referrer"
+                    referrerPolicy={
+                      HOME_SERVICE_IMAGES[key].startsWith('http') ? 'no-referrer' : undefined
+                    }
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0" />
@@ -706,6 +737,13 @@ const Navbar = () => {
     { name: t('nav.blog'), path: '/blog' },
   ];
 
+  const isNavActive = (path: string) => {
+    if (path === '/blog') {
+      return location.pathname === '/blog' || location.pathname.startsWith('/blog/');
+    }
+    return location.pathname === path;
+  };
+
   return (
     <>
       <nav className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-brand-100 shadow-sm">
@@ -740,13 +778,13 @@ const Navbar = () => {
               to={link.path}
               className={cn(
                 "text-[13px] uppercase tracking-[0.2em] transition-all duration-300 relative py-2",
-                location.pathname === link.path 
+                isNavActive(link.path)
                   ? "text-brand-900 font-bold" 
                   : "text-brand-700 hover:text-brand-900 font-medium"
               )}
             >
               {link.name}
-              {location.pathname === link.path && (
+              {isNavActive(link.path) && (
                 <motion.div 
                   layoutId="nav-underline"
                   className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-800"
@@ -800,7 +838,7 @@ const Navbar = () => {
                   onClick={() => setIsOpen(false)}
                   className={cn(
                     "text-xl font-serif transition-colors",
-                    location.pathname === link.path ? "text-brand-900 font-bold" : "text-brand-700"
+                    isNavActive(link.path) ? "text-brand-900 font-bold" : "text-brand-700"
                   )}
                 >
                   {link.name}
@@ -1093,6 +1131,7 @@ export default function App() {
               <Route path="/private" element={<Navigate to="/packages" replace />} />
               <Route path="/facilities" element={<FacilitiesPage />} />
               <Route path="/gallery" element={<GalleryPage />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/faq" element={<FAQPage />} />
               <Route path="/testimonials" element={<TestimonialsPage />} />

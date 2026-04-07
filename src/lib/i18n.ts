@@ -43,22 +43,28 @@ const resources = {
             description:
               'A full day tailored to you — from ceremony to celebration.',
             imgAlt:
-              'Bride and groom dancing together as red and gold confetti falls in a bright reception hall',
+              'Bride and groom cutting their wedding cake together in front of tall windows with a blurred forest outside',
           },
           corporate: {
             title: 'Corporate events',
             description:
               'Conferences, Christmas parties and summer parties in a great setting.',
+            imgAlt:
+              'Outdoor evening gathering with guests playing darts by a wooden stand, string lights and trees in the background',
           },
           private: {
             title: 'Private parties',
             description:
               'Birthdays, confirmations and anniversaries in flexible, informal surroundings.',
+            imgAlt:
+              'Dessert table with a pink tiered cake, cupcakes, candy jars, balloons and candles against a dark wall',
           },
           facilities: {
             title: 'Facilities',
             description:
               'Everything in one place — kitchen, dance floor, parking and outdoor areas.',
+            imgAlt:
+              'Modern bar servery with navy walls, light wood counters, stainless sink and recessed lighting, wooden staircase with rail nearby',
           },
         },
       },
@@ -79,21 +85,29 @@ const resources = {
             title: 'Bar & dance floor',
             description:
               'Bring your own drinks and enjoy the evening with music and dancing in a great setting.',
+            imgAlt:
+              'Black and white photo of a bride and groom on their first dance on a large floor, guests watching in a semicircle in a dimly lit venue',
           },
           coordination: {
             title: 'Time with the animals',
             description:
               'Get close to the animals on the estate — a memorable touch for guests young and old.',
+            imgAlt:
+              'Goats behind a wooden fence on a sunny hillside: a white goat with horns in the foreground, a black goat beside it, more goats and green forest in the background',
           },
           decoration: {
             title: 'Decoration & photography',
             description:
               'Create the right atmosphere with décor in your style, and optional photographers to capture the day.',
+            imgAlt:
+              'Bride smiling at the camera, groom in a tuxedo with a white goat nuzzling his lapel, outdoors on a green hillside',
           },
           overnight: {
             title: 'Accommodation & childcare',
             description:
               'Overnight stays and childcare can be arranged — ideal for guests travelling from afar and families with young children.',
+            imgAlt:
+              'Large white wooden house with a wooden deck, swimming pool, outdoor dining and lounge furniture, Norwegian flag, red barn and forest in the background',
           },
         },
       },
@@ -160,7 +174,7 @@ const resources = {
           intro1:
             'Bring the whole day together in one place — from ceremony to dinner and the party. Surrounded by calm, beautiful nature, with only a short distance between the vows and the dance floor.',
           figureAlt:
-            'Wedding rings and lace gown detail beside bride and groom dancing at a reception with guests under warm string lights',
+            'Bride and groom embracing at night on a stone path as guests line both sides holding lit sparklers, candles along the walkway',
           why: {
             item1: {
               title: 'Atmosphere',
@@ -194,6 +208,8 @@ const resources = {
           item3: {
             title: 'Coffee & dessert',
             desc: 'Coffee and dessert in calm shared spaces before the evening takes over.',
+            imgAlt:
+              'Chocolate-frosted wedding cakes on rustic log-slice stands, topped with fresh fruit, greenery on the table and guests in the background',
           },
           item4: {
             title: 'Dancing & celebration',
@@ -213,18 +229,19 @@ const resources = {
               title: 'Photography',
               desc: 'Recommended photographers who know the light and spaces here — from portraits and ceremony to the reception and small moments you will want to remember.',
               imgAlt:
-                'Bride and groom on rocks in front of a waterfall in a forested mountain landscape',
+                'Bride in a white gown and groom in a dark suit standing on dark rocks facing each other beside a bright cascading waterfall',
             },
             decoration: {
               title: 'Decoration',
               desc: 'Flexible decor options adapted to your style and expression. Together with our partners we can create a cohesive atmosphere — from table details to styling the entire venue.',
               imgAlt:
-                'Outdoor wedding table with pink and white roses, draped chairs, and a floral arch by the water at golden hour',
+                'Event backdrop with cream arched panels, organic balloon arch in cream, gold and black, pampas grass, and a chocolate cake on a clear pedestal',
             },
             bar: {
               title: 'Bar & dance floor',
               desc: 'You may bring your own drinks and use the bar area. With a dedicated dance floor, everything is set for a great atmosphere all evening.',
-              imgAlt: 'Evening celebration with bar atmosphere and dance floor',
+              imgAlt:
+                'Spacious event room with dark walls, polished concrete floor, tall windows with snow outside, industrial pendant lights and screens on stands',
             },
             soundLight: {
               title: 'Sound & lighting',
@@ -236,7 +253,7 @@ const resources = {
               title: 'Table settings & styling',
               desc: 'Fully dressed tables with linens, chair covers, crockery, glassware, and everything you need — plus table decor, menu cards, and details that tie it all together. We align the look with the style of your day so guests meet complete tables from the very first moment.',
               imgAlt:
-                'Luxury long dining table with champagne velvet linen, beaded chargers, floral centerpieces, taper candles, and plum glassware in daylight',
+                'Banquet hall with round tables in black linens, white plates, glassware, floral centerpieces with candles, and floor-to-ceiling windows to greenery outside',
             },
           },
         },
@@ -321,7 +338,7 @@ const resources = {
       },
       corporatePage: {
         heroImageAlt:
-          'Corporate meeting and conference — team collaboration in a professional event setting',
+          'Dessert table with small cakes on rustic log stands, greenery and white linen, bright venue with tall windows and guests in formal dress',
         heroTitleLine1: 'From Christmas parties to kick-offs.',
         heroTitleLine2Prefix: '',
         heroTitleLine2Accent: 'All',
@@ -331,7 +348,7 @@ const resources = {
         heroScrollHintAria: 'Scroll down to the introduction',
         introSection: {
           figureAlt:
-            'Event venue with warm light and tables set for a celebration — atmosphere suited to corporate events at Rønningen',
+            'Guests in suits at a round table with white linen, glassware, floral centrepiece and place cards, large windows to greenery outside',
           headingBefore: 'Where professionalism meets ',
           headingAccent: 'warmth',
           intro:
@@ -350,26 +367,34 @@ const resources = {
             conference: {
               title: 'Conference & seminar',
               desc: 'Strong facilities for professional content, with room for both presentations and breaks in calm surroundings.',
+              imgAlt: 'Large conference or seminar room set up for a professional audience',
             },
             teambuilding: {
               title: 'Team building',
               desc: 'Build cohesion through activities and memorable experiences — indoors and outdoors, tailored to your needs.',
+              imgAlt: 'Colleagues collaborating together around a table in a bright office',
             },
             christmasParty: {
               title: 'Christmas party',
               desc: 'Bring colleagues together for a warm evening with great atmosphere, food, and celebration in cosy surroundings.',
+              imgAlt:
+                'Long dining table with red check cloth, candles and place settings, fairy lights and red-green drapes overhead, Christmas tree and dark walls',
             },
             summerParty: {
               title: 'Summer party',
               desc: 'Enjoy summer with colleagues in open, green surroundings, with plenty of space for both activities and downtime.',
+              imgAlt:
+                'Two stacked photos: guests in formal wear chatting indoors by wood and glass, and men in suits laughing together outdoors by a fence with a green hillside',
             },
             workshopKickoff: {
               title: 'Workshop & kick-off',
               desc: 'Launch new projects or bring the team together with focus and energy in inspiring surroundings.',
+              imgAlt: 'Team workshop in a modern office with a presenter and seated colleagues',
             },
             companyDinner: {
               title: 'Company dinner',
               desc: 'Host a stylish dinner with a setting suited to conversation, celebration, and relationship-building.',
+              imgAlt: 'Guests raising glasses for a toast at an elegant seated dinner',
             },
           },
         },
@@ -485,26 +510,37 @@ const resources = {
             birthday: {
               title: 'Birthday',
               desc: 'Celebrate the day with friends and family in a great setting, with room for both dinner and a party.',
+              imgAlt:
+                'Dessert table with pink tiered cake, cupcakes, candy jars, balloons and candles against a dark wall',
             },
             confirmation: {
               title: 'Confirmation',
               desc: 'An important day gathered in one place, with room for both the formal parts and the social side.',
+              imgAlt:
+                'Bright event room with white-draped tables and chairs, pink and white floral centrepieces, dark walls and sunlight through large windows to a green outdoor view',
             },
             baptismNaming: {
               title: 'Baptism & naming day',
               desc: 'Calm, beautiful surroundings for a personal celebration with family and those closest to you.',
+              imgAlt:
+                'Round tables with white linens, folded napkins, place cards, pink balloon centrepieces and glassware in a bright room with large windows to greenery',
             },
             memorial: {
               title: 'Memorial gathering',
               desc: 'A safe, dignified place to come together, with a focus on calm, closeness and good conversation.',
+              imgAlt:
+                'Soft pink and cream flower wall behind a white-draped table with candles, small keepsakes and flowers against a dark wall',
             },
             anniversary: {
               title: 'Anniversary',
               desc: 'Mark big and small milestones with an evening that brings people together and creates lasting memories.',
+              imgAlt:
+                'Large illuminated marquee letters spelling MR & MRS on a polished floor by floor-to-ceiling windows overlooking trees and green hills',
             },
             gathering: {
               title: 'Gatherings & mingling',
               desc: 'Informal get-togethers with an easy flow, where guests can move freely and enjoy the evening.',
+              imgAlt: 'Open landscape with trees and soft light — space for relaxed outdoor mingling',
             },
           },
         },
@@ -806,8 +842,88 @@ const resources = {
         formErrMessage: 'Please write at least 10 characters.',
       },
       blogPage: {
+        heroEyebrow: 'Journal',
         title: 'Blog',
-        intro: 'Tips, news and inspiration from Rønningen — more posts are on the way.',
+        intro:
+          'Ideas for your celebration, practical tips from the venue, and stories from real events — gathered in one place.',
+        latestHeading: 'Latest articles',
+        latestSub: 'A curated mix of inspiration and know-how from Rønningen.',
+        featuredBadge: 'Featured',
+        readMore: 'Read more',
+        backToBlog: 'Back to blog',
+        postImageAlt: 'Article image: {{title}}',
+        posts: {
+          springWedding: {
+            category: 'Weddings',
+            date: 'March 2026',
+            dateIso: '2026-03-01',
+            title: 'Spring light, long evenings, and a venue that adapts to your day',
+            excerpt:
+              'How we think about flow from ceremony to party — and small details that make the atmosphere feel effortless.',
+            body: [
+              'Spring at Rønningen is about soft light through tall windows, doors that can open to the garden, and a schedule that does not fight the season. We often start with a calm arrival, time for greetings and photographs, then move guests naturally from one moment to the next.',
+              'The building is divided into rooms that can be opened up or closed off, so you can keep dinner intimate and still have space for dancing later. We work with you on sound, lighting and flow so nobody feels rushed from ceremony to toast to party.',
+              'Small touches matter: where the cake is placed, how speeches are lit, where older relatives can sit with a clear view and a short path to quiet if they need it. We have hosted enough spring weddings to anticipate the usual pinch points and plan around them.',
+              'If you are planning a spring celebration, ask us about timing for outdoor photos, backup plans for rain, and how early we can access the venue for styling. We are happy to shape the day with you — from a tight timeline to a looser, more Mediterranean rhythm.',
+            ],
+          },
+          corporateHost: {
+            category: 'Corporate',
+            date: 'February 2026',
+            dateIso: '2026-02-01',
+            title: 'When the brief is tight but the evening should still feel human',
+            excerpt:
+              'From welcome drink to last song: spaces that work for both focused sessions and relaxed mingling.',
+            body: [
+              'Corporate events often arrive with a clear agenda: presentations, awards, dinner, maybe entertainment. Our job is to make those beats land while the room still feels like a place people want to stay in, not a conference centre they cannot wait to leave.',
+              'We can set one zone for focus — seating, sightlines, sound for speeches — and another for informal conversation, coffee and networking. Moving between them should feel obvious, not like herding.',
+              'Catering and bar flow are part of the experience. We coordinate with your suppliers so service does not collide with programme items, and so guests are never stuck hungry while a slide deck runs long.',
+              'Tell us the tone you want: celebratory, understated, or somewhere in between. We will align lighting, furniture and timing so the evening matches your brand without feeling stiff.',
+            ],
+          },
+          familyCelebration: {
+            category: 'Private',
+            date: 'January 2026',
+            dateIso: '2026-01-15',
+            title: 'Room for every generation — without a one-size-fits-all setup',
+            excerpt:
+              'Birthdays, confirmations and family milestones: flexible layouts and calm hosting on the day.',
+            body: [
+              'Family celebrations bring together children, parents and grandparents — each with different needs for noise, seating and meal times. We plan layouts so the youngest have space to move and the eldest are not stranded far from toilets or quiet corners.',
+              'You might want a formal sit-down, a buffet, or a mix. Our kitchen and serving areas are set up so food can be staged without disrupting conversation, and dietary needs can be handled discreetly.',
+              'Speeches and games are part of the fun; we help with microphones, music and timing so nobody is shouting across the room. If you need a short break between courses for photos or rituals, we build that into the run sheet.',
+              'On the day, our team focuses on calm hosting: one point of contact, clear communication with your suppliers, and flexibility when speeches run long or a surprise toast appears. You celebrate; we handle the room.',
+            ],
+          },
+          venueTour: {
+            category: 'Practical',
+            date: 'December 2025',
+            dateIso: '2025-12-01',
+            title: 'What to look for on a viewing — questions guests forget to ask',
+            excerpt:
+              'Parking, timing, sound, catering flow, and rain plans — a short checklist before you decide.',
+            body: [
+              'A viewing is your chance to test the venue with real questions, not just aesthetics. Start with capacity: not only how many fit legally, but how the room feels when tables, stage and dance floor are in place.',
+              'Ask about parking and arrival — especially if many guests drive, or if you expect coaches. Walk the path from car to cloakroom to main room as if you were a guest in heels or with a pushchair.',
+              'Sound and light matter for speeches and music. Where can PA and lighting go? Are there noise limits or time restrictions? If you plan a band or DJ, confirm power and load-in.',
+              'Finally, ask about rain plans for photos or outdoor moments, catering logistics (kitchen access, waste, timing), and who your contact is on the day. A good venue answers plainly and offers a written overview of what is included.',
+            ],
+          },
+          seasonalGathering: {
+            category: 'Seasonal',
+            date: 'November 2025',
+            dateIso: '2025-11-01',
+            title: 'Autumn and winter gatherings with warmth built in',
+            excerpt:
+              'Lighting, comfort and rhythm through the evening when the days are short and the party is long.',
+            body: [
+              'When the sun sets early, lighting becomes part of the design. We layer ambient light, pin spots where needed, and softer tones in lounge areas so the room feels warm rather than harsh.',
+              'Heating and airflow matter when doors stay closed. We monitor comfort throughout the evening, especially as the dance floor fills and body heat rises.',
+              'Seasonal menus and drinks fit naturally — hearty mains, citrus or spice in cocktails, desserts that feel right in cold weather. We align service timing with daylight so guests are not eating in pitch black unless you want that mood.',
+              'Long parties need rhythm: peaks of energy and quieter stretches. We help you plan music, breaks and surprises so the last hour feels as intentional as the first.',
+            ],
+          },
+        },
       },
       galleryPage: {
         heroEyebrow: 'Rønningen',
@@ -876,21 +992,27 @@ const resources = {
             title: 'Bryllup',
             description: 'En hel dag tilpasset dere – fra vielse til fest.',
             imgAlt:
-              'Brud og brudgom som danser sammen mens rødt og gullfarget konfetti faller i en lys festsal',
+              'Brud og brudgom som skjærer bryllupskaken sammen foran høye vinduer med utsikt mot skog',
           },
           corporate: {
             title: 'Bedrift',
             description: 'Konferanser, julebord og sommerfester i gode rammer.',
+            imgAlt:
+              'Kveldsarrangement ute med gjester som spiller dart ved et trestativ, lysslynger og skog i bakgrunnen',
           },
           private: {
             title: 'Selskap',
             description:
               'Bursdager, konfirmasjoner og jubileer i fleksible og uformelle omgivelser.',
+            imgAlt:
+              'Dessertbord med rosa etasjekake, cupcakes, godteriglass, ballonger og lys mot en mørk vegg',
           },
           facilities: {
             title: 'Fasiliteter',
             description:
               'Alt samlet på ett sted – kjøkken, dansegulv, parkering og uteområder.',
+            imgAlt:
+              'Moderne barsone med mørkeblå vegger, lyse trebenker, stålvask og downlights, tretrapp med håndløper i nærheten',
           },
         },
       },
@@ -911,21 +1033,29 @@ const resources = {
             title: 'Bar & dansegulv',
             description:
               'Ta med egen drikke og nyt kvelden med musikk og dans i gode omgivelser.',
+            imgAlt:
+              'Svart-hvitt bilde av brud og brudgom som danser sammen på et stort gulv, gjester i halvsirkel i et mørkt lokale',
           },
           coordination: {
             title: 'Samvær med dyr',
             description:
               'Opplev nærkontakt med dyrene på området – et hyggelig innslag for både store og små.',
+            imgAlt:
+              'Geiter bak et tregjerde i sol på en åsside: hvit geit med horn i forgrunnen, svart geit ved siden av, flere geiter og grønn skog i bakgrunnen',
           },
           decoration: {
             title: 'Dekorasjon & Fotografering',
             description:
               'Skap riktig stemning med dekor tilpasset deres stil, og mulighet for fotografer som fanger øyeblikkene gjennom dagen.',
+            imgAlt:
+              'Brud som smiler til kameraet, brudgom i smoking med hvit geit som snuser på jakkeslaget, ute på grønn ås',
           },
           overnight: {
             title: 'Overnatting & barnepass',
             description:
               'Overnatting og barnepass kan avtales – praktisk for gjester som reiser langt og familier med små barn.',
+            imgAlt:
+              'Stort hvitt trehus med treterrasse, svømmebasseng, uteplass med spise- og sittegruppe, norsk flagg, rød låve og skog i bakgrunnen',
           },
         },
       },
@@ -992,7 +1122,7 @@ const resources = {
           intro1:
             'Samle hele dagen på ett sted – fra vielse til middag og fest. Omgitt av rolige omgivelser i vakker natur, med kort vei mellom seremoni og dans.',
           figureAlt:
-            'Vielsesringer og blondekjole i nærbilde ved siden av brudepar som danser på fest med gjester under varme lyslenker',
+            'Brud og brudgom som klemmer hverandre om kvelden på en steinlagt sti, gjester i to rekker med tente stjerneskudd langs veien',
           why: {
             item1: {
               title: 'Atmosfære',
@@ -1026,6 +1156,8 @@ const resources = {
           item3: {
             title: 'Kaffe & dessert',
             desc: 'Kaffe og dessert i rolige fellesområder før kvelden tar over.',
+            imgAlt:
+              'Sjokoladeglaserte bryllupskaker på trestubber, pyntet med fersk frukt, grønt på bordet og gjester i bakgrunnen',
           },
           item4: {
             title: 'Dans & feiring',
@@ -1045,18 +1177,19 @@ const resources = {
               title: 'Fotografering',
               desc: 'Anbefalte fotografer som kjenner både lyset og rommene her — fra portretter og vielse til fest og små øyeblikk dere vil huske.',
               imgAlt:
-                'Brud og brudgom på steiner foran foss i skogkledd fjellandskap',
+                'Brud i hvit kjole og brudgom i mørk dress på mørke steiner foran hverandre ved en lys, fallende foss',
             },
             decoration: {
               title: 'Dekorasjon',
               desc: 'Vi tilbyr fleksible dekorasjonsløsninger som kan tilpasses deres stil og uttrykk. Sammen med våre samarbeidspartnere kan vi skape en helhetlig og gjennomført atmosfære – fra bordpynt til dekorasjon av hele lokalet.',
               imgAlt:
-                'Utendørs bryllupsbord med rosa og hvite roser, pyntede stoler og blomsterbue ved vannet i gyllent lys',
+                'Arrangement med kremfargede buer, organisk ballongbue i krem, gull og sort, pampasgress og sjokoladekake på klar sokkel',
             },
             bar: {
               title: 'Bar & dansegulv',
               desc: 'Dere står fritt til å ta med egen drikke og bruke barområdet. Med eget dansegulv ligger alt til rette for god stemning gjennom hele kvelden.',
-              imgAlt: 'Kveldsfest med barstemning og dansegulv',
+              imgAlt:
+                'Stort lokale med mørke vegger, lyst polert betonggulv, høye vinduer med snø ute, industrielle taklamper og skjermer på stativ',
             },
             soundLight: {
               title: 'Lyd & Lys',
@@ -1068,7 +1201,7 @@ const resources = {
               title: 'Oppdekking & bordpynt',
               desc: 'Ferdig oppdekket med duker, stoltrekk, servise, glass og det dere trenger på bordet — pluss bordpynt, menykort og små detaljer som binder det hele sammen. Vi avstemmer uttrykket med stilen på dagen deres, så gjestene møter komplette bord fra første minutt.',
               imgAlt:
-                'Langt festbord med champagnefarget fløyelsduk, perlebesatte tallerkener, blomsterdekorasjoner, stearinlys og mørkerøde glass i dagslys',
+                'Selskapslokale med runde bord i mørke duker, hvite tallerkener, glass og blomsterdekorasjoner med lys, store vinduer mot grønt ute',
             },
           },
         },
@@ -1153,7 +1286,7 @@ const resources = {
       },
       corporatePage: {
         heroImageAlt:
-          'Bedriftsmøte og konferanse — samarbeid og faglig innhold i profesjonelle rammer',
+          'Dessertbord med små kaker på trestubber, grønt og hvit duk, lyst lokale med høye vinduer og gjester i finstas',
         heroTitleLine1: 'Fra julebord til kick-off.',
         heroTitleLine2Prefix: '',
         heroTitleLine2Accent: 'Alt',
@@ -1163,7 +1296,7 @@ const resources = {
         heroScrollHintAria: 'Rull ned til introduksjonen',
         introSection: {
           figureAlt:
-            'Selskapslokale med varmt lys og dekket til fest — stemning som passer bedriftsarrangement hos Rønningen',
+            'Gjester i dresser ved et rundt bord med hvit duk, glass, blomsterdekor og plasskort, store vinduer mot grønt ute',
           headingBefore: 'Der profesjon møter ',
           headingAccent: 'varme',
           intro:
@@ -1182,26 +1315,34 @@ const resources = {
             conference: {
               title: 'Konferanse & seminar',
               desc: 'Gode fasiliteter for faglig innhold, med rom for både presentasjoner og pauser i rolige omgivelser.',
+              imgAlt: 'Stort konferanse- eller seminarrom klargjort for publikum',
             },
             teambuilding: {
               title: 'Teambuilding',
               desc: 'Skap samhold gjennom aktiviteter og gode opplevelser – både inne og ute, tilpasset deres behov.',
+              imgAlt: 'Kollegaer som samarbeider rundt et bord i lyst lokale',
             },
             christmasParty: {
               title: 'Julebord',
               desc: 'Samle kollegaene til en hyggelig kveld med god stemning, mat og fest i lune omgivelser.',
+              imgAlt:
+                'Langt festbord med rødrutete duk, lys og dekketallerkener, lyslenker og rød-grønn drapering i taket, juletre og mørke vegger',
             },
             summerParty: {
               title: 'Sommerfest',
               desc: 'Nyt sommeren med kollegaer i åpne og grønne omgivelser, med god plass til både aktiviteter og avslapning.',
+              imgAlt:
+                'To bilder under hverandre: gjester i finstas som prater innendørs ved tre og glass, og menn i dresser som ler sammen ute ved gjerde og grønn åsside',
             },
             workshopKickoff: {
               title: 'Workshop & kickoff',
               desc: 'Start nye prosjekter eller samle teamet med fokus og energi i inspirerende omgivelser.',
+              imgAlt: 'Teamworkshop i moderne kontorlokale med foreleser og deltakere',
             },
             companyDinner: {
               title: 'Firmamiddag',
               desc: 'Inviter til en stilfull middag med gode rammer for både samtaler, feiring og relasjonsbygging.',
+              imgAlt: 'Gjester som hever glassene til en skål ved elegant middag',
             },
           },
         },
@@ -1316,26 +1457,37 @@ const resources = {
             birthday: {
               title: 'Bursdag',
               desc: 'Feir dagen med venner og familie i gode omgivelser, med plass til både middag og fest.',
+              imgAlt:
+                'Dessertbord med rosa etasjekake, cupcakes, godteriglass, ballonger og lys mot en mørk vegg',
             },
             confirmation: {
               title: 'Konfirmasjon',
               desc: 'En viktig dag samlet på ett sted, med rom for både det formelle og det sosiale.',
+              imgAlt:
+                'Lyst selskapslokale med hvite duker og stoler, rosa og hvite blomster på bordene, mørke vegger og sollys gjennom store vinduer mot grønt ute',
             },
             baptismNaming: {
               title: 'Dåp & navnefest',
               desc: 'Rolige og fine rammer for en personlig markering med familie og nære.',
+              imgAlt:
+                'Runde bord med hvite duker, brettede servietter, plasskort, rosa ballongdekorasjoner og glass i lyst lokale med store vinduer mot grønt ute',
             },
             memorial: {
               title: 'Minnestund',
               desc: 'Et trygt og verdig sted å samles, med fokus på ro, nærhet og gode samtaler.',
+              imgAlt:
+                'Blomstervegg i myke rosa- og kremtoner bak hvitt dekket bord med lys, små minnesaker og blomster mot mørk vegg',
             },
             anniversary: {
               title: 'Jubileum',
               desc: 'Marker store og små milepæler med en kveld som samler folk og skaper gode minner.',
+              imgAlt:
+                'Store opplyste bokstaver som staver MR & MRS på blankt gulv foran høye vinduer med utsikt mot trær og grønne åser',
             },
             gathering: {
               title: 'Selskap & mingling',
               desc: 'Uformelle sammenkomster med god flyt, der gjestene kan bevege seg fritt og nyte kvelden.',
+              imgAlt: 'Åpent landskap med trær og mykt lys — plass til uformelt samvær ute',
             },
           },
         },
@@ -1636,8 +1788,88 @@ const resources = {
         formErrMessage: 'Skriv minst 10 tegn.',
       },
       blogPage: {
+        heroEyebrow: 'Journal',
         title: 'Blogg',
-        intro: 'Tips, nyheter og inspirasjon fra Rønningen — flere innlegg kommer.',
+        intro:
+          'Ideer til feiringen, praktiske tips fra lokalet og historier fra ekte arrangementer — samlet på ett sted.',
+        latestHeading: 'Siste artikler',
+        latestSub: 'Et utvalg av inspirasjon og faglig stoff fra Rønningen.',
+        featuredBadge: 'Utvalgt',
+        readMore: 'Les mer',
+        backToBlog: 'Tilbake til bloggen',
+        postImageAlt: 'Artikkelbilde: {{title}}',
+        posts: {
+          springWedding: {
+            category: 'Bryllup',
+            date: 'mars 2026',
+            dateIso: '2026-03-01',
+            title: 'Vårlys, lange kvelder og et lokale som tilpasses deres dag',
+            excerpt:
+              'Hvordan vi tenker på flyt fra vielse til fest — og små detaljer som gjør stemningen enkel og helhetlig.',
+            body: [
+              'Vår på Rønningen handler om mykt lys i høye vinduer, dører som kan stå åpne mot hagen og et tidsskjema som ikke kjemper mot årstiden. Vi starter gjerne med en rolig ankomst, tid til hilsener og bilder, og flytter gjestene naturlig fra ett øyeblikk til det neste.',
+              'Bygget er delt i rom som kan åpnes eller lukkes, så dere kan ha en intim middag og likevel plass til dans senere. Vi jobber med dere om lyd, lys og flyt, slik at ingen føler seg jaget fra vielse til tale til fest.',
+              'Små grep teller: hvor kaken står, hvordan taler lyssettes, hvor eldre slektninger kan sitte med god oversikt og kort vei til ro hvis de trenger det. Vi har arrangert nok vårbryllup til å forutse de vanlige knepunktene og planlegge rundt dem.',
+              'Planlegger dere vårfeiring, spør oss om tidspunkt for bilder utendørs, reserveplan ved regn, og hvor tidlig dere kan få tilgang til lokalet for styling. Vi hjelper dere gjerne å forme dagen — fra stramt program til en løsere, mer sørlig rytme.',
+            ],
+          },
+          corporateHost: {
+            category: 'Bedrift',
+            date: 'februar 2026',
+            dateIso: '2026-02-01',
+            title: 'Når briefen er stram, men kvelden skal føles menneskelig',
+            excerpt:
+              'Fra velkomstdrink til siste sang: rom som fungerer til både fokus og uformelt samvær.',
+            body: [
+              'Bedriftsarrangement kommer ofte med tydelig program: presentasjoner, prisutdeling, middag, kanskje underholdning. Vår oppgave er at punktene sitter, samtidig som rommet føles som et sted folk vil være — ikke et konferansesenter de vil ut av.',
+              'Vi kan ha én sone for fokus — sitteplasser, siktlinjer, lyd til taler — og en annen for uformelt samvær, kaffe og nettverk. Overgangen skal føles naturlig, ikke som gjeting.',
+              'Catering og barflyt er en del av opplevelsen. Vi koordinerer med leverandørene slik at servering ikke kolliderer med programpunkter, og at gjestene ikke står sultne mens en presentasjon drar ut.',
+              'Fortell oss tonen dere ønsker: festlig, diskret, eller midt imellom. Vi tilpasser lys, møbler og timing slik at kvelden matcher merkevaren uten å bli stiv.',
+            ],
+          },
+          familyCelebration: {
+            category: 'Privat',
+            date: 'januar 2026',
+            dateIso: '2026-01-15',
+            title: 'Plass til hver generasjon — uten standardoppsett for alle',
+            excerpt:
+              'Bursdag, konfirmasjon og milepæler i familien: fleksible løsninger og rolig vertskap på dagen.',
+            body: [
+              'Familiefester samler barn, foreldre og besteforeldre — med ulike behov for lyd, sitteplasser og måltider. Vi planlegger oppsett slik at de minste har rom å bevege seg på, og de eldste ikke står langt fra toalett eller en rolig krok.',
+              'Dere kan ønske formell langbordsmiddag, buffet eller en miks. Kjøkken og serveringsområder er lagt opp slik at mat kan settes inn uten å ødelegge samtalen, og kosthold kan håndteres diskret.',
+              'Taler og leker hører med; vi bistår med mikrofon, musikk og timing slik at ingen trenger å rope over bordet. Om dere trenger pause mellom retter til bilder eller tradisjoner, bygger vi det inn i kjøreplanen.',
+              'På selve dagen er fokus rolig vertskap: ett kontaktpunkt, tydelig dialog med leverandører, og fleksibilitet når taler drar ut eller en overraskelse dukker opp. Dere feirer; vi tar oss av rommet.',
+            ],
+          },
+          venueTour: {
+            category: 'Praktisk',
+            date: 'desember 2025',
+            dateIso: '2025-12-01',
+            title: 'Hva dere bør se etter på omvisning — spørsmål mange glemmer',
+            excerpt:
+              'Parkering, tidspunkt, lyd, cateringflyt og regnvær — en kort sjekkliste før dere bestemmer dere.',
+            body: [
+              'Omvisning er sjansen til å teste lokalet med ekte spørsmål, ikke bare utseende. Start med kapasitet: ikke bare hvor mange som er tillatt, men hvordan rommet føles når bord, scene og dansegulv står på plass.',
+              'Spør om parkering og ankomst — særlig om mange kjører, eller dere forventer buss. Gå ruten fra bil til garderobe til hovedrom som om dere var gjest med hæler eller barnevogn.',
+              'Lyd og lys betyr noe for taler og musikk. Hvor kan PA og lys settes? Finnes det støygrenser eller tidsbegrensninger? Om dere skal ha band eller DJ, bekreft strøm og rigg.',
+              'Til slutt: spør om regnvær for bilder eller uteøyeblikk, cateringlogistikk (kjøkkenadgang, avfall, timing), og hvem som er kontakt på dagen. Et godt lokale svarer tydelig og kan gi en skriftlig oversikt over hva som inngår.',
+            ],
+          },
+          seasonalGathering: {
+            category: 'Sesong',
+            date: 'november 2025',
+            dateIso: '2025-11-01',
+            title: 'Høst- og vinterfeiring med varme i rammene',
+            excerpt:
+              'Lys, komfort og rytme gjennom kvelden når dagene er korte og festen skal vare lenge.',
+            body: [
+              'Når sola går tidlig, blir lys en del av uttrykket. Vi bygger lag med stemningslys, spot der det trengs, og mykere soner i sittegrupper slik at rommet føles varmt, ikke sterilt.',
+              'Oppvarming og luftsirkulasjon betyr noe når dører forblir lukket. Vi følger med på komfort utover kvelden, særlig når dansegulvet fylles og kroppsvarmen stiger.',
+              'Sesongbasert mat og drikke passer naturlig — kraftige hovedretter, sitrus eller krydder i drinker, desserter som passer i kald årstid. Vi tilpasser servering til dagslys slik at gjestene ikke spiser i stummende mørke med mindre dere ønsker nettopp den stemningen.',
+              'Lange fester trenger rytme: topper av energi og rolige partier. Vi hjelper dere å planlegge musikk, pauser og overraskelser slik at siste time føles like gjennomtenkt som den første.',
+            ],
+          },
+        },
       },
       galleryPage: {
         heroEyebrow: 'Rønningen',

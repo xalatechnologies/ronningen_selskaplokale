@@ -16,7 +16,14 @@ export function inspirationSlideFileNumber(key: string): number {
   return m ? parseInt(m[1], 10) : 1;
 }
 
-export const inspirationGallerySlides: InspirationSlide[] = Array.from(
+/** Shown first in home / weddings carousels (first “page” of scroll). */
+const LEAD_INSPIRATION_KEYS = [
+  'inspirasjon-26',
+  'inspirasjon-27',
+  'inspirasjon-28',
+] as const;
+
+const inspirationGallerySlidesBase: InspirationSlide[] = Array.from(
   { length: INSPIRATION_GALLERY_COUNT },
   (_, i) => {
     const n = String(i + 1).padStart(2, '0');
@@ -27,6 +34,17 @@ export const inspirationGallerySlides: InspirationSlide[] = Array.from(
     };
   },
 ).filter((slide) => !EXCLUDED_INSPIRATION_KEYS.has(slide.key));
+
+export const inspirationGallerySlides: InspirationSlide[] = (() => {
+  const leadSet = new Set<string>(LEAD_INSPIRATION_KEYS);
+  const lead: InspirationSlide[] = [];
+  for (const key of LEAD_INSPIRATION_KEYS) {
+    const slide = inspirationGallerySlidesBase.find((s) => s.key === key);
+    if (slide) lead.push(slide);
+  }
+  const rest = inspirationGallerySlidesBase.filter((s) => !leadSet.has(s.key));
+  return [...lead, ...rest];
+})();
 
 export type GalleryPageCategory = 'wedding' | 'corporate' | 'private' | 'facilities';
 

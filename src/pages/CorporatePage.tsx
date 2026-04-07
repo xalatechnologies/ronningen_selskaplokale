@@ -29,10 +29,8 @@ const CORPORATE_EVENT_IMAGES: Record<CorporateEventKey, string> = {
     'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=85&w=1200',
   teambuilding:
     'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=1200',
-  christmasParty:
-    'https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&q=85&w=1200',
-  summerParty:
-    'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=85&w=1200',
+  christmasParty: '/corporate-event-christmas.png',
+  summerParty: '/corporate-event-summer.png',
   workshopKickoff:
     'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=85&w=1200',
   companyDinner:
@@ -53,7 +51,7 @@ const CORPORATE_PACKAGE_BULLET_KEYS = ['bullet1', 'bullet2', 'bullet3'] as const
 
 const galleryImgs = [
   'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1600',
-  'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=1200',
+  'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=1200',
   'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=85&w=1200',
   'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=85&w=1200',
   'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=1200',
@@ -121,10 +119,11 @@ export const CorporatePage = () => {
       <section className="hero-below-nav section-viewport section-viewport-hero relative flex min-h-0 flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=2000"
+            src="/corporate-hero.png"
             alt={t('corporatePage.heroImageAlt')}
+            width={1024}
+            height={682}
             className="h-full w-full object-cover brightness-[0.52] contrast-[1.03]"
-            referrerPolicy="no-referrer"
           />
           <div
             className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/40 via-black/10 to-transparent"
@@ -191,8 +190,10 @@ export const CorporatePage = () => {
                   className="relative mx-auto aspect-[7/8] w-full max-w-md overflow-hidden rounded-2xl border border-brand-200/80 shadow-lg lg:mx-0 lg:max-w-none"
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1600"
+                    src="/corporate-intro-dinner.png"
                     alt={t('corporatePage.introSection.figureAlt')}
+                    width={1024}
+                    height={682}
                     className="absolute inset-0 h-full w-full object-cover"
                     loading="lazy"
                     decoding="async"
@@ -277,6 +278,8 @@ export const CorporatePage = () => {
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-4 xl:gap-5">
             {CORPORATE_EVENT_KEYS.map((eventKey, i) => {
               const eventTitle = t(`corporatePage.eventsSection.items.${eventKey}.title`);
+              const eventImageSrc = CORPORATE_EVENT_IMAGES[eventKey];
+              const eventImageAlt = t(`corporatePage.eventsSection.items.${eventKey}.imgAlt`);
               return (
                 <motion.div
                   key={eventKey}
@@ -288,12 +291,26 @@ export const CorporatePage = () => {
                   className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-white/28 outline-none transition-all duration-500 hover:border-white/45 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900"
                 >
                   <img
-                    src={CORPORATE_EVENT_IMAGES[eventKey]}
-                    alt={eventTitle}
+                    src={eventImageSrc}
+                    alt={eventImageAlt}
+                    width={
+                      eventKey === 'christmasParty'
+                        ? 960
+                        : eventKey === 'summerParty'
+                          ? 819
+                          : undefined
+                    }
+                    height={
+                      eventKey === 'christmasParty'
+                        ? 720
+                        : eventKey === 'summerParty'
+                          ? 1024
+                          : undefined
+                    }
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus-within:scale-105"
                     loading="lazy"
                     decoding="async"
-                    referrerPolicy="no-referrer"
+                    referrerPolicy={eventImageSrc.startsWith('http') ? 'no-referrer' : undefined}
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0" />
