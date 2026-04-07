@@ -479,10 +479,8 @@ const resources = {
           },
         },
         eventsSection: {
-          headingBefore: 'Occasions we often ',
-          headingAccent: 'create together',
-          intro:
-            'From birthdays and confirmations to baptisms, memorial gatherings and anniversaries — we tailor the programme together with you.',
+          headingBefore: 'Occasions that ',
+          headingAccent: 'suit our venue',
           items: {
             birthday: {
               title: 'Birthday',
@@ -1312,10 +1310,8 @@ const resources = {
           },
         },
         eventsSection: {
-          headingBefore: 'Anledninger vi ofte ',
-          headingAccent: 'skaper sammen',
-          intro:
-            'Fra bursdag og konfirmasjon til dåp, minnestund og jubileum – vi tilpasser opplegget sammen med dere.',
+          headingBefore: 'Anledninger som ',
+          headingAccent: 'egner seg hos oss',
           items: {
             birthday: {
               title: 'Bursdag',

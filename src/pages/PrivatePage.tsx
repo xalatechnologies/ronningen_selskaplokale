@@ -278,9 +278,6 @@ export const PrivatePage = () => {
               {t('privatePage.eventsSection.headingBefore')}
               <span className="italic text-brand-400">{t('privatePage.eventsSection.headingAccent')}</span>
             </motion.h2>
-            <p className="mt-5 max-w-2xl text-base font-light leading-relaxed text-brand-200 md:text-lg md:leading-relaxed">
-              {t('privatePage.eventsSection.intro')}
-            </p>
           </div>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-4 xl:gap-5">
