@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Clock, ArrowUpRight, ExternalLink, type LucideIcon } from 'lucide-react';
@@ -17,6 +18,13 @@ type ContactItem = {
 
 export const ContactPage: React.FC = () => {
   const { t } = useTranslation();
+  const { hash } = useLocation();
+
+  useLayoutEffect(() => {
+    if (hash !== '#kontakt-skjema') return;
+    const el = document.getElementById('kontakt-skjema');
+    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [hash]);
 
   const mapsSearchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(t('contactPage.addressValue'))}`;
 

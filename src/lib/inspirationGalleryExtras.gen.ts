@@ -127,8 +127,6 @@ export const inspirationGalleryExtraSlides: InspirationGalleryExtraSlide[] = [
   { key: 'inspirasjon-252', src: '/gallery/inspirasjon-252.png', category: 'wedding' }, // image-91de8c64-a1e7-4448-9ee4-b1c12efed308.png
   { key: 'inspirasjon-253', src: '/gallery/inspirasjon-253.png', category: 'wedding' }, // image-968d06ce-8589-4b8e-a3e6-e534e45e29e1.png
   { key: 'inspirasjon-254', src: '/gallery/inspirasjon-254.png', category: 'wedding' }, // image-98dac480-f198-4de4-a98f-8be49c6c5d03.png
-  { key: 'inspirasjon-255', src: '/gallery/inspirasjon-255.png', category: 'wedding' }, // image-ac39f37a-05e1-41bf-a0c9-320b64d3e0ae.png
-  { key: 'inspirasjon-256', src: '/gallery/inspirasjon-256.png', category: 'wedding' }, // image-e0471729-6626-419a-b24e-c6a0826241e1.png
   { key: 'inspirasjon-257', src: '/gallery/inspirasjon-257.png', category: 'wedding' }, // image-fc31df0e-00c0-4d57-b0fd-a0bdf8f6325d.png
   { key: 'inspirasjon-273', src: '/gallery/inspirasjon-273.png', category: 'facilities' }, // inngang-67b2fa79-43fd-46ae-9221-31cebd2d2ded.png
   { key: 'inspirasjon-274', src: '/gallery/inspirasjon-274.png', category: 'facilities' }, // inngang1-fe733ca6-b5ed-4b52-96c4-b7d0e15b3358.png
@@ -137,17 +135,9 @@ export const inspirationGalleryExtraSlides: InspirationGalleryExtraSlide[] = [
   { key: 'inspirasjon-281', src: '/gallery/inspirasjon-281.png', category: 'wedding' }, // PHOTO-2026-03-27-11-57-11-7bbed695-e65e-4573-8a60-21472a172b5a.png
   { key: 'inspirasjon-282', src: '/gallery/inspirasjon-282.png', category: 'wedding' }, // Screenshot_2026-03-27_at_16.45.08-33e3225e-731b-460e-a6d0-558223555b1e.png
   { key: 'inspirasjon-283', src: '/gallery/inspirasjon-283.png', category: 'wedding' }, // Screenshot_2026-03-27_at_19.31.44-62d90c33-2353-4871-bddd-3fb443d1cc77.png
-  { key: 'inspirasjon-284', src: '/gallery/inspirasjon-284.png', category: 'wedding' }, // Screenshot_2026-03-31_at_13.04.13-232f3bcc-f311-48ee-8e22-a67f905e349c.png
-  { key: 'inspirasjon-285', src: '/gallery/inspirasjon-285.png', category: 'wedding' }, // Screenshot_2026-03-31_at_13.17.59-f3659d77-c93f-4d8b-9e57-491385282d05.png
-  { key: 'inspirasjon-286', src: '/gallery/inspirasjon-286.png', category: 'wedding' }, // Screenshot_2026-03-31_at_13.43.59-3c5a0235-b130-42a4-b351-53ae8a3911a5.png
-  { key: 'inspirasjon-287', src: '/gallery/inspirasjon-287.png', category: 'wedding' }, // Screenshot_2026-03-31_at_17.46.47-2c976a8a-13e4-4243-a55e-925f96c8bab2.png
-  { key: 'inspirasjon-288', src: '/gallery/inspirasjon-288.png', category: 'wedding' }, // Screenshot_2026-04-01_at_13.30.14-de61a402-7efb-4714-adb7-8c87f69e27b0.png
-  { key: 'inspirasjon-289', src: '/gallery/inspirasjon-289.png', category: 'wedding' }, // Screenshot_2026-04-01_at_13.48.12-17df3f2b-0ac9-41c1-853a-43e5ad31e1cd.png
   { key: 'inspirasjon-290', src: '/gallery/inspirasjon-290.png', category: 'wedding' }, // Screenshot_2026-04-02_at_12.17.02-74164144-65b7-4745-adaa-f2e4bde71a29.png
   { key: 'inspirasjon-291', src: '/gallery/inspirasjon-291.png', category: 'wedding' }, // Screenshot_2026-04-06_at_12.10.53-a47801bd-fe79-42c7-b438-653b5b67de95.png
-  { key: 'inspirasjon-292', src: '/gallery/inspirasjon-292.png', category: 'wedding' }, // Screenshot_2026-04-06_at_12.43.00-cb9f8bfa-764d-42e0-b993-21e21832d686.png
   { key: 'inspirasjon-293', src: '/gallery/inspirasjon-293.png', category: 'wedding' }, // Screenshot_2026-04-06_at_13.11.00-a0e54082-2de7-41c4-b3dc-e1ee525f7073.png
-  { key: 'inspirasjon-294', src: '/gallery/inspirasjon-294.png', category: 'wedding' }, // Screenshot_2026-04-07_at_17.02.23-11e0e9e6-787a-4f34-aa98-a2fb9c690093.png
   { key: 'inspirasjon-295', src: '/gallery/inspirasjon-295.png', category: 'wedding' }, // Screenshot_2026-04-07_at_17.53.27-84a7f2e5-12fe-419b-a404-5faf3dd921bb.png
   { key: 'inspirasjon-296', src: '/gallery/inspirasjon-296.png', category: 'wedding' }, // Screenshot_2026-04-07_at_18.27.45-d6f56eae-abed-46d6-971b-b3bd96bf0e7b.png
   { key: 'inspirasjon-299', src: '/gallery/inspirasjon-299.png', category: 'wedding' }, // tempImagebD8hJl-scaled-3665319b-d6c1-4cf1-aa76-28b58fe928b7.png

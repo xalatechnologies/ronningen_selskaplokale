@@ -244,7 +244,6 @@ export const GalleryPage: React.FC = () => {
                       decoding="async"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-brand-950/80 via-brand-950/15 to-transparent opacity-85 transition duration-300 group-hover:opacity-100" />
                     <div className="absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded-full bg-white/95 text-brand-900 opacity-0 shadow-md ring-1 ring-black/5 transition duration-300 group-hover:opacity-100 group-hover:scale-100 scale-90 sm:right-3 sm:top-3 sm:h-10 sm:w-10">
                       <Expand size={16} strokeWidth={2} className="sm:h-[18px] sm:w-[18px]" aria-hidden />
                     </div>

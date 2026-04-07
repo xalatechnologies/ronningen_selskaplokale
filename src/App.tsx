@@ -800,14 +800,12 @@ const Navbar = () => {
             <Globe size={16} />
             <span className="text-[11px] font-bold uppercase tracking-widest">{i18n.language}</span>
           </button>
-          <a
-            href={BOOKING_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/contact#kontakt-skjema"
             className="bg-brand-900 text-white px-8 py-3.5 rounded-full text-[11px] uppercase tracking-[0.3em] font-bold hover:bg-brand-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
           >
-            {t('hero.bookNow')}
-          </a>
+            {t('nav.contactUs')}
+          </Link>
         </div>
 
         {/* Mobile Nav Toggle */}
@@ -844,15 +842,13 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              <a
-                href={BOOKING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/contact#kontakt-skjema"
                 onClick={() => setIsOpen(false)}
                 className="bg-brand-900 text-white px-8 py-4 rounded-full text-center text-xs uppercase tracking-[0.3em] font-bold shadow-lg"
               >
-                {t('hero.bookNow')}
-              </a>
+                {t('nav.contactUs')}
+              </Link>
             </div>
           </motion.div>
         )}

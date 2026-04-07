@@ -17,6 +17,7 @@ const resources = {
         blog: 'Blog',
         faq: 'FAQ',
         contact: 'Contact',
+        contactUs: 'Contact us',
         inquiry: 'Inquiry',
         admin: 'Admin'
       },
@@ -983,6 +984,7 @@ const resources = {
         blog: 'Blogg',
         faq: 'FAQ',
         contact: 'Kontakt',
+        contactUs: 'Kontakt oss',
         inquiry: 'Forespørsel',
         admin: 'Admin'
       },
