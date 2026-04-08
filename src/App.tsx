@@ -23,7 +23,6 @@ import {
   BookOpen,
   ArrowRight,
   ArrowLeft,
-  ArrowUpRight,
 } from 'lucide-react';
 import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import type React from 'react';
@@ -31,6 +30,8 @@ import './lib/i18n';
 import { Toaster } from 'sonner';
 
 import { AppNavigation } from './components/AppNavigation';
+import { HomePartnerCard } from './components/HomePartnerCard';
+import { Marquee } from './components/Marquee';
 import { AdminPanel } from './components/AdminPanel';
 import { HeroScrollHint } from './components/HeroScrollHint';
 import {
@@ -41,6 +42,7 @@ import { BOOKING_URL } from './lib/booking';
 import { inspirationGallerySlides, inspirationSlideFileNumber } from './lib/inspirationGallery';
 import { cn } from './lib/utils';
 import { ROUTES } from './lib/routes';
+import { HOME_PARTNER_KEYS } from './lib/homePartners';
 import {
   SECTION_H2_CLASS,
   SECTION_H2_ON_DARK_CLASS,
@@ -140,39 +142,6 @@ const HOME_SERVICE_IMAGES: Record<HomeServiceKey, string> = {
   coordination: '/home-service-coordination.png',
   decoration: '/home-service-decoration.png',
   overnight: '/home-service-overnight.png',
-};
-
-const PARTNER_KEYS = [
-  'cateringKitchen',
-  'flowersDecor',
-  'photoVideo',
-  'soundLight',
-  'barService',
-  'digilist',
-  'xala',
-] as const;
-
-type PartnerKey = (typeof PARTNER_KEYS)[number];
-
-const PARTNER_LINKS: Record<PartnerKey, string | null> = {
-  cateringKitchen: 'https://svensefjoset.no/',
-  flowersDecor: 'https://osloeventshop.no/',
-  photoVideo: 'https://villaboligstyling.no/',
-  soundLight: 'https://festpartner.no/',
-  barService: 'https://digilist.no/',
-  digilist: 'https://xala.no/',
-  xala: null,
-};
-
-/** Single-letter marks for partner tiles (stable across locales). */
-const PARTNER_INITIALS: Record<PartnerKey, string> = {
-  cateringKitchen: 'S',
-  flowersDecor: 'O',
-  photoVideo: 'V',
-  soundLight: 'F',
-  barService: 'D',
-  digilist: 'X',
-  xala: 'B',
 };
 
 const Home = () => {
@@ -373,12 +342,11 @@ const Home = () => {
               return (
                 <motion.div
                   key={key}
-                  tabIndex={0}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-white/28 outline-none transition-all duration-500 hover:border-white/45 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900"
+                  className="ds-media-card ds-media-card--dark"
                 >
                   <img
                     src={HOME_SERVICE_IMAGES[key]}
@@ -387,25 +355,16 @@ const Home = () => {
                         ? t(`homeServices.items.${key}.imgAlt`)
                         : ''
                     }
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus-within:scale-105"
                     referrerPolicy={
                       HOME_SERVICE_IMAGES[key].startsWith('http') ? 'no-referrer' : undefined
                     }
                   />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0" />
-
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100" />
-
-                  <div className="absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6 md:p-7 lg:p-6">
-                    <h3 className="mt-auto shrink-0 font-display text-2xl uppercase tracking-wide text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.85)] transition-all duration-500 group-hover:mt-0 group-focus-within:mt-0 sm:text-3xl md:text-[1.85rem] lg:text-2xl lg:leading-tight xl:text-[1.75rem]">
-                      {title}
-                    </h3>
-
-                    <div className="mt-3 flex-grow opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100 group-focus-within:opacity-100">
-                      <p className="line-clamp-[10] whitespace-pre-line text-base font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-lg md:text-[1.125rem] md:leading-relaxed lg:line-clamp-[9]">
-                        {t(`homeServices.items.${key}.description`)}
-                      </p>
+                  <div className="ds-media-card__scrim" aria-hidden />
+                  <div className="ds-media-card__veil" aria-hidden />
+                  <div className="ds-media-card__inner">
+                    <h3 className="ds-media-card__title">{title}</h3>
+                    <div className="ds-media-card__body">
+                      <p className="ds-media-card__text">{t(`homeServices.items.${key}.description`)}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -532,141 +491,52 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Partnere — curved arc + organic stagger (no rigid grid) */}
+      {/* Partnere — samme seksjonsoppbygging som #konsepter; partnerkort i horisontal marquee (Magic UI–stil) */}
       <section
         id="partnere"
         aria-labelledby="partnere-heading"
-        className="section-viewport relative overflow-hidden border-t border-brand-200/80 bg-gradient-to-b from-white to-brand-50/50"
+        className="section-viewport scroll-mt-24 relative overflow-hidden border-t border-brand-200/80 bg-gradient-to-b from-white to-brand-50/50"
       >
         <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-200/60 to-transparent"
+          className="pointer-events-none absolute left-[6%] top-[10%] h-[min(44vw,26rem)] w-[min(44vw,26rem)] rounded-full bg-brand-300/20 blur-[90px]"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute -right-[20%] top-1/3 h-[min(70vw,28rem)] w-[min(70vw,28rem)] rounded-[44%_56%_52%_48%/48%_52%_46%_54%] bg-brand-300/12 blur-[100px]"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute -left-[15%] bottom-[15%] h-[min(55vw,20rem)] w-[min(55vw,22rem)] rounded-[56%_44%_48%_52%/52%_48%_54%_46%] bg-brand-400/10 blur-[90px]"
+          className="pointer-events-none absolute bottom-[6%] right-[4%] h-[min(36vw,22rem)] w-[min(36vw,22rem)] rounded-full bg-brand-500/12 blur-[75px]"
           aria-hidden
         />
 
-        <div className="section-viewport-scroll site-container relative z-10 py-20 md:py-28">
-          <div className="flex flex-col gap-14 lg:grid lg:grid-cols-12 lg:items-end lg:gap-16 xl:gap-20">
-            <header className="text-center lg:col-span-5 xl:col-span-4 lg:text-left">
-              <h2 id="partnere-heading" className={cn(SECTION_H2_CLASS, 'mb-4 md:mb-5')}>
-                {t('homePartners.heading')}
-              </h2>
-              <p className={SECTION_LEAD_CLASS}>{t('homePartners.intro')}</p>
-            </header>
+        <div className="section-viewport-scroll site-container relative z-10 flex min-h-0 flex-col py-16 sm:py-20 md:py-24">
+          <header className="w-full space-y-4 md:space-y-5">
+            <h2 id="partnere-heading" className={SECTION_H2_CLASS}>
+              {t('homePartners.heading')}
+            </h2>
+            <p className={SECTION_LEAD_CLASS}>{t('homePartners.intro')}</p>
+          </header>
 
-            <div className="relative lg:col-span-7 xl:col-span-8">
-              <div
-                className="pointer-events-none absolute left-1/2 top-[8%] hidden h-[min(48vw,380px)] w-[min(100%,540px)] -translate-x-1/2 rounded-[42%_58%_48%_52%/55%_45%_50%_50%] bg-gradient-to-b from-brand-200/30 via-brand-100/15 to-transparent opacity-80 blur-2xl lg:block"
-                aria-hidden
-              />
-              <ul
-                className={cn(
-                  'relative m-0 list-none p-0',
-                  'flex flex-wrap justify-center gap-x-7 gap-y-12 px-1 py-4 sm:gap-x-10 sm:gap-y-14',
-                  'lg:block lg:min-h-[min(42vw,300px)] lg:w-full lg:max-w-[52rem] lg:px-0 xl:min-h-[min(38vw,320px)] xl:max-w-[56rem]',
-                )}
-                aria-label={t('homePartners.listAria')}
-              >
-                {PARTNER_KEYS.map((key, i) => {
-                  const href = PARTNER_LINKS[key];
-                  const linkLabel = t('homePartners.websiteLabel');
-                  const name = t(`homePartners.items.${key}.name`);
-                  const desc = t(`homePartners.items.${key}.desc`);
-                  const srId = `partner-sr-${key}`;
-                  const n = PARTNER_KEYS.length;
-                  const spread = 152;
-                  const angleDeg = -spread / 2 + (spread / (n - 1)) * i;
-                  const waveY =
-                    i % 3 === 0
-                      ? 'max-lg:translate-y-1'
-                      : i % 3 === 1
-                        ? 'max-lg:-translate-y-4 max-lg:sm:translate-y-2'
-                        : 'max-lg:translate-y-5 max-lg:sm:-translate-y-1';
-                  const waveTilt = i % 2 === 0 ? 'max-lg:-rotate-[3deg]' : 'max-lg:rotate-[3.5deg]';
-
-                  return (
-                    <li
-                      key={key}
-                      className={cn(
-                        'group relative z-10 flex min-h-0 justify-center hover:z-30',
-                        waveY,
-                        waveTilt,
-                        'lg:absolute lg:bottom-[11%] lg:left-1/2 lg:w-0 lg:-translate-x-1/2 lg:translate-y-0 lg:rotate-0',
-                      )}
-                      style={
-                        {
-                          '--partner-arc-a': `${angleDeg}deg`,
-                          '--partner-arc-r': 'clamp(92px, 20vw, 188px)',
-                        } as React.CSSProperties
-                      }
-                    >
-                      <div
-                        className="relative flex flex-col items-center lg:[transform-origin:center_bottom] lg:[transform:rotate(var(--partner-arc-a))_translateY(calc(-1*var(--partner-arc-r)))_rotate(calc(-1*var(--partner-arc-a)))]"
-                      >
-                        <span id={srId} className="sr-only">
-                          {desc}
-                          {href
-                            ? ` ${linkLabel}: ${href}`
-                            : ` ${t('homePartners.noWebsite')}`}
-                        </span>
-                        <button
-                          type="button"
-                          className={cn(
-                            'relative z-10 flex h-[4rem] w-[4rem] shrink-0 items-center justify-center rounded-2xl border border-brand-300/80 sm:h-[4.25rem] sm:w-[4.25rem]',
-                            'bg-linear-to-br from-white via-brand-50/90 to-[#f0e8d8] font-serif text-xl font-semibold tabular-nums text-brand-900',
-                            'shadow-[0_8px_20px_-12px_rgba(33,24,22,0.4),inset_0_1px_0_rgba(255,255,255,0.92)] ring-1 ring-brand-900/[0.06]',
-                            'transition-transform duration-300 outline-none hover:scale-105 group-hover:scale-105 sm:rounded-[1.35rem]',
-                            'focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2',
-                            'md:h-[4.35rem] md:w-[4.35rem] md:text-[1.45rem]',
-                          )}
-                          aria-describedby={srId}
-                          aria-label={name}
-                        >
-                          {PARTNER_INITIALS[key]}
-                        </button>
-                        <div className="absolute left-1/2 top-full z-20 -mt-2 w-[min(100vw-2rem,17.5rem)] -translate-x-1/2 pt-2">
-                          <div
-                            className={cn(
-                              'pointer-events-none rounded-2xl border border-brand-200/90 bg-white p-4 text-center shadow-[0_12px_28px_-16px_rgba(33,24,22,0.4)]',
-                              'opacity-0 transition-[opacity,transform] duration-200 translate-y-1',
-                              'group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100',
-                            )}
-                          >
-                            <p className="text-balance font-serif text-[0.99rem] font-semibold leading-snug tracking-tight text-brand-950 md:text-[1.05rem]">
-                              {name}
-                            </p>
-                            <p className="mt-2 text-[11px] leading-relaxed text-brand-700 md:text-[12px]">
-                              {desc}
-                            </p>
-                            {href ? (
-                              <a
-                                href={href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="mt-3 inline-flex items-center justify-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-900 underline decoration-brand-400/70 underline-offset-4 transition hover:text-brand-950"
-                              >
-                                {linkLabel}
-                                <ArrowUpRight className="h-3.5 w-3.5 shrink-0 opacity-80" aria-hidden />
-                              </a>
-                            ) : (
-                              <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-500">
-                                {t('homePartners.noWebsite')}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+          <div
+            className="relative mt-10 md:mt-12"
+            role="region"
+            aria-label={t('homePartners.listAria')}
+          >
+            <div
+              className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-linear-to-r from-brand-50 to-transparent sm:w-14 md:w-20"
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-linear-to-l from-brand-50 to-transparent sm:w-14 md:w-20"
+              aria-hidden
+            />
+            <Marquee pauseOnHover durationSec={42}>
+              {HOME_PARTNER_KEYS.map((partnerId) => (
+                <HomePartnerCard key={partnerId} partnerKey={partnerId} />
+              ))}
+            </Marquee>
+            <Marquee reverse pauseOnHover durationSec={54} className="mt-4">
+              {HOME_PARTNER_KEYS.map((partnerId) => (
+                <HomePartnerCard key={`${partnerId}-rev`} partnerKey={partnerId} />
+              ))}
+            </Marquee>
           </div>
         </div>
       </section>

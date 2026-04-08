@@ -292,12 +292,11 @@ export const PrivatePage = () => {
               return (
                 <motion.div
                   key={eventKey}
-                  tabIndex={0}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-lg border border-white/28 outline-none transition-all duration-500 hover:border-white/45 focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900"
+                  className="ds-media-card ds-media-card--dark"
                 >
                   <img
                     src={eventImageSrc}
@@ -322,25 +321,16 @@ export const PrivatePage = () => {
                               ? 719
                               : undefined
                     }
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 group-focus-within:scale-105"
                     loading="lazy"
                     decoding="async"
                     referrerPolicy={eventImageSrc.startsWith('http') ? 'no-referrer' : undefined}
                   />
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-0 group-focus-within:opacity-0" />
-
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#4F9DA6]/90 to-[#7B96A8]/90 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100" />
-
-                  <div className="absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6 md:p-7 lg:p-6">
-                    <h3 className="mt-auto shrink-0 font-display text-2xl uppercase tracking-wide text-white [text-shadow:0_2px_16px_rgba(0,0,0,0.85)] transition-all duration-500 group-hover:mt-0 group-focus-within:mt-0 sm:text-3xl md:text-[1.85rem] lg:text-2xl lg:leading-tight xl:text-[1.75rem]">
-                      {eventTitle}
-                    </h3>
-
-                    <div className="mt-3 flex-grow opacity-0 transition-opacity delay-100 duration-500 group-hover:opacity-100 group-focus-within:opacity-100">
-                      <p className="line-clamp-[10] whitespace-pre-line text-base font-normal leading-relaxed text-white [text-shadow:0_1px_3px_rgba(0,0,0,0.65)] sm:text-lg md:text-[1.125rem] md:leading-relaxed lg:line-clamp-[9]">
-                        {t(`${itemBase}.desc`)}
-                      </p>
+                  <div className="ds-media-card__scrim" aria-hidden />
+                  <div className="ds-media-card__veil" aria-hidden />
+                  <div className="ds-media-card__inner">
+                    <h3 className="ds-media-card__title">{eventTitle}</h3>
+                    <div className="ds-media-card__body">
+                      <p className="ds-media-card__text">{t(`${itemBase}.desc`)}</p>
                     </div>
                   </div>
                 </motion.div>

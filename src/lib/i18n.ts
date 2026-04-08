@@ -24,6 +24,13 @@ const resources = {
         menuLabel: 'Main menu',
         menuOpen: 'Open menu',
         menuClose: 'Close menu',
+        language: 'Language',
+        switchToNorwegian: 'Switch to Norwegian',
+        switchToEnglish: 'Switch to English',
+        languageNorwegianShort: 'NO',
+        languageEnglishShort: 'EN',
+        themeSwitchToDark: 'Switch to dark mode',
+        themeSwitchToLight: 'Switch to light mode',
       },
       hero: {
         title: 'Rønningen Selskapslokale',
@@ -133,7 +140,7 @@ const resources = {
           'Trusted partners for catering, styling, technology, and event support — all tailored to your celebration.',
         listAria: 'Partner list',
         websiteLabel: 'Visit website',
-        noWebsite: 'Contact us for details',
+        noWebsite: 'Contact us',
         items: {
           cateringKitchen: {
             name: 'Svensefjøset',
@@ -991,6 +998,13 @@ const resources = {
         menuLabel: 'Hovedmeny',
         menuOpen: 'Åpne meny',
         menuClose: 'Lukk meny',
+        language: 'Språk',
+        switchToNorwegian: 'Bytt til norsk',
+        switchToEnglish: 'Bytt til engelsk',
+        languageNorwegianShort: 'NO',
+        languageEnglishShort: 'EN',
+        themeSwitchToDark: 'Bytt til mørk modus',
+        themeSwitchToLight: 'Bytt til lys modus',
       },
       hero: {
         title: 'Rønningen Selskapslokale',
@@ -1098,7 +1112,7 @@ const resources = {
           'Faste samarbeidspartnere innen mat, styling, teknologi og eventstøtte — tilpasset arrangementet deres.',
         listAria: 'Partnerliste',
         websiteLabel: 'Besøk nettside',
-        noWebsite: 'Ta kontakt for mer informasjon',
+        noWebsite: 'Ta kontakt',
         items: {
           cateringKitchen: {
             name: 'Svensefjøset',

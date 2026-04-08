@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", serif;
@@ -26,10 +28,22 @@
     /* Unified horizontal shell: header, main sections, footer. */
     --site-gutter-x: 15px;
     --site-max-w: 1800px;
+
+    /*
+     * Design system — timing & surfaces (pair with .ds-* component classes below).
+     * Change here to retune cards, hovers, and section chrome site-wide.
+     */
+    --ds-duration-card: 500ms;
+    --ds-duration-card-image: 700ms;
+    --ds-surface-subtle: #f5f5f5;
+  }
+
+  html.dark {
+    color-scheme: dark;
   }
 
   body {
-    @apply bg-brand-50 text-brand-900 font-sans;
+    @apply bg-brand-50 text-brand-900 font-sans dark:bg-brand-950 dark:text-brand-100;
   }
 
   /*
@@ -105,10 +119,13 @@
     100% { transform: translateX(-50%); }
   }
   .animate-marquee {
-    animation: marquee 30s linear infinite;
+    animation: marquee var(--marquee-duration, 30s) linear infinite;
+  }
+  .animate-marquee-reverse {
+    animation: marquee var(--marquee-duration, 45s) linear infinite reverse;
   }
   .animate-marquee-slow {
-    animation: marquee 50s linear infinite;
+    animation: marquee var(--marquee-duration, 50s) linear infinite;
   }
 
   @keyframes spin-slow {
@@ -143,6 +160,88 @@
 }
 
 @layer components {
+  /*
+   * Media tile grid — home “Eksklusive tjenester”, /selskap, /bedrift, /bryllup services, /fasiliteter.
+   * Hover-only reveal (no :focus-within / keyboard focus); not focusable in the tab order.
+   * Markup: .ds-media-card > img, .ds-media-card__scrim, .ds-media-card__veil, .ds-media-card__inner > title + body
+   */
+  .ds-media-card {
+    @apply relative aspect-[4/3] cursor-default overflow-hidden rounded-lg transition-all;
+    transition-duration: var(--ds-duration-card);
+  }
+
+  /** On brand-900 (or dark) band: light border + light focus ring */
+  .ds-media-card--dark {
+    @apply border border-white/28 hover:border-white/45;
+  }
+
+  /** On light gray band (e.g. wedding services #f5f5f5): dark border */
+  .ds-media-card--light {
+    @apply border border-black/10 hover:border-black/20;
+  }
+
+  .ds-media-card > img {
+    @apply h-full w-full object-cover transition-transform;
+    transition-duration: var(--ds-duration-card-image);
+  }
+
+  .ds-media-card:hover > img {
+    @apply scale-105;
+  }
+
+  .ds-media-card__scrim {
+    @apply pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-950/55 via-brand-900/12 to-transparent opacity-55 transition-opacity;
+    transition-duration: var(--ds-duration-card);
+  }
+
+  .ds-media-card:hover > .ds-media-card__scrim {
+    @apply opacity-0;
+  }
+
+  .ds-media-card__veil {
+    @apply pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-900/72 to-brand-950/82 opacity-0 transition-opacity;
+    transition-duration: var(--ds-duration-card);
+  }
+
+  .ds-media-card:hover > .ds-media-card__veil {
+    @apply opacity-100;
+  }
+
+  .ds-media-card__inner {
+    @apply absolute inset-0 flex h-full min-h-0 flex-col p-5 sm:p-6 md:p-7 lg:p-6;
+  }
+
+  /* Matches SECTION_H3_CLASS scale (typography.ts); white for imagery */
+  .ds-media-card__inner > .ds-media-card__title {
+    @apply mt-auto shrink-0 text-balance font-serif text-2xl font-normal tracking-tight text-white transition-all md:text-3xl;
+    transition-duration: var(--ds-duration-card);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  .ds-media-card:hover > .ds-media-card__inner > .ds-media-card__title {
+    @apply mt-0;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.22);
+  }
+
+  .ds-media-card__body {
+    @apply mt-3 flex-grow opacity-0 transition-opacity delay-100;
+    transition-duration: var(--ds-duration-card);
+  }
+
+  .ds-media-card:hover > .ds-media-card__inner > .ds-media-card__body {
+    @apply opacity-100;
+  }
+
+  /* Same stepped scale as section subtitles (SECTION_LEAD_ON_DARK_CLASS); white for photo + veil */
+  .ds-media-card__text {
+    @apply line-clamp-[10] w-full whitespace-pre-line font-serif text-lg font-normal leading-relaxed text-pretty text-white md:text-xl md:leading-relaxed lg:line-clamp-[9] lg:text-2xl lg:leading-relaxed;
+  }
+
+  .ds-media-card__inner .ds-media-card__title,
+  .ds-media-card__inner .ds-media-card__text {
+    @apply selection:bg-white/25 selection:text-white;
+  }
+
   .leaflet-container {
     font-family: inherit;
   }
