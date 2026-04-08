@@ -73,7 +73,7 @@ export const ContactPage: React.FC = () => {
           aria-hidden
         />
 
-        <div className="section-viewport-scroll relative z-10 mx-auto w-full max-w-[min(92rem,calc(100vw-2.5rem))] px-5 py-12 sm:px-6 md:py-16 lg:py-20">
+        <div className="section-viewport-scroll site-container relative z-10 py-12 md:py-16 lg:py-20">
           {/* Page intro — same scroll context as everything below */}
           <header className="mx-auto max-w-3xl text-center">
             <motion.p

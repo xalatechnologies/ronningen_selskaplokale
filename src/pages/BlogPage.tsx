@@ -27,7 +27,7 @@ export const BlogPage: React.FC = () => {
           aria-hidden
         />
 
-        <div className="section-viewport-scroll relative z-10 mx-auto w-full max-w-[min(92rem,calc(100vw-2.5rem))] px-5 pb-16 pt-14 sm:px-6 md:pb-20 md:pt-16 lg:pt-20">
+        <div className="section-viewport-scroll site-container relative z-10 pb-16 pt-14 md:pb-20 md:pt-16 lg:pt-20">
           <header className="mx-auto max-w-3xl text-center">
             <motion.p
               initial={{ opacity: 0, y: 8 }}
@@ -63,7 +63,7 @@ export const BlogPage: React.FC = () => {
         className="section-viewport border-b border-brand-100 bg-white"
         aria-labelledby="blog-latest-heading"
       >
-        <div className="section-viewport-scroll mx-auto w-full max-w-[min(92rem,calc(100vw-2.5rem))] px-5 py-14 sm:px-6 md:py-16 lg:py-20">
+        <div className="section-viewport-scroll site-container py-14 md:py-16 lg:py-20">
           <div className="mb-10 flex flex-col gap-3 md:mb-12 md:flex-row md:items-end md:justify-between">
             <h2
               id="blog-latest-heading"

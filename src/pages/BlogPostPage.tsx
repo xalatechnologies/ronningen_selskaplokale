@@ -36,7 +36,7 @@ export const BlogPostPage: React.FC = () => {
         aria-label={t('blogPage.backToBlog')}
         className="border-b border-brand-100 bg-brand-50/30"
       >
-        <div className="mx-auto w-full max-w-[min(92rem,calc(100vw-2.5rem))] px-5 py-4 sm:px-6">
+        <div className="site-container py-4">
           <Link
             to={ROUTES.blogg}
             className="inline-flex items-center gap-2 rounded-sm text-sm font-semibold uppercase tracking-[0.16em] text-brand-800 outline-none transition hover:text-brand-950 focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
@@ -62,7 +62,8 @@ export const BlogPostPage: React.FC = () => {
               aria-hidden
             />
           </div>
-          <div className="mx-auto w-full max-w-[min(48rem,calc(100vw-2.5rem))] px-5 pb-10 pt-8 sm:px-6 md:pb-12 md:pt-10">
+          <div className="site-container pb-10 pt-8 md:pb-12 md:pt-10">
+            <div className="mx-auto w-full max-w-3xl">
             <div className="mb-5 flex flex-wrap items-center gap-3 text-xs text-brand-600 md:text-sm">
               <span className="inline-flex items-center rounded-full bg-brand-100 px-2.5 py-0.5 font-medium text-brand-800">
                 {t(`blogPage.posts.${key}.category`)}
@@ -83,10 +84,12 @@ export const BlogPostPage: React.FC = () => {
             >
               {title}
             </motion.h1>
+            </div>
           </div>
         </header>
 
-        <div className="section-viewport-scroll mx-auto w-full max-w-[min(48rem,calc(100vw-2.5rem))] px-5 py-12 sm:px-6 md:py-16">
+        <div className="section-viewport-scroll site-container py-12 md:py-16">
+          <div className="mx-auto w-full max-w-3xl">
           <p className="text-pretty text-lg font-medium leading-relaxed text-brand-800 md:text-xl">
             {t(`blogPage.posts.${key}.excerpt`)}
           </p>
@@ -100,6 +103,7 @@ export const BlogPostPage: React.FC = () => {
               {t('blogPage.backToBlog')}
             </Link>
           </p>
+          </div>
         </div>
       </article>
     </div>

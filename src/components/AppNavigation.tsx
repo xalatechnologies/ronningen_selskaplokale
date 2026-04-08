@@ -58,11 +58,21 @@ function useNavLinks() {
   ];
 }
 
+/** Top bar (desktop): subset of routes shown inline — rest stay in the mobile drawer. */
+const DESKTOP_HEADER_PATHS = new Set<string>([
+  ROUTES.bryllup,
+  ROUTES.bedrift,
+  ROUTES.selskap,
+  ROUTES.priser,
+  ROUTES.galleri,
+]);
+
 export function AppNavigation() {
   const { t, i18n } = useTranslation();
   const location = useLocation();
   const reduceMotion = useReducedMotion();
   const navLinks = useNavLinks();
+  const desktopNavLinks = navLinks.filter((link) => DESKTOP_HEADER_PATHS.has(link.path));
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
@@ -150,11 +160,6 @@ export function AppNavigation() {
     prevMenuOpen.current = menuOpen;
   }, [menuOpen]);
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'no' ? 'en' : 'no';
-    i18n.changeLanguage(newLang);
-  };
-
   const siteChatLang = i18n.language === 'no' ? 'no' : 'en';
 
   const sendChat = () => {
@@ -216,15 +221,19 @@ export function AppNavigation() {
 
   return (
     <>
-      {/* Top bar: logo left, phone + menu right — language lives in the drawer */}
+      {/* Top bar: logo left; desktop inline nav; mobile hamburger → drawer (full list) */}
       <header
         className={cn(
           'fixed left-0 right-0 top-0 z-50 border-b border-brand-100 bg-white/95 shadow-sm backdrop-blur-md',
           TOP_NAV_H
         )}
       >
-        <div className={cn('mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6')}>
-          <Link to="/" onClick={closeMenu} className={brandLinkClass}>
+        <div
+          className={cn(
+            'site-container grid h-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-3'
+          )}
+        >
+          <Link to="/" onClick={closeMenu} className={cn(brandLinkClass, 'min-w-0 justify-self-start')}>
             <img
               src="/logo.png"
               alt=""
@@ -243,32 +252,50 @@ export function AppNavigation() {
             </span>
           </Link>
 
-          <div className="flex shrink-0 items-center gap-1 sm:gap-2">
-            <button
-              type="button"
-              onClick={toggleLanguage}
-              className="px-1 text-[11px] font-bold uppercase tracking-widest text-brand-900 transition-colors hover:text-brand-700"
-              aria-label={t('nav.changeLanguage')}
+          <div className="flex min-w-0 justify-center">
+            <nav
+              className="hidden flex-wrap items-center justify-center gap-x-4 gap-y-1 md:flex lg:gap-x-6 xl:gap-x-8"
+              aria-label={t('nav.menuLabel')}
             >
-              {i18n.language === 'no' ? 'NO' : 'EN'}
-            </button>
-            <Link
-              to={kontaktSkjemaHash()}
-              className="flex h-11 items-center justify-center rounded-full bg-brand-900 px-3 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lg transition hover:bg-brand-800 hover:shadow-xl md:h-12 md:px-4 md:text-[11px] md:tracking-[0.24em]"
-            >
-              {t('nav.contactUs')}
-            </Link>
+              {desktopNavLinks.map((link) => {
+                const active = isNavActive(link.path);
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={cn(
+                      'shrink-0 rounded-lg px-3 py-2 font-serif text-sm font-medium tracking-tight transition-colors lg:px-4 lg:text-[0.9375rem]',
+                      active
+                        ? 'bg-brand-50 font-semibold text-brand-900'
+                        : 'text-brand-700 hover:bg-brand-50/80 hover:text-brand-900'
+                    )}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
+            </nav>
+          </div>
+
+          <div className="flex shrink-0 items-center justify-end gap-2 sm:gap-2.5">
             <button
               ref={menuButtonRef}
               type="button"
               onClick={() => setMenuOpen((v) => !v)}
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-brand-900 transition-colors hover:bg-brand-50 md:h-12 md:w-12"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-brand-900 transition-colors hover:bg-brand-50 md:hidden"
               aria-expanded={menuOpen}
               aria-controls="nav-menu-drawer"
               aria-label={menuOpen ? t('nav.menuClose') : t('nav.menuOpen')}
             >
               {menuOpen ? <X size={28} aria-hidden /> : <Menu size={28} aria-hidden />}
             </button>
+            <Link
+              to={kontaktSkjemaHash()}
+              onClick={closeMenu}
+              className="flex h-11 shrink-0 items-center justify-center rounded-full bg-brand-900 px-3 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lg transition hover:bg-brand-800 hover:shadow-xl md:h-12 md:px-4 md:text-[11px] md:tracking-[0.24em]"
+            >
+              {t('nav.contactUs')}
+            </Link>
           </div>
         </div>
       </header>

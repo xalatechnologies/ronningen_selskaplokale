@@ -62,7 +62,7 @@ export function FacilityPricingBlock() {
         aria-hidden
       />
 
-      <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-5 py-16 sm:px-8 sm:py-20 md:px-14 md:py-24 lg:px-16 xl:px-20">
+      <div className="section-viewport-scroll site-container relative z-10 py-16 sm:py-20 md:py-24">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}

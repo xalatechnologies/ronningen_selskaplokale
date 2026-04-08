@@ -968,7 +968,7 @@ const resources = {
         about: 'Om oss',
         weddings: 'Bryllup',
         corporate: 'Bedrift',
-        private: 'Privat',
+        private: 'Selskap',
         packages: 'Pakker',
         prices: 'Priser',
         facilities: 'Fasiliteter',

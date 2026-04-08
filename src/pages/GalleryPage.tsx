@@ -149,7 +149,7 @@ export const GalleryPage: React.FC = () => {
           aria-hidden
         />
 
-        <div className="section-viewport-scroll relative z-10 mx-auto w-full max-w-[min(92rem,calc(100vw-2.5rem))] px-5 pb-16 pt-12 sm:px-6 md:pb-28 md:pt-16 lg:pt-20">
+        <div className="section-viewport-scroll site-container relative z-10 pb-16 pt-12 md:pb-28 md:pt-16 lg:pt-20">
           <header className="mx-auto max-w-3xl text-center">
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-600">
               {t('galleryPage.heroEyebrow')}
@@ -258,14 +258,14 @@ export const GalleryPage: React.FC = () => {
       </section>
 
       {/* CTA — same editorial block as Weddings final CTA */}
-      <section className="section-viewport px-8 md:px-20">
-        <div className="section-viewport-scroll py-8 md:py-10">
+      <section className="section-viewport">
+        <div className="section-viewport-scroll site-container py-8 md:py-10">
           <motion.div
             initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: prefersReducedMotion ? 0 : 1 }}
-            className="relative mx-auto max-w-[1800px] overflow-hidden rounded-xl bg-brand-900 px-6 py-12 text-center text-white shadow-2xl sm:px-10 sm:py-14 md:px-14 md:py-16 lg:px-16 lg:py-20"
+            className="relative w-full overflow-hidden rounded-xl bg-brand-900 px-6 py-12 text-center text-white shadow-2xl sm:px-10 sm:py-14 md:px-14 md:py-16 lg:px-16 lg:py-20"
           >
             <div className="absolute inset-0 z-0 opacity-30">
               <img

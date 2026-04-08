@@ -176,7 +176,7 @@ export const FacilitiesPage = () => {
             aria-hidden
           />
         </div>
-        <div className="section-viewport-scroll relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-center px-4 py-6 text-center text-white">
+        <div className="section-viewport-scroll site-container relative z-10 flex w-full flex-col items-center justify-center py-6 text-center text-white">
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -224,7 +224,7 @@ export const FacilitiesPage = () => {
         aria-labelledby="facilities-cards-heading"
         className="section-viewport scroll-mt-24 border-b border-brand-200/80 bg-linear-to-b from-white via-brand-50/50 to-brand-100/40"
       >
-        <div className="section-viewport-scroll mx-auto w-full max-w-[1800px] px-5 py-14 md:px-10 md:py-20 lg:px-14 lg:py-24">
+        <div className="section-viewport-scroll site-container py-14 md:py-20 lg:py-24">
           <div className="mb-10 flex flex-col gap-6 md:mb-12 md:flex-row md:items-end md:justify-between md:gap-8">
             <div className="max-w-5xl">
               <motion.h2
@@ -281,7 +281,7 @@ export const FacilitiesPage = () => {
               <div
                 ref={facilitiesRef}
                 role="list"
-                className="scrollbar-facilities -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-pl-5 scroll-pr-5 px-5 pb-4 pt-2 md:mx-0 md:gap-8 md:scroll-pl-8 md:scroll-pr-8 md:px-8 md:pb-5"
+                className="scrollbar-facilities site-carousel-bleed flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-pl-[var(--site-gutter-x)] scroll-pr-[var(--site-gutter-x)] pb-4 pt-2 md:mx-0 md:gap-8 md:scroll-pl-8 md:scroll-pr-8 md:px-0 md:pb-5"
               >
                 {FACILITY_CARD_KEYS.map((cardKey, i) => {
                   const itemBase = `facilitiesPage.introCardsSection.items.${cardKey}`;
@@ -320,8 +320,8 @@ export const FacilitiesPage = () => {
         </div>
       </section>
 
-      <section aria-labelledby="facilities-usecases-heading" className="section-viewport relative overflow-hidden border-b border-brand-800 bg-brand-900 px-4 text-white">
-        <div className="section-viewport-scroll relative z-10 mx-auto w-full max-w-[1800px] px-5 py-14 sm:px-8 sm:py-16 md:px-14 md:py-16 lg:px-16 xl:px-20">
+      <section aria-labelledby="facilities-usecases-heading" className="section-viewport relative overflow-hidden border-b border-brand-800 bg-brand-900 text-white">
+        <div className="section-viewport-scroll site-container relative z-10 py-14 sm:py-16 md:py-16">
           <div className="mb-7 md:mb-8 lg:mb-7">
             <motion.h2 id="facilities-usecases-heading" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className={SECTION_H2_ON_DARK_CLASS}>
               {t('facilitiesPage.useCasesSection.headingBefore')}
@@ -379,7 +379,7 @@ export const FacilitiesPage = () => {
         aria-labelledby="facilities-gallery-heading"
         className="section-viewport relative overflow-hidden border-b border-brand-100 bg-white"
       >
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
+        <div className="section-viewport-scroll site-container relative z-10 py-24">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 max-w-3xl">
             <h2 id="facilities-gallery-heading" className={cn(SECTION_H2_CLASS, 'mb-6')}>
               {t('facilitiesPage.gallerySection.heading')}
@@ -399,7 +399,7 @@ export const FacilitiesPage = () => {
                 </button>
               </>
             )}
-            <div ref={galleryRef} className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-8 md:mx-0 md:gap-8 md:px-0 md:pb-10">
+            <div ref={galleryRef} className="scrollbar-hide site-carousel-bleed flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 md:mx-0 md:gap-8 md:px-0 md:pb-10">
               {gallerySlides.map((slide, i) => (
                 <motion.div
                   key={slide.src}
@@ -454,7 +454,8 @@ export const FacilitiesPage = () => {
         aria-labelledby="facilities-faq-heading"
         className="section-viewport relative overflow-hidden border-b border-brand-100 bg-brand-50/50"
       >
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-3xl px-6 py-12 sm:px-8 md:py-16">
+        <div className="section-viewport-scroll site-container relative z-10 py-12 md:py-16">
+          <div className="mx-auto w-full max-w-3xl">
           <div className="mb-10 text-center md:mb-12">
             <motion.h2
               id="facilities-faq-heading"
@@ -526,16 +527,17 @@ export const FacilitiesPage = () => {
               );
             })}
           </div>
+          </div>
         </div>
       </section>
 
-      <section aria-labelledby="facilities-closing-cta-heading" className="section-viewport px-8 md:px-20">
-        <div className="section-viewport-scroll py-8 md:py-12">
+      <section aria-labelledby="facilities-closing-cta-heading" className="section-viewport">
+        <div className="section-viewport-scroll site-container py-8 md:py-12">
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative mx-auto max-w-[1800px] overflow-hidden rounded-xl bg-brand-900 px-6 py-14 text-center text-white shadow-2xl sm:px-10 sm:py-16 md:px-14 md:py-20"
+            className="relative w-full overflow-hidden rounded-xl bg-brand-900 px-6 py-14 text-center text-white shadow-2xl sm:px-10 sm:py-16 md:px-14 md:py-20"
           >
             <div className="absolute inset-0 opacity-10">
               <div className="h-full w-full bg-[radial-gradient(circle_at_30%_40%,white_0%,transparent_35%),radial-gradient(circle_at_70%_60%,white_0%,transparent_35%)]" />

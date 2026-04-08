@@ -60,7 +60,8 @@ export const FAQPage: React.FC = () => {
   return (
     <div className="flex flex-col">
       <section className="section-viewport">
-        <div className="section-viewport-scroll mx-auto w-full max-w-4xl px-4 py-16">
+        <div className="section-viewport-scroll site-container py-16">
+          <div className="mx-auto w-full max-w-4xl">
           <div className="mb-12 text-center">
             <h1 className="mb-4 font-serif text-5xl">{t('nav.faq')}</h1>
             <p className="text-brand-600">Find answers to the most common questions about our venue and services.</p>
@@ -77,6 +78,7 @@ export const FAQPage: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
           </div>
         </div>
       </section>

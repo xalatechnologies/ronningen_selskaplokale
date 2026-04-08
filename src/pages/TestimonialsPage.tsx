@@ -35,7 +35,7 @@ export const TestimonialsPage: React.FC = () => {
   return (
     <div className="flex flex-col">
     <section className="section-viewport">
-      <div className="section-viewport-scroll mx-auto max-w-7xl px-4 py-16">
+      <div className="section-viewport-scroll site-container py-16">
       <div className="mb-12 text-center">
         <h1 className="text-5xl font-serif mb-4">Testimonials</h1>
         <p className="text-brand-600 max-w-2xl mx-auto">

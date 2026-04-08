@@ -45,7 +45,7 @@ export const PricesPage: React.FC = () => {
           aria-hidden
         />
 
-        <div className="section-viewport-scroll relative z-10 mx-auto w-full max-w-[min(92rem,calc(100vw-2.5rem))] px-5 pb-8 pt-10 sm:px-6 md:pb-10 md:pt-12">
+        <div className="section-viewport-scroll site-container relative z-10 pb-8 pt-10 md:pb-10 md:pt-12">
           <header className="mx-auto max-w-3xl text-center">
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-600">
               {t('pricesPage.heroEyebrow')}
@@ -69,7 +69,7 @@ export const PricesPage: React.FC = () => {
       <FacilityPricingBlock />
 
       <section className="border-t border-brand-200/80 bg-brand-50/50">
-        <div className="section-viewport-scroll mx-auto max-w-[1800px] px-5 py-12 sm:px-8 md:px-14 md:py-16 lg:px-16 xl:px-20">
+        <div className="section-viewport-scroll site-container py-12 md:py-16">
           <div className="relative overflow-hidden rounded-2xl bg-brand-900 px-8 py-12 text-white shadow-2xl sm:px-10 sm:py-14 md:flex md:items-center md:justify-between md:gap-12 md:px-14 md:py-16 lg:px-16 lg:py-20">
             <div
               className="pointer-events-none absolute inset-0 bg-gradient-to-br from-brand-800/90 via-brand-900 to-brand-950"

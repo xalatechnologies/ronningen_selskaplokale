@@ -25,6 +25,7 @@ import {
   ArrowUpRight,
 } from 'lucide-react';
 import { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import type React from 'react';
 import './lib/i18n';
 import { Toaster } from 'sonner';
 
@@ -233,7 +234,7 @@ const Home = () => {
             aria-hidden
           />
         </div>
-        <div className="section-viewport-scroll relative z-10 flex h-full min-h-0 w-full flex-col items-center justify-center overflow-hidden px-4 py-6 text-center text-white sm:px-8 md:px-10">
+        <div className="section-viewport-scroll site-container relative z-10 flex h-full min-h-0 w-full flex-col items-center justify-center overflow-hidden py-6 text-center text-white">
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -277,7 +278,7 @@ const Home = () => {
         />
 
         <div className="section-viewport-scroll relative z-10 flex min-h-0 flex-col">
-          <div className="mx-auto flex w-full max-w-[1920px] flex-col px-5 py-16 sm:px-8 sm:py-20 md:px-12 md:py-24 lg:px-16 xl:px-20">
+          <div className="site-container flex w-full flex-col py-16 sm:py-20 md:py-24">
             <header className="max-w-2xl space-y-4 md:space-y-5">
               <h2 id="konsepter-heading" className={SECTION_H2_CLASS}>
                 {t('homeConcepts.heading')}
@@ -350,8 +351,8 @@ const Home = () => {
       </section>
 
       {/* Our Services — flat brand-900 (samme som bryllup «Slik kan dagen se ut») */}
-      <section className="section-viewport relative overflow-hidden bg-brand-900 px-4 text-white">
-        <div className="section-viewport-scroll relative z-10 mx-auto w-full max-w-[1800px] px-5 py-14 sm:px-8 sm:py-16 md:px-14 md:py-16 lg:px-16 xl:px-20">
+      <section className="section-viewport relative overflow-hidden bg-brand-900 text-white">
+        <div className="section-viewport-scroll site-container relative z-10 py-14 sm:py-16 md:py-16">
           <div className="mb-7 md:mb-8 lg:mb-7">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -421,7 +422,7 @@ const Home = () => {
           <div className="absolute top-[40%] -right-[10%] h-[40%] w-[40%] rounded-full bg-brand-100/20 blur-[150px]" aria-hidden />
         </div>
 
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
+        <div className="section-viewport-scroll site-container relative z-10 py-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -472,7 +473,7 @@ const Home = () => {
 
             <div
               ref={galleryRef}
-              className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-8 md:gap-8 md:pb-10 md:mx-0 md:px-0"
+              className="scrollbar-hide site-carousel-bleed flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 md:mx-0 md:gap-8 md:px-0 md:pb-10"
             >
               {inspirationGallerySlides.map((item, i) => {
                 const slideDescription = t('inspirationGallery.slideAlt', {
@@ -549,7 +550,7 @@ const Home = () => {
           aria-hidden
         />
 
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-20 md:px-20 md:py-28">
+        <div className="section-viewport-scroll site-container relative z-10 py-20 md:py-28">
           <div className="flex flex-col gap-14 lg:grid lg:grid-cols-12 lg:items-end lg:gap-16 xl:gap-20">
             <header className="text-center lg:col-span-5 xl:col-span-4 lg:text-left">
               <h2 id="partnere-heading" className={cn(SECTION_H2_CLASS, 'mb-4 md:mb-5')}>
@@ -706,7 +707,7 @@ const Footer = () => {
 
   return (
     <footer className="border-t border-brand-800/90 bg-brand-900 text-brand-100">
-      <div className="mx-auto max-w-7xl px-4 py-14 md:px-6 md:py-16">
+      <div className="site-container py-[8px]">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
           <div className="space-y-4">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
@@ -787,80 +788,87 @@ const Footer = () => {
             </div>
           </div>
 
-          <div>
-            <p className={labelClass}>{t('footer.contact')}</p>
-            <ul className="space-y-2.5 text-sm text-brand-300">
-              <li>
+          <div className="flex flex-col items-center text-center">
+            <p className={cn(labelClass, 'w-full text-center')}>{t('footer.contact')}</p>
+            <ul className="m-0 list-none space-y-2.5 p-0 text-sm text-brand-300">
+              <li className="flex justify-center">
                 <a href="tel:+4796665001" className={linkClass}>
-                  <span className="inline-flex items-center gap-2.5">
+                  <span className="inline-flex items-center justify-center gap-2.5">
                     <Phone size={15} className="shrink-0 text-brand-500" aria-hidden />
                     +47 96 66 50 01
                   </span>
                 </a>
               </li>
-              <li>
+              <li className="flex justify-center">
                 <a href="mailto:r.selskapslokale@gmail.com" className={linkClass}>
-                  <span className="inline-flex items-center gap-2.5">
+                  <span className="inline-flex items-center justify-center gap-2.5">
                     <Mail size={15} className="shrink-0 text-brand-500" aria-hidden />
                     r.selskapslokale@gmail.com
                   </span>
                 </a>
               </li>
-              <li className="flex items-start gap-2.5 pt-0.5">
+              <li className="flex justify-center gap-2.5 pt-0.5">
                 <MapPin size={15} className="mt-0.5 shrink-0 text-brand-500" aria-hidden />
                 <span>Baneveien 290, 3410 SYLLING</span>
               </li>
             </ul>
           </div>
 
-          <div>
-            <p className={labelClass}>{t('footer.quickLinks')}</p>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link to={ROUTES.bryllup} className={linkClass}>
-                  {t('nav.weddings')}
-                </Link>
-              </li>
-              <li>
-                <Link to={ROUTES.bedrift} className={linkClass}>
-                  {t('nav.corporate')}
-                </Link>
-              </li>
-              <li>
-                <Link to={ROUTES.selskap} className={linkClass}>
-                  {t('nav.private')}
-                </Link>
-              </li>
-              <li>
-                <Link to={ROUTES.fasiliteter} className={linkClass}>
-                  {t('nav.facilities')}
-                </Link>
-              </li>
-              <li>
-                <Link to={ROUTES.priser} className={linkClass}>
-                  {t('nav.prices')}
-                </Link>
-              </li>
-              <li>
-                <Link to={ROUTES.galleri} className={linkClass}>
-                  {t('nav.gallery')}
-                </Link>
-              </li>
-              <li>
-                <Link to={ROUTES.blogg} className={linkClass}>
-                  {t('nav.blog')}
-                </Link>
-              </li>
-              <li>
-                <Link to={ROUTES.kontakt} className={linkClass}>
-                  {t('nav.contact')}
-                </Link>
-              </li>
-            </ul>
+          <div className="flex flex-col items-center">
+            <p className={cn(labelClass, 'w-full text-center')}>{t('footer.quickLinks')}</p>
+            <nav
+              aria-label={t('footer.quickLinks')}
+              className="mx-auto flex flex-row gap-x-6 text-left text-sm sm:gap-x-8"
+            >
+              <ul className="m-0 shrink-0 list-none space-y-2 p-0">
+                <li>
+                  <Link to={ROUTES.bryllup} className={linkClass}>
+                    {t('nav.weddings')}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={ROUTES.bedrift} className={linkClass}>
+                    {t('nav.corporate')}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={ROUTES.selskap} className={linkClass}>
+                    {t('nav.private')}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={ROUTES.fasiliteter} className={linkClass}>
+                    {t('nav.facilities')}
+                  </Link>
+                </li>
+              </ul>
+              <ul className="m-0 shrink-0 list-none space-y-2 p-0">
+                <li>
+                  <Link to={ROUTES.priser} className={linkClass}>
+                    {t('nav.prices')}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={ROUTES.galleri} className={linkClass}>
+                    {t('nav.gallery')}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={ROUTES.blogg} className={linkClass}>
+                    {t('nav.blog')}
+                  </Link>
+                </li>
+                <li>
+                  <Link to={ROUTES.kontakt} className={linkClass}>
+                    {t('nav.contact')}
+                  </Link>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center gap-4 border-t border-brand-800 pt-8 text-xs text-brand-500 md:flex-row md:items-center md:justify-between">
+        <div className="mt-4 flex flex-col items-center gap-3 border-t border-brand-800 pt-3 text-xs text-brand-500 md:flex-row md:items-center md:justify-between">
           <p className="m-0 text-center md:text-left">
             © {year} Rønningen Selskapslokale. {t('footer.rights')}.
           </p>

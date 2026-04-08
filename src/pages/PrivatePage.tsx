@@ -137,7 +137,7 @@ export const PrivatePage = () => {
             aria-hidden
           />
         </div>
-        <div className="section-viewport-scroll relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-center px-4 py-6 text-center text-white">
+        <div className="section-viewport-scroll site-container relative z-10 flex w-full flex-col items-center justify-center py-6 text-center text-white">
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -183,7 +183,7 @@ export const PrivatePage = () => {
         aria-labelledby="private-value-heading"
         className="section-viewport scroll-mt-24 border-b border-brand-200/80 bg-linear-to-b from-white via-brand-50/50 to-brand-100/40"
       >
-        <div className="section-viewport-scroll mx-auto w-full max-w-[1800px] px-5 py-14 md:px-10 md:py-20 lg:px-14 lg:py-24">
+        <div className="section-viewport-scroll site-container py-14 md:py-20 lg:py-24">
           <div className="mx-auto max-w-3xl text-center">
             <motion.h2
               id="private-value-heading"
@@ -255,14 +255,14 @@ export const PrivatePage = () => {
       {/* 3 — Anledninger: samme grid som bedrift */}
       <section
         aria-labelledby="private-events-heading"
-        className="section-viewport relative overflow-hidden border-b border-brand-800 bg-brand-900 px-4 text-white"
+        className="section-viewport relative overflow-hidden border-b border-brand-800 bg-brand-900 text-white"
       >
         <div className="pointer-events-none absolute right-0 top-0 h-full w-full overflow-hidden">
           <div className="absolute -right-[5%] top-[10%] h-[30%] w-[30%] rounded-full bg-brand-400/10 blur-[100px]" />
           <div className="absolute -left-[5%] bottom-[10%] h-[30%] w-[30%] rounded-full bg-white/[0.07] blur-[100px]" />
         </div>
 
-        <div className="section-viewport-scroll relative z-10 mx-auto w-full max-w-[1800px] px-5 py-14 sm:px-8 sm:py-16 md:px-14 md:py-16 lg:px-16 xl:px-20">
+        <div className="section-viewport-scroll site-container relative z-10 py-14 sm:py-16 md:py-16">
           <div className="mb-7 md:mb-8 lg:mb-7">
             <motion.h2
               id="private-events-heading"
@@ -349,7 +349,7 @@ export const PrivatePage = () => {
           <div className="absolute top-[40%] -right-[10%] h-[40%] w-[40%] rounded-full bg-brand-100/20 blur-[150px]" />
         </div>
 
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
+        <div className="section-viewport-scroll site-container relative z-10 py-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -397,7 +397,7 @@ export const PrivatePage = () => {
 
             <div
               ref={galleryRef}
-              className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-8 md:mx-0 md:gap-8 md:px-0 md:pb-10"
+              className="scrollbar-hide site-carousel-bleed flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 md:mx-0 md:gap-8 md:px-0 md:pb-10"
             >
               {gallerySlides.map((slide, i) => (
                 <motion.div
@@ -455,7 +455,8 @@ export const PrivatePage = () => {
           <div className="absolute left-[5%] top-[10%] h-[20%] w-[20%] rounded-full bg-brand-200/10 blur-[100px]" />
         </div>
 
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-3xl px-6 py-12 sm:px-8 md:py-16">
+        <div className="section-viewport-scroll site-container relative z-10 py-12 md:py-16">
+          <div className="mx-auto w-full max-w-3xl">
           <div className="mb-10 text-center md:mb-12">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -529,18 +530,19 @@ export const PrivatePage = () => {
               );
             })}
           </div>
+          </div>
         </div>
       </section>
 
       {/* 6 — Avsluttende CTA (samme uttrykk som galleri) */}
-      <section className="section-viewport px-8 md:px-20">
-        <div className="section-viewport-scroll py-8 md:py-12">
+      <section className="section-viewport">
+        <div className="section-viewport-scroll site-container py-8 md:py-12">
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative mx-auto max-w-[1800px] overflow-hidden rounded-xl bg-brand-900 px-6 py-14 text-center text-white shadow-2xl sm:px-10 sm:py-16 md:px-14 md:py-20"
+            className="relative w-full overflow-hidden rounded-xl bg-brand-900 px-6 py-14 text-center text-white shadow-2xl sm:px-10 sm:py-16 md:px-14 md:py-20"
           >
             <div className="absolute inset-0 z-0 opacity-30">
               <img

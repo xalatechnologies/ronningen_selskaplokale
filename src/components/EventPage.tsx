@@ -35,7 +35,7 @@ export const EventPage: React.FC<EventPageProps> = ({ title, subtitle, descripti
             referrerPolicy="no-referrer"
           />
         </div>
-        <div className="section-viewport-scroll relative z-10 flex w-full max-w-5xl flex-col items-center justify-center px-4 py-6 text-center text-white">
+        <div className="section-viewport-scroll site-container relative z-10 flex w-full flex-col items-center justify-center py-6 text-center text-white">
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -58,7 +58,7 @@ export const EventPage: React.FC<EventPageProps> = ({ title, subtitle, descripti
 
       {/* Concept Section */}
       <section id="event-konsept" className="section-viewport scroll-mt-24 overflow-hidden bg-brand-900 text-white">
-        <div className="section-viewport-scroll mx-auto max-w-7xl px-4 py-24">
+        <div className="section-viewport-scroll site-container py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <motion.div 
               initial={{ opacity: 0, x: -50 }}
@@ -112,7 +112,7 @@ export const EventPage: React.FC<EventPageProps> = ({ title, subtitle, descripti
       </section>
       {/* Content */}
       <section className="section-viewport">
-        <div className="section-viewport-scroll mx-auto grid max-w-7xl grid-cols-1 items-start gap-20 px-4 py-20 lg:grid-cols-2">
+        <div className="section-viewport-scroll site-container grid grid-cols-1 items-start gap-20 py-20 lg:grid-cols-2">
         <div className="space-y-12">
             <h2 className={SECTION_H2_CLASS}>Create Unforgettable Moments</h2>
             <p className="text-brand-700 leading-relaxed text-xl font-light">

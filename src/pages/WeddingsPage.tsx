@@ -119,7 +119,7 @@ export const WeddingsPage = () => {
             aria-hidden
           />
         </div>
-        <div className="section-viewport-scroll relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center justify-center px-4 py-6 text-center text-white">
+        <div className="section-viewport-scroll site-container relative z-10 flex w-full flex-col items-center justify-center py-6 text-center text-white">
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -178,7 +178,7 @@ export const WeddingsPage = () => {
           aria-hidden
         />
 
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
+        <div className="section-viewport-scroll site-container relative z-10 py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-14 xl:gap-20 items-start">
             <div className="order-2 lg:order-1 max-w-3xl">
               <h2 id="atmosfaeren-heading" className={cn(SECTION_H2_CLASS, 'mb-6 text-balance')}>
@@ -237,7 +237,7 @@ export const WeddingsPage = () => {
 
       {/* 4. What your day can look like - Visual Timeline */}
       <section className="section-viewport relative overflow-hidden bg-brand-900 text-white">
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-20 md:px-20">
+        <div className="section-viewport-scroll site-container relative z-10 py-20">
           <header className="relative mb-16">
             <div className="flex max-w-4xl flex-col gap-5 md:gap-6">
               <motion.h2
@@ -308,14 +308,14 @@ export const WeddingsPage = () => {
       </section>
 
       {/* 5: Services — samme rutenett og kortformat som forsiden «Eksklusive Opplevelser» */}
-      <section className="section-viewport relative overflow-hidden bg-[#F5F5F5] px-4">
+      <section className="section-viewport relative overflow-hidden bg-[#F5F5F5]">
         {/* Subtle Background Glows */}
         <div className="pointer-events-none absolute top-0 right-0 h-full w-full overflow-hidden">
           <div className="absolute top-[10%] -right-[5%] w-[30%] h-[30%] bg-brand-200/10 blur-[100px] rounded-full"></div>
           <div className="absolute bottom-[10%] -left-[5%] w-[30%] h-[30%] bg-brand-300/10 blur-[100px] rounded-full"></div>
         </div>
 
-        <div className="section-viewport-scroll relative z-10 mx-auto w-full max-w-[1800px] px-5 py-14 sm:px-8 sm:py-16 md:px-14 md:py-16 lg:px-16 xl:px-20">
+        <div className="section-viewport-scroll site-container relative z-10 py-14 sm:py-16 md:py-16">
           <div className="mb-7 md:mb-8 lg:mb-7">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -405,7 +405,7 @@ export const WeddingsPage = () => {
           <div className="absolute top-[40%] -right-[10%] w-[40%] h-[40%] bg-brand-100/20 blur-[150px] rounded-full"></div>
         </div>
 
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-[1800px] px-8 py-24 md:px-20">
+        <div className="section-viewport-scroll site-container relative z-10 py-24">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -454,7 +454,7 @@ export const WeddingsPage = () => {
 
             <div
               ref={galleryRef}
-              className="scrollbar-hide -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-8 md:gap-8 md:pb-10 md:mx-0 md:px-0"
+              className="scrollbar-hide site-carousel-bleed flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 md:mx-0 md:gap-8 md:px-0 md:pb-10"
             >
               {inspirationGallerySlides.map((item, i) => {
                 const slideDescription = t('inspirationGallery.slideAlt', {
@@ -521,7 +521,8 @@ export const WeddingsPage = () => {
           <div className="absolute top-[10%] left-[5%] w-[20%] h-[20%] bg-brand-200/10 blur-[100px] rounded-full"></div>
         </div>
 
-        <div className="section-viewport-scroll relative z-10 mx-auto max-w-3xl px-6 py-12 sm:px-8 md:py-16">
+        <div className="section-viewport-scroll site-container relative z-10 py-12 md:py-16">
+          <div className="mx-auto w-full max-w-3xl">
           <div className="text-center mb-10 md:mb-12">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -587,18 +588,19 @@ export const WeddingsPage = () => {
               </motion.div>
             ))}
           </div>
+          </div>
         </div>
       </section>
 
       {/* 9. Final CTA - Editorial Style */}
-      <section className="section-viewport px-8 md:px-20">
-        <div className="section-viewport-scroll py-8 md:py-10">
+      <section className="section-viewport">
+        <div className="section-viewport-scroll site-container py-8 md:py-10">
         <motion.div 
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
-          className="relative mx-auto max-w-[1800px] overflow-hidden rounded-xl bg-brand-900 px-6 py-12 text-center text-white shadow-2xl sm:px-10 sm:py-14 md:px-14 md:py-16 lg:px-16 lg:py-20"
+          className="relative w-full overflow-hidden rounded-xl bg-brand-900 px-6 py-12 text-center text-white shadow-2xl sm:px-10 sm:py-14 md:px-14 md:py-16 lg:px-16 lg:py-20"
         >
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 z-0 opacity-30">
