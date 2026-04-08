@@ -50,8 +50,8 @@ const WEDDINGS_SERVICE_IMAGES = [
   'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800',
   '/weddings/service-photography-waterfall.png',
   '/weddings/service-decoration-tables.png',
-  '/weddings/service-bar-dancefloor-room.png',
-  '/weddings/service-sound-light-banquet.png',
+  '/home-service-bar-dancefloor.png',
+  'https://images.unsplash.com/photo-1758550445795-278c5867493d?auto=format&fit=crop&q=80&w=1200',
   '/weddings/service-table-setting-banquet-hall.png',
 ] as const;
 
