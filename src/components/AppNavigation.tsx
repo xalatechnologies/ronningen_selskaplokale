@@ -221,14 +221,14 @@ export function AppNavigation() {
 
   return (
     <>
-      {/* Top bar: logo left; desktop inline nav; mobile hamburger → drawer (full list) */}
+      {/* Top bar: grid on md+ (logo | nav+CTA); mobile hamburger → drawer (full list) */}
       <header
         className={cn(
           'fixed left-0 right-0 top-0 z-50 border-b border-brand-100 bg-white/95 shadow-sm backdrop-blur-md',
           TOP_NAV_H
         )}
       >
-        {/* Mobile: logo | actions. Desktop: 3 equal cols — logo centered in left third, nav centered, CTA inward in right third. */}
+        {/* Mobile: logo | actions. Desktop: logo centered in left third; nav + Kontakt centered in right two-thirds. */}
         <div
           className={cn(
             'site-container grid h-full min-w-0 grid-cols-[1fr_auto] items-center gap-x-3',
@@ -261,54 +261,61 @@ export function AppNavigation() {
             </span>
           </Link>
 
-          <nav
-            className="col-start-2 row-start-1 hidden min-w-0 flex-wrap items-center justify-center gap-x-6 gap-y-1 md:flex lg:gap-x-8 xl:gap-x-10"
-            aria-label={t('nav.menuLabel')}
+          <div
+            className={cn(
+              'col-start-2 row-start-1 flex min-w-0 items-center justify-end gap-4 pr-2 sm:pr-3',
+              'md:col-span-2 md:justify-center md:gap-6 md:px-2 md:pr-4 lg:gap-8 xl:gap-10'
+            )}
           >
-            {desktopNavLinks.map((link) => {
-              const active = isNavActive(link.path);
-              return (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={cn(
-                    'relative shrink-0 py-2 text-[13px] uppercase tracking-[0.2em] transition-all duration-300',
-                    active
-                      ? 'font-bold text-brand-900'
-                      : 'font-medium text-brand-700 hover:text-brand-900'
-                  )}
-                >
-                  {link.name}
-                  {active ? (
-                    <motion.div
-                      layoutId="nav-underline"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-800"
-                    />
-                  ) : null}
-                </Link>
-              );
-            })}
-          </nav>
+            <nav
+              className="hidden min-w-0 flex-wrap items-center justify-center gap-x-6 gap-y-1 md:flex lg:gap-x-8 xl:gap-x-10"
+              aria-label={t('nav.menuLabel')}
+            >
+              {desktopNavLinks.map((link) => {
+                const active = isNavActive(link.path);
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={cn(
+                      'relative shrink-0 py-2 text-[13px] uppercase tracking-[0.2em] transition-all duration-300',
+                      active
+                        ? 'font-bold text-brand-900'
+                        : 'font-medium text-brand-700 hover:text-brand-900'
+                    )}
+                  >
+                    {link.name}
+                    {active ? (
+                      <motion.div
+                        layoutId="nav-underline"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-800"
+                      />
+                    ) : null}
+                  </Link>
+                );
+              })}
+            </nav>
 
-          <div className="col-start-2 row-start-1 flex shrink-0 items-center justify-end gap-2 sm:gap-2.5 md:col-start-3 md:justify-self-start md:pl-1">
-            <button
-              ref={menuButtonRef}
-              type="button"
-              onClick={() => setMenuOpen((v) => !v)}
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-brand-900 transition-colors hover:bg-brand-50 md:hidden"
-              aria-expanded={menuOpen}
-              aria-controls="nav-menu-drawer"
-              aria-label={menuOpen ? t('nav.menuClose') : t('nav.menuOpen')}
-            >
-              {menuOpen ? <X size={28} aria-hidden /> : <Menu size={28} aria-hidden />}
-            </button>
-            <Link
-              to={kontaktSkjemaHash()}
-              onClick={closeMenu}
-              className="flex h-11 shrink-0 items-center justify-center rounded-full bg-brand-900 px-3 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lg transition hover:bg-brand-800 hover:shadow-xl md:h-12 md:px-4 md:text-[11px] md:tracking-[0.24em]"
-            >
-              {t('nav.contactUs')}
-            </Link>
+            <div className="flex shrink-0 items-center justify-end gap-2 sm:gap-2.5">
+              <button
+                ref={menuButtonRef}
+                type="button"
+                onClick={() => setMenuOpen((v) => !v)}
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl text-brand-900 transition-colors hover:bg-brand-50 md:hidden"
+                aria-expanded={menuOpen}
+                aria-controls="nav-menu-drawer"
+                aria-label={menuOpen ? t('nav.menuClose') : t('nav.menuOpen')}
+              >
+                {menuOpen ? <X size={28} aria-hidden /> : <Menu size={28} aria-hidden />}
+              </button>
+              <Link
+                to={kontaktSkjemaHash()}
+                onClick={closeMenu}
+                className="flex h-11 shrink-0 items-center justify-center rounded-full bg-brand-900 px-3 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lg transition hover:bg-brand-800 hover:shadow-xl md:h-12 md:px-4 md:text-[11px] md:tracking-[0.24em]"
+              >
+                {t('nav.contactUs')}
+              </Link>
+            </div>
           </div>
         </div>
       </header>
