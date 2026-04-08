@@ -59,7 +59,7 @@
    * Fixed header (h-24 = --site-nav-pad): anchors & scrollIntoView align below the bar.
    */
   html {
-    scroll-padding-top: calc(var(--site-nav-pad) + 0.375rem);
+    scroll-padding-top: calc(var(--site-nav-pad) + 1rem);
   }
 
   html.dark {

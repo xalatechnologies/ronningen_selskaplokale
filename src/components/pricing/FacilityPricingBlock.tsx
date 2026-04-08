@@ -74,7 +74,13 @@ export function FacilityPricingBlock() {
           viewport={{ once: true }}
           className="mb-12 w-full max-w-none"
         >
-          <h2 id={FACILITY_PRICING_HEADING_ID} className={cn(SECTION_H2_CLASS, 'scroll-mt-24 mb-5 text-balance !text-3xl sm:!text-4xl md:!text-5xl')}>
+          <h2
+            id={FACILITY_PRICING_HEADING_ID}
+            className={cn(
+              SECTION_H2_CLASS,
+              'scroll-mt-[calc(var(--site-nav-pad)+1rem)] mb-5 text-balance !text-3xl sm:!text-4xl md:!text-5xl',
+            )}
+          >
             {t('pricesPage.facilityPricing.heading')}
           </h2>
           <p className={SECTION_LEAD_CLASS}>

@@ -23,15 +23,22 @@ export const PricesPage: React.FC = () => {
     if (!hash || hash.length < 2) return;
     const id = hash.slice(1);
     if (!PRICES_HASH_IDS.has(id)) return;
-    const el = document.getElementById(id);
-    if (!el) return;
 
-    const nav = document.querySelector('header');
-    const navHeight = nav instanceof HTMLElement ? nav.getBoundingClientRect().height : 0;
-    const gap = 10;
-    const y = el.getBoundingClientRect().top + window.scrollY - navHeight - gap;
+    const scrollToTarget = () => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const nav = document.querySelector('header');
+      const navHeight = nav instanceof HTMLElement ? Math.ceil(nav.getBoundingClientRect().height) : 0;
+      /* Luft under fast header + multi-line H2 (Playfair); målt etter layout/motion. */
+      const breathingPx = 40;
+      const rect = el.getBoundingClientRect();
+      const y = rect.top + window.scrollY - navHeight - breathingPx;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    };
 
-    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    requestAnimationFrame(() => {
+      requestAnimationFrame(scrollToTarget);
+    });
   }, [hash]);
 
   return (

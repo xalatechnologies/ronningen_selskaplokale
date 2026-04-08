@@ -50,7 +50,10 @@ export function WeddingPackagesBlock() {
           viewport={{ once: true }}
           className="mb-12 w-full max-w-3xl md:mb-14"
         >
-          <h2 id={WEDDING_PACKAGES_HEADING_ID} className={cn(SECTION_H2_CLASS, 'scroll-mt-24 mb-5')}>
+          <h2
+            id={WEDDING_PACKAGES_HEADING_ID}
+            className={cn(SECTION_H2_CLASS, 'scroll-mt-[calc(var(--site-nav-pad)+1rem)] mb-5')}
+          >
             {t('weddingsPage.packagesSection.heading')}
           </h2>
           <p className={SECTION_LEAD_CLASS}>{t('weddingsPage.packagesSection.intro')}</p>
