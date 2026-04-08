@@ -21,9 +21,8 @@
 
 @layer base {
   :root {
-    /* Fixed top bar (h-24 = 6rem): hero / section viewport math. */
+    /* Fixed top bar (h-24 = 6rem): hero height below nav. */
     --site-nav-pad: 6rem;
-    --section-max-h: calc(100dvh - var(--site-nav-pad));
   }
 
   body {
@@ -84,7 +83,7 @@
     animation: spin-slow 15s linear infinite;
   }
 
-  /* Full-viewport hero; on compact laptop matches section cap below nav. */
+  /* Full-viewport hero below fixed nav. */
   .section-viewport-hero {
     min-height: 28rem;
     height: 100svh;
@@ -104,36 +103,6 @@
   .home-hero .section-viewport-scroll,
   .hero-below-nav .section-viewport-scroll {
     overflow: hidden;
-  }
-
-  /* Compact laptop: each primary section ≤ one viewport below fixed nav (internal scroll). */
-  @media (min-width: 768px) and ((max-width: 1366px) or (max-height: 864px)) {
-    .section-viewport {
-      display: flex;
-      flex-direction: column;
-      max-height: var(--section-max-h);
-      height: var(--section-max-h);
-      min-height: 0;
-      overflow: hidden;
-    }
-
-    .section-viewport-hero {
-      height: var(--section-max-h);
-      max-height: var(--section-max-h);
-      min-height: 0;
-    }
-
-    .section-viewport-scroll {
-      flex: 1 1 0%;
-      min-height: 0;
-      overflow-y: auto;
-      overscroll-behavior-y: contain;
-    }
-
-    .home-hero .section-viewport-scroll,
-    .hero-below-nav .section-viewport-scroll {
-      overflow-y: hidden;
-    }
   }
 }
 
