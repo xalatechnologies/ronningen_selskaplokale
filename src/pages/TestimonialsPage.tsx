@@ -84,7 +84,7 @@ export const TestimonialsPage: React.FC = () => {
                 viewport={{ once: true }}
                 className="ui-panel relative p-10"
               >
-                <Quote className="absolute right-8 top-8 text-brand-100 dark:text-brand-950/20" size={48} />
+                <Quote className="absolute right-8 top-8 text-brand-200 dark:text-brand-800" size={48} />
                 <div className="mb-6 flex space-x-1">
                   {[...Array(item.rating)].map((_, j) => (
                     <Star key={j} size={16} className="fill-brand-500 text-brand-500" />

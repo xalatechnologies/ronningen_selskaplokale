@@ -20,8 +20,10 @@ import { ROUTES } from '../lib/routes';
 import {
   SECTION_H2_CLASS,
   SECTION_H2_ON_DARK_CLASS,
+  SECTION_H3_ON_DARK_CLASS,
   SECTION_LEAD_CLASS,
   SECTION_LEAD_ON_DARK_CLASS,
+  PROSE_SECONDARY_ON_DARK_CLASS,
 } from '../lib/typography';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import {
@@ -324,8 +326,13 @@ export const WeddingsPage = () => {
                       </div>
 
                       <div className="space-y-6">
-                        <h3 className="font-serif text-3xl leading-none tracking-tight">{stepTitle}</h3>
-                        <p className="translate-y-8 text-base font-light leading-relaxed text-white/80 opacity-0 transition-all duration-700 group-hover:translate-y-0 group-hover:opacity-100">
+                        <h3 className={SECTION_H3_ON_DARK_CLASS}>{stepTitle}</h3>
+                        <p
+                          className={cn(
+                            PROSE_SECONDARY_ON_DARK_CLASS,
+                            'translate-y-8 opacity-0 transition-all duration-700 group-hover:translate-y-0 group-hover:opacity-100',
+                          )}
+                        >
                           {t(`weddingsPage.dayTimeline.${stepKey}.desc`)}
                         </p>
                       </div>
@@ -422,10 +429,10 @@ export const WeddingsPage = () => {
       </section>
 
       {/* 7. Gallery - Editorial Style */}
-      <section className="section-viewport relative overflow-hidden bg-white">
+      <section className="section-viewport relative overflow-hidden bg-white dark:bg-brand-950">
         {/* Abstract Background Elements */}
         <div className="pointer-events-none absolute top-0 right-0 h-full w-full overflow-hidden">
-          <div className="absolute top-[40%] -right-[10%] w-[40%] h-[40%] bg-brand-100/20 blur-[150px] rounded-full"></div>
+          <div className="absolute top-[40%] -right-[10%] h-[40%] w-[40%] rounded-full bg-brand-100/20 blur-[150px] dark:bg-brand-600/12" />
         </div>
 
         <div className="section-viewport-scroll site-container relative z-10 py-24">
@@ -446,11 +453,12 @@ export const WeddingsPage = () => {
                   type="button"
                   onClick={() => scrollGallery('left')}
                   disabled={!showGalleryLeft}
-                  className={`absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-md backdrop-blur-sm transition-colors md:left-4 md:h-12 md:w-12 ${
+                  className={cn(
+                    'absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-md backdrop-blur-sm transition-colors md:left-4 md:h-12 md:w-12',
                     showGalleryLeft
-                      ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
-                      : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70'
-                  }`}
+                      ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white dark:border-brand-600 dark:bg-brand-800/95 dark:text-brand-50 dark:hover:border-brand-500 dark:hover:bg-brand-700 dark:hover:text-white'
+                      : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70 dark:border-brand-700 dark:bg-brand-900/55 dark:text-brand-600',
+                  )}
                   aria-label={t('galleryPage.lightboxPrev')}
                   aria-disabled={!showGalleryLeft}
                 >
@@ -460,11 +468,12 @@ export const WeddingsPage = () => {
                   type="button"
                   onClick={() => scrollGallery('right')}
                   disabled={!showGalleryRight}
-                  className={`absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-md backdrop-blur-sm transition-colors md:right-4 md:h-12 md:w-12 ${
+                  className={cn(
+                    'absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-md backdrop-blur-sm transition-colors md:right-4 md:h-12 md:w-12',
                     showGalleryRight
-                      ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
-                      : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70'
-                  }`}
+                      ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white dark:border-brand-600 dark:bg-brand-800/95 dark:text-brand-50 dark:hover:border-brand-500 dark:hover:bg-brand-700 dark:hover:text-white'
+                      : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70 dark:border-brand-700 dark:bg-brand-900/55 dark:text-brand-600',
+                  )}
                   aria-label={t('galleryPage.lightboxNext')}
                   aria-disabled={!showGalleryRight}
                 >
@@ -488,7 +497,7 @@ export const WeddingsPage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: Math.min(i * 0.04, 0.4), duration: 0.7 }}
-                    className="group relative aspect-[6/7] min-w-[88%] snap-center overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
+                    className="group relative aspect-[6/7] min-w-[88%] snap-center overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl dark:border-brand-700 dark:bg-brand-900/50 md:min-w-[46%] lg:min-w-[34%]"
                   >
                     <img
                       src={item.src}
@@ -500,7 +509,7 @@ export const WeddingsPage = () => {
                     <button
                       type="button"
                       onClick={() => setLightboxIndex(i)}
-                      className="absolute inset-0 z-10 cursor-pointer rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                      className="absolute inset-0 z-10 cursor-pointer rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 dark:focus-visible:ring-brand-400 dark:focus-visible:ring-offset-brand-950"
                       aria-label={t('inspirationGallery.openImageAria', {
                         description: slideDescription,
                       })}

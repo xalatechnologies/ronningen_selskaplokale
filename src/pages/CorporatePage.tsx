@@ -321,9 +321,9 @@ export const CorporatePage = () => {
       </section>
 
       {/* 4 — Galleri (samme uttrykk som bryllup) */}
-      <section className="section-viewport relative overflow-hidden border-b border-brand-100 bg-white">
+      <section className="section-viewport relative overflow-hidden border-b border-brand-100 bg-white dark:border-brand-800 dark:bg-brand-950">
         <div className="pointer-events-none absolute top-0 right-0 h-full w-full overflow-hidden">
-          <div className="absolute top-[40%] -right-[10%] h-[40%] w-[40%] rounded-full bg-brand-100/20 blur-[150px]" />
+          <div className="absolute top-[40%] -right-[10%] h-[40%] w-[40%] rounded-full bg-brand-100/20 blur-[150px] dark:bg-brand-600/12" />
         </div>
 
         <div className="section-viewport-scroll site-container relative z-10 py-24">
@@ -361,8 +361,8 @@ export const CorporatePage = () => {
                   className={cn(
                     'absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-md backdrop-blur-sm transition-colors md:right-4 md:h-12 md:w-12',
                     showGalleryRight
-                      ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
-                      : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70',
+                      ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white dark:border-brand-600 dark:bg-brand-800/95 dark:text-brand-50 dark:hover:border-brand-500 dark:hover:bg-brand-700 dark:hover:text-white'
+                      : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70 dark:border-brand-700 dark:bg-brand-900/55 dark:text-brand-600',
                   )}
                   aria-label={t('corporatePage.gallerySection.nextImageAria')}
                   aria-disabled={!showGalleryRight}
@@ -383,7 +383,7 @@ export const CorporatePage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08, duration: 0.7 }}
-                  className="group relative aspect-[6/7] min-w-[88%] snap-center overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
+                  className="group relative aspect-[6/7] min-w-[88%] snap-center overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl dark:border-brand-700 dark:bg-brand-900/50 md:min-w-[46%] lg:min-w-[34%]"
                 >
                   <img
                     src={slide.src}
@@ -396,7 +396,7 @@ export const CorporatePage = () => {
                   <button
                     type="button"
                     onClick={() => setLightboxIndex(i)}
-                    className="absolute inset-0 z-10 cursor-pointer rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                    className="absolute inset-0 z-10 cursor-pointer rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 dark:focus-visible:ring-brand-400 dark:focus-visible:ring-offset-brand-950"
                     aria-label={t('corporatePage.gallerySection.openLargeImage', { caption: slide.alt })}
                   />
                 </motion.div>

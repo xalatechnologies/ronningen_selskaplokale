@@ -66,7 +66,7 @@ export const BlogPage: React.FC = () => {
               aria-hidden
             >
               <Sparkles
-                className="h-11 w-11 text-brand-500/90 dark:text-brand-400/90"
+                className="h-11 w-11 text-brand-600 dark:text-brand-400"
                 strokeWidth={1.25}
               />
             </motion.div>

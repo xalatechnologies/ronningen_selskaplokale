@@ -87,7 +87,7 @@ export function WeddingPackagesBlock() {
                     className={cn(
                       UI_CAPTION_CLASS,
                       'mb-2 font-semibold uppercase tracking-[0.22em]',
-                      isPlus ? 'text-brand-300/95' : 'text-brand-500 dark:text-brand-400',
+                      isPlus ? 'text-brand-300' : null,
                     )}
                   >
                     {t(`weddingsPage.packagesSection.items.${pkgId}.name`)}
@@ -123,7 +123,7 @@ export function WeddingPackagesBlock() {
                       <div
                         className={cn(
                           'mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full',
-                          isPlus ? 'bg-white/12 text-amber-200/95' : 'bg-brand-100/90 text-brand-700 dark:bg-brand-950/50 dark:text-brand-300',
+                          isPlus ? 'bg-brand-800 text-amber-200' : 'bg-brand-100 text-brand-700 dark:bg-brand-950 dark:text-brand-300',
                         )}
                       >
                         <CheckCircle2 size={16} strokeWidth={2.25} aria-hidden />
@@ -131,7 +131,7 @@ export function WeddingPackagesBlock() {
                       <span
                         className={cn(
                           'text-[15px] leading-relaxed md:text-[0.98rem]',
-                          isPlus ? 'text-brand-100/92' : 'text-brand-800 dark:text-brand-100',
+                          isPlus ? 'text-brand-100' : 'text-brand-800 dark:text-brand-100',
                         )}
                       >
                         {t(`weddingsPage.packagesSection.items.${pkgId}.f${j + 1}`)}

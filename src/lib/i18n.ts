@@ -121,7 +121,7 @@ const resources = {
             description:
               'Overnight stays and childcare can be arranged — ideal for guests travelling from afar and families with young children.',
             imgAlt:
-              'Large white wooden house with a wooden deck, swimming pool, outdoor dining and lounge furniture, Norwegian flag, red barn and forest in the background',
+              'Guest lounge with sofa, TV, wood floor and tall windows — view of trees and Norwegian flag outside',
           },
         },
       },
@@ -1101,7 +1101,7 @@ const resources = {
             description:
               'Overnatting og barnepass kan avtales – praktisk for gjester som reiser langt og familier med små barn.',
             imgAlt:
-              'Stort hvitt trehus med treterrasse, svømmebasseng, uteplass med spise- og sittegruppe, norsk flagg, rød låve og skog i bakgrunnen',
+              'Oppholdsrom for gjester med sofa, TV, tregulv og høye vinduer — utsikt til trær og norsk flagg ute',
           },
         },
       },

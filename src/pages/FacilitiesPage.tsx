@@ -370,7 +370,7 @@ export const FacilitiesPage = () => {
 
       <section
         aria-labelledby="facilities-gallery-heading"
-        className="section-viewport relative overflow-hidden border-b border-brand-100 bg-white"
+        className="section-viewport relative overflow-hidden border-b border-brand-100 bg-white dark:border-brand-800 dark:bg-brand-950"
       >
         <div className="section-viewport-scroll site-container relative z-10 py-24">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 w-full">
@@ -382,10 +382,30 @@ export const FacilitiesPage = () => {
           <div className="relative">
             {galleryHasOverflow && (
               <>
-                <button type="button" onClick={() => scrollGallery('left')} disabled={!showGalleryLeft} className={cn('absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-md backdrop-blur-sm transition-colors md:left-4 md:h-12 md:w-12', showGalleryLeft ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white' : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70')}>
+                <button
+                  type="button"
+                  onClick={() => scrollGallery('left')}
+                  disabled={!showGalleryLeft}
+                  className={cn(
+                    'absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-md backdrop-blur-sm transition-colors md:left-4 md:h-12 md:w-12',
+                    showGalleryLeft
+                      ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white dark:border-brand-600 dark:bg-brand-800/95 dark:text-brand-50 dark:hover:border-brand-500 dark:hover:bg-brand-700 dark:hover:text-white'
+                      : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70 dark:border-brand-700 dark:bg-brand-900/55 dark:text-brand-600',
+                  )}
+                >
                   <ArrowLeft size={20} />
                 </button>
-                <button type="button" onClick={() => scrollGallery('right')} disabled={!showGalleryRight} className={cn('absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-md backdrop-blur-sm transition-colors md:right-4 md:h-12 md:w-12', showGalleryRight ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white' : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70')}>
+                <button
+                  type="button"
+                  onClick={() => scrollGallery('right')}
+                  disabled={!showGalleryRight}
+                  className={cn(
+                    'absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-md backdrop-blur-sm transition-colors md:right-4 md:h-12 md:w-12',
+                    showGalleryRight
+                      ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white dark:border-brand-600 dark:bg-brand-800/95 dark:text-brand-50 dark:hover:border-brand-500 dark:hover:bg-brand-700 dark:hover:text-white'
+                      : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70 dark:border-brand-700 dark:bg-brand-900/55 dark:text-brand-600',
+                  )}
+                >
                   <ArrowRight size={20} />
                 </button>
               </>
@@ -398,7 +418,7 @@ export const FacilitiesPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08, duration: 0.7 }}
-                  className="group relative aspect-6/7 min-w-[88%] snap-center overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
+                  className="group relative aspect-6/7 min-w-[88%] snap-center overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl dark:border-brand-700 dark:bg-brand-900/50 md:min-w-[46%] lg:min-w-[34%]"
                 >
                   <img
                     src={slide.src}
@@ -411,7 +431,7 @@ export const FacilitiesPage = () => {
                   <button
                     type="button"
                     onClick={() => setLightboxIndex(i)}
-                    className="absolute inset-0 z-10 cursor-pointer rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
+                    className="absolute inset-0 z-10 cursor-pointer rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 dark:focus-visible:ring-brand-400 dark:focus-visible:ring-offset-brand-950"
                     aria-label={t('facilitiesPage.gallerySection.openLargeImageAria', { alt: slide.alt })}
                   />
                 </motion.div>

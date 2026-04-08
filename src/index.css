@@ -433,9 +433,14 @@
     position: relative;
   }
 
-  /* Shared hairline (section tops + below fixed nav). */
+  footer.site-footer-silk {
+    position: relative;
+  }
+
+  /* Shared hairline (section tops + below fixed nav + footer top). */
   main .flex.flex-col > section + section::before,
   main .ui-page-shell > section + section::before,
+  footer.site-footer-silk::before,
   header.site-header-silk::after {
     content: '';
     pointer-events: none;
@@ -468,7 +473,8 @@
   }
 
   main .flex.flex-col > section + section::before,
-  main .ui-page-shell > section + section::before {
+  main .ui-page-shell > section + section::before,
+  footer.site-footer-silk::before {
     position: absolute;
     top: 0;
     left: 0;
@@ -525,6 +531,7 @@
 
   html.dark main .flex.flex-col > section + section::before,
   html.dark main .ui-page-shell > section + section::before,
+  html.dark footer.site-footer-silk::before,
   html.dark main .ui-page-shell > nav.ui-blog-post-nav::after,
   html.dark header.site-header-silk::after {
     opacity: 0.88;
@@ -553,6 +560,7 @@
   @media (prefers-reduced-motion: reduce) {
     main .flex.flex-col > section + section::before,
     main .ui-page-shell > section + section::before,
+    footer.site-footer-silk::before,
     main .ui-page-shell > nav.ui-blog-post-nav::after,
     header.site-header-silk::after {
       animation: none;

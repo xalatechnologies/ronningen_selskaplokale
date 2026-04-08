@@ -145,7 +145,7 @@ const HOME_SERVICE_IMAGES: Record<HomeServiceKey, string> = {
   barDancefloor: '/home-service-bar-dancefloor.png',
   coordination: '/home-service-coordination.png',
   decoration: '/home-service-decoration.png',
-  overnight: '/home-service-overnight.png',
+  overnight: '/facilities-guest-lounge.png',
 };
 
 const Home = () => {
@@ -594,8 +594,8 @@ const Footer = () => {
   const labelClass = 'mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-500';
 
   return (
-    <footer className="border-t border-brand-800/90 bg-brand-900 text-brand-100">
-      <div className="site-container py-[8px]">
+    <footer className="site-footer-silk border-t border-brand-800/90 bg-brand-900 pt-4 text-brand-100">
+      <div className="site-container pb-2 pt-1 md:pb-[8px]">
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1fr_auto_1fr] lg:gap-x-12">
           <div className="min-w-0 justify-self-start">
             <div className="space-y-4">
