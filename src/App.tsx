@@ -36,6 +36,7 @@ import {
   InspirationGalleryLightbox,
   useInspirationGalleryLightboxState,
 } from './components/InspirationGalleryLightbox';
+import { FACILITY_PRICING_HEADING_ID } from './components/pricing/FacilityPricingBlock';
 import { BOOKING_URL } from './lib/booking';
 import { inspirationGallerySlides, inspirationSlideFileNumber } from './lib/inspirationGallery';
 import { cn } from './lib/utils';
@@ -112,7 +113,7 @@ const HOME_CONCEPT_ROUTES: Record<HomeConceptKey, { path: string; img: string }>
     img: '/concept-private-dessert-table.png',
   },
   facilities: {
-    path: ROUTES.fasiliteter,
+    path: `${ROUTES.priser}#${FACILITY_PRICING_HEADING_ID}`,
     img: '/concept-facilities-bar.png',
   },
 };
@@ -553,16 +554,19 @@ const Home = () => {
 
 /** SPA navigation keeps window scroll by default — reset window and section scrollers on each route. */
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useLayoutEffect(() => {
+    if (hash) {
+      return;
+    }
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
     document.querySelectorAll('.section-viewport-scroll').forEach((el) => {
       (el as HTMLElement).scrollTop = 0;
     });
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null;
 };
