@@ -6,6 +6,7 @@ import { cn } from '../lib/utils';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
 import {
+  FAQ_ANSWER_CLASS,
   SECTION_H2_CLASS,
   SECTION_H2_ON_DARK_CLASS,
   SECTION_LEAD_CLASS,
@@ -504,7 +505,7 @@ export const FacilitiesPage = () => {
                   >
                     <span
                       className={cn(
-                        'font-serif text-lg transition-colors duration-300 md:text-xl',
+                        'min-w-0 flex-1 text-balance font-serif text-lg transition-colors duration-300 md:text-xl',
                         openFaq === i
                           ? 'text-brand-900 dark:text-brand-50'
                           : 'text-brand-800 group-hover:text-brand-900 dark:text-brand-200 dark:group-hover:text-brand-50',
@@ -531,7 +532,7 @@ export const FacilitiesPage = () => {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.5 }}
                       >
-                        <div className="px-5 pb-5 text-[15px] font-light leading-relaxed text-brand-600 md:px-6 md:pb-6 md:text-base dark:text-brand-300">
+                        <div className={cn(FAQ_ANSWER_CLASS, 'px-5 pb-5 md:px-6 md:pb-6')}>
                           <div className="mb-3 h-px w-10 bg-brand-100 dark:bg-brand-700" />
                           {t(`${itemBase}.a`)}
                         </div>

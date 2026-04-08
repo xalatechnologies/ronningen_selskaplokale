@@ -3,7 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import { SECTION_H2_CLASS, SECTION_LEAD_CLASS, UI_BODY_SECONDARY_CLASS, UI_CAPTION_CLASS } from '../../lib/typography';
+import {
+  SECTION_H2_CLASS,
+  SECTION_LEAD_CLASS,
+  UI_BODY_SECONDARY_CLASS,
+  UI_PRICING_CARD_NOTE_CLASS,
+} from '../../lib/typography';
 import { FACILITY_CARD_IMAGES, FACILITY_CARD_KEYS, type FacilityCardKey } from '../../lib/facilityCards';
 
 export const FACILITY_PRICING_HEADING_ID = 'facility-pricing-heading';
@@ -117,7 +122,9 @@ export function FacilityPricingBlock() {
                     <p className="font-serif text-[1.35rem] font-normal tabular-nums leading-tight tracking-tight text-brand-950 md:text-2xl dark:text-brand-50">
                       {t(`${priceBase}.price`)}
                     </p>
-                    <p className={cn(UI_CAPTION_CLASS, 'mt-2 max-w-prose')}>{t(`${priceBase}.note`)}</p>
+                    <p className={cn(UI_PRICING_CARD_NOTE_CLASS, 'mt-2 max-w-prose')}>
+                      {t(`${priceBase}.note`)}
+                    </p>
                   </div>
                 </div>
               </motion.li>

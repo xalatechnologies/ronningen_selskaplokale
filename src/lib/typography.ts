@@ -60,6 +60,13 @@ export const UI_EYEBROW_CLASS =
 export const UI_BODY_SECONDARY_CLASS =
   'text-[15px] font-normal leading-relaxed text-brand-800 md:text-base dark:text-brand-200';
 
+/** FAQ / accordion answers — same solid contrast as UI_BODY_SECONDARY (no font-light / muted-600 body). */
+export const FAQ_ANSWER_CLASS = UI_BODY_SECONDARY_CLASS;
+
 /** Muted caption (notes, footers on cards) — solid palette steps only; lighter than UI_BODY_SECONDARY. */
 export const UI_CAPTION_CLASS =
   'text-xs leading-relaxed text-brand-700 dark:text-brand-300';
+
+/** Footnote under facility pricing amounts — stronger than UI_CAPTION_CLASS for readable disclaimers on cards. */
+export const UI_PRICING_CARD_NOTE_CLASS =
+  'text-sm font-normal leading-relaxed text-brand-800 dark:text-brand-200';

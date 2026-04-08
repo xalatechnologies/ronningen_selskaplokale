@@ -30,7 +30,7 @@ export const HomePartnerCard: FC<Props> = ({ partnerKey, className }) => {
   const body = (
     <article
       className={cn(
-        'flex h-full w-[min(100vw-2.5rem,18rem)] shrink-0 flex-col rounded-2xl border border-brand-200/90 bg-white p-4 shadow-[0_8px_28px_-18px_rgba(33,24,22,0.35)] transition-[box-shadow,transform,border-color] duration-300 sm:w-[19.5rem]',
+        'flex h-full w-full max-w-[19.5rem] flex-col rounded-2xl border border-brand-200/90 bg-white p-4 shadow-[0_8px_28px_-18px_rgba(33,24,22,0.35)] transition-[box-shadow,transform,border-color] duration-300 sm:max-w-[20rem]',
         'dark:border-brand-600 dark:bg-brand-800/95 dark:shadow-[0_12px_36px_-16px_rgba(0,0,0,0.45)]',
         'group-hover:-translate-y-0.5 group-hover:border-brand-300 group-hover:shadow-[0_16px_40px_-20px_rgba(33,24,22,0.45)] dark:group-hover:border-brand-500',
         className,

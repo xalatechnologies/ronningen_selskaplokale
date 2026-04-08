@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { CheckCircle2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { ROUTES } from '../../lib/routes';
-import { SECTION_H2_CLASS, SECTION_LEAD_CLASS, UI_CAPTION_CLASS } from '../../lib/typography';
+import { SECTION_H2_CLASS, SECTION_LEAD_CLASS } from '../../lib/typography';
 
 const WEDDINGS_PACKAGE_IDS = ['basic', 'plus', 'premium'] as const;
 
@@ -85,9 +85,10 @@ export function WeddingPackagesBlock() {
                 <div className="relative mb-7 mt-1">
                   <p
                     className={cn(
-                      UI_CAPTION_CLASS,
-                      'mb-2 font-semibold uppercase tracking-[0.22em]',
-                      isPlus ? 'text-brand-300' : null,
+                      'mb-2 text-xs font-semibold uppercase leading-relaxed tracking-[0.22em]',
+                      isPlus
+                        ? 'text-amber-100'
+                        : 'text-brand-800 dark:text-brand-100',
                     )}
                   >
                     {t(`weddingsPage.packagesSection.items.${pkgId}.name`)}
@@ -103,7 +104,7 @@ export function WeddingPackagesBlock() {
                   <p
                     className={cn(
                       'mt-4 font-serif text-[1.0625rem] font-normal leading-relaxed md:text-lg',
-                      isPlus ? 'text-brand-100/95' : 'text-brand-700 dark:text-brand-200',
+                      isPlus ? 'text-brand-100' : 'text-brand-800 dark:text-brand-100',
                     )}
                   >
                     {t(`weddingsPage.packagesSection.items.${pkgId}.desc`)}

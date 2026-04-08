@@ -20,7 +20,6 @@ import {
   MapPin,
   Instagram,
   Facebook,
-  BookOpen,
   ArrowRight,
   ArrowLeft,
 } from 'lucide-react';
@@ -31,7 +30,6 @@ import { Toaster } from 'sonner';
 
 import { AppNavigation } from './components/AppNavigation';
 import { HomePartnerCard } from './components/HomePartnerCard';
-import { Marquee } from './components/Marquee';
 import { AdminPanel } from './components/AdminPanel';
 import { HeroScrollHint } from './components/HeroScrollHint';
 import {
@@ -507,7 +505,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Partnere — samme seksjonsoppbygging som #konsepter; partnerkort i horisontal marquee (Magic UI–stil) */}
+      {/* Partnere — rutenett 3×2 (+ ev. siste rad); ingen horisontal marquee */}
       <section
         id="partnere"
         aria-labelledby="partnere-heading"
@@ -530,30 +528,16 @@ const Home = () => {
             <p className={SECTION_LEAD_CLASS}>{t('homePartners.intro')}</p>
           </header>
 
-          <div
-            className="relative mt-10 md:mt-12"
-            role="region"
+          <ul
+            className="m-0 mt-10 grid list-none grid-cols-1 justify-items-center gap-6 p-0 sm:grid-cols-2 sm:gap-7 md:mt-12 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-8"
             aria-label={t('homePartners.listAria')}
           >
-            <div
-              className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-linear-to-r from-white to-transparent sm:w-14 md:w-20 dark:from-brand-950"
-              aria-hidden
-            />
-            <div
-              className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-linear-to-l from-white to-transparent sm:w-14 md:w-20 dark:from-brand-950"
-              aria-hidden
-            />
-            <Marquee pauseOnHover durationSec={42}>
-              {HOME_PARTNER_KEYS.map((partnerId) => (
-                <HomePartnerCard key={partnerId} partnerKey={partnerId} />
-              ))}
-            </Marquee>
-            <Marquee reverse pauseOnHover durationSec={54} className="mt-4">
-              {HOME_PARTNER_KEYS.map((partnerId) => (
-                <HomePartnerCard key={`${partnerId}-rev`} partnerKey={partnerId} />
-              ))}
-            </Marquee>
-          </div>
+            {HOME_PARTNER_KEYS.map((partnerId) => (
+              <li key={partnerId} className="flex w-full justify-center">
+                <HomePartnerCard partnerKey={partnerId} />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -705,13 +689,6 @@ const Footer = () => {
                 <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
               </svg>
             </a>
-            <Link
-              to={ROUTES.blogg}
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm transition-colors hover:text-brand-100"
-              aria-label={t('nav.blog')}
-            >
-              <BookOpen size={20} strokeWidth={1.5} />
-            </Link>
           </nav>
         </div>
 

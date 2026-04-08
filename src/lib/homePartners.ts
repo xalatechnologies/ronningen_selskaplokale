@@ -5,7 +5,6 @@ export const HOME_PARTNER_KEYS = [
   'soundLight',
   'barService',
   'digilist',
-  'xala',
 ] as const;
 
 export type HomePartnerKey = (typeof HOME_PARTNER_KEYS)[number];
@@ -17,7 +16,6 @@ export const HOME_PARTNER_LINKS: Record<HomePartnerKey, string | null> = {
   soundLight: 'https://festpartner.no/',
   barService: 'https://digilist.no/',
   digilist: 'https://xala.no/',
-  xala: null,
 };
 
 /** Fallback initials when no favicon / URL (stable across locales). */
@@ -28,7 +26,6 @@ export const HOME_PARTNER_INITIALS: Record<HomePartnerKey, string> = {
   soundLight: 'F',
   barService: 'D',
   digilist: 'X',
-  xala: 'B',
 };
 
 export function homePartnerFaviconUrl(href: string | null): string | null {

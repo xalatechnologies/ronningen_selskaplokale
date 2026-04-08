@@ -3,7 +3,12 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { PAGE_H1_CLASS, SECTION_LEAD_CLASS, UI_EYEBROW_CLASS } from '../lib/typography';
+import {
+  FAQ_ANSWER_CLASS,
+  PAGE_H1_CLASS,
+  SECTION_LEAD_CLASS,
+  UI_EYEBROW_CLASS,
+} from '../lib/typography';
 
 const faqData = [
   {
@@ -71,7 +76,7 @@ const FAQItem: React.FC<{ q: string; a: string }> = ({ q, a }) => {
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden"
           >
-            <p className="pb-6 leading-relaxed text-brand-600 dark:text-brand-300">{a}</p>
+            <p className={cn(FAQ_ANSWER_CLASS, 'pb-6')}>{a}</p>
           </motion.div>
         )}
       </AnimatePresence>

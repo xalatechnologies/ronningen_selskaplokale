@@ -36,11 +36,6 @@ function applyDomDark(next: boolean) {
   }
 }
 
-/** Full footer height — chat FAB stays this far above the viewport bottom at all times (no scroll chasing). */
-function footerReserveBottomPx(footer: HTMLElement): number {
-  return footer.offsetHeight;
-}
-
 /** True when the main content behind the chat FAB reads as a dark surface → use a light FAB for contrast. */
 function isDarkSurfaceBehindChatFab(hitTarget: Element | null): boolean {
   let node: Element | null = hitTarget;
@@ -161,14 +156,29 @@ export function AppNavigation() {
       const margin = md ? 24 : 20;
       const fabH = md ? 56 : 48;
       const stackGap = md ? 16 : 12;
-      const reserve = footerReserveBottomPx(footer);
-      setChatFabBottomPx(reserve + margin);
-      setChatPanelBottomPx(reserve + margin + fabH + stackGap);
+      const { top: footerTop } = footer.getBoundingClientRect();
+      const ih = window.innerHeight;
+      /*
+       * `fixed; bottom: B` places the FAB’s bottom edge B px above the viewport bottom.
+       * When the footer is below the fold (its top is at/under the viewport bottom), sit on the margin.
+       * When the footer top is inside the viewport, lift the FAB so it stays above the footer edge.
+       * When the footer top has scrolled above the viewport (footerTop ≤ 0), fall back to the margin.
+       */
+      let fabBottom: number;
+      if (footerTop >= ih || footerTop <= 0) {
+        fabBottom = margin;
+      } else {
+        fabBottom = Math.max(margin, ih - footerTop + margin);
+      }
+      setChatFabBottomPx(fabBottom);
+      setChatPanelBottomPx(fabBottom + fabH + stackGap);
     };
 
     const ro = new ResizeObserver(updateInset);
     ro.observe(footer);
     window.addEventListener('resize', updateInset);
+    window.addEventListener('scroll', updateInset, { passive: true });
+    document.addEventListener('scroll', updateInset, { passive: true, capture: true });
     const mq = window.matchMedia('(min-width: 768px)');
     mq.addEventListener('change', updateInset);
     updateInset();
@@ -176,6 +186,8 @@ export function AppNavigation() {
     return () => {
       ro.disconnect();
       window.removeEventListener('resize', updateInset);
+      window.removeEventListener('scroll', updateInset);
+      document.removeEventListener('scroll', updateInset, { capture: true });
       mq.removeEventListener('change', updateInset);
     };
   }, [location.pathname]);

@@ -168,10 +168,6 @@ const resources = {
             name: 'Xala Technologies AS',
             desc: 'Technology and digital operations partner supporting platform delivery and reliability.',
           },
-          xala: {
-            name: 'Funny Balloons Drammen',
-            desc: 'Balloon decor and festive details that elevate visual expression in your event space.',
-          },
         },
       },
       weddingsPage: {
@@ -523,7 +519,7 @@ const resources = {
           headingBefore: 'Where your celebration gains ',
           headingAccent: 'personality',
           intro:
-            'Birthdays, confirmations, baptisms, baby showers, memorial gatherings and anniversaries — gather in spaces that leave room for your style and how you celebrate, without a standard package setup.',
+            'Birthdays, confirmations, baptisms, baby showers and anniversaries — gather in spaces that leave room for your style and how you celebrate, without a standard package setup.',
           panoramaAlt:
             'Evening party room with a long candlelit table, fairy lights overhead, cocktail tables, tricolour ceiling banner, tall glass doors and a small lit tree',
           highlights: {
@@ -596,7 +592,7 @@ const resources = {
           items: {
             celebrations: {
               q: 'What private celebrations can we host with you?',
-              a: 'Everything from birthdays and confirmations to baptisms, baby showers, memorial gatherings and anniversaries. The programme is tailored to your type of celebration.',
+              a: 'Everything from birthdays and confirmations to baptisms, baby showers and anniversaries. The programme is tailored to your type of celebration.',
             },
             ownFoodDrink: {
               q: 'Can we bring our own food and drink?',
@@ -804,7 +800,7 @@ const resources = {
         brandSubtitle: 'Selskapslokale',
         rights: 'All rights reserved',
         contact: 'Contact Us',
-        iconNavAriaLabel: 'Social media and blog',
+        iconNavAriaLabel: 'Social media',
         newsletter: 'Newsletter',
         newsletterDesc: 'Stay updated on our events and news.',
         emailPlaceholder: 'Email',
@@ -1147,10 +1143,6 @@ const resources = {
           digilist: {
             name: 'Xala Technologies AS',
             desc: 'Teknologi- og driftsstøtte som bidrar til stabile plattformer og digitale leveranser.',
-          },
-          xala: {
-            name: 'Funny Balloons Drammen',
-            desc: 'Ballongdekor og festdetaljer som gir et tydelig visuelt uttrykk i lokalet.',
           },
         },
       },
@@ -1502,7 +1494,7 @@ const resources = {
           headingBefore: 'Der feiringen får ',
           headingAccent: 'personlighet',
           intro:
-            'Bursdag, konfirmasjon, dåp, babyshower, minnestund og jubileum – samle dere i lokaler som gir rom for deres stil og måte å feire på, uten standardoppsett.',
+            'Bursdag, konfirmasjon, dåp, babyshower og jubileum – samle dere i lokaler som gir rom for deres stil og måte å feire på, uten standardoppsett.',
           panoramaAlt:
             'Kveldsfest i lokalet med langt stearinlysdekket bord, lyslenker i taket, ståbord, trefarget banner i taket, høye glassdører og lite opplyst tre i bakgrunnen',
           highlights: {
@@ -1575,7 +1567,7 @@ const resources = {
           items: {
             celebrations: {
               q: 'Hvilke private feiringer kan vi ha hos dere?',
-              a: 'Alt fra bursdager og konfirmasjoner til dåp, babyshower, minnestund og jubileer. Opplegget tilpasses etter type feiring.',
+              a: 'Alt fra bursdager og konfirmasjoner til dåp, babyshower og jubileer. Opplegget tilpasses etter type feiring.',
             },
             ownFoodDrink: {
               q: 'Kan vi ta med egen mat og drikke?',
@@ -1782,7 +1774,7 @@ const resources = {
         brandSubtitle: 'Selskapslokale',
         rights: 'Alle rettigheter reservert',
         contact: 'Kontakt oss',
-        iconNavAriaLabel: 'Sosiale medier og blogg',
+        iconNavAriaLabel: 'Sosiale medier',
         newsletter: 'Nyhetsbrev',
         newsletterDesc: 'Hold deg oppdatert på arrangementer og nyheter.',
         emailPlaceholder: 'Din e-post',
