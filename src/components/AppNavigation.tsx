@@ -228,12 +228,21 @@ export function AppNavigation() {
           TOP_NAV_H
         )}
       >
+        {/* Mobile: logo | actions. Desktop: 3 equal cols — logo centered in left third, nav centered, CTA inward in right third. */}
         <div
           className={cn(
-            'site-container grid h-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-3'
+            'site-container grid h-full min-w-0 grid-cols-[1fr_auto] items-center gap-x-3',
+            'md:grid-cols-3 md:gap-x-2 lg:gap-x-4'
           )}
         >
-          <Link to="/" onClick={closeMenu} className={cn(brandLinkClass, 'min-w-0 justify-self-start')}>
+          <Link
+            to="/"
+            onClick={closeMenu}
+            className={cn(
+              brandLinkClass,
+              'col-start-1 row-start-1 min-w-0 justify-self-start md:justify-self-center'
+            )}
+          >
             <img
               src="/logo.png"
               alt=""
@@ -252,32 +261,36 @@ export function AppNavigation() {
             </span>
           </Link>
 
-          <div className="flex min-w-0 justify-center">
-            <nav
-              className="hidden flex-wrap items-center justify-center gap-x-4 gap-y-1 md:flex lg:gap-x-6 xl:gap-x-8"
-              aria-label={t('nav.menuLabel')}
-            >
-              {desktopNavLinks.map((link) => {
-                const active = isNavActive(link.path);
-                return (
-                  <Link
-                    key={link.path}
-                    to={link.path}
-                    className={cn(
-                      'shrink-0 rounded-lg px-3 py-2 font-serif text-sm font-medium tracking-tight transition-colors lg:px-4 lg:text-[0.9375rem]',
-                      active
-                        ? 'bg-brand-50 font-semibold text-brand-900'
-                        : 'text-brand-700 hover:bg-brand-50/80 hover:text-brand-900'
-                    )}
-                  >
-                    {link.name}
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
+          <nav
+            className="col-start-2 row-start-1 hidden min-w-0 flex-wrap items-center justify-center gap-x-6 gap-y-1 md:flex lg:gap-x-8 xl:gap-x-10"
+            aria-label={t('nav.menuLabel')}
+          >
+            {desktopNavLinks.map((link) => {
+              const active = isNavActive(link.path);
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={cn(
+                    'relative shrink-0 py-2 text-[13px] uppercase tracking-[0.2em] transition-all duration-300',
+                    active
+                      ? 'font-bold text-brand-900'
+                      : 'font-medium text-brand-700 hover:text-brand-900'
+                  )}
+                >
+                  {link.name}
+                  {active ? (
+                    <motion.div
+                      layoutId="nav-underline"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-800"
+                    />
+                  ) : null}
+                </Link>
+              );
+            })}
+          </nav>
 
-          <div className="flex shrink-0 items-center justify-end gap-2 sm:gap-2.5">
+          <div className="col-start-2 row-start-1 flex shrink-0 items-center justify-end gap-2 sm:gap-2.5 md:col-start-3 md:justify-self-start md:pl-1">
             <button
               ref={menuButtonRef}
               type="button"
