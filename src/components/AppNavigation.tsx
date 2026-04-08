@@ -6,7 +6,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import { Globe, Menu, MessageCircle, Phone, SendHorizontal, X } from 'lucide-react';
+import { Globe, Menu, MessageCircle, SendHorizontal, X } from 'lucide-react';
 import {
   useState,
   useEffect,
@@ -213,26 +213,6 @@ export function AppNavigation() {
     </ul>
   );
 
-  const menuPanelFooter = (
-    <div className="space-y-3 border-t border-brand-100 bg-white/90 p-4 backdrop-blur-sm">
-      <button
-        type="button"
-        onClick={toggleLanguage}
-        className="flex w-full min-h-11 items-center justify-center gap-2 rounded-xl border border-brand-200 bg-white px-4 py-2.5 text-brand-800 transition-colors hover:border-brand-300 hover:bg-brand-50"
-      >
-        <Globe size={18} aria-hidden />
-        <span className="text-[11px] font-bold uppercase tracking-widest">{i18n.language}</span>
-      </button>
-      <Link
-        to="/contact#kontakt-skjema"
-        onClick={closeMenu}
-        className="flex min-h-12 w-full items-center justify-center rounded-full bg-brand-900 px-4 py-3 text-center text-[11px] font-bold uppercase tracking-[0.28em] text-white shadow-lg transition hover:bg-brand-800 hover:shadow-xl"
-      >
-        {t('nav.contactUs')}
-      </Link>
-    </div>
-  );
-
   return (
     <>
       {/* Top bar: logo left, phone + menu right — language lives in the drawer */}
@@ -256,23 +236,30 @@ export function AppNavigation() {
               <span className="truncate font-serif text-lg font-bold tracking-tight text-brand-900 md:text-xl">
                 {t('branding.navLine1')}
               </span>
-              <span className="mt-0.5 truncate font-serif text-[10px] font-medium tracking-wide text-brand-600 md:text-[11px]">
+              <span className="mt-0.5 block w-full -translate-x-[2px] text-center font-serif text-sm font-medium tracking-tight text-brand-600 md:text-base">
                 {t('branding.navLine2')}
               </span>
             </span>
           </Link>
 
           <div className="flex shrink-0 items-center gap-1 sm:gap-2">
-            <a
-              href="tel:+4796665001"
-              className="flex min-h-11 min-w-0 max-w-[11rem] items-center gap-1.5 rounded-xl px-2 py-2 text-brand-800 transition-colors hover:bg-brand-50 hover:text-brand-900 sm:max-w-none sm:gap-2 sm:px-3 md:min-h-12"
-              aria-label={`${t('contactPage.phoneLabel')}: ${t('contactPage.phoneValue')}`}
+            <button
+              type="button"
+              onClick={toggleLanguage}
+              className="flex h-11 min-w-11 items-center justify-center gap-1 rounded-xl border border-brand-200 bg-white px-2.5 text-brand-800 transition-colors hover:border-brand-300 hover:bg-brand-50 md:h-12 md:px-3"
+              aria-label={t('nav.changeLanguage')}
             >
-              <Phone size={18} className="shrink-0 text-brand-600 sm:h-5 sm:w-5" aria-hidden />
-              <span className="truncate text-xs font-semibold tabular-nums tracking-tight sm:text-sm">
-                {t('contactPage.phoneValue')}
+              <Globe size={16} aria-hidden />
+              <span className="text-[10px] font-bold uppercase tracking-widest md:text-[11px]">
+                {i18n.language}
               </span>
-            </a>
+            </button>
+            <Link
+              to="/contact#kontakt-skjema"
+              className="flex h-11 items-center justify-center rounded-full bg-brand-900 px-3 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lg transition hover:bg-brand-800 hover:shadow-xl md:h-12 md:px-4 md:text-[11px] md:tracking-[0.24em]"
+            >
+              {t('nav.contactUs')}
+            </Link>
             <button
               ref={menuButtonRef}
               type="button"
@@ -319,7 +306,6 @@ export function AppNavigation() {
               )}
             >
               <nav className="min-h-0 flex-1 overflow-y-auto px-2 py-4">{menuPanelLinks}</nav>
-              <div className="mt-auto shrink-0 border-t border-brand-100">{menuPanelFooter}</div>
             </motion.aside>
           </>
         ) : null}

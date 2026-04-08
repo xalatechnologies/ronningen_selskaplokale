@@ -5,6 +5,15 @@ export const INSPIRATION_GALLERY_COUNT = 47;
 
 /** Slides omitted from carousels (home / bryllup); still listed on /gallery. */
 const EXCLUDED_INSPIRATION_KEYS = new Set(['inspirasjon-02', 'inspirasjon-24']);
+/** Slides omitted from /gallery grid. */
+const EXCLUDED_GALLERY_PAGE_KEYS = new Set([
+  'inspirasjon-196',
+  'inspirasjon-249',
+  'inspirasjon-253',
+  'inspirasjon-281',
+  'inspirasjon-282',
+  'inspirasjon-283',
+]);
 
 export type InspirationSlide = {
   key: string;
@@ -109,11 +118,13 @@ const legacyGalleryPageItems: GalleryPageItem[] = inspirationGallerySlidesBase.m
   category: categoryForLegacyGalleryIndex(zeroBasedIndexFromSlideKey(slide.key)),
 }));
 
-const extraGalleryPageItems: GalleryPageItem[] = inspirationGalleryExtraSlides.map((slide) => ({
-  id: slide.key,
-  url: slide.src,
-  category: slide.category,
-}));
+const extraGalleryPageItems: GalleryPageItem[] = inspirationGalleryExtraSlides
+  .filter((slide) => !EXCLUDED_GALLERY_PAGE_KEYS.has(slide.key))
+  .map((slide) => ({
+    id: slide.key,
+    url: slide.src,
+    category: slide.category,
+  }));
 
 /** Full /gallery grid: legacy + uploaded batch, grouped by category then image number. */
 export const inspirationGalleryPageItems: GalleryPageItem[] = sortGalleryPageItems([
