@@ -46,7 +46,18 @@ export const inspirationGallerySlides: InspirationSlide[] = (() => {
     if (slide) lead.push(slide);
   }
   const rest = inspirationGallerySlidesBase.filter((s) => !leadSet.has(s.key));
-  return [...lead, ...rest];
+  const ordered = [...lead, ...rest];
+
+  // Keep legacy ordering, but swap these two specific slides in the carousel.
+  const firstKey = 'inspirasjon-27';
+  const secondKey = 'inspirasjon-45';
+  const firstIndex = ordered.findIndex((slide) => slide.key === firstKey);
+  const secondIndex = ordered.findIndex((slide) => slide.key === secondKey);
+  if (firstIndex >= 0 && secondIndex >= 0) {
+    [ordered[firstIndex], ordered[secondIndex]] = [ordered[secondIndex], ordered[firstIndex]];
+  }
+
+  return ordered;
 })();
 
 export type GalleryPageCategory = 'wedding' | 'corporate' | 'private' | 'facilities';
