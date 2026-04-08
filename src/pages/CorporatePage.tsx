@@ -8,8 +8,10 @@ import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } f
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 
-const CTA_PRIMARY = '/inquiry';
-const CTA_SECONDARY = '/contact';
+import { ROUTES } from '../lib/routes';
+
+const CTA_PRIMARY = ROUTES.henvendelse;
+const CTA_SECONDARY = ROUTES.kontakt;
 
 const CORPORATE_INTRO_BENEFIT_KEYS = ['item1', 'item2', 'item3'] as const;
 
@@ -415,7 +417,7 @@ export const CorporatePage = () => {
             className="mt-10 text-center md:mt-12"
           >
             <Link
-              to="/gallery?category=corporate"
+              to={`${ROUTES.galleri}?category=corporate`}
               className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md"
             >
               <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">

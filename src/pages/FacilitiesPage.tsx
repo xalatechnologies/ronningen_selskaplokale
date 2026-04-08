@@ -9,8 +9,10 @@ import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import { ArrowLeft, ArrowRight, ChevronDown } from 'lucide-react';
 import { FACILITY_CARD_IMAGES, FACILITY_CARD_KEYS } from '../lib/facilityCards';
 
-const CTA_PRIMARY = '/inquiry';
-const CTA_SECONDARY = '/contact';
+import { ROUTES } from '../lib/routes';
+
+const CTA_PRIMARY = ROUTES.henvendelse;
+const CTA_SECONDARY = ROUTES.kontakt;
 const GALLERY_EDGE_TOLERANCE = 2;
 
 const FACILITIES_SHUFFLEBOARD_HERO_IMG = '/facilities-hero-shuffleboard.png';
@@ -434,7 +436,7 @@ export const FacilitiesPage = () => {
             className="mt-10 text-center md:mt-12"
           >
             <Link
-              to="/gallery?category=facilities"
+              to={`${ROUTES.galleri}?category=facilities`}
               className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md"
             >
               <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">

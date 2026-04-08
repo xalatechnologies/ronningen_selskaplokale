@@ -1,3 +1,5 @@
+import { ROUTES } from './routes';
+
 export const BLOG_POST_KEYS = [
   'springWedding',
   'corporateHost',
@@ -27,7 +29,7 @@ export function blogPostKeyFromSlug(slug: string | undefined): BlogPostKey | nul
 }
 
 export function blogPostPath(key: BlogPostKey): string {
-  return `/blog/${BLOG_POST_SLUG[key]}`;
+  return `${ROUTES.blogg}/${BLOG_POST_SLUG[key]}`;
 }
 
 const FEATURED_IMAGE =

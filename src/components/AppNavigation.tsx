@@ -15,6 +15,7 @@ import {
   useCallback,
 } from 'react';
 import { cn } from '../lib/utils';
+import { ROUTES, kontaktSkjemaHash } from '../lib/routes';
 import { appendConversation, detectLanguage } from '../lib/customerAssistant';
 
 /** Top bar height — keep in sync with main `pt-24` and `--site-nav-pad`. */
@@ -46,14 +47,14 @@ function isDarkSurfaceBehindChatFab(hitTarget: Element | null): boolean {
 function useNavLinks() {
   const { t } = useTranslation();
   return [
-    { name: t('nav.home'), path: '/' },
-    { name: t('nav.weddings'), path: '/weddings' },
-    { name: t('nav.corporate'), path: '/corporate' },
-    { name: t('nav.private'), path: '/packages' },
-    { name: t('nav.facilities'), path: '/facilities' },
-    { name: t('nav.prices'), path: '/prices' },
-    { name: t('nav.gallery'), path: '/gallery' },
-    { name: t('nav.blog'), path: '/blog' },
+    { name: t('nav.home'), path: ROUTES.home },
+    { name: t('nav.weddings'), path: ROUTES.bryllup },
+    { name: t('nav.corporate'), path: ROUTES.bedrift },
+    { name: t('nav.private'), path: ROUTES.selskap },
+    { name: t('nav.facilities'), path: ROUTES.fasiliteter },
+    { name: t('nav.prices'), path: ROUTES.priser },
+    { name: t('nav.gallery'), path: ROUTES.galleri },
+    { name: t('nav.blog'), path: ROUTES.blogg },
   ];
 }
 
@@ -168,8 +169,8 @@ export function AppNavigation() {
   };
 
   const isNavActive = (path: string) => {
-    if (path === '/blog') {
-      return location.pathname === '/blog' || location.pathname.startsWith('/blog/');
+    if (path === ROUTES.blogg) {
+      return location.pathname === ROUTES.blogg || location.pathname.startsWith(`${ROUTES.blogg}/`);
     }
     const hashIdx = path.indexOf('#');
     if (hashIdx !== -1) {
@@ -252,7 +253,7 @@ export function AppNavigation() {
               {i18n.language === 'no' ? 'NO' : 'EN'}
             </button>
             <Link
-              to="/contact#kontakt-skjema"
+              to={kontaktSkjemaHash()}
               className="flex h-11 items-center justify-center rounded-full bg-brand-900 px-3 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lg transition hover:bg-brand-800 hover:shadow-xl md:h-12 md:px-4 md:text-[11px] md:tracking-[0.24em]"
             >
               {t('nav.contactUs')}
@@ -379,7 +380,7 @@ export function AppNavigation() {
                 </button>
               </div>
               <Link
-                to="/contact"
+                to={ROUTES.kontakt}
                 className="mt-2 inline-block text-xs font-semibold uppercase tracking-[0.16em] text-brand-700 hover:text-brand-900"
               >
                 {t('chat.directContact')}

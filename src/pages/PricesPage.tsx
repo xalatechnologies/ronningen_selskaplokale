@@ -5,6 +5,7 @@ import { cn } from '../lib/utils';
 import { SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import { WeddingPackagesBlock, WEDDING_PACKAGES_HEADING_ID } from '../components/pricing/WeddingPackagesBlock';
 import { FacilityPricingBlock, FACILITY_PRICING_HEADING_ID } from '../components/pricing/FacilityPricingBlock';
+import { ROUTES } from '../lib/routes';
 
 const PRICES_HASH_IDS = new Set([WEDDING_PACKAGES_HEADING_ID, FACILITY_PRICING_HEADING_ID]);
 
@@ -96,7 +97,7 @@ export const PricesPage: React.FC = () => {
 
             <div className="relative z-10 mt-8 shrink-0 md:mt-0">
               <Link
-                to="/contact"
+                to={ROUTES.kontakt}
                 className="inline-flex w-full min-w-[12rem] items-center justify-center rounded-full bg-white px-8 py-4 text-center text-[11px] font-bold uppercase tracking-[0.22em] text-brand-900 shadow-lg transition-all hover:scale-[1.02] hover:bg-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900 sm:w-auto sm:px-10"
               >
                 {t('pricesPage.bottomCta.primary')}

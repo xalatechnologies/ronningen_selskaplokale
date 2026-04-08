@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { INQUIRY_CTA_PATH } from '../lib/privatePackageConfig';
+import { ROUTES } from '../lib/routes';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
@@ -16,7 +17,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 
-const CTA_SECONDARY = '/contact';
+const CTA_SECONDARY = ROUTES.kontakt;
 
 const PRIVATE_INTRO_HIGHLIGHT_CONFIG = [
   { key: 'proximity', icon: Heart },
@@ -66,7 +67,7 @@ export const PrivatePage = () => {
 
   useLayoutEffect(() => {
     if (hash !== '#private-packages-heading') return;
-    navigate('/prices', { replace: true });
+    navigate(ROUTES.priser, { replace: true });
   }, [hash, navigate]);
 
   const gallerySlides = useMemo<GalleryLightboxSlide[]>(
@@ -434,7 +435,7 @@ export const PrivatePage = () => {
             className="mt-10 text-center md:mt-12"
           >
             <Link
-              to="/gallery?category=private"
+              to={`${ROUTES.galleri}?category=private`}
               className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md"
             >
               <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">

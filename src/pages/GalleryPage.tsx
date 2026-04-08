@@ -7,6 +7,7 @@ import { cn } from '../lib/utils';
 import { SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import { BOOKING_URL } from '../lib/booking';
 import { inspirationGalleryPageItems } from '../lib/inspirationGallery';
+import { ROUTES } from '../lib/routes';
 
 type GalleryCategory = 'wedding' | 'corporate' | 'private' | 'facilities';
 
@@ -323,7 +324,7 @@ export const GalleryPage: React.FC = () => {
                 className="flex flex-col items-center justify-center gap-5 pt-4 sm:flex-row sm:gap-6 sm:pt-6"
               >
                 <Link
-                  to="/contact"
+                  to={ROUTES.kontakt}
                   className="w-full rounded-full bg-white px-10 py-5 text-xs font-bold uppercase tracking-[0.3em] text-brand-900 shadow-xl transition-all hover:scale-[1.02] hover:bg-brand-50 active:scale-[0.98] sm:w-auto sm:px-14"
                 >
                   {t('galleryPage.ctaLink')}

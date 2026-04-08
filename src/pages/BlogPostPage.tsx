@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { ArrowLeft, CalendarDays } from 'lucide-react';
 import { BLOG_CARD_IMAGES, blogPostKeyFromSlug } from '../lib/blogPosts';
+import { ROUTES } from '../lib/routes';
 import type { BlogPostKey } from '../lib/blogPosts';
 import { SECTION_H2_CLASS } from '../lib/typography';
 import { cn } from '../lib/utils';
@@ -22,7 +23,7 @@ export const BlogPostPage: React.FC = () => {
   const key = blogPostKeyFromSlug(slug);
 
   if (!key) {
-    return <Navigate to="/blog" replace />;
+    return <Navigate to={ROUTES.blogg} replace />;
   }
 
   const title = t(`blogPage.posts.${key}.title`);
@@ -37,7 +38,7 @@ export const BlogPostPage: React.FC = () => {
       >
         <div className="mx-auto w-full max-w-[min(92rem,calc(100vw-2.5rem))] px-5 py-4 sm:px-6">
           <Link
-            to="/blog"
+            to={ROUTES.blogg}
             className="inline-flex items-center gap-2 rounded-sm text-sm font-semibold uppercase tracking-[0.16em] text-brand-800 outline-none transition hover:text-brand-950 focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2"
           >
             <ArrowLeft className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
@@ -95,7 +96,7 @@ export const BlogPostPage: React.FC = () => {
             ))}
           </div>
           <p className="mt-12 border-t border-brand-100 pt-10 text-sm text-brand-500">
-            <Link to="/blog" className="font-semibold text-brand-800 underline decoration-brand-300 underline-offset-4 transition hover:text-brand-950">
+            <Link to={ROUTES.blogg} className="font-semibold text-brand-800 underline decoration-brand-300 underline-offset-4 transition hover:text-brand-950">
               {t('blogPage.backToBlog')}
             </Link>
           </p>

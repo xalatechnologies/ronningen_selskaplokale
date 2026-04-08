@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { CheckCircle2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
+import { ROUTES } from '../../lib/routes';
 import { SECTION_H2_CLASS } from '../../lib/typography';
 
 const WEDDINGS_PACKAGE_IDS = ['basic', 'plus', 'premium'] as const;
@@ -107,7 +108,7 @@ export function WeddingPackagesBlock() {
                 </ul>
 
                 <Link
-                  to="/contact"
+                  to={ROUTES.kontakt}
                   className={`mt-auto inline-flex items-center justify-center rounded-full px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] transition-colors ${
                     isPlus
                       ? 'bg-white text-brand-900 hover:bg-brand-100'

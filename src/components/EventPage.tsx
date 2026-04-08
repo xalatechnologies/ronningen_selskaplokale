@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 import { CheckCircle2, Users, Monitor, Utensils, Car, ShieldCheck } from 'lucide-react';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import { HeroScrollHint } from './HeroScrollHint';
+import { ROUTES } from '../lib/routes';
 
 interface EventPageProps {
   title: string;
@@ -150,13 +151,13 @@ export const EventPage: React.FC<EventPageProps> = ({ title, subtitle, descripti
 
           <div className="flex flex-wrap gap-4 pt-4">
             <Link 
-              to="/inquiry" 
+              to={ROUTES.henvendelse} 
               className="bg-brand-800 text-white px-10 py-5 rounded-full text-sm uppercase tracking-widest font-bold hover:bg-brand-900 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               Request a Quote
             </Link>
             <Link 
-              to="/contact" 
+              to={ROUTES.kontakt} 
               className="bg-white text-brand-800 border-2 border-brand-800 px-10 py-5 rounded-full text-sm uppercase tracking-widest font-bold hover:bg-brand-50 transition-all"
             >
               Book a Viewing

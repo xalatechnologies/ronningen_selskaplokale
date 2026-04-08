@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { inspirationGallerySlides, inspirationSlideFileNumber } from '../lib/inspirationGallery';
+import { ROUTES } from '../lib/routes';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import {
@@ -144,13 +145,13 @@ export const WeddingsPage = () => {
             </p>
             <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
               <Link
-                to="/contact"
+                to={ROUTES.kontakt}
                 className="w-full rounded-full bg-white px-10 py-5 text-sm font-bold uppercase tracking-widest text-brand-900 shadow-2xl transition-all hover:-translate-y-1 hover:bg-brand-50 sm:w-auto"
               >
                 {t('hero.bookNow')}
               </Link>
               <Link
-                to="/contact"
+                to={ROUTES.kontakt}
                 className="w-full rounded-full border-2 border-white bg-transparent px-10 py-5 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-white/10 sm:w-auto"
               >
                 {t('hero.cta')}
@@ -497,7 +498,7 @@ export const WeddingsPage = () => {
             className="mt-10 text-center md:mt-12"
           >
             <Link
-              to="/gallery?category=wedding"
+              to={`${ROUTES.galleri}?category=wedding`}
               className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md"
             >
               <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">
@@ -646,13 +647,13 @@ export const WeddingsPage = () => {
               className="flex flex-col items-center justify-center gap-5 pt-4 sm:flex-row sm:gap-6 sm:pt-6"
             >
               <Link
-                to="/contact"
+                to={ROUTES.kontakt}
                 className="w-full rounded-full bg-white px-10 py-5 text-xs font-bold uppercase tracking-[0.3em] text-brand-900 shadow-xl transition-all hover:scale-[1.02] hover:bg-brand-50 active:scale-[0.98] sm:w-auto sm:px-14"
               >
                 {t('hero.bookNow')}
               </Link>
               <Link
-                to="/contact"
+                to={ROUTES.kontakt}
                 className="w-full rounded-full border border-white/30 bg-transparent px-10 py-5 text-xs font-bold uppercase tracking-[0.3em] text-white transition-all hover:bg-white/10 sm:w-auto sm:px-14"
               >
                 {t('hero.cta')}

@@ -3,7 +3,15 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { BrowserRouter as Router, Routes, Route, Link, useLocation, Navigate } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  useParams,
+  Navigate,
+} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'motion/react';
 import {
@@ -30,6 +38,7 @@ import {
 import { BOOKING_URL } from './lib/booking';
 import { inspirationGallerySlides, inspirationSlideFileNumber } from './lib/inspirationGallery';
 import { cn } from './lib/utils';
+import { ROUTES } from './lib/routes';
 import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from './lib/typography';
 
 import { ContactPage } from './pages/ContactPage';
@@ -45,6 +54,16 @@ import { PricesPage } from './pages/PricesPage';
 import { FacilitiesPage } from './pages/FacilitiesPage';
 import { BlogPage } from './pages/BlogPage';
 import { BlogPostPage } from './pages/BlogPostPage';
+
+function LegacyBlogPostRedirect() {
+  const { slug } = useParams<{ slug: string }>();
+  return <Navigate to={`${ROUTES.blogg}/${slug ?? ''}`} replace />;
+}
+
+function LegacyPathRedirect({ to }: { to: string }) {
+  const { hash } = useLocation();
+  return <Navigate to={`${to}${hash}`} replace />;
+}
 
 const InquiryPage = () => {
   const { t } = useTranslation();
@@ -71,19 +90,19 @@ const HOME_CONCEPT_IMAGE_ALT_KEYS = new Set<HomeConceptKey>([
 
 const HOME_CONCEPT_ROUTES: Record<HomeConceptKey, { path: string; img: string }> = {
   weddings: {
-    path: '/weddings',
+    path: ROUTES.bryllup,
     img: '/concept-weddings-cake.png',
   },
   corporate: {
-    path: '/corporate',
+    path: ROUTES.bedrift,
     img: '/concept-corporate-outdoor.png',
   },
   private: {
-    path: '/packages',
+    path: ROUTES.selskap,
     img: '/concept-private-dessert-table.png',
   },
   facilities: {
-    path: '/facilities',
+    path: ROUTES.fasiliteter,
     img: '/concept-facilities-bar.png',
   },
 };
@@ -497,7 +516,7 @@ const Home = () => {
             className="mt-10 text-center md:mt-12"
           >
             <Link
-              to="/gallery"
+              to={ROUTES.galleri}
               className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md"
             >
               <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">
@@ -798,42 +817,42 @@ const Footer = () => {
             <p className={labelClass}>{t('footer.quickLinks')}</p>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/weddings" className={linkClass}>
+                <Link to={ROUTES.bryllup} className={linkClass}>
                   {t('nav.weddings')}
                 </Link>
               </li>
               <li>
-                <Link to="/corporate" className={linkClass}>
+                <Link to={ROUTES.bedrift} className={linkClass}>
                   {t('nav.corporate')}
                 </Link>
               </li>
               <li>
-                <Link to="/packages" className={linkClass}>
+                <Link to={ROUTES.selskap} className={linkClass}>
                   {t('nav.private')}
                 </Link>
               </li>
               <li>
-                <Link to="/facilities" className={linkClass}>
+                <Link to={ROUTES.fasiliteter} className={linkClass}>
                   {t('nav.facilities')}
                 </Link>
               </li>
               <li>
-                <Link to="/prices" className={linkClass}>
+                <Link to={ROUTES.priser} className={linkClass}>
                   {t('nav.prices')}
                 </Link>
               </li>
               <li>
-                <Link to="/gallery" className={linkClass}>
+                <Link to={ROUTES.galleri} className={linkClass}>
                   {t('nav.gallery')}
                 </Link>
               </li>
               <li>
-                <Link to="/blog" className={linkClass}>
+                <Link to={ROUTES.blogg} className={linkClass}>
                   {t('nav.blog')}
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className={linkClass}>
+                <Link to={ROUTES.kontakt} className={linkClass}>
                   {t('nav.contact')}
                 </Link>
               </li>
@@ -880,20 +899,33 @@ export default function App() {
             <AnimatePresence mode="wait">
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/weddings" element={<WeddingsPage />} />
-                <Route path="/corporate" element={<CorporatePage />} />
-                <Route path="/packages" element={<PrivatePage />} />
-                <Route path="/private" element={<Navigate to="/packages" replace />} />
-                <Route path="/prices" element={<PricesPage />} />
-                <Route path="/facilities" element={<FacilitiesPage />} />
-                <Route path="/gallery" element={<GalleryPage />} />
-                <Route path="/blog/:slug" element={<BlogPostPage />} />
-                <Route path="/blog" element={<BlogPage />} />
-                <Route path="/faq" element={<FAQPage />} />
-                <Route path="/testimonials" element={<TestimonialsPage />} />
-                <Route path="/contact" element={<ContactPage />} />
-                <Route path="/inquiry" element={<InquiryPage />} />
+                <Route path={ROUTES.bryllup} element={<WeddingsPage />} />
+                <Route path={ROUTES.bedrift} element={<CorporatePage />} />
+                <Route path={ROUTES.selskap} element={<PrivatePage />} />
+                <Route path={ROUTES.priser} element={<PricesPage />} />
+                <Route path={ROUTES.fasiliteter} element={<FacilitiesPage />} />
+                <Route path={ROUTES.galleri} element={<GalleryPage />} />
+                <Route path={`${ROUTES.blogg}/:slug`} element={<BlogPostPage />} />
+                <Route path={ROUTES.blogg} element={<BlogPage />} />
+                <Route path={ROUTES.ofteStilteSporsmal} element={<FAQPage />} />
+                <Route path={ROUTES.anmeldelser} element={<TestimonialsPage />} />
+                <Route path={ROUTES.kontakt} element={<ContactPage />} />
+                <Route path={ROUTES.henvendelse} element={<InquiryPage />} />
                 <Route path="/admin/*" element={<AdminPanel />} />
+                {/* Legacy English URLs → Norwegian */}
+                <Route path="/weddings" element={<Navigate to={ROUTES.bryllup} replace />} />
+                <Route path="/corporate" element={<Navigate to={ROUTES.bedrift} replace />} />
+                <Route path="/packages" element={<LegacyPathRedirect to={ROUTES.selskap} />} />
+                <Route path="/private" element={<LegacyPathRedirect to={ROUTES.selskap} />} />
+                <Route path="/prices" element={<Navigate to={ROUTES.priser} replace />} />
+                <Route path="/facilities" element={<Navigate to={ROUTES.fasiliteter} replace />} />
+                <Route path="/gallery" element={<Navigate to={ROUTES.galleri} replace />} />
+                <Route path="/blog/:slug" element={<LegacyBlogPostRedirect />} />
+                <Route path="/blog" element={<Navigate to={ROUTES.blogg} replace />} />
+                <Route path="/faq" element={<Navigate to={ROUTES.ofteStilteSporsmal} replace />} />
+                <Route path="/testimonials" element={<Navigate to={ROUTES.anmeldelser} replace />} />
+                <Route path="/contact" element={<Navigate to={ROUTES.kontakt} replace />} />
+                <Route path="/inquiry" element={<Navigate to={ROUTES.henvendelse} replace />} />
               </Routes>
             </AnimatePresence>
           </main>
