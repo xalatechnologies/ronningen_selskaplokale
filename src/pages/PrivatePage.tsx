@@ -44,8 +44,7 @@ const PRIVATE_EVENT_IMAGES: Record<PrivateEventKey, string> = {
   memorial: '/corporate-event-christmas.png',
   anniversary:
     'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=85&w=1200',
-  gathering:
-    'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=85&w=1200',
+  gathering: '/facilities-bar-event-hall.png',
 };
 
 const galleryImgs = [

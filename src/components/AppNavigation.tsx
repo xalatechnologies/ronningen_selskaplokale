@@ -6,7 +6,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
-import { Globe, Menu, MessageCircle, SendHorizontal, X } from 'lucide-react';
+import { Menu, MessageCircle, SendHorizontal, X } from 'lucide-react';
 import {
   useState,
   useEffect,
@@ -246,13 +246,10 @@ export function AppNavigation() {
             <button
               type="button"
               onClick={toggleLanguage}
-              className="flex h-11 min-w-11 items-center justify-center gap-1 rounded-xl border border-brand-200 bg-white px-2.5 text-brand-800 transition-colors hover:border-brand-300 hover:bg-brand-50 md:h-12 md:px-3"
+              className="px-1 text-[11px] font-bold uppercase tracking-widest text-brand-900 transition-colors hover:text-brand-700"
               aria-label={t('nav.changeLanguage')}
             >
-              <Globe size={16} aria-hidden />
-              <span className="text-[10px] font-bold uppercase tracking-widest md:text-[11px]">
-                {i18n.language}
-              </span>
+              {i18n.language === 'no' ? 'NO' : 'EN'}
             </button>
             <Link
               to="/contact#kontakt-skjema"
