@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { CheckCircle2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { ROUTES } from '../../lib/routes';
-import { SECTION_H2_CLASS } from '../../lib/typography';
+import { SECTION_H2_CLASS, SECTION_LEAD_CLASS } from '../../lib/typography';
 
 const WEDDINGS_PACKAGE_IDS = ['basic', 'plus', 'premium'] as const;
 
@@ -39,12 +39,12 @@ export function WeddingPackagesBlock() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-10 max-w-2xl md:mb-12"
+          className="mb-10 w-full md:mb-12"
         >
           <h2 id={WEDDING_PACKAGES_HEADING_ID} className={cn(SECTION_H2_CLASS, 'scroll-mt-24 mb-5')}>
             {t('weddingsPage.packagesSection.heading')}
           </h2>
-          <p className="text-base leading-relaxed text-brand-700 md:text-lg md:leading-relaxed">
+          <p className={SECTION_LEAD_CLASS}>
             {t('weddingsPage.packagesSection.intro')}
           </p>
         </motion.div>

@@ -7,7 +7,12 @@ import { INQUIRY_CTA_PATH } from '../lib/privatePackageConfig';
 import { ROUTES } from '../lib/routes';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
-import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
+import {
+  SECTION_H2_CLASS,
+  SECTION_H2_ON_DARK_CLASS,
+  SECTION_LEAD_CLASS,
+  SECTION_LEAD_ON_DARK_CLASS,
+} from '../lib/typography';
 import {
   ArrowLeft,
   ArrowRight,
@@ -186,7 +191,7 @@ export const PrivatePage = () => {
         className="section-viewport scroll-mt-24 border-b border-brand-200/80 bg-linear-to-b from-white via-brand-50/50 to-brand-100/40"
       >
         <div className="section-viewport-scroll site-container py-14 md:py-20 lg:py-24">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto w-full text-center">
             <motion.h2
               id="private-value-heading"
               initial={{ opacity: 0, y: 16 }}
@@ -203,7 +208,7 @@ export const PrivatePage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="mt-6 text-pretty text-base leading-relaxed text-brand-800 md:text-lg md:leading-relaxed"
+              className={cn(SECTION_LEAD_CLASS, 'mt-6')}
             >
               {t('privatePage.introSection.intro')}
             </motion.p>
@@ -356,7 +361,7 @@ export const PrivatePage = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12 max-w-3xl"
+            className="mb-12 w-full"
           >
             <h2 className={cn(SECTION_H2_CLASS)}>{t('privatePage.gallerySection.heading')}</h2>
           </motion.div>
@@ -458,7 +463,7 @@ export const PrivatePage = () => {
         </div>
 
         <div className="section-viewport-scroll site-container relative z-10 py-12 md:py-16">
-          <div className="mx-auto w-full max-w-3xl">
+          <div className="mx-auto w-full max-w-none">
           <div className="mb-10 text-center md:mb-12">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -559,14 +564,14 @@ export const PrivatePage = () => {
               <div className="absolute -left-[10%] -top-[20%] h-[50%] w-[50%] rounded-full bg-brand-400/20 blur-[120px]" />
               <div className="absolute -bottom-[20%] -right-[10%] h-[50%] w-[50%] rounded-full bg-rose-400/10 blur-[120px]" />
             </div>
-            <div className="relative z-10 mx-auto max-w-3xl space-y-6 md:space-y-8">
+            <div className="relative z-10 mx-auto w-full max-w-none space-y-6 md:space-y-8">
               <h2 className={cn(SECTION_H2_ON_DARK_CLASS, 'm-0')}>
                 {t('privatePage.closingCta.headingLine1Before')}
                 <span className="italic text-brand-400">{t('privatePage.closingCta.headingLine1Accent')}</span>
                 <br />
                 {t('privatePage.closingCta.headingLine2')}
               </h2>
-              <p className="text-lg font-light leading-relaxed text-brand-100 md:text-xl">
+              <p className={SECTION_LEAD_ON_DARK_CLASS}>
                 {t('privatePage.closingCta.body')}
               </p>
               <div className="flex flex-col items-center justify-center gap-4 pt-2 sm:flex-row sm:gap-5">

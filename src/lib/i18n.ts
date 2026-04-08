@@ -959,6 +959,15 @@ const resources = {
         ctaLink: 'Contact us',
         swipeHint: 'Swipe or use arrows to browse',
       },
+      faqPage: {
+        intro:
+          'Find answers to the most common questions about our venue and services.',
+      },
+      testimonialsPage: {
+        title: 'Testimonials',
+        intro:
+          'Read what our clients have to say about their experiences at Rønningen Selskapslokale.',
+      },
     }
   },
   no: {
@@ -1912,6 +1921,15 @@ const resources = {
         ctaBody: 'Fortell om planene deres — vi viser gjerne rundt på Rønningen.',
         ctaLink: 'Ta kontakt',
         swipeHint: 'Sveip eller bruk pilene for å bla',
+      },
+      faqPage: {
+        intro:
+          'Svar på de vanligste spørsmålene om lokalet og tjenestene våre.',
+      },
+      testimonialsPage: {
+        title: 'Anbefalinger',
+        intro:
+          'Dette sier noen av gjestene våre om opplevelsen på Rønningen selskapslokale.',
       },
     }
   }

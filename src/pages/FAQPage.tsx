@@ -2,6 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import { cn } from '../lib/utils';
+import { PAGE_H1_CLASS, SECTION_LEAD_CLASS } from '../lib/typography';
 
 const faqData = [
   {
@@ -63,8 +65,8 @@ export const FAQPage: React.FC = () => {
         <div className="section-viewport-scroll site-container py-16">
           <div className="mx-auto w-full max-w-4xl">
           <div className="mb-12 text-center">
-            <h1 className="mb-4 font-serif text-5xl">{t('nav.faq')}</h1>
-            <p className="text-brand-600">Find answers to the most common questions about our venue and services.</p>
+            <h1 className={cn(PAGE_H1_CLASS, 'mb-4 text-brand-950')}>{t('nav.faq')}</h1>
+            <p className={SECTION_LEAD_CLASS}>{t('faqPage.intro')}</p>
           </div>
 
           <div className="space-y-12">

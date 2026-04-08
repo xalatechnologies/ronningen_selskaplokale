@@ -244,8 +244,8 @@ export function AppNavigation() {
               className={cn(
                 'flex min-h-11 items-center border-r-2 rounded-l-xl py-3 pl-3 pr-4 font-serif text-lg tracking-tight transition-colors',
                 active
-                  ? 'border-brand-800 bg-brand-50/85 font-bold text-brand-900'
-                  : 'border-transparent font-medium text-brand-700 hover:bg-brand-50/60 hover:text-brand-900'
+                  ? 'border-brand-900 bg-brand-50/85 font-bold text-brand-950'
+                  : 'border-transparent font-semibold text-brand-900 hover:bg-brand-50/60 hover:text-brand-950'
               )}
             >
               {link.name}
@@ -292,7 +292,7 @@ export function AppNavigation() {
               <span className="truncate font-serif text-lg font-bold tracking-tight text-brand-900 md:text-xl">
                 {t('branding.navLine1')}
               </span>
-              <span className="mt-0.5 block w-full -translate-x-[2px] text-center font-serif text-sm font-medium tracking-tight text-brand-600 md:text-base">
+              <span className="mt-0.5 block w-full -translate-x-[2px] text-center font-serif text-sm font-semibold tracking-tight text-brand-800 md:text-base">
                 {t('branding.navLine2')}
               </span>
             </span>
@@ -317,15 +317,15 @@ export function AppNavigation() {
                     className={cn(
                       'relative shrink-0 py-2 text-[13px] uppercase tracking-[0.2em] transition-all duration-300',
                       active
-                        ? 'font-bold text-brand-900'
-                        : 'font-medium text-brand-700 hover:text-brand-900'
+                        ? 'font-bold text-brand-950'
+                        : 'font-semibold text-brand-900 hover:text-brand-950'
                     )}
                   >
                     {link.name}
                     {active ? (
                       <motion.div
                         layoutId="nav-underline"
-                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-800"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-950"
                       />
                     ) : null}
                   </Link>
@@ -467,7 +467,7 @@ export function AppNavigation() {
               </div>
               <Link
                 to={ROUTES.kontakt}
-                className="mt-2 inline-block text-xs font-semibold uppercase tracking-[0.16em] text-brand-700 hover:text-brand-900"
+                className="mt-2 inline-block text-xs font-semibold uppercase tracking-[0.16em] text-brand-900 hover:text-brand-950"
               >
                 {t('chat.directContact')}
               </Link>

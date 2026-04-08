@@ -5,7 +5,12 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
-import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
+import {
+  SECTION_H2_CLASS,
+  SECTION_H2_ON_DARK_CLASS,
+  SECTION_LEAD_CLASS,
+  SECTION_LEAD_ON_DARK_CLASS,
+} from '../lib/typography';
 import { ArrowLeft, ArrowRight, ChevronDown } from 'lucide-react';
 import { FACILITY_CARD_IMAGES, FACILITY_CARD_KEYS } from '../lib/facilityCards';
 
@@ -196,7 +201,7 @@ export const FacilitiesPage = () => {
               <span className="italic text-white/95">{t('facilitiesPage.heroTitleLine2Accent')}</span>
               {t('facilitiesPage.heroTitleLine2Rest')}
             </motion.h1>
-            <p className="mx-auto max-w-2xl text-lg font-light italic opacity-90 sm:text-xl md:text-2xl [text-shadow:0_1px_20px_rgba(0,0,0,0.28)]">
+            <p className="w-full max-w-none text-lg font-light italic opacity-90 sm:text-xl md:text-2xl [text-shadow:0_1px_20px_rgba(0,0,0,0.28)]">
               {t('facilitiesPage.heroTagline')}
             </p>
             <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
@@ -380,13 +385,11 @@ export const FacilitiesPage = () => {
         className="section-viewport relative overflow-hidden border-b border-brand-100 bg-white"
       >
         <div className="section-viewport-scroll site-container relative z-10 py-24">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 max-w-3xl">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 w-full">
             <h2 id="facilities-gallery-heading" className={cn(SECTION_H2_CLASS, 'mb-6')}>
               {t('facilitiesPage.gallerySection.heading')}
             </h2>
-            <p className="text-lg leading-relaxed text-brand-600 md:text-xl">
-              {t('facilitiesPage.gallerySection.intro')}
-            </p>
+            <p className={SECTION_LEAD_CLASS}>{t('facilitiesPage.gallerySection.intro')}</p>
           </motion.div>
           <div className="relative">
             {galleryHasOverflow && (
@@ -555,7 +558,7 @@ export const FacilitiesPage = () => {
                 {t('facilitiesPage.closingCta.headingLine1Before')}
                 <span className="block italic text-brand-300">{t('facilitiesPage.closingCta.headingLine1Accent')}</span>
               </h3>
-              <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-brand-100 md:text-lg">
+              <p className={cn(SECTION_LEAD_ON_DARK_CLASS, 'mb-8')}>
                 {t('facilitiesPage.closingCta.body')}
               </p>
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">

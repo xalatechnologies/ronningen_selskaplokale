@@ -41,7 +41,11 @@ import { BOOKING_URL } from './lib/booking';
 import { inspirationGallerySlides, inspirationSlideFileNumber } from './lib/inspirationGallery';
 import { cn } from './lib/utils';
 import { ROUTES } from './lib/routes';
-import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from './lib/typography';
+import {
+  SECTION_H2_CLASS,
+  SECTION_H2_ON_DARK_CLASS,
+  SECTION_LEAD_CLASS,
+} from './lib/typography';
 
 import { ContactPage } from './pages/ContactPage';
 
@@ -248,14 +252,14 @@ const Home = () => {
               transition={{ duration: 0.55 }}
               className="max-w-5xl text-balance font-serif leading-[0.9] tracking-tighter text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.32)]"
             >
-              <span className="block text-2xl font-normal tracking-wide text-white/90 sm:text-3xl md:text-4xl lg:text-5xl">
+              <span className="block font-serif text-2xl font-normal not-italic tracking-wide text-white/90 sm:text-3xl md:text-4xl lg:text-5xl">
                 {t('homeHero.welcomeLine')}
               </span>
-              <span className="mt-2 block font-serif italic text-4xl text-brand-200 sm:mt-3 sm:text-5xl md:text-6xl lg:text-7xl">
+              <span className="mt-2 block font-serif text-4xl italic text-brand-200 sm:mt-3 sm:text-5xl md:text-6xl lg:text-7xl">
                 {t('homeHero.venueName')}
               </span>
             </motion.h1>
-            <p className="mx-auto max-w-2xl text-xl font-light italic opacity-90 md:text-3xl [text-shadow:0_1px_20px_rgba(0,0,0,0.28)]">
+            <p className="w-full max-w-none font-serif text-xl font-normal not-italic opacity-90 md:text-3xl [text-shadow:0_1px_20px_rgba(0,0,0,0.28)]">
               {t('homeHero.tagline')}
             </p>
           </motion.div>
@@ -280,13 +284,11 @@ const Home = () => {
 
         <div className="section-viewport-scroll relative z-10 flex min-h-0 flex-col">
           <div className="site-container flex w-full flex-col py-16 sm:py-20 md:py-24">
-            <header className="max-w-2xl space-y-4 md:space-y-5">
+            <header className="w-full space-y-4 md:space-y-5">
               <h2 id="konsepter-heading" className={SECTION_H2_CLASS}>
                 {t('homeConcepts.heading')}
               </h2>
-              <p className="text-base leading-relaxed text-brand-600 md:text-lg md:leading-relaxed">
-                {t('homeConcepts.intro')}
-              </p>
+              <p className={SECTION_LEAD_CLASS}>{t('homeConcepts.intro')}</p>
             </header>
 
             <div className="mt-10 md:mt-12">
@@ -428,14 +430,12 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12 max-w-3xl"
+            className="mb-12 w-full"
           >
             <h2 id="inspirasjon-galleri-heading" className={cn(SECTION_H2_CLASS, 'mb-6')}>
               {t('homeGallery.heading')}
             </h2>
-            <p className="text-lg leading-relaxed text-brand-600 md:text-xl">
-              {t('homeGallery.intro')}
-            </p>
+            <p className={SECTION_LEAD_CLASS}>{t('homeGallery.intro')}</p>
           </motion.div>
 
           <div className="relative">
@@ -557,9 +557,7 @@ const Home = () => {
               <h2 id="partnere-heading" className={cn(SECTION_H2_CLASS, 'mb-4 md:mb-5')}>
                 {t('homePartners.heading')}
               </h2>
-              <p className="mx-auto max-w-xl text-base leading-[1.65] text-brand-600 md:text-lg md:leading-relaxed lg:mx-0 lg:max-w-none">
-                {t('homePartners.intro')}
-              </p>
+              <p className={SECTION_LEAD_CLASS}>{t('homePartners.intro')}</p>
             </header>
 
             <div className="relative lg:col-span-7 xl:col-span-8">

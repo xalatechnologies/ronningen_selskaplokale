@@ -31,9 +31,28 @@
   body {
     @apply bg-brand-50 text-brand-900 font-sans;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+
+  /*
+   * Default heading scale (Playfair). Utility classes on elements override these for hero/section tokens.
+   * Keeps semantic h1–h6 meaningful for SEO when tags are used without bespoke utilities.
+   */
+  h1 {
+    @apply font-serif text-4xl font-normal tracking-tighter text-balance text-brand-900 sm:text-5xl md:text-6xl;
+  }
+  h2 {
+    @apply font-serif text-3xl font-normal tracking-tight text-balance text-brand-900 sm:text-4xl md:text-5xl;
+  }
+  h3 {
+    @apply font-serif text-2xl font-normal tracking-tight text-brand-900 md:text-3xl;
+  }
+  h4 {
+    @apply font-serif text-xl font-normal tracking-tight text-brand-900 md:text-2xl;
+  }
+  h5 {
+    @apply font-serif text-lg font-normal tracking-tight text-brand-900 md:text-xl;
+  }
+  h6 {
+    @apply font-serif text-base font-normal tracking-tight text-brand-800 md:text-lg;
   }
 }
 

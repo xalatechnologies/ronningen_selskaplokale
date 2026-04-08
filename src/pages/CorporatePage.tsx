@@ -5,7 +5,12 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
-import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
+import {
+  SECTION_H2_CLASS,
+  SECTION_H2_ON_DARK_CLASS,
+  SECTION_LEAD_CLASS,
+  SECTION_LEAD_ON_DARK_CLASS,
+} from '../lib/typography';
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 
 import { ROUTES } from '../lib/routes';
@@ -140,7 +145,7 @@ export const CorporatePage = () => {
               <span className="italic text-white/95">{t('corporatePage.heroTitleLine2Accent')}</span>
               {t('corporatePage.heroTitleLine2Rest')}
             </motion.h1>
-            <p className="mx-auto max-w-2xl text-lg font-light italic opacity-90 sm:text-xl md:text-2xl [text-shadow:0_1px_20px_rgba(0,0,0,0.28)]">
+            <p className="w-full max-w-none text-lg font-light italic opacity-90 sm:text-xl md:text-2xl [text-shadow:0_1px_20px_rgba(0,0,0,0.28)]">
               {t('corporatePage.heroTagline')}
             </p>
             <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
@@ -210,9 +215,7 @@ export const CorporatePage = () => {
                     {t('corporatePage.introSection.headingBefore')}
                     <span className="italic text-brand-700">{t('corporatePage.introSection.headingAccent')}</span>
                   </h2>
-                  <p className="max-w-2xl text-pretty text-base leading-relaxed text-brand-800 md:text-lg md:leading-relaxed lg:text-xl lg:leading-relaxed">
-                    {t('corporatePage.introSection.intro')}
-                  </p>
+                  <p className={SECTION_LEAD_CLASS}>{t('corporatePage.introSection.intro')}</p>
                 </motion.header>
 
                 <div className="mt-6 border-t border-brand-200/90 pt-6 md:mt-8 md:pt-8">
@@ -336,7 +339,7 @@ export const CorporatePage = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12 max-w-3xl"
+            className="mb-12 w-full"
           >
             <h2 className={cn(SECTION_H2_CLASS)}>{t('corporatePage.gallerySection.heading')}</h2>
           </motion.div>
@@ -438,7 +441,7 @@ export const CorporatePage = () => {
         </div>
 
         <div className="section-viewport-scroll site-container relative z-10 py-12 md:py-16">
-          <div className="mx-auto w-full max-w-3xl">
+          <div className="mx-auto w-full max-w-none">
           <div className="mb-10 text-center md:mb-12">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
@@ -539,7 +542,7 @@ export const CorporatePage = () => {
               <div className="absolute -left-[10%] -top-[20%] h-[50%] w-[50%] rounded-full bg-brand-400/20 blur-[120px]" />
               <div className="absolute -bottom-[20%] -right-[10%] h-[50%] w-[50%] rounded-full bg-rose-400/10 blur-[120px]" />
             </div>
-            <div className="relative z-10 mx-auto max-w-3xl space-y-6 md:space-y-8">
+            <div className="relative z-10 mx-auto w-full max-w-none space-y-6 md:space-y-8">
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-300">
                 {t('corporatePage.closingCta.eyebrow')}
               </p>
@@ -549,7 +552,7 @@ export const CorporatePage = () => {
                 <br />
                 {t('corporatePage.closingCta.headingLine2')}
               </h2>
-              <p className="text-lg font-light leading-relaxed text-brand-100 md:text-xl">
+              <p className={SECTION_LEAD_ON_DARK_CLASS}>
                 {t('corporatePage.closingCta.body')}
               </p>
               <div className="flex flex-col items-center justify-center gap-4 pt-2 sm:flex-row sm:gap-5">

@@ -3,6 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Clock, ArrowUpRight, ExternalLink, type LucideIcon } from 'lucide-react';
+import { cn } from '../lib/utils';
+import { PAGE_H1_CLASS, SECTION_H3_CLASS, SECTION_LEAD_CLASS } from '../lib/typography';
 import { ContactForm } from '../components/ContactForm';
 import { ContactMap } from '../components/ContactMap';
 
@@ -75,7 +77,7 @@ export const ContactPage: React.FC = () => {
 
         <div className="section-viewport-scroll site-container relative z-10 py-12 md:py-16 lg:py-20">
           {/* Page intro — same scroll context as everything below */}
-          <header className="mx-auto max-w-3xl text-center">
+          <header className="mx-auto w-full text-center">
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -89,7 +91,7 @@ export const ContactPage: React.FC = () => {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.04 }}
-              className="font-serif text-4xl tracking-tight text-brand-950 sm:text-5xl md:text-[3.25rem] md:leading-[1.08]"
+              className={cn(PAGE_H1_CLASS, 'text-brand-950 md:text-[3.25rem] md:leading-[1.08]')}
             >
               {t('nav.contact')}
             </motion.h1>
@@ -97,7 +99,7 @@ export const ContactPage: React.FC = () => {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.1 }}
-              className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-brand-800 md:text-lg"
+              className={cn(SECTION_LEAD_CLASS, 'mt-5')}
             >
               {t('contactPage.intro')}
             </motion.p>
@@ -181,12 +183,10 @@ export const ContactPage: React.FC = () => {
                   id="kontakt-skjema"
                   className="scroll-mt-28 lg:col-span-8 lg:min-h-0"
                 >
-                  <h3
-                    id="contact-form-heading"
-                    className="font-serif text-xl tracking-tight text-brand-950 md:text-2xl">
+                  <h3 id="contact-form-heading" className={SECTION_H3_CLASS}>
                     {t('contactPage.formSectionTitle')}
                   </h3>
-                  <p className="mt-3 max-w-2xl text-base leading-relaxed text-brand-800 md:text-lg">
+                  <p className={cn(SECTION_LEAD_CLASS, 'mt-3')}>
                     {t('contactPage.formSectionIntro')}
                   </p>
                   <div className="mt-8">

@@ -4,7 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { ChevronLeft, ChevronRight, Expand, X } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
+import {
+  PAGE_H1_CLASS,
+  SECTION_H2_ON_DARK_CLASS,
+  SECTION_LEAD_CLASS,
+  SECTION_LEAD_ON_DARK_CLASS,
+} from '../lib/typography';
 import { BOOKING_URL } from '../lib/booking';
 import { inspirationGalleryPageItems } from '../lib/inspirationGallery';
 import { ROUTES } from '../lib/routes';
@@ -150,18 +155,15 @@ export const GalleryPage: React.FC = () => {
         />
 
         <div className="section-viewport-scroll site-container relative z-10 pb-16 pt-12 md:pb-28 md:pt-16 lg:pt-20">
-          <header className="mx-auto max-w-3xl text-center">
+          <header className="mx-auto w-full text-center">
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-600">
               {t('galleryPage.heroEyebrow')}
             </p>
-            <h1
-              id="gallery-heading"
-              className="font-serif text-4xl tracking-tight text-brand-950 sm:text-5xl md:text-6xl md:leading-[1.05]"
-            >
+            <h1 id="gallery-heading" className={cn(PAGE_H1_CLASS, 'text-brand-950 md:leading-[1.05]')}>
               {t('nav.gallery')}
             </h1>
             <div className="mx-auto mt-5 h-px w-14 bg-brand-600/35" aria-hidden />
-            <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-brand-800 md:text-lg">
+            <p className={cn(SECTION_LEAD_CLASS, 'mt-6')}>
               {t('galleryPage.intro')}
             </p>
           </header>
@@ -311,7 +313,7 @@ export const GalleryPage: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: prefersReducedMotion ? 0 : 0.2 }}
-                className="mx-auto max-w-2xl text-xl font-light leading-relaxed text-brand-100 md:text-2xl"
+                className={SECTION_LEAD_ON_DARK_CLASS}
               >
                 {t('galleryPage.ctaBody')}
               </motion.p>

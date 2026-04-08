@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import { SECTION_H2_CLASS } from '../../lib/typography';
+import { SECTION_H2_CLASS, SECTION_LEAD_CLASS } from '../../lib/typography';
 import { FACILITY_CARD_IMAGES, FACILITY_CARD_KEYS, type FacilityCardKey } from '../../lib/facilityCards';
 
 export const FACILITY_PRICING_HEADING_ID = 'facility-pricing-heading';
@@ -67,12 +67,12 @@ export function FacilityPricingBlock() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12 max-w-3xl"
+          className="mb-12 w-full max-w-none"
         >
           <h2 id={FACILITY_PRICING_HEADING_ID} className={cn(SECTION_H2_CLASS, 'scroll-mt-24 mb-5 text-balance !text-3xl sm:!text-4xl md:!text-5xl')}>
             {t('pricesPage.facilityPricing.heading')}
           </h2>
-          <p className="max-w-2xl text-base leading-relaxed text-brand-700 md:text-lg">
+          <p className={SECTION_LEAD_CLASS}>
             {t('pricesPage.facilityPricing.intro')}
           </p>
         </motion.div>

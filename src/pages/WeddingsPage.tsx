@@ -17,7 +17,12 @@ import {
 import { cn } from '../lib/utils';
 import { inspirationGallerySlides, inspirationSlideFileNumber } from '../lib/inspirationGallery';
 import { ROUTES } from '../lib/routes';
-import { SECTION_H2_CLASS, SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
+import {
+  SECTION_H2_CLASS,
+  SECTION_H2_ON_DARK_CLASS,
+  SECTION_LEAD_CLASS,
+  SECTION_LEAD_ON_DARK_CLASS,
+} from '../lib/typography';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import {
   InspirationGalleryLightbox,
@@ -140,7 +145,7 @@ export const WeddingsPage = () => {
               </span>
               {t('weddingsPage.heroTitleLine2Rest')}
             </motion.h1>
-            <p className="mx-auto max-w-2xl text-lg font-light italic opacity-90 sm:text-xl md:text-2xl [text-shadow:0_1px_20px_rgba(0,0,0,0.28)]">
+            <p className="w-full max-w-none text-lg font-light italic opacity-90 sm:text-xl md:text-2xl [text-shadow:0_1px_20px_rgba(0,0,0,0.28)]">
               {t('weddingsPage.heroTagline')}
             </p>
             <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
@@ -180,14 +185,12 @@ export const WeddingsPage = () => {
 
         <div className="section-viewport-scroll site-container relative z-10 py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-14 xl:gap-20 items-start">
-            <div className="order-2 lg:order-1 max-w-3xl">
+            <div className="order-2 lg:order-1 w-full min-w-0">
               <h2 id="atmosfaeren-heading" className={cn(SECTION_H2_CLASS, 'mb-6 text-balance')}>
                 {t('weddingsPage.atmosphere.headingLine1')} <br /> {t('weddingsPage.atmosphere.headingLine2')}
               </h2>
               <div className="space-y-5 md:space-y-6">
-                <p className="text-pretty text-lg leading-relaxed text-brand-800/95 md:text-xl md:leading-relaxed lg:text-[1.35rem] lg:leading-[1.65]">
-                  {t('weddingsPage.atmosphere.intro1')}
-                </p>
+                <p className={SECTION_LEAD_CLASS}>{t('weddingsPage.atmosphere.intro1')}</p>
               </div>
             </div>
 
@@ -410,12 +413,10 @@ export const WeddingsPage = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-12 max-w-3xl"
+            className="mb-12 w-full"
           >
             <h2 className={cn(SECTION_H2_CLASS, 'mb-6')}>{t('weddingsPage.gallerySection.heading')}</h2>
-            <p className="text-lg leading-relaxed text-brand-600 md:text-xl">
-              {t('weddingsPage.gallerySection.intro')}
-            </p>
+            <p className={SECTION_LEAD_CLASS}>{t('weddingsPage.gallerySection.intro')}</p>
           </motion.div>
 
           <div className="relative">
@@ -619,7 +620,7 @@ export const WeddingsPage = () => {
             <div className="absolute -bottom-[20%] -right-[10%] w-[50%] h-[50%] bg-rose-400/10 blur-[120px] rounded-full"></div>
           </div>
 
-          <div className="relative z-10 mx-auto max-w-4xl space-y-8 md:space-y-10">
+          <div className="relative z-10 mx-auto w-full max-w-none space-y-8 md:space-y-10">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -636,7 +637,7 @@ export const WeddingsPage = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="mx-auto max-w-2xl text-xl font-light leading-relaxed text-brand-100 md:text-2xl"
+              className={SECTION_LEAD_ON_DARK_CLASS}
             >
               {t('weddingsPage.finalCta.body')}
             </motion.p>

@@ -6,7 +6,7 @@ import { ArrowLeft, CalendarDays } from 'lucide-react';
 import { BLOG_CARD_IMAGES, blogPostKeyFromSlug } from '../lib/blogPosts';
 import { ROUTES } from '../lib/routes';
 import type { BlogPostKey } from '../lib/blogPosts';
-import { SECTION_H2_CLASS } from '../lib/typography';
+import { PAGE_H1_CLASS, SECTION_LEAD_CLASS } from '../lib/typography';
 import { cn } from '../lib/utils';
 
 function postBodyParagraphs(t: ReturnType<typeof useTranslation>['t'], key: BlogPostKey): string[] {
@@ -63,7 +63,7 @@ export const BlogPostPage: React.FC = () => {
             />
           </div>
           <div className="site-container pb-10 pt-8 md:pb-12 md:pt-10">
-            <div className="mx-auto w-full max-w-3xl">
+            <div className="mx-auto w-full max-w-none">
             <div className="mb-5 flex flex-wrap items-center gap-3 text-xs text-brand-600 md:text-sm">
               <span className="inline-flex items-center rounded-full bg-brand-100 px-2.5 py-0.5 font-medium text-brand-800">
                 {t(`blogPage.posts.${key}.category`)}
@@ -80,7 +80,7 @@ export const BlogPostPage: React.FC = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
-              className={cn(SECTION_H2_CLASS, 'text-brand-950')}
+              className={cn(PAGE_H1_CLASS, 'text-brand-950')}
             >
               {title}
             </motion.h1>
@@ -89,21 +89,19 @@ export const BlogPostPage: React.FC = () => {
         </header>
 
         <div className="section-viewport-scroll site-container py-12 md:py-16">
-          <div className="mx-auto w-full max-w-3xl">
-          <p className="text-pretty text-lg font-medium leading-relaxed text-brand-800 md:text-xl">
+          <p className={cn(SECTION_LEAD_CLASS, 'font-medium')}>
             {t(`blogPage.posts.${key}.excerpt`)}
           </p>
-          <div className="mt-10 space-y-6 text-pretty text-base leading-relaxed text-brand-700 md:text-[1.0625rem] md:leading-relaxed">
+          <div className="mx-auto mt-10 w-full max-w-3xl space-y-6 text-pretty text-base leading-relaxed text-brand-700 md:text-[1.0625rem] md:leading-relaxed">
             {paragraphs.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
           </div>
-          <p className="mt-12 border-t border-brand-100 pt-10 text-sm text-brand-500">
+          <p className="mx-auto mt-12 max-w-3xl border-t border-brand-100 pt-10 text-sm text-brand-500">
             <Link to={ROUTES.blogg} className="font-semibold text-brand-800 underline decoration-brand-300 underline-offset-4 transition hover:text-brand-950">
               {t('blogPage.backToBlog')}
             </Link>
           </p>
-          </div>
         </div>
       </article>
     </div>

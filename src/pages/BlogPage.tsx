@@ -4,7 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { ArrowRight, CalendarDays } from 'lucide-react';
 import { BLOG_CARD_IMAGES, BLOG_POST_KEYS, blogPostPath } from '../lib/blogPosts';
-import { SECTION_H2_CLASS } from '../lib/typography';
+import {
+  PAGE_H1_CLASS,
+  SECTION_H3_CLASS,
+  SECTION_H4_CLASS,
+  SECTION_LEAD_CLASS,
+} from '../lib/typography';
 import { cn } from '../lib/utils';
 
 export const BlogPage: React.FC = () => {
@@ -28,7 +33,7 @@ export const BlogPage: React.FC = () => {
         />
 
         <div className="section-viewport-scroll site-container relative z-10 pb-16 pt-14 md:pb-20 md:pt-16 lg:pt-20">
-          <header className="mx-auto max-w-3xl text-center">
+          <header className="mx-auto w-full text-center">
             <motion.p
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -42,7 +47,7 @@ export const BlogPage: React.FC = () => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.04 }}
-              className={cn(SECTION_H2_CLASS, 'mb-6')}
+              className={cn(PAGE_H1_CLASS, 'mb-6 text-brand-950')}
             >
               {t('blogPage.title')}
             </motion.h1>
@@ -50,7 +55,7 @@ export const BlogPage: React.FC = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.1 }}
-              className="mx-auto max-w-2xl text-pretty text-base leading-relaxed text-brand-700 md:text-lg md:leading-relaxed"
+              className={SECTION_LEAD_CLASS}
             >
               {t('blogPage.intro')}
             </motion.p>
@@ -67,11 +72,11 @@ export const BlogPage: React.FC = () => {
           <div className="mb-10 flex flex-col gap-3 md:mb-12 md:flex-row md:items-end md:justify-between">
             <h2
               id="blog-latest-heading"
-              className="font-serif text-2xl tracking-tight text-brand-950 md:text-3xl"
+              className="font-serif text-3xl font-normal tracking-tight text-brand-950 md:text-4xl"
             >
               {t('blogPage.latestHeading')}
             </h2>
-            <p className="max-w-md text-sm leading-relaxed text-brand-600 md:text-base">
+            <p className={SECTION_LEAD_CLASS}>
               {t('blogPage.latestSub')}
             </p>
           </div>
@@ -117,10 +122,10 @@ export const BlogPage: React.FC = () => {
                       {t(`blogPage.posts.${featuredKey}.date`)}
                     </span>
                   </div>
-                  <h3 className="font-serif text-2xl leading-tight tracking-tight text-brand-950 md:text-3xl">
+                  <h3 className={SECTION_H3_CLASS}>
                     {t(`blogPage.posts.${featuredKey}.title`)}
                   </h3>
-                  <p className="mt-4 text-pretty text-base leading-relaxed text-brand-700 md:text-[1.0625rem]">
+                  <p className={cn(SECTION_LEAD_CLASS, 'mt-4')}>
                     {t(`blogPage.posts.${featuredKey}.excerpt`)}
                   </p>
                   <span
@@ -174,10 +179,15 @@ export const BlogPage: React.FC = () => {
                         {t(`blogPage.posts.${key}.date`)}
                       </time>
                     </div>
-                    <h3 className="font-serif text-xl leading-snug tracking-tight text-brand-950 md:text-[1.35rem]">
+                    <h3 className={cn(SECTION_H4_CLASS, 'leading-snug')}>
                       {t(`blogPage.posts.${key}.title`)}
                     </h3>
-                    <p className="mt-3 flex-1 text-pretty text-sm leading-relaxed text-brand-700 md:text-base">
+                    <p
+                      className={cn(
+                        SECTION_LEAD_CLASS,
+                        'mt-3 flex-1 text-sm md:text-base lg:text-lg',
+                      )}
+                    >
                       {t(`blogPage.posts.${key}.excerpt`)}
                     </p>
                     <span className="mt-5 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-brand-900">

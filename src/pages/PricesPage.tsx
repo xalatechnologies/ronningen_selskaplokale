@@ -2,7 +2,12 @@ import React, { useLayoutEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { cn } from '../lib/utils';
-import { SECTION_H2_ON_DARK_CLASS } from '../lib/typography';
+import {
+  PAGE_H1_CLASS,
+  SECTION_H2_ON_DARK_CLASS,
+  SECTION_LEAD_CLASS,
+  SECTION_LEAD_ON_DARK_CLASS,
+} from '../lib/typography';
 import { WeddingPackagesBlock, WEDDING_PACKAGES_HEADING_ID } from '../components/pricing/WeddingPackagesBlock';
 import { FacilityPricingBlock, FACILITY_PRICING_HEADING_ID } from '../components/pricing/FacilityPricingBlock';
 import { ROUTES } from '../lib/routes';
@@ -46,18 +51,18 @@ export const PricesPage: React.FC = () => {
         />
 
         <div className="section-viewport-scroll site-container relative z-10 pb-8 pt-10 md:pb-10 md:pt-12">
-          <header className="mx-auto max-w-3xl text-center">
+          <header className="mx-auto w-full text-center">
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-600">
               {t('pricesPage.heroEyebrow')}
             </p>
             <h1
               id="prices-page-heading"
-              className="font-serif text-4xl tracking-tight text-brand-950 sm:text-5xl md:text-6xl md:leading-[1.05]"
+              className={cn(PAGE_H1_CLASS, 'text-brand-950 md:leading-[1.05]')}
             >
               {t('pricesPage.title')}
             </h1>
             <div className="mx-auto mt-4 h-px w-14 bg-brand-600/35" aria-hidden />
-            <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-brand-800 md:text-lg">
+            <p className={cn(SECTION_LEAD_CLASS, 'mt-5')}>
               {t('pricesPage.intro')}
             </p>
           </header>
@@ -80,7 +85,7 @@ export const PricesPage: React.FC = () => {
               <div className="absolute -bottom-[25%] -right-[10%] h-[min(50%,20rem)] w-[min(50%,24rem)] rounded-full bg-brand-400/15 blur-[90px]" />
             </div>
 
-            <div className="relative z-10 max-w-xl md:max-w-2xl">
+            <div className="relative z-10 w-full max-w-none">
               <div className="mb-4 h-px w-12 bg-brand-400/70" aria-hidden />
               <h2
                 className={cn(
@@ -90,7 +95,7 @@ export const PricesPage: React.FC = () => {
               >
                 {t('pricesPage.bottomCta.heading')}
               </h2>
-              <p className="text-base font-light leading-relaxed text-brand-100 md:text-lg md:leading-relaxed">
+              <p className={SECTION_LEAD_ON_DARK_CLASS}>
                 {t('pricesPage.bottomCta.body')}
               </p>
             </div>

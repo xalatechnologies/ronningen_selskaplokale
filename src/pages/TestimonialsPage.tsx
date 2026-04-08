@@ -2,6 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { Star, Quote } from 'lucide-react';
+import { cn } from '../lib/utils';
+import { PAGE_H1_CLASS, SECTION_H5_CLASS, SECTION_LEAD_CLASS } from '../lib/typography';
 
 const testimonials = [
   {
@@ -37,9 +39,9 @@ export const TestimonialsPage: React.FC = () => {
     <section className="section-viewport">
       <div className="section-viewport-scroll site-container py-16">
       <div className="mb-12 text-center">
-        <h1 className="text-5xl font-serif mb-4">Testimonials</h1>
-        <p className="text-brand-600 max-w-2xl mx-auto">
-          Read what our clients have to say about their experiences at Rønningen Selskapslokale.
+        <h1 className={cn(PAGE_H1_CLASS, 'mb-4 text-brand-950')}>{t('testimonialsPage.title')}</h1>
+        <p className={SECTION_LEAD_CLASS}>
+          {t('testimonialsPage.intro')}
         </p>
       </div>
 
@@ -62,7 +64,7 @@ export const TestimonialsPage: React.FC = () => {
               "{item.content}"
             </p>
             <div>
-              <h4 className="font-bold text-brand-900">{item.name}</h4>
+              <h4 className={cn(SECTION_H5_CLASS, 'font-semibold')}>{item.name}</h4>
               <p className="text-xs uppercase tracking-widest text-brand-400 mt-1">{item.event}</p>
             </div>
           </motion.div>
