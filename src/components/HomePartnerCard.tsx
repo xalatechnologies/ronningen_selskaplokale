@@ -31,14 +31,15 @@ export const HomePartnerCard: FC<Props> = ({ partnerKey, className }) => {
     <article
       className={cn(
         'flex h-full w-[min(100vw-2.5rem,18rem)] shrink-0 flex-col rounded-2xl border border-brand-200/90 bg-white p-4 shadow-[0_8px_28px_-18px_rgba(33,24,22,0.35)] transition-[box-shadow,transform,border-color] duration-300 sm:w-[19.5rem]',
-        'group-hover:-translate-y-0.5 group-hover:border-brand-300 group-hover:shadow-[0_16px_40px_-20px_rgba(33,24,22,0.45)]',
+        'dark:border-brand-600 dark:bg-brand-800/95 dark:shadow-[0_12px_36px_-16px_rgba(0,0,0,0.45)]',
+        'group-hover:-translate-y-0.5 group-hover:border-brand-300 group-hover:shadow-[0_16px_40px_-20px_rgba(33,24,22,0.45)] dark:group-hover:border-brand-500',
         className,
       )}
     >
       <div className="flex gap-3">
         <div
           className={cn(
-            'flex h-[3.25rem] w-[3.25rem] shrink-0 items-center justify-center overflow-hidden rounded-xl border border-brand-200/90 bg-linear-to-br from-white to-brand-50/90 sm:h-14 sm:w-14',
+            'flex h-[3.25rem] w-[3.25rem] shrink-0 items-center justify-center overflow-hidden rounded-xl border border-brand-200/90 bg-linear-to-br from-white to-brand-50/90 sm:h-14 sm:w-14 dark:border-brand-600 dark:from-brand-900 dark:to-brand-800',
           )}
         >
           {showLogo ? (
@@ -53,26 +54,28 @@ export const HomePartnerCard: FC<Props> = ({ partnerKey, className }) => {
               onError={() => setFaviconFailed(true)}
             />
           ) : (
-            <span className="font-serif text-lg font-semibold tabular-nums text-brand-900 sm:text-xl">
+            <span className="font-serif text-lg font-semibold tabular-nums text-brand-900 sm:text-xl dark:text-brand-100">
               {initial}
             </span>
           )}
         </div>
         <div className="min-w-0 flex-1">
-          <h3 className="font-serif text-base font-semibold leading-snug tracking-tight text-brand-950 sm:text-[1.0625rem]">
+          <h3 className="font-serif text-base font-semibold leading-snug tracking-tight text-brand-950 sm:text-[1.0625rem] dark:text-brand-50">
             {name}
           </h3>
-          <p className="mt-1.5 line-clamp-3 text-left text-sm leading-snug text-brand-800">{desc}</p>
+          <p className="mt-1.5 line-clamp-3 text-left text-sm leading-snug text-brand-800 dark:text-brand-200">
+            {desc}
+          </p>
         </div>
       </div>
-      <div className="mt-3 border-t border-brand-100 pt-2.5">
+      <div className="mt-3 border-t border-brand-100 pt-2.5 dark:border-brand-600">
         {href ? (
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-brand-900">
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-brand-900 dark:text-brand-100">
             {linkLabel}
             <ArrowUpRight className="h-3.5 w-3.5 shrink-0 opacity-80" aria-hidden />
           </span>
         ) : (
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-brand-900">
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-brand-900 dark:text-brand-100">
             {t('homePartners.noWebsite')}
             <ArrowRight className="h-3.5 w-3.5 shrink-0 opacity-80" aria-hidden />
           </span>

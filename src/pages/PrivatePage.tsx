@@ -128,7 +128,7 @@ export const PrivatePage = () => {
   };
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="ui-page-shell">
       {/* 1 — Hero */}
       <section className="hero-below-nav section-viewport section-viewport-hero relative flex min-h-0 flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -188,7 +188,7 @@ export const PrivatePage = () => {
       <section
         id="private-intro"
         aria-labelledby="private-value-heading"
-        className="section-viewport scroll-mt-24 border-b border-brand-200/80 bg-linear-to-b from-white via-brand-50/50 to-brand-100/40"
+        className="ui-route-hero-band section-viewport scroll-mt-24"
       >
         <div className="section-viewport-scroll site-container py-14 md:py-20 lg:py-24">
           <div className="mx-auto w-full text-center">
@@ -201,7 +201,7 @@ export const PrivatePage = () => {
               className={cn(SECTION_H2_CLASS, 'text-balance')}
             >
               {t('privatePage.introSection.headingBefore')}
-              <span className="italic text-brand-700">{t('privatePage.introSection.headingAccent')}</span>
+              <span className="italic text-brand-700 dark:text-brand-300">{t('privatePage.introSection.headingAccent')}</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -243,15 +243,15 @@ export const PrivatePage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="flex flex-col rounded-2xl border border-brand-200/90 bg-white/90 p-6 shadow-[0_1px_0_rgba(28,22,19,0.05)] backdrop-blur-sm md:p-7"
+                  className="flex flex-col rounded-2xl border border-brand-200/90 bg-white/90 p-6 shadow-[0_1px_0_rgba(28,22,19,0.05)] backdrop-blur-sm dark:border-brand-600 dark:bg-brand-800/75 md:p-7"
                 >
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-brand-200/80 bg-brand-50 text-brand-800">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-brand-200/80 bg-brand-50 text-brand-800 dark:border-brand-600 dark:bg-brand-950/35 dark:text-brand-200">
                     <Icon size={22} strokeWidth={1.75} aria-hidden />
                   </div>
-                  <h3 className="font-serif text-xl tracking-tight text-brand-950 md:text-[1.35rem]">
+                  <h3 className="font-serif text-xl tracking-tight text-brand-950 md:text-[1.35rem] dark:text-brand-50">
                     {t(`${base}.title`)}
                   </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-brand-700 md:text-base">{t(`${base}.desc`)}</p>
+                  <p className="mt-3 text-[15px] leading-relaxed text-brand-700 md:text-base dark:text-brand-200">{t(`${base}.desc`)}</p>
                 </motion.div>
               );
             })}
@@ -433,12 +433,12 @@ export const PrivatePage = () => {
           >
             <Link
               to={`${ROUTES.galleri}?category=private`}
-              className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md"
+              className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md dark:border-brand-600 dark:bg-brand-800 dark:hover:border-brand-500"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900 dark:text-brand-50">
                 {t('privatePage.gallerySection.fullGalleryCta')}
               </span>
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white transition-transform group-hover:translate-x-1">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white transition-transform group-hover:translate-x-1 dark:bg-brand-100 dark:text-brand-900">
                 <ArrowRight size={16} />
               </div>
             </Link>
@@ -447,9 +447,9 @@ export const PrivatePage = () => {
       </section>
 
       {/* 5 — FAQ (samme mål og uttrykk som bryllup) */}
-      <section className="section-viewport relative overflow-hidden border-b border-brand-100 bg-brand-50/50">
+      <section className="section-viewport relative overflow-hidden border-b border-brand-100 bg-brand-50/50 dark:border-brand-800 dark:bg-brand-950/50">
         <div className="pointer-events-none absolute left-0 top-0 h-full w-full overflow-hidden">
-          <div className="absolute left-[5%] top-[10%] h-[20%] w-[20%] rounded-full bg-brand-200/10 blur-[100px]" />
+          <div className="absolute left-[5%] top-[10%] h-[20%] w-[20%] rounded-full bg-brand-200/10 blur-[100px] dark:bg-brand-600/10" />
         </div>
 
         <div className="section-viewport-scroll site-container relative z-10 py-12 md:py-16">
@@ -462,9 +462,9 @@ export const PrivatePage = () => {
               className={cn(SECTION_H2_CLASS, 'mb-4')}
             >
               {t('privatePage.faqSection.headingBefore')}
-              <span className="italic text-brand-600">{t('privatePage.faqSection.headingAccent')}</span>
+              <span className="italic text-brand-600 dark:text-brand-400">{t('privatePage.faqSection.headingAccent')}</span>
             </motion.h2>
-            <div className="mx-auto h-px w-16 bg-brand-200" />
+            <div className="mx-auto h-px w-16 bg-brand-200 dark:bg-brand-700" />
           </div>
 
           <div className="space-y-3">
@@ -480,8 +480,8 @@ export const PrivatePage = () => {
                   className={cn(
                     'overflow-hidden rounded-md border transition-all duration-500',
                     openFaq === i
-                      ? 'border-brand-200 bg-white shadow-md'
-                      : 'border-brand-100 bg-white/40 hover:border-brand-200 hover:bg-white/60',
+                      ? 'border-brand-200 bg-white shadow-md dark:border-brand-600 dark:bg-brand-800/95 dark:shadow-lg dark:shadow-black/30'
+                      : 'border-brand-100 bg-white/40 hover:border-brand-200 hover:bg-white/60 dark:border-brand-700 dark:bg-brand-900/35 dark:hover:border-brand-600 dark:hover:bg-brand-900/55',
                   )}
                 >
                   <button
@@ -492,7 +492,9 @@ export const PrivatePage = () => {
                     <span
                       className={cn(
                         'font-serif text-lg transition-colors duration-300 md:text-xl',
-                        openFaq === i ? 'text-brand-900' : 'text-brand-800 group-hover:text-brand-900',
+                        openFaq === i
+                          ? 'text-brand-900 dark:text-brand-50'
+                          : 'text-brand-800 group-hover:text-brand-900 dark:text-brand-200 dark:group-hover:text-brand-50',
                       )}
                     >
                       {t(`${itemBase}.q`)}
@@ -501,8 +503,8 @@ export const PrivatePage = () => {
                       className={cn(
                         'flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all duration-500',
                         openFaq === i
-                          ? 'rotate-180 border-brand-900 bg-brand-900 text-white'
-                          : 'border-brand-200 text-brand-400 group-hover:border-brand-400 group-hover:text-brand-900',
+                          ? 'rotate-180 border-brand-900 bg-brand-900 text-white dark:border-brand-100 dark:bg-brand-100 dark:text-brand-900'
+                          : 'border-brand-200 text-brand-400 group-hover:border-brand-400 group-hover:text-brand-900 dark:border-brand-600 dark:text-brand-500 dark:group-hover:border-brand-400 dark:group-hover:text-brand-200',
                       )}
                     >
                       <ChevronDown size={18} />
@@ -516,8 +518,8 @@ export const PrivatePage = () => {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
                       >
-                        <div className="px-5 pb-5 text-[15px] font-light leading-relaxed text-brand-600 md:px-6 md:pb-6 md:text-base">
-                          <div className="mb-3 h-px w-10 bg-brand-100" />
+                        <div className="px-5 pb-5 text-[15px] font-light leading-relaxed text-brand-600 md:px-6 md:pb-6 md:text-base dark:text-brand-300">
+                          <div className="mb-3 h-px w-10 bg-brand-100 dark:bg-brand-700" />
                           {t(`${itemBase}.a`)}
                         </div>
                       </motion.div>

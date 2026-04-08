@@ -9,6 +9,7 @@ import {
   SECTION_H2_ON_DARK_CLASS,
   SECTION_LEAD_CLASS,
   SECTION_LEAD_ON_DARK_CLASS,
+  UI_EYEBROW_CLASS,
 } from '../lib/typography';
 import { BOOKING_URL } from '../lib/booking';
 import { inspirationGalleryPageItems } from '../lib/inspirationGallery';
@@ -132,10 +133,10 @@ export const GalleryPage: React.FC = () => {
   const motionStagger = prefersReducedMotion ? 0 : 0.045;
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="ui-page-shell">
       <section
         aria-labelledby="gallery-heading"
-        className="section-viewport relative overflow-hidden bg-linear-to-b from-white via-brand-50/40 to-brand-50/70"
+        className="ui-route-hero-band section-viewport"
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.4] mix-blend-multiply"
@@ -146,20 +147,18 @@ export const GalleryPage: React.FC = () => {
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute -right-[15%] top-[5%] h-[min(45vw,24rem)] w-[min(45vw,24rem)] rounded-full bg-brand-200/20 blur-[100px]"
+          className="pointer-events-none absolute -right-[15%] top-[5%] h-[min(45vw,24rem)] w-[min(45vw,24rem)] rounded-full bg-brand-200/20 blur-[100px] dark:bg-brand-500/12"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute -left-[10%] top-[40%] h-[min(35vw,18rem)] w-[min(35vw,18rem)] rounded-full bg-brand-400/10 blur-[90px]"
+          className="pointer-events-none absolute -left-[10%] top-[40%] h-[min(35vw,18rem)] w-[min(35vw,18rem)] rounded-full bg-brand-400/10 blur-[90px] dark:bg-brand-600/10"
           aria-hidden
         />
 
         <div className="section-viewport-scroll site-container relative z-10 pb-16 pt-12 md:pb-28 md:pt-16 lg:pt-20">
           <header className="mx-auto w-full text-center">
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-600">
-              {t('galleryPage.heroEyebrow')}
-            </p>
-            <h1 id="gallery-heading" className={cn(PAGE_H1_CLASS, 'text-brand-950 md:leading-[1.05]')}>
+            <p className={cn(UI_EYEBROW_CLASS, 'mb-3')}>{t('galleryPage.heroEyebrow')}</p>
+            <h1 id="gallery-heading" className={cn(PAGE_H1_CLASS, 'md:leading-[1.05]')}>
               {t('nav.gallery')}
             </h1>
             <div className="mx-auto mt-5 h-px w-14 bg-brand-600/35" aria-hidden />
@@ -184,8 +183,8 @@ export const GalleryPage: React.FC = () => {
                   className={cn(
                     'inline-flex shrink-0 min-h-[48px] items-center gap-2.5 rounded-full border-2 px-6 py-3 text-xs font-bold uppercase tracking-[0.14em] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 sm:min-h-[52px] sm:px-7 sm:py-3.5 sm:text-[13px] sm:tracking-[0.12em]',
                     filter === f
-                      ? 'border-white/35 bg-brand-900 text-white shadow-none'
-                      : 'border-brand-400/90 bg-white text-brand-950 shadow-[0_2px_12px_rgba(33,24,22,0.08)] hover:border-brand-800 hover:bg-brand-50 hover:shadow-[0_4px_16px_rgba(33,24,22,0.12)]'
+                      ? 'border-white/35 bg-brand-900 text-white shadow-none dark:border-brand-500/40 dark:bg-brand-700'
+                      : 'border-brand-400/90 bg-white text-brand-950 shadow-[0_2px_12px_rgba(33,24,22,0.08)] hover:border-brand-800 hover:bg-brand-50 hover:shadow-[0_4px_16px_rgba(33,24,22,0.12)] dark:border-brand-600 dark:bg-brand-800/75 dark:text-brand-50 dark:shadow-[0_8px_28px_rgba(0,0,0,0.35)] dark:hover:border-brand-500 dark:hover:bg-brand-800'
                   )}
                 >
                   <span>{filterLabel(f)}</span>
@@ -194,7 +193,7 @@ export const GalleryPage: React.FC = () => {
                       'min-w-7 rounded-full px-2.5 py-1 text-[11px] font-bold tabular-nums sm:text-xs',
                       filter === f
                         ? 'bg-white/25 text-white ring-1 ring-white/40'
-                        : 'border border-brand-300/80 bg-brand-100 text-brand-900'
+                        : 'border border-brand-300/80 bg-brand-100 text-brand-900 dark:border-brand-600 dark:bg-brand-950/50 dark:text-brand-100'
                     )}
                     aria-hidden
                   >
@@ -206,9 +205,9 @@ export const GalleryPage: React.FC = () => {
           </div>
 
           {filteredItems.length === 0 ? (
-            <div className="mx-auto mt-16 max-w-md rounded-3xl border border-brand-200/90 bg-[#f5f2ed] px-8 py-12 text-center shadow-sm">
-              <p className="font-serif text-xl text-brand-950">{t('galleryPage.emptyTitle')}</p>
-              <p className="mt-3 text-sm leading-relaxed text-brand-700">{t('galleryPage.emptyBody')}</p>
+            <div className="mx-auto mt-16 max-w-md rounded-3xl border border-brand-200/90 bg-[#f5f2ed] px-8 py-12 text-center shadow-sm dark:border-brand-600 dark:bg-brand-900/45">
+              <p className="font-serif text-xl text-brand-950 dark:text-brand-50">{t('galleryPage.emptyTitle')}</p>
+              <p className="mt-3 text-sm leading-relaxed text-brand-700 dark:text-brand-200">{t('galleryPage.emptyBody')}</p>
             </div>
           ) : (
             <motion.div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 md:gap-5 lg:grid-cols-4">

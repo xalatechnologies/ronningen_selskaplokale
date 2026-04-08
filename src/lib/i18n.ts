@@ -82,6 +82,8 @@ const resources = {
       },
       homeServices: {
         heading: 'Exclusive services',
+        intro:
+          'From sound and lighting to catering, bar service and accommodation — practical support so your event feels effortless from start to finish.',
         items: {
           soundLight: {
             title: 'Sound & lighting',
@@ -859,6 +861,10 @@ const resources = {
       blogPage: {
         heroEyebrow: 'Journal',
         title: 'Blog',
+        comingSoonBadge: 'Coming soon',
+        comingSoonTitle: 'Stories from the venue, almost here',
+        comingSoonBody:
+          'We are preparing articles about celebrations, seasonal inspiration, and practical tips from Rønningen. Follow along — the journal opens shortly.',
         intro:
           'Ideas for your celebration, practical tips from the venue, and stories from real events — gathered in one place.',
         latestHeading: 'Latest articles',
@@ -967,10 +973,12 @@ const resources = {
         swipeHint: 'Swipe or use arrows to browse',
       },
       faqPage: {
+        heroEyebrow: 'Questions & answers',
         intro:
           'Find answers to the most common questions about our venue and services.',
       },
       testimonialsPage: {
+        heroEyebrow: 'Guest stories',
         title: 'Testimonials',
         intro:
           'Read what our clients have to say about their experiences at Rønningen Selskapslokale.',
@@ -1054,6 +1062,8 @@ const resources = {
       },
       homeServices: {
         heading: 'Eksklusive tjenester',
+        intro:
+          'Fra lyd og lys til catering, barservice og overnatting — praktiske løsninger som gjør at arrangementet deres flyter trygt fra start til slutt.',
         items: {
           soundLight: {
             title: 'Lyd & lys',
@@ -1829,6 +1839,10 @@ const resources = {
       blogPage: {
         heroEyebrow: 'Journal',
         title: 'Blogg',
+        comingSoonBadge: 'Kommer snart',
+        comingSoonTitle: 'Historier fra lokalet kommer straks',
+        comingSoonBody:
+          'Vi jobber med artikler om feiringer, sesonginspirasjon og praktiske tips fra Rønningen. Følg med — journalen åpner snart.',
         intro:
           'Ideer til feiringen, praktiske tips fra lokalet og historier fra ekte arrangementer — samlet på ett sted.',
         latestHeading: 'Siste artikler',
@@ -1937,10 +1951,12 @@ const resources = {
         swipeHint: 'Sveip eller bruk pilene for å bla',
       },
       faqPage: {
+        heroEyebrow: 'Spørsmål og svar',
         intro:
           'Svar på de vanligste spørsmålene om lokalet og tjenestene våre.',
       },
       testimonialsPage: {
+        heroEyebrow: 'Historier fra gjester',
         title: 'Anbefalinger',
         intro:
           'Dette sier noen av gjestene våre om opplevelsen på Rønningen selskapslokale.',

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '../../lib/utils';
-import { SECTION_H2_CLASS, SECTION_LEAD_CLASS } from '../../lib/typography';
+import { SECTION_H2_CLASS, SECTION_LEAD_CLASS, UI_CAPTION_CLASS } from '../../lib/typography';
 import { FACILITY_CARD_IMAGES, FACILITY_CARD_KEYS, type FacilityCardKey } from '../../lib/facilityCards';
 
 export const FACILITY_PRICING_HEADING_ID = 'facility-pricing-heading';
@@ -51,7 +51,7 @@ export function FacilityPricingBlock() {
   return (
     <section
       aria-labelledby={FACILITY_PRICING_HEADING_ID}
-      className="section-viewport relative overflow-hidden border-y border-brand-200/80 bg-white"
+      className="ui-section-solid-muted section-viewport relative overflow-hidden border-y border-brand-200/80 dark:border-brand-700/60"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.35] mix-blend-multiply"
@@ -90,30 +90,34 @@ export function FacilityPricingBlock() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: Math.min(visibleIndex * 0.05, 0.25) }}
-                className="flex flex-col overflow-hidden rounded-2xl border border-brand-200/90 bg-[#faf8f5] shadow-[0_1px_0_rgba(28,22,19,0.04)] ring-1 ring-brand-900/[0.03]"
+                className="group relative flex flex-col overflow-hidden rounded-[1.25rem] border border-brand-200/85 bg-[#faf8f5] shadow-[0_28px_64px_-32px_rgba(33,24,22,0.38)] ring-1 ring-brand-900/[0.04] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_34px_72px_-28px_rgba(33,24,22,0.42)] dark:border-brand-600/75 dark:bg-brand-800/55 dark:shadow-[0_28px_68px_-30px_rgba(0,0,0,0.5)] dark:ring-brand-950/35 dark:hover:shadow-[0_36px_80px_-26px_rgba(0,0,0,0.55)] lg:rounded-3xl"
               >
-                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-brand-200/60">
+                <div
+                  className="pointer-events-none absolute inset-x-8 top-0 z-[1] h-px bg-gradient-to-r from-transparent via-brand-400/45 to-transparent dark:via-brand-500/30"
+                  aria-hidden
+                />
+                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-brand-200/55 dark:border-brand-600/70">
                   <img
                     src={FACILITY_CARD_IMAGES[key]}
                     alt={t(`${base}.imgAlt`)}
                     width={800}
                     height={500}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                     loading="lazy"
                     decoding="async"
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
-                  <p className="absolute bottom-3 left-4 right-4 font-serif text-xl font-medium tracking-tight text-white drop-shadow-md md:text-2xl">
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
+                  <p className="absolute bottom-3 left-4 right-4 font-serif text-xl font-medium tracking-tight text-white [text-shadow:0_2px_12px_rgba(0,0,0,0.35)] md:text-2xl md:leading-snug">
                     {t(`${base}.title`)}
                   </p>
                 </div>
-                <div className="flex flex-1 flex-col p-5 sm:p-6">
-                  <p className="mb-4 text-sm leading-relaxed text-brand-700">{t(`${base}.desc`)}</p>
-                  <div className="mt-auto border-t border-brand-200/80 pt-4">
-                    <p className="font-serif text-lg font-medium tabular-nums text-brand-950 md:text-xl">
+                <div className="relative flex flex-1 flex-col px-5 pb-6 pt-5 sm:px-7 sm:pb-7 sm:pt-6">
+                  <p className="mb-5 text-[15px] leading-relaxed text-brand-800 md:text-base dark:text-brand-200">{t(`${base}.desc`)}</p>
+                  <div className="mt-auto border-t border-brand-200/75 pt-5 dark:border-brand-600/70">
+                    <p className="font-serif text-[1.35rem] font-normal tabular-nums leading-tight tracking-tight text-brand-950 md:text-2xl dark:text-brand-50">
                       {t(`${priceBase}.price`)}
                     </p>
-                    <p className="mt-1.5 text-xs leading-relaxed text-brand-600">{t(`${priceBase}.note`)}</p>
+                    <p className={cn(UI_CAPTION_CLASS, 'mt-2 max-w-prose')}>{t(`${priceBase}.note`)}</p>
                   </div>
                 </div>
               </motion.li>
@@ -128,7 +132,7 @@ export function FacilityPricingBlock() {
               aria-expanded={expanded}
               aria-controls={FACILITY_PRICING_LIST_ID}
               onClick={() => setExpanded((v) => !v)}
-              className="inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-brand-800 bg-white px-6 py-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-900 transition-colors hover:bg-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 focus-visible:ring-offset-2"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-brand-800 bg-white px-6 py-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-900 transition-colors hover:bg-brand-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-700 focus-visible:ring-offset-2 dark:border-brand-500 dark:bg-brand-800 dark:text-brand-50 dark:hover:bg-brand-700 dark:focus-visible:ring-brand-400 dark:focus-visible:ring-offset-brand-900"
             >
               {expanded ? t('pricesPage.facilityPricing.showLess') : t('pricesPage.facilityPricing.showMore', { count: hiddenCount })}
               <ChevronDown

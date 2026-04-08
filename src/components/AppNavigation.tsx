@@ -85,6 +85,7 @@ const DESKTOP_HEADER_PATHS = new Set<string>([
   ROUTES.selskap,
   ROUTES.priser,
   ROUTES.galleri,
+  ROUTES.blogg,
 ]);
 
 export function AppNavigation() {
@@ -292,7 +293,7 @@ export function AppNavigation() {
       {/* Top bar: grid on md+ (logo | nav+CTA); mobile hamburger → drawer (full list) */}
       <header
         className={cn(
-          'fixed left-0 right-0 top-0 z-50 border-b border-brand-100 bg-white/95 shadow-sm backdrop-blur-md transition-colors dark:border-brand-800 dark:bg-brand-950/95',
+          'site-header-silk fixed left-0 right-0 top-0 z-50 border-b border-brand-100 bg-white/95 shadow-sm backdrop-blur-md transition-colors dark:border-brand-800 dark:bg-brand-950/95',
           TOP_NAV_H
         )}
       >

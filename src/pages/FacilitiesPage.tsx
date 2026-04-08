@@ -166,7 +166,7 @@ export const FacilitiesPage = () => {
   };
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="ui-page-shell">
       <section className="hero-below-nav section-viewport section-viewport-hero relative flex min-h-0 flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
@@ -227,7 +227,7 @@ export const FacilitiesPage = () => {
       <section
         id="facilities-intro"
         aria-labelledby="facilities-cards-heading"
-        className="section-viewport scroll-mt-24 border-b border-brand-200/80 bg-linear-to-b from-white via-brand-50/50 to-brand-100/40"
+        className="ui-route-hero-band section-viewport scroll-mt-24"
       >
         <div className="section-viewport-scroll site-container py-14 md:py-20 lg:py-24">
           <div className="mb-10 flex flex-col gap-6 md:mb-12 md:flex-row md:items-end md:justify-between md:gap-8">
@@ -240,7 +240,7 @@ export const FacilitiesPage = () => {
                 className={cn(SECTION_H2_CLASS, 'text-balance')}
               >
                 {t('facilitiesPage.introCardsSection.headingBefore')}
-                <span className="italic text-brand-700">{t('facilitiesPage.introCardsSection.headingAccent')}</span>
+                <span className="italic text-brand-700 dark:text-brand-300">{t('facilitiesPage.introCardsSection.headingAccent')}</span>
               </motion.h2>
             </div>
             {facilitiesHasOverflow && (
@@ -295,7 +295,7 @@ export const FacilitiesPage = () => {
                     <article
                       key={cardKey}
                       role="listitem"
-                      className="group flex w-[min(100%,20.5rem)] shrink-0 snap-center snap-always flex-col overflow-hidden rounded-xl border border-brand-200 bg-white shadow-sm outline-none transition-shadow duration-300 hover:shadow-md focus-within:ring-2 focus-within:ring-brand-900/20 sm:w-[min(100%,22rem)] md:w-[min(100%,24rem)] lg:w-[min(100%,26rem)]"
+                      className="group flex w-[min(100%,20.5rem)] shrink-0 snap-center snap-always flex-col overflow-hidden rounded-xl border border-brand-200 bg-white shadow-sm outline-none transition-shadow duration-300 hover:shadow-md focus-within:ring-2 focus-within:ring-brand-900/20 dark:border-brand-600 dark:bg-brand-800/40 dark:shadow-lg dark:shadow-black/25 sm:w-[min(100%,22rem)] md:w-[min(100%,24rem)] lg:w-[min(100%,26rem)]"
                     >
                       <div className="relative aspect-[16/10] shrink-0 overflow-hidden bg-brand-100">
                         <img
@@ -309,11 +309,11 @@ export const FacilitiesPage = () => {
                           fetchPriority={i === 0 ? 'high' : undefined}
                         />
                       </div>
-                      <div className="flex flex-1 flex-col border-t border-brand-100 bg-white px-5 py-5 md:px-6 md:py-6">
-                        <h4 className="font-serif text-xl leading-snug tracking-tight text-brand-950 md:text-[1.35rem]">
+                      <div className="flex flex-1 flex-col border-t border-brand-100 bg-white px-5 py-5 dark:border-brand-700 dark:bg-brand-800/80 md:px-6 md:py-6">
+                        <h4 className="font-serif text-xl leading-snug tracking-tight text-brand-950 md:text-[1.35rem] dark:text-brand-50">
                           {t(`${itemBase}.title`)}
                         </h4>
-                        <p className="mt-3 flex-1 text-[15px] leading-relaxed text-brand-800 md:text-base md:leading-relaxed">
+                        <p className="mt-3 flex-1 text-[15px] leading-relaxed text-brand-800 md:text-base md:leading-relaxed dark:text-brand-200">
                           {t(`${itemBase}.desc`)}
                         </p>
                       </div>
@@ -428,12 +428,12 @@ export const FacilitiesPage = () => {
           >
             <Link
               to={`${ROUTES.galleri}?category=facilities`}
-              className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md"
+              className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md dark:border-brand-600 dark:bg-brand-800 dark:hover:border-brand-500"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900 dark:text-brand-50">
                 {t('facilitiesPage.gallerySection.fullGalleryCta')}
               </span>
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white transition-transform group-hover:translate-x-1">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white transition-transform group-hover:translate-x-1 dark:bg-brand-100 dark:text-brand-900">
                 <ArrowRight size={16} />
               </div>
             </Link>
@@ -443,7 +443,7 @@ export const FacilitiesPage = () => {
 
       <section
         aria-labelledby="facilities-faq-heading"
-        className="section-viewport relative overflow-hidden border-b border-brand-100 bg-brand-50/50"
+        className="section-viewport relative overflow-hidden border-b border-brand-100 bg-brand-50/50 dark:border-brand-800 dark:bg-brand-950/50"
       >
         <div className="section-viewport-scroll site-container relative z-10 py-12 md:py-16">
           <div className="mx-auto w-full max-w-3xl">
@@ -456,9 +456,9 @@ export const FacilitiesPage = () => {
               className={cn(SECTION_H2_CLASS, 'mb-4')}
             >
               {t('facilitiesPage.faqSection.headingBefore')}
-              <span className="italic text-brand-600">{t('facilitiesPage.faqSection.headingAccent')}</span>
+              <span className="italic text-brand-600 dark:text-brand-400">{t('facilitiesPage.faqSection.headingAccent')}</span>
             </motion.h2>
-            <div className="mx-auto h-px w-16 bg-brand-200" />
+            <div className="mx-auto h-px w-16 bg-brand-200 dark:bg-brand-700" />
           </div>
           <div className="space-y-3">
             {FACILITY_FAQ_KEYS.map((faqKey, i) => {
@@ -472,7 +472,9 @@ export const FacilitiesPage = () => {
                   transition={{ delay: i * 0.05 }}
                   className={cn(
                     'overflow-hidden rounded-md border transition-all duration-500',
-                    openFaq === i ? 'border-brand-200 bg-white shadow-md' : 'border-brand-100 bg-white/40 hover:border-brand-200 hover:bg-white/60',
+                    openFaq === i
+                      ? 'border-brand-200 bg-white shadow-md dark:border-brand-600 dark:bg-brand-800/95 dark:shadow-lg dark:shadow-black/30'
+                      : 'border-brand-100 bg-white/40 hover:border-brand-200 hover:bg-white/60 dark:border-brand-700 dark:bg-brand-900/35 dark:hover:border-brand-600 dark:hover:bg-brand-900/55',
                   )}
                 >
                   <button
@@ -483,7 +485,9 @@ export const FacilitiesPage = () => {
                     <span
                       className={cn(
                         'font-serif text-lg transition-colors duration-300 md:text-xl',
-                        openFaq === i ? 'text-brand-900' : 'text-brand-800 group-hover:text-brand-900',
+                        openFaq === i
+                          ? 'text-brand-900 dark:text-brand-50'
+                          : 'text-brand-800 group-hover:text-brand-900 dark:text-brand-200 dark:group-hover:text-brand-50',
                       )}
                     >
                       {t(`${itemBase}.q`)}
@@ -492,8 +496,8 @@ export const FacilitiesPage = () => {
                       className={cn(
                         'flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all duration-500',
                         openFaq === i
-                          ? 'rotate-180 border-brand-900 bg-brand-900 text-white'
-                          : 'border-brand-200 text-brand-400 group-hover:border-brand-400 group-hover:text-brand-900',
+                          ? 'rotate-180 border-brand-900 bg-brand-900 text-white dark:border-brand-100 dark:bg-brand-100 dark:text-brand-900'
+                          : 'border-brand-200 text-brand-400 group-hover:border-brand-400 group-hover:text-brand-900 dark:border-brand-600 dark:text-brand-500 dark:group-hover:border-brand-400 dark:group-hover:text-brand-200',
                       )}
                     >
                       <ChevronDown size={18} />
@@ -507,8 +511,8 @@ export const FacilitiesPage = () => {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.5 }}
                       >
-                        <div className="px-5 pb-5 text-[15px] font-light leading-relaxed text-brand-600 md:px-6 md:pb-6 md:text-base">
-                          <div className="mb-3 h-px w-10 bg-brand-100" />
+                        <div className="px-5 pb-5 text-[15px] font-light leading-relaxed text-brand-600 md:px-6 md:pb-6 md:text-base dark:text-brand-300">
+                          <div className="mb-3 h-px w-10 bg-brand-100 dark:bg-brand-700" />
                           {t(`${itemBase}.a`)}
                         </div>
                       </motion.div>

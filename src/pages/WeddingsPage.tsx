@@ -110,7 +110,7 @@ export const WeddingsPage = () => {
   };
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="ui-page-shell">
       {/* 1. Hero */}
       <section className="hero-below-nav section-viewport section-viewport-hero relative flex min-h-0 flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -172,7 +172,7 @@ export const WeddingsPage = () => {
       <section
         id="atmosfaeren"
         aria-labelledby="atmosfaeren-heading"
-        className="section-viewport scroll-mt-24 relative overflow-hidden border-y border-brand-200/80 bg-gradient-to-b from-white to-brand-50/50"
+        className="ui-section-wash section-viewport scroll-mt-24 relative overflow-hidden border-y border-brand-200/80 dark:border-brand-700/60"
       >
         <div
           className="pointer-events-none absolute left-[6%] top-[10%] h-[min(44vw,26rem)] w-[min(44vw,26rem)] rounded-full bg-brand-300/20 blur-[90px]"
@@ -197,7 +197,7 @@ export const WeddingsPage = () => {
             <figure className="order-1 lg:order-2 m-0 w-full">
               <div
                 className={cn(
-                  'relative w-full overflow-hidden rounded-md border border-brand-100 bg-brand-50 shadow-lg',
+                  'relative w-full overflow-hidden rounded-md border border-brand-100 bg-brand-50 shadow-lg dark:border-brand-700 dark:bg-brand-900/40',
                   'min-h-[min(56vw,320px)] sm:min-h-[min(52vw,380px)] md:min-h-[420px]',
                   'lg:min-h-[min(50vh,480px)] xl:min-h-[min(52vh,560px)] 2xl:min-h-[min(52vh,620px)]',
                 )}
@@ -215,24 +215,52 @@ export const WeddingsPage = () => {
             </figure>
           </div>
 
-          <ul className="mt-16 md:mt-20 grid list-none grid-cols-1 gap-10 border-t border-brand-200/90 pt-12 sm:grid-cols-2 sm:gap-12 md:pt-14 lg:gap-14 m-0 p-0">
+          <div
+            className="relative mt-16 md:mt-20"
+            aria-hidden
+          >
+            <div className="h-px w-full bg-gradient-to-r from-transparent via-brand-300/90 to-transparent dark:via-brand-600/70" />
+          </div>
+          <ul className="m-0 mt-10 grid list-none grid-cols-1 gap-5 p-0 sm:mt-12 sm:grid-cols-2 sm:gap-6 md:mt-14 lg:gap-7">
             {WEDDINGS_ATMOSPHERE_WHY_KEYS.map((whyKey, i) => (
-              <li key={whyKey} className="flex gap-5 md:gap-6">
-                <span
-                  className="w-11 shrink-0 pt-0.5 text-right font-serif text-3xl tabular-nums leading-none text-brand-400 md:w-12 md:text-4xl"
+              <motion.li
+                key={whyKey}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.45, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                className={cn(
+                  'group relative overflow-hidden rounded-2xl border border-brand-200/75 bg-white/80 p-6 shadow-[0_22px_48px_-28px_rgba(33,24,22,0.28)] backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300',
+                  'hover:-translate-y-0.5 hover:border-brand-300/90 hover:shadow-[0_28px_56px_-24px_rgba(33,24,22,0.32)]',
+                  'dark:border-brand-600/55 dark:bg-brand-800/35 dark:shadow-[0_22px_52px_-26px_rgba(0,0,0,0.45)] dark:hover:border-brand-500/70 dark:hover:shadow-[0_30px_60px_-22px_rgba(0,0,0,0.5)]',
+                  'md:p-7 lg:rounded-[1.25rem]',
+                )}
+              >
+                <div
+                  className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-brand-400/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:via-brand-500/35 md:inset-x-7"
                   aria-hidden
-                >
-                  {WEDDINGS_ATMOSPHERE_WHY_NUMBERS[i]}
-                </span>
-                <div className="min-w-0 border-l border-brand-300/90 pl-5 md:pl-6">
-                  <h3 className="mb-2 font-serif text-xl tracking-tight text-brand-950 md:text-2xl md:leading-snug">
-                    {t(`weddingsPage.atmosphere.why.${whyKey}.title`)}
-                  </h3>
-                  <p className="text-base leading-[1.7] text-brand-800 md:text-[17px]">
-                    {t(`weddingsPage.atmosphere.why.${whyKey}.desc`)}
-                  </p>
+                />
+                <div className="flex gap-5 md:gap-6">
+                  <div
+                    className={cn(
+                      'flex h-[3.25rem] w-[3.25rem] shrink-0 items-center justify-center rounded-xl font-serif text-lg tabular-nums tracking-tight md:h-16 md:w-16 md:rounded-2xl md:text-xl',
+                      'bg-gradient-to-br from-brand-100 via-brand-50 to-white text-brand-900 ring-1 ring-brand-200/90 shadow-inner shadow-white/40',
+                      'dark:from-brand-900/90 dark:via-brand-800/80 dark:to-brand-900/60 dark:text-brand-100 dark:ring-brand-600/50 dark:shadow-none',
+                    )}
+                    aria-hidden
+                  >
+                    {WEDDINGS_ATMOSPHERE_WHY_NUMBERS[i]}
+                  </div>
+                  <div className="min-w-0 flex-1 pt-0.5">
+                    <h3 className="mb-2.5 font-serif text-[1.2rem] font-normal tracking-tight text-brand-950 md:text-2xl md:leading-snug dark:text-brand-50">
+                      {t(`weddingsPage.atmosphere.why.${whyKey}.title`)}
+                    </h3>
+                    <p className="text-[15px] font-normal leading-[1.65] text-brand-700 md:text-[1.05rem] md:leading-relaxed dark:text-brand-200">
+                      {t(`weddingsPage.atmosphere.why.${whyKey}.desc`)}
+                    </p>
+                  </div>
                 </div>
-              </li>
+              </motion.li>
             ))}
           </ul>
         </div>
@@ -327,7 +355,7 @@ export const WeddingsPage = () => {
               className={SECTION_H2_CLASS}
             >
               {t('weddingsPage.servicesSection.headingBefore')}
-              <span className="italic text-brand-800">
+              <span className="italic text-brand-600 dark:text-brand-400">
                 {t('weddingsPage.servicesSection.headingAccent')}
               </span>
             </motion.h2>
@@ -492,12 +520,12 @@ export const WeddingsPage = () => {
           >
             <Link
               to={`${ROUTES.galleri}?category=wedding`}
-              className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md"
+              className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md dark:border-brand-600 dark:bg-brand-800 dark:hover:border-brand-500"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900 dark:text-brand-50">
                 {t('weddingsPage.gallerySection.ctaFullGallery')}
               </span>
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white transition-transform group-hover:translate-x-1">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white transition-transform group-hover:translate-x-1 dark:bg-brand-100 dark:text-brand-900">
                 <ArrowRight size={16} />
               </div>
             </Link>
@@ -508,10 +536,10 @@ export const WeddingsPage = () => {
 
 
       {/* 8. FAQ - Editorial Style */}
-      <section className="section-viewport relative overflow-hidden bg-brand-50/50">
+      <section className="section-viewport relative overflow-hidden bg-brand-50/50 dark:bg-brand-950/50">
         {/* Background Decorative Elements */}
         <div className="pointer-events-none absolute top-0 left-0 h-full w-full overflow-hidden">
-          <div className="absolute top-[10%] left-[5%] w-[20%] h-[20%] bg-brand-200/10 blur-[100px] rounded-full"></div>
+          <div className="absolute top-[10%] left-[5%] h-[20%] w-[20%] rounded-full bg-brand-200/10 blur-[100px] dark:bg-brand-600/10" />
         </div>
 
         <div className="section-viewport-scroll site-container relative z-10 py-12 md:py-16">
@@ -524,9 +552,9 @@ export const WeddingsPage = () => {
               className={cn(SECTION_H2_CLASS, 'mb-4')}
             >
               {t('weddingsPage.faqSection.headingBefore')}
-              <span className="italic text-brand-600">{t('weddingsPage.faqSection.headingAccent')}</span>
+              <span className="italic text-brand-600 dark:text-brand-400">{t('weddingsPage.faqSection.headingAccent')}</span>
             </motion.h2>
-            <div className="h-px w-16 bg-brand-200 mx-auto"></div>
+            <div className="mx-auto h-px w-16 bg-brand-200 dark:bg-brand-700" />
           </div>
 
           <div className="space-y-3">
@@ -537,28 +565,36 @@ export const WeddingsPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className={`rounded-md overflow-hidden border transition-all duration-500
-                  ${openFaq === i
-                    ? 'bg-white border-brand-200 shadow-md'
-                    : 'bg-white/40 border-brand-100 hover:border-brand-200 hover:bg-white/60'
-                  }`}
+                className={cn(
+                  'overflow-hidden rounded-md border transition-all duration-500',
+                  openFaq === i
+                    ? 'border-brand-200 bg-white shadow-md dark:border-brand-600 dark:bg-brand-800/95 dark:shadow-lg dark:shadow-black/30'
+                    : 'border-brand-100 bg-white/40 hover:border-brand-200 hover:bg-white/60 dark:border-brand-700 dark:bg-brand-900/35 dark:hover:border-brand-600 dark:hover:bg-brand-900/55',
+                )}
               >
                 <button
                   type="button"
                   onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left group md:px-6 md:py-4"
+                  className="group flex w-full items-center justify-between gap-4 px-5 py-4 text-left md:px-6 md:py-4"
                   aria-expanded={openFaq === i}
                 >
                   <span
-                    className={`font-serif text-lg transition-colors duration-300 md:text-xl ${openFaq === i ? 'text-brand-900' : 'text-brand-800 group-hover:text-brand-900'}`}
+                    className={cn(
+                      'font-serif text-lg transition-colors duration-300 md:text-xl',
+                      openFaq === i
+                        ? 'text-brand-900 dark:text-brand-50'
+                        : 'text-brand-800 group-hover:text-brand-900 dark:text-brand-200 dark:group-hover:text-brand-50',
+                    )}
                   >
                     {t(`weddingsPage.faqSection.items.${faqKey}.q`)}
                   </span>
-                  <div className={`w-9 h-9 shrink-0 rounded-full border flex items-center justify-center transition-all duration-500
-                    ${openFaq === i 
-                      ? 'bg-brand-900 border-brand-900 text-white rotate-180' 
-                      : 'border-brand-200 text-brand-400 group-hover:border-brand-400 group-hover:text-brand-900'
-                    }`}
+                  <div
+                    className={cn(
+                      'flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-all duration-500',
+                      openFaq === i
+                        ? 'rotate-180 border-brand-900 bg-brand-900 text-white dark:border-brand-100 dark:bg-brand-100 dark:text-brand-900'
+                        : 'border-brand-200 text-brand-400 group-hover:border-brand-400 group-hover:text-brand-900 dark:border-brand-600 dark:text-brand-500 dark:group-hover:border-brand-400 dark:group-hover:text-brand-200',
+                    )}
                   >
                     <ChevronDown size={18} />
                   </div>
@@ -571,8 +607,8 @@ export const WeddingsPage = () => {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
                     >
-                      <div className="px-5 pb-5 text-[15px] font-light leading-relaxed text-brand-600 md:px-6 md:pb-6 md:text-base">
-                        <div className="mb-3 h-px w-10 bg-brand-100"></div>
+                      <div className="px-5 pb-5 text-[15px] font-light leading-relaxed text-brand-600 md:px-6 md:pb-6 md:text-base dark:text-brand-300">
+                        <div className="mb-3 h-px w-10 bg-brand-100 dark:bg-brand-700" />
                         {t(`weddingsPage.faqSection.items.${faqKey}.a`)}
                       </div>
                     </motion.div>

@@ -7,6 +7,7 @@ import {
   SECTION_H2_ON_DARK_CLASS,
   SECTION_LEAD_CLASS,
   SECTION_LEAD_ON_DARK_CLASS,
+  UI_EYEBROW_CLASS,
 } from '../lib/typography';
 import { WeddingPackagesBlock, WEDDING_PACKAGES_HEADING_ID } from '../components/pricing/WeddingPackagesBlock';
 import { FacilityPricingBlock, FACILITY_PRICING_HEADING_ID } from '../components/pricing/FacilityPricingBlock';
@@ -27,11 +28,11 @@ export const PricesPage: React.FC = () => {
   }, [hash]);
 
   return (
-    <div className="flex flex-col bg-white">
+    <div className="ui-page-shell">
       {/* Gallery-style hero — compact so pricing starts quickly */}
       <section
         aria-labelledby="prices-page-heading"
-        className="section-viewport relative overflow-hidden border-b border-brand-200/80 bg-linear-to-b from-white via-brand-50/40 to-brand-50/70"
+        className="ui-route-hero-band section-viewport"
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.4] mix-blend-multiply"
@@ -42,22 +43,22 @@ export const PricesPage: React.FC = () => {
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute -right-[15%] top-[5%] h-[min(45vw,24rem)] w-[min(45vw,24rem)] rounded-full bg-brand-200/20 blur-[100px]"
+          className="pointer-events-none absolute -right-[15%] top-[5%] h-[min(45vw,24rem)] w-[min(45vw,24rem)] rounded-full bg-brand-200/20 blur-[100px] dark:bg-brand-500/12"
           aria-hidden
         />
         <div
-          className="pointer-events-none absolute -left-[10%] top-[40%] h-[min(35vw,18rem)] w-[min(35vw,18rem)] rounded-full bg-brand-400/10 blur-[90px]"
+          className="pointer-events-none absolute -left-[10%] top-[40%] h-[min(35vw,18rem)] w-[min(35vw,18rem)] rounded-full bg-brand-400/10 blur-[90px] dark:bg-brand-600/10"
           aria-hidden
         />
 
         <div className="section-viewport-scroll site-container relative z-10 pb-8 pt-10 md:pb-10 md:pt-12">
           <header className="mx-auto w-full text-center">
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-600">
+            <p className={cn(UI_EYEBROW_CLASS, 'mb-3')}>
               {t('pricesPage.heroEyebrow')}
             </p>
             <h1
               id="prices-page-heading"
-              className={cn(PAGE_H1_CLASS, 'text-brand-950 md:leading-[1.05]')}
+              className={cn(PAGE_H1_CLASS, 'md:leading-[1.05]')}
             >
               {t('pricesPage.title')}
             </h1>
@@ -73,7 +74,7 @@ export const PricesPage: React.FC = () => {
 
       <FacilityPricingBlock />
 
-      <section className="border-t border-brand-200/80 bg-brand-50/50">
+      <section className="border-t border-brand-200/80 bg-brand-50/50 dark:border-brand-800/85 dark:bg-brand-950/55">
         <div className="section-viewport-scroll site-container py-12 md:py-16">
           <div className="relative overflow-hidden rounded-2xl bg-brand-900 px-8 py-12 text-white shadow-2xl sm:px-10 sm:py-14 md:flex md:items-center md:justify-between md:gap-12 md:px-14 md:py-16 lg:px-16 lg:py-20">
             <div

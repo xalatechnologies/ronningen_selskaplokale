@@ -23,6 +23,8 @@
 
 @layer base {
   :root {
+    color-scheme: light;
+
     /* Fixed top bar (h-24 = 6rem): hero height below nav. */
     --site-nav-pad: 6rem;
     /* Unified horizontal shell: header, main sections, footer. */
@@ -36,14 +38,62 @@
     --ds-duration-card: 500ms;
     --ds-duration-card-image: 700ms;
     --ds-surface-subtle: #f5f5f5;
+
+    /*
+     * Global contrast tokens — use for custom CSS; Tailwind utilities on elements still win.
+     * Light mode: warm paper canvas + deep brown type.
+     */
+    --contrast-canvas: var(--color-brand-50);
+    --contrast-elevated: #ffffff;
+    --contrast-text: var(--color-brand-900);
+    --contrast-text-secondary: var(--color-brand-800);
+    --contrast-text-muted: var(--color-brand-600);
+    --contrast-border: var(--color-brand-200);
+    --contrast-border-strong: var(--color-brand-300);
+    --contrast-ring: var(--color-brand-900);
+    --contrast-link: var(--color-brand-800);
+    --contrast-link-hover: var(--color-brand-950);
   }
 
   html.dark {
     color-scheme: dark;
+    --ds-surface-subtle: #252018;
+    --contrast-canvas: var(--color-brand-950);
+    /* One step lighter than canvas so route shells read as a clear “sheet”. */
+    --contrast-elevated: #1e1815;
+    --contrast-text: var(--color-brand-50);
+    --contrast-text-secondary: var(--color-brand-100);
+    --contrast-text-muted: var(--color-brand-300);
+    --contrast-border: var(--color-brand-800);
+    --contrast-border-strong: var(--color-brand-700);
+    --contrast-ring: var(--color-brand-200);
+    --contrast-link: var(--color-brand-200);
+    --contrast-link-hover: var(--color-brand-50);
   }
 
   body {
-    @apply bg-brand-50 text-brand-900 font-sans dark:bg-brand-950 dark:text-brand-100;
+    @apply font-sans antialiased;
+    background-color: var(--contrast-canvas);
+    color: var(--contrast-text);
+  }
+
+  /*
+   * Native form controls pick up dark system colors on the elevated surface.
+   */
+  :where(html.dark) :where(input:not([type='checkbox']):not([type='radio']), textarea, select) {
+    color-scheme: dark;
+  }
+
+  /*
+   * Text selection: readable on both themes (oklab keeps hues on-brand).
+   */
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-brand-600) 32%, transparent);
+    color: var(--color-brand-950);
+  }
+  html.dark ::selection {
+    background-color: color-mix(in oklab, var(--color-brand-400) 38%, transparent);
+    color: var(--color-brand-950);
   }
 
   /*
@@ -51,22 +101,33 @@
    * Keeps semantic h1–h6 meaningful for SEO when tags are used without bespoke utilities.
    */
   h1 {
-    @apply font-serif text-4xl font-normal tracking-tighter text-balance text-brand-900 sm:text-5xl md:text-6xl;
+    @apply font-serif text-4xl font-normal tracking-tighter text-balance text-brand-900 sm:text-5xl md:text-6xl dark:text-brand-50;
   }
   h2 {
-    @apply font-serif text-3xl font-normal tracking-tight text-balance text-brand-900 sm:text-4xl md:text-5xl;
+    @apply font-serif text-3xl font-normal tracking-tight text-balance text-brand-900 sm:text-4xl md:text-5xl dark:text-brand-50;
   }
   h3 {
-    @apply font-serif text-2xl font-normal tracking-tight text-brand-900 md:text-3xl;
+    @apply font-serif text-2xl font-normal tracking-tight text-brand-900 md:text-3xl dark:text-brand-100;
   }
   h4 {
-    @apply font-serif text-xl font-normal tracking-tight text-brand-900 md:text-2xl;
+    @apply font-serif text-xl font-normal tracking-tight text-brand-900 md:text-2xl dark:text-brand-100;
   }
   h5 {
-    @apply font-serif text-lg font-normal tracking-tight text-brand-900 md:text-xl;
+    @apply font-serif text-lg font-normal tracking-tight text-brand-900 md:text-xl dark:text-brand-100;
   }
   h6 {
-    @apply font-serif text-base font-normal tracking-tight text-brand-800 md:text-lg;
+    @apply font-serif text-base font-normal tracking-tight text-brand-800 md:text-lg dark:text-brand-200;
+  }
+
+  /*
+   * Plain links (no component classes) stay within contrast budget on canvas.
+   */
+  a:not([class]) {
+    color: var(--contrast-link);
+    text-underline-offset: 0.14em;
+  }
+  a:not([class]):hover {
+    color: var(--contrast-link-hover);
   }
 }
 
@@ -112,6 +173,85 @@
   }
   .scrollbar-facilities::-webkit-scrollbar-thumb:hover {
     background-color: var(--color-brand-600);
+  }
+
+  html.dark .scrollbar-facilities {
+    scrollbar-color: var(--color-brand-500) var(--color-brand-900);
+  }
+  html.dark .scrollbar-facilities::-webkit-scrollbar-track {
+    background: var(--color-brand-900);
+  }
+  html.dark .scrollbar-facilities::-webkit-scrollbar-thumb {
+    background-color: var(--color-brand-600);
+  }
+  html.dark .scrollbar-facilities::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-brand-500);
+  }
+
+  /**
+   * Full-page route shell: white / warm in light; elevated brown in dark (readable with typography tokens).
+   */
+  .ui-page-shell {
+    @apply flex min-h-0 min-w-0 flex-col bg-white text-brand-900;
+  }
+  html.dark .ui-page-shell {
+    background-color: var(--contrast-elevated);
+    color: var(--contrast-text);
+  }
+
+  /**
+   * Full-width band behind the first content block on many routes.
+   * Light: warm tint vs pure white elsewhere; dark: lighter stripe vs 950 canvas.
+   */
+  .ui-route-hero-band {
+    @apply relative overflow-hidden border-b border-brand-200/80 bg-gradient-to-b from-brand-100/90 via-brand-50 to-white;
+  }
+  html.dark .ui-route-hero-band {
+    @apply border-brand-700/65 from-brand-900 via-brand-900 to-brand-950;
+  }
+
+  /** Muted section wash (home + marketing bands). */
+  .ui-section-wash {
+    @apply bg-gradient-to-b from-brand-100/95 via-brand-50 to-white;
+  }
+  html.dark .ui-section-wash {
+    background-image: linear-gradient(
+      to bottom,
+      var(--color-brand-900) 0%,
+      color-mix(in oklab, var(--color-brand-900) 88%, var(--color-brand-950)) 42%,
+      var(--color-brand-950) 100%
+    );
+  }
+
+  /** Solid light section — alternates clearly with .ui-section-wash in both themes. */
+  .ui-section-solid-muted {
+    @apply bg-white;
+  }
+  html.dark .ui-section-solid-muted {
+    @apply bg-brand-900;
+  }
+
+  /** Card / inset panel: borders and fill follow theme. */
+  .ui-panel {
+    @apply rounded-2xl border border-brand-200 bg-white text-brand-900 shadow-sm;
+  }
+  html.dark .ui-panel {
+    @apply border-brand-600 bg-brand-800/90 text-brand-100 shadow-lg shadow-black/35;
+  }
+
+  /* Panels are always a dark surface in dark mode — reset brown type utilities inside. */
+  html.dark .ui-panel .text-brand-950,
+  html.dark .ui-panel .text-brand-900,
+  html.dark .ui-panel .text-brand-800 {
+    color: var(--color-brand-100);
+  }
+  html.dark .ui-panel .text-brand-700,
+  html.dark .ui-panel .text-brand-600 {
+    color: var(--color-brand-200);
+  }
+  html.dark .ui-panel .text-brand-500,
+  html.dark .ui-panel .text-brand-400 {
+    color: var(--color-brand-400);
   }
   
   @keyframes marquee {
@@ -178,6 +318,10 @@
   /** On light gray band (e.g. wedding services #f5f5f5): dark border */
   .ds-media-card--light {
     @apply border border-black/10 hover:border-black/20;
+  }
+
+  html.dark .ds-media-card--light {
+    @apply border-white/18 hover:border-white/30;
   }
 
   .ds-media-card > img {
@@ -263,6 +407,156 @@
     box-shadow: 0 0.35rem 1.2rem rgba(33, 24, 22, 0.4);
     border: 2px solid #fff;
     white-space: nowrap;
+  }
+
+  /*
+   * Silky section seam — wide ellipse reads as thin–thick–thin along the width; shimmer on top layer.
+   * Placed at the top edge (inside overflow-hidden) so it is not clipped.
+   */
+  @keyframes ui-section-silk-shimmer {
+    0%,
+    100% {
+      background-position: 0% 50%, 50% 50%;
+    }
+    50% {
+      background-position: 100% 50%, 50% 50%;
+    }
+  }
+
+  main .flex.flex-col > section + section,
+  main .ui-page-shell > section + section {
+    position: relative;
+  }
+
+  /** Blog post: back link bar — silk sits on bottom edge (article hero would cover a top pseudo on <article>). */
+  main .ui-page-shell > nav.ui-blog-post-nav {
+    position: relative;
+  }
+
+  /* Shared hairline (section tops + below fixed nav). */
+  main .flex.flex-col > section + section::before,
+  main .ui-page-shell > section + section::before,
+  header.site-header-silk::after {
+    content: '';
+    pointer-events: none;
+    border-radius: 9999px;
+    height: clamp(2px, 0.35vw, 4px);
+    opacity: 0.9;
+    background:
+      linear-gradient(
+        102deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.22) 44%,
+        rgba(255, 252, 247, 0.7) 50%,
+        rgba(255, 255, 255, 0.22) 56%,
+        transparent 100%
+      ),
+      radial-gradient(
+        ellipse 52% 92% at 50% 50%,
+        rgba(201, 163, 82, 0.38) 0%,
+        rgba(235, 218, 195, 0.42) 30%,
+        rgba(191, 160, 132, 0.16) 52%,
+        transparent 66%
+      );
+    background-size: 240% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    background-position: 0% 50%, 50% 50%;
+    box-shadow:
+      0 0.5px 0 rgba(255, 255, 255, 0.35),
+      inset 0 0.5px 0 rgba(255, 255, 255, 0.2);
+    animation: ui-section-silk-shimmer 8s ease-in-out infinite;
+  }
+
+  main .flex.flex-col > section + section::before,
+  main .ui-page-shell > section + section::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+  }
+
+  main .ui-page-shell > nav.ui-blog-post-nav::after {
+    content: '';
+    pointer-events: none;
+    border-radius: 9999px;
+    height: clamp(2px, 0.35vw, 4px);
+    opacity: 0.9;
+    background:
+      linear-gradient(
+        102deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.22) 44%,
+        rgba(255, 252, 247, 0.7) 50%,
+        rgba(255, 255, 255, 0.22) 56%,
+        transparent 100%
+      ),
+      radial-gradient(
+        ellipse 52% 92% at 50% 50%,
+        rgba(201, 163, 82, 0.38) 0%,
+        rgba(235, 218, 195, 0.42) 30%,
+        rgba(191, 160, 132, 0.16) 52%,
+        transparent 66%
+      );
+    background-size: 240% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    background-position: 0% 50%, 50% 50%;
+    box-shadow:
+      0 0.5px 0 rgba(255, 255, 255, 0.35),
+      inset 0 0.5px 0 rgba(255, 255, 255, 0.2);
+    animation: ui-section-silk-shimmer 8s ease-in-out infinite;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 4;
+    transform: translateY(-50%);
+  }
+
+  /* Same silk centered on the bottom edge of the fixed bar (half under header, half over content). */
+  header.site-header-silk::after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 51;
+    transform: translateY(-50%);
+  }
+
+  html.dark main .flex.flex-col > section + section::before,
+  html.dark main .ui-page-shell > section + section::before,
+  html.dark main .ui-page-shell > nav.ui-blog-post-nav::after,
+  html.dark header.site-header-silk::after {
+    opacity: 0.88;
+    box-shadow:
+      0 0.5px 0.5px rgba(255, 255, 255, 0.1),
+      inset 0 0.5px 0 rgba(255, 255, 255, 0.06);
+    background:
+      linear-gradient(
+        102deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.07) 42%,
+        rgba(255, 248, 238, 0.18) 50%,
+        rgba(255, 255, 255, 0.07) 58%,
+        transparent 100%
+      ),
+      radial-gradient(
+        ellipse 52% 92% at 50% 50%,
+        rgba(215, 180, 145, 0.3) 0%,
+        rgba(150, 120, 98, 0.14) 44%,
+        transparent 66%
+      );
+    background-size: 240% 100%, 100% 100%;
+    background-position: 0% 50%, 50% 50%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    main .flex.flex-col > section + section::before,
+    main .ui-page-shell > section + section::before,
+    main .ui-page-shell > nav.ui-blog-post-nav::after,
+    header.site-header-silk::after {
+      animation: none;
+    }
   }
 }
 

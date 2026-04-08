@@ -13,7 +13,7 @@ import {
   Navigate,
 } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import {
   Phone,
   Mail,
@@ -41,12 +41,14 @@ import {
 import { BOOKING_URL } from './lib/booking';
 import { inspirationGallerySlides, inspirationSlideFileNumber } from './lib/inspirationGallery';
 import { cn } from './lib/utils';
+import { fireHomeHeroConfetti } from './lib/heroConfetti';
 import { ROUTES } from './lib/routes';
 import { HOME_PARTNER_KEYS } from './lib/homePartners';
 import {
   SECTION_H2_CLASS,
   SECTION_H2_ON_DARK_CLASS,
   SECTION_LEAD_CLASS,
+  SECTION_LEAD_ON_DARK_CLASS,
 } from './lib/typography';
 
 import { ContactPage } from './pages/ContactPage';
@@ -79,8 +81,10 @@ const InquiryPage = () => {
     window.location.replace(BOOKING_URL);
   }, []);
   return (
-    <div className="flex min-h-[50vh] items-center justify-center px-4 py-20">
-      <p className="text-center text-brand-600">{t('common.redirectingBooking')}</p>
+    <div className="ui-page-shell">
+      <section className="section-viewport flex min-h-[50vh] items-center justify-center px-4 py-20">
+        <p className="text-center text-brand-600 dark:text-brand-400">{t('common.redirectingBooking')}</p>
+      </section>
     </div>
   );
 };
@@ -146,6 +150,8 @@ const HOME_SERVICE_IMAGES: Record<HomeServiceKey, string> = {
 
 const Home = () => {
   const { t } = useTranslation();
+  const reduceMotion = useReducedMotion();
+  const heroConfettiCooldownRef = useRef(0);
   const galleryRef = useRef<HTMLDivElement>(null);
 
   const [showGalleryLeft, setShowGalleryLeft] = useState(false);
@@ -190,6 +196,14 @@ const Home = () => {
     }
   };
 
+  const handleHeroConfettiPointerEnter = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (reduceMotion) return;
+    const now = Date.now();
+    if (now - heroConfettiCooldownRef.current < 1400) return;
+    heroConfettiCooldownRef.current = now;
+    fireHomeHeroConfetti({ clientX: e.clientX, clientY: e.clientY });
+  };
+
   return (
     <div className="flex flex-col">
       {/* Hero — full-bleed background image + cream wash for readable type */}
@@ -213,7 +227,8 @@ const Home = () => {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.75 }}
-            className="flex w-full max-w-6xl flex-col items-center space-y-7 md:space-y-9"
+            className="flex w-full max-w-6xl cursor-default flex-col items-center space-y-7 md:space-y-9"
+            onPointerEnter={handleHeroConfettiPointerEnter}
           >
             <motion.h1
               initial={{ opacity: 0, y: 24 }}
@@ -240,7 +255,7 @@ const Home = () => {
       <section
         id="konsepter"
         aria-labelledby="konsepter-heading"
-        className="section-viewport scroll-mt-24 relative overflow-hidden bg-gradient-to-b from-white to-brand-50/50"
+        className="ui-section-wash section-viewport scroll-mt-24 relative overflow-hidden"
       >
         <div
           className="pointer-events-none absolute left-[6%] top-[10%] h-[min(44vw,26rem)] w-[min(44vw,26rem)] rounded-full bg-brand-300/20 blur-[90px]"
@@ -308,7 +323,7 @@ const Home = () => {
                             {title}
                           </h3>
                         </div>
-                        <p className="mt-5 max-w-[24rem] text-balance text-[0.9375rem] leading-relaxed text-brand-900 sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:text-lg lg:leading-relaxed sm:mt-6">
+                        <p className="mt-5 max-w-[24rem] text-balance text-[0.9375rem] leading-relaxed text-brand-900 sm:mt-6 sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:text-lg lg:leading-relaxed dark:text-brand-100">
                           {t(`homeConcepts.items.${key}.description`)}
                         </p>
                       </Link>
@@ -325,7 +340,7 @@ const Home = () => {
       {/* Our Services — flat brand-900 (samme som bryllup «Slik kan dagen se ut») */}
       <section className="section-viewport relative overflow-hidden bg-brand-900 text-white">
         <div className="section-viewport-scroll site-container relative z-10 py-14 sm:py-16 md:py-16">
-          <div className="mb-7 md:mb-8 lg:mb-7">
+          <header className="mb-7 w-full space-y-4 md:mb-8 md:space-y-5 lg:mb-7">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -334,7 +349,8 @@ const Home = () => {
             >
               {t('homeServices.heading')}
             </motion.h2>
-          </div>
+            <p className={SECTION_LEAD_ON_DARK_CLASS}>{t('homeServices.intro')}</p>
+          </header>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-4 xl:gap-5">
             {HOME_SERVICE_KEYS.map((key, index) => {
@@ -378,10 +394,10 @@ const Home = () => {
       <section
         id="inspirasjon-galleri"
         aria-labelledby="inspirasjon-galleri-heading"
-        className="section-viewport relative overflow-hidden bg-white"
+        className="ui-section-solid-muted section-viewport relative overflow-hidden"
       >
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute top-[40%] -right-[10%] h-[40%] w-[40%] rounded-full bg-brand-100/20 blur-[150px]" aria-hidden />
+          <div className="absolute top-[40%] -right-[10%] h-[40%] w-[40%] rounded-full bg-brand-100/20 blur-[150px] dark:bg-brand-400/10" aria-hidden />
         </div>
 
         <div className="section-viewport-scroll site-container relative z-10 py-24">
@@ -406,8 +422,8 @@ const Home = () => {
                   disabled={!showGalleryLeft}
                   className={`absolute left-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-md backdrop-blur-sm transition-colors md:left-4 md:h-12 md:w-12 ${
                     showGalleryLeft
-                      ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
-                      : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70'
+                      ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white dark:border-brand-500/40 dark:bg-brand-800/92 dark:text-brand-50 dark:hover:border-brand-400 dark:hover:bg-brand-700 dark:hover:text-white'
+                      : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70 dark:border-brand-700 dark:bg-brand-900/55 dark:text-brand-600'
                   }`}
                   aria-label={t('galleryPage.lightboxPrev')}
                   aria-disabled={!showGalleryLeft}
@@ -420,8 +436,8 @@ const Home = () => {
                   disabled={!showGalleryRight}
                   className={`absolute right-2 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border shadow-md backdrop-blur-sm transition-colors md:right-4 md:h-12 md:w-12 ${
                     showGalleryRight
-                      ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white'
-                      : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70'
+                      ? 'border-white/60 bg-white/85 text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white dark:border-brand-500/40 dark:bg-brand-800/92 dark:text-brand-50 dark:hover:border-brand-400 dark:hover:bg-brand-700 dark:hover:text-white'
+                      : 'cursor-not-allowed border-brand-200/80 bg-white/50 text-brand-300 opacity-70 dark:border-brand-700 dark:bg-brand-900/55 dark:text-brand-600'
                   }`}
                   aria-label={t('galleryPage.lightboxNext')}
                   aria-disabled={!showGalleryRight}
@@ -446,7 +462,7 @@ const Home = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: Math.min(i * 0.04, 0.4), duration: 0.7 }}
-                    className="group relative aspect-[6/7] min-w-[88%] overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm snap-center transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%]"
+                    className="group relative aspect-[6/7] min-w-[88%] snap-center overflow-hidden rounded-md border border-brand-100 bg-white shadow-sm transition-all duration-500 hover:shadow-xl md:min-w-[46%] lg:min-w-[34%] dark:border-brand-600 dark:bg-brand-800"
                   >
                     <img
                       src={item.src}
@@ -478,12 +494,12 @@ const Home = () => {
           >
             <Link
               to={ROUTES.galleri}
-              className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md"
+              className="group inline-flex items-center gap-4 rounded-full border border-brand-200 bg-white px-7 py-3 transition-all hover:border-brand-300 hover:shadow-md dark:border-brand-600 dark:bg-brand-800 dark:hover:border-brand-500 dark:hover:bg-brand-700"
             >
-              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900">
+              <span className="text-xs font-semibold uppercase tracking-[0.28em] text-brand-900 dark:text-brand-50">
                 {t('homeGallery.ctaFullGallery')}
               </span>
-              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white transition-transform group-hover:translate-x-1">
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white transition-transform group-hover:translate-x-1 dark:bg-brand-100 dark:text-brand-900">
                 <ArrowRight size={16} />
               </div>
             </Link>
@@ -495,7 +511,7 @@ const Home = () => {
       <section
         id="partnere"
         aria-labelledby="partnere-heading"
-        className="section-viewport scroll-mt-24 relative overflow-hidden border-t border-brand-200/80 bg-gradient-to-b from-white to-brand-50/50"
+        className="ui-section-wash section-viewport scroll-mt-24 relative overflow-hidden border-t border-brand-200/80 dark:border-brand-800/90"
       >
         <div
           className="pointer-events-none absolute left-[6%] top-[10%] h-[min(44vw,26rem)] w-[min(44vw,26rem)] rounded-full bg-brand-300/20 blur-[90px]"
@@ -520,11 +536,11 @@ const Home = () => {
             aria-label={t('homePartners.listAria')}
           >
             <div
-              className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-linear-to-r from-brand-50 to-transparent sm:w-14 md:w-20"
+              className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-linear-to-r from-white to-transparent sm:w-14 md:w-20 dark:from-brand-950"
               aria-hidden
             />
             <div
-              className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-linear-to-l from-brand-50 to-transparent sm:w-14 md:w-20"
+              className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-linear-to-l from-white to-transparent sm:w-14 md:w-20 dark:from-brand-950"
               aria-hidden
             />
             <Marquee pauseOnHover durationSec={42}>
