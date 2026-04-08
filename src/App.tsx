@@ -20,6 +20,7 @@ import {
   MapPin,
   Instagram,
   Facebook,
+  BookOpen,
   ArrowRight,
   ArrowLeft,
   ArrowUpRight,
@@ -698,6 +699,9 @@ const ScrollToTop = () => {
   return null;
 };
 
+const FOOTER_ADDRESS_LINE = 'Baneveien 290, 3410 SYLLING';
+const footerMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(FOOTER_ADDRESS_LINE)}`;
+
 const Footer = () => {
   const { t } = useTranslation();
   const year = new Date().getFullYear();
@@ -708,164 +712,123 @@ const Footer = () => {
   return (
     <footer className="border-t border-brand-800/90 bg-brand-900 text-brand-100">
       <div className="site-container py-[8px]">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
-          <div className="space-y-4">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
-              <img
-                src="/logo.png"
-                alt="Rønningen selskapslokale"
-                className="h-11 w-auto max-h-14 shrink-0 rounded-md border border-gray-400/50 object-contain object-left md:h-14"
-                decoding="async"
-              />
-              <h2 className="font-serif font-semibold tracking-tight text-brand-100 text-center">
-                <span className="block text-3xl md:text-[2.125rem] md:leading-tight">{t('branding.navLine1')}</span>
-                <span className="mt-1 block text-lg font-medium leading-tight uppercase text-brand-300 md:text-xl">
-                  {t('footer.brandSubtitle')}
-                </span>
-              </h2>
-            </div>
-            <p className="max-w-xs text-sm leading-relaxed text-brand-400">{t('footer.tagline')}</p>
-            <div className="flex flex-wrap items-center gap-3 text-brand-500">
-              <a
-                href="https://www.instagram.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-sm transition-colors hover:text-brand-100"
-                aria-label="Instagram"
-              >
-                <Instagram size={20} strokeWidth={1.5} />
-              </a>
-              <a
-                href="https://www.facebook.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-sm transition-colors hover:text-brand-100"
-                aria-label="Facebook"
-              >
-                <Facebook size={20} strokeWidth={1.5} />
-              </a>
-              <a
-                href="https://www.tiktok.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-sm transition-colors hover:text-brand-100"
-                aria-label="TikTok"
-              >
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-5 w-5"
-                  fill="currentColor"
-                  aria-hidden
-                >
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
-                </svg>
-              </a>
-              <a
-                href="https://digilist.no"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center rounded-sm"
-                aria-label="Digilist"
-              >
-                <svg
-                  viewBox="0 0 76 18"
-                  className="h-5 w-[4.75rem] text-brand-500 transition-colors group-hover:text-brand-100"
-                  fill="currentColor"
-                  aria-hidden
-                >
-                  <text
-                    x="0"
-                    y="13.5"
-                    fontFamily="ui-sans-serif, system-ui, sans-serif"
-                    fontSize="12.5"
-                    fontWeight="600"
-                    letterSpacing="-0.02em"
-                  >
-                    Digilist
-                  </text>
-                </svg>
-              </a>
+        <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1fr_auto_1fr] lg:gap-x-12">
+          <div className="min-w-0 justify-self-start">
+            <div className="space-y-4">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
+                <img
+                  src="/logo.png"
+                  alt="Rønningen selskapslokale"
+                  className="h-11 w-auto max-h-14 shrink-0 rounded-md border border-gray-400/50 object-contain object-left md:h-14"
+                  decoding="async"
+                />
+                <h2 className="font-serif font-semibold tracking-tight text-brand-100 text-center">
+                  <span className="block text-3xl md:text-[2.125rem] md:leading-tight">{t('branding.navLine1')}</span>
+                  <span className="mt-1 block text-lg font-medium leading-tight uppercase text-brand-300 md:text-xl">
+                    {t('footer.brandSubtitle')}
+                  </span>
+                </h2>
+              </div>
             </div>
           </div>
 
-          <div className="flex flex-col items-center text-center">
-            <p className={cn(labelClass, 'w-full text-center')}>{t('footer.contact')}</p>
-            <ul className="m-0 list-none space-y-2.5 p-0 text-sm text-brand-300">
-              <li className="flex justify-center">
-                <a href="tel:+4796665001" className={linkClass}>
-                  <span className="inline-flex items-center justify-center gap-2.5">
-                    <Phone size={15} className="shrink-0 text-brand-500" aria-hidden />
-                    +47 96 66 50 01
+          <div className="flex w-full max-w-full min-w-0 flex-col items-center justify-self-center text-center sm:items-start sm:text-left">
+            <p className={labelClass}>{t('footer.contact')}</p>
+            <ul className="m-0 flex list-none flex-row flex-wrap items-center justify-center gap-x-5 gap-y-2 p-0 text-sm text-brand-300 sm:justify-start">
+              <li className="shrink-0">
+                <a
+                  href="tel:+4796665001"
+                  className={cn(linkClass, 'inline-flex items-center gap-2.5')}
+                >
+                  <span
+                    className="flex h-[1.35em] w-5 shrink-0 items-center justify-center"
+                    aria-hidden
+                  >
+                    <Phone size={15} className="text-brand-500" />
                   </span>
+                  <span>+47 96 66 50 01</span>
                 </a>
               </li>
-              <li className="flex justify-center">
-                <a href="mailto:r.selskapslokale@gmail.com" className={linkClass}>
-                  <span className="inline-flex items-center justify-center gap-2.5">
-                    <Mail size={15} className="shrink-0 text-brand-500" aria-hidden />
-                    r.selskapslokale@gmail.com
+              <li className="min-w-0 shrink-0">
+                <a
+                  href="mailto:r.selskapslokale@gmail.com"
+                  className={cn(linkClass, 'inline-flex max-w-full items-center gap-2.5')}
+                >
+                  <span
+                    className="flex h-[1.35em] w-5 shrink-0 items-center justify-center"
+                    aria-hidden
+                  >
+                    <Mail size={15} className="text-brand-500" />
                   </span>
+                  <span className="min-w-0 break-all sm:break-normal">r.selskapslokale@gmail.com</span>
                 </a>
               </li>
-              <li className="flex justify-center gap-2.5 pt-0.5">
-                <MapPin size={15} className="mt-0.5 shrink-0 text-brand-500" aria-hidden />
-                <span>Baneveien 290, 3410 SYLLING</span>
+              <li className="shrink-0">
+                <a
+                  href={footerMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(linkClass, 'inline-flex items-center gap-2.5')}
+                  aria-label={t('footer.openInMapsAria', { address: FOOTER_ADDRESS_LINE })}
+                >
+                  <span
+                    className="flex h-[1.35em] w-5 shrink-0 items-center justify-center"
+                    aria-hidden
+                  >
+                    <MapPin size={15} className="text-brand-500" />
+                  </span>
+                  <span className="text-left">{FOOTER_ADDRESS_LINE}</span>
+                </a>
               </li>
             </ul>
           </div>
 
-          <div className="flex flex-col items-center">
-            <p className={cn(labelClass, 'w-full text-center')}>{t('footer.quickLinks')}</p>
-            <nav
-              aria-label={t('footer.quickLinks')}
-              className="mx-auto flex flex-row gap-x-6 text-left text-sm sm:gap-x-8"
+          <nav
+            className="flex shrink-0 flex-row items-center justify-center gap-3 text-brand-500 lg:justify-self-end lg:justify-end"
+            aria-label={t('footer.iconNavAriaLabel')}
+          >
+            <a
+              href="https://www.instagram.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm transition-colors hover:text-brand-100"
+              aria-label="Instagram"
             >
-              <ul className="m-0 shrink-0 list-none space-y-2 p-0">
-                <li>
-                  <Link to={ROUTES.bryllup} className={linkClass}>
-                    {t('nav.weddings')}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={ROUTES.bedrift} className={linkClass}>
-                    {t('nav.corporate')}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={ROUTES.selskap} className={linkClass}>
-                    {t('nav.private')}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={ROUTES.fasiliteter} className={linkClass}>
-                    {t('nav.facilities')}
-                  </Link>
-                </li>
-              </ul>
-              <ul className="m-0 shrink-0 list-none space-y-2 p-0">
-                <li>
-                  <Link to={ROUTES.priser} className={linkClass}>
-                    {t('nav.prices')}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={ROUTES.galleri} className={linkClass}>
-                    {t('nav.gallery')}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={ROUTES.blogg} className={linkClass}>
-                    {t('nav.blog')}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={ROUTES.kontakt} className={linkClass}>
-                    {t('nav.contact')}
-                  </Link>
-                </li>
-              </ul>
-            </nav>
-          </div>
+              <Instagram size={20} strokeWidth={1.5} />
+            </a>
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm transition-colors hover:text-brand-100"
+              aria-label="Facebook"
+            >
+              <Facebook size={20} strokeWidth={1.5} />
+            </a>
+            <a
+              href="https://www.tiktok.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm transition-colors hover:text-brand-100"
+              aria-label="TikTok"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-5 w-5"
+                fill="currentColor"
+                aria-hidden
+              >
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+              </svg>
+            </a>
+            <Link
+              to={ROUTES.blogg}
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm transition-colors hover:text-brand-100"
+              aria-label={t('nav.blog')}
+            >
+              <BookOpen size={20} strokeWidth={1.5} />
+            </Link>
+          </nav>
         </div>
 
         <div className="mt-4 flex flex-col items-center gap-3 border-t border-brand-800 pt-3 text-xs text-brand-500 md:flex-row md:items-center md:justify-between">
@@ -873,21 +836,20 @@ const Footer = () => {
             © {year} Rønningen Selskapslokale. {t('footer.rights')}.
           </p>
           <p className="m-0 flex flex-wrap items-center justify-center gap-2 text-center text-xs text-brand-500 md:justify-end md:text-right">
-            <img
-              src="/partners/xala-logo.png"
-              alt=""
-              decoding="async"
-              aria-hidden
-              className="h-6 w-auto shrink-0 mix-blend-lighten md:h-7"
-            />
-            <span>{t('footer.techPartnerLead')}</span>{' '}
+            <span>{t('footer.developedBy')}</span>
             <a
               href="https://xala.no"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-brand-400 no-underline transition-colors hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900 rounded-sm"
+              className="inline-flex shrink-0 rounded-sm opacity-90 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-900"
+              aria-label={t('footer.xalaLinkAria')}
             >
-              {t('footer.techPartnerName')}
+              <img
+                src="/partners/xala-logo.png"
+                alt=""
+                decoding="async"
+                className="h-6 w-auto mix-blend-lighten md:h-7"
+              />
             </a>
           </p>
         </div>

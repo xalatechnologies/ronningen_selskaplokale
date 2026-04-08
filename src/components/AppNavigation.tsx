@@ -21,6 +21,11 @@ import { appendConversation, detectLanguage } from '../lib/customerAssistant';
 /** Top bar height — keep in sync with main `pt-24` and `--site-nav-pad`. */
 const TOP_NAV_H = 'h-24';
 
+/** Full footer height — chat FAB stays this far above the viewport bottom at all times (no scroll chasing). */
+function footerReserveBottomPx(footer: HTMLElement): number {
+  return footer.offsetHeight;
+}
+
 /** True when the main content behind the chat FAB reads as a dark surface → use a light FAB for contrast. */
 function isDarkSurfaceBehindChatFab(hitTarget: Element | null): boolean {
   let node: Element | null = hitTarget;
@@ -77,6 +82,8 @@ export function AppNavigation() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [chatFabOnDark, setChatFabOnDark] = useState(false);
+  const [chatFabBottomPx, setChatFabBottomPx] = useState(20);
+  const [chatPanelBottomPx, setChatPanelBottomPx] = useState(80);
   const [chatInput, setChatInput] = useState('');
   const [replyCount, setReplyCount] = useState(0);
   const [messages, setMessages] = useState<{ role: 'assistant' | 'user'; text: string }[]>(() => [
@@ -90,11 +97,13 @@ export function AppNavigation() {
 
   const updateChatFabContrast = useCallback(() => {
     if (typeof window === 'undefined' || typeof document === 'undefined') return;
+    const md = window.matchMedia('(min-width: 768px)').matches;
+    const fabH = md ? 56 : 48;
     const x = Math.max(4, window.innerWidth - 88);
-    const y = Math.max(4, window.innerHeight - 32);
+    const y = Math.max(4, window.innerHeight - chatFabBottomPx - fabH / 2);
     const hit = document.elementFromPoint(x, y);
     setChatFabOnDark(isDarkSurfaceBehindChatFab(hit));
-  }, []);
+  }, [chatFabBottomPx]);
 
   useLayoutEffect(() => {
     if (!chatOpen) return;
@@ -118,6 +127,34 @@ export function AppNavigation() {
       window.removeEventListener('resize', onMove);
     };
   }, [location.pathname, chatOpen, updateChatFabContrast]);
+
+  useLayoutEffect(() => {
+    const footer = document.querySelector('footer');
+    if (!footer || !(footer instanceof HTMLElement)) return;
+
+    const updateInset = () => {
+      const md = window.matchMedia('(min-width: 768px)').matches;
+      const margin = md ? 24 : 20;
+      const fabH = md ? 56 : 48;
+      const stackGap = md ? 16 : 12;
+      const reserve = footerReserveBottomPx(footer);
+      setChatFabBottomPx(reserve + margin);
+      setChatPanelBottomPx(reserve + margin + fabH + stackGap);
+    };
+
+    const ro = new ResizeObserver(updateInset);
+    ro.observe(footer);
+    window.addEventListener('resize', updateInset);
+    const mq = window.matchMedia('(min-width: 768px)');
+    mq.addEventListener('change', updateInset);
+    updateInset();
+
+    return () => {
+      ro.disconnect();
+      window.removeEventListener('resize', updateInset);
+      mq.removeEventListener('change', updateInset);
+    };
+  }, [location.pathname]);
 
   useEffect(() => {
     setMenuOpen(false);
@@ -362,8 +399,9 @@ export function AppNavigation() {
         aria-label={chatOpen ? t('chat.closeAssistant') : t('chat.openAssistant')}
         title={t('chat.launcherTitle')}
         onClick={() => setChatOpen((v) => !v)}
+        style={{ bottom: chatFabBottomPx }}
         className={cn(
-          'fixed bottom-5 right-5 z-[60] inline-flex h-12 w-12 items-center justify-center rounded-full shadow-xl transition-all duration-300 hover:-translate-y-0.5 md:bottom-6 md:right-6 md:h-14 md:w-14',
+          'fixed right-5 z-[60] inline-flex h-12 w-12 items-center justify-center rounded-full shadow-xl transition-transform duration-300 hover:-translate-y-0.5 md:right-6 md:h-14 md:w-14',
           chatFabOnDark
             ? 'border border-white/25 bg-white/95 text-brand-900 shadow-brand-900/15 hover:border-white/50 hover:bg-white hover:shadow-2xl'
             : 'bg-brand-900 text-white hover:bg-brand-800 hover:shadow-2xl'
@@ -378,7 +416,8 @@ export function AppNavigation() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
             transition={reduceMotion ? { duration: 0 } : undefined}
-            className="fixed bottom-20 right-4 z-[60] w-[min(92vw,24rem)] overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-2xl md:bottom-24 md:right-6"
+            style={{ bottom: chatPanelBottomPx }}
+            className="fixed right-4 z-[60] w-[min(92vw,24rem)] overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-2xl md:right-6"
           >
             <div className="border-b border-brand-100 bg-brand-900 px-4 py-3 text-white">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-300">{t('chat.panelEyebrow')}</p>
