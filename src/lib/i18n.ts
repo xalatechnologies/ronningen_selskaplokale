@@ -381,7 +381,7 @@ const resources = {
             },
             christmasParty: {
               title: 'Christmas party',
-              desc: 'Bring colleagues together for a warm evening with great atmosphere, food, and celebration in cosy surroundings.',
+              desc: 'Create a warm Christmas celebration with colleagues, friends or family, with room for dinner, speeches and a festive evening.',
               imgAlt:
                 'Long dining table with red check cloth, candles and place settings, fairy lights and red-green drapes overhead, Christmas tree and dark walls',
             },
@@ -514,7 +514,7 @@ const resources = {
           headingBefore: 'Where your celebration gains ',
           headingAccent: 'personality',
           intro:
-            'Birthdays, confirmations, baptisms, memorial gatherings and anniversaries — gather in spaces that leave room for your style and how you celebrate, without a standard package setup.',
+            'Birthdays, confirmations, baptisms, baby showers and anniversaries — gather in spaces that leave room for your style and how you celebrate, without a standard package setup.',
           panoramaAlt:
             'Evening party room with a long candlelit table, fairy lights overhead, cocktail tables, tricolour ceiling banner, tall glass doors and a small lit tree',
           highlights: {
@@ -554,11 +554,11 @@ const resources = {
               imgAlt:
                 'Round tables with white linens, folded napkins, place cards, pink balloon centrepieces and glassware in a bright room with large windows to greenery',
             },
-            memorial: {
-              title: 'Christmas party',
-              desc: 'Create a warm Christmas celebration with colleagues, friends or family, with room for dinner, speeches and a festive evening.',
+            babyShower: {
+              title: 'Baby shower',
+              desc: 'Celebrate the expected arrival with friends and family — room for games, speeches, cake and a relaxed gathering in warm, welcoming surroundings.',
               imgAlt:
-                'Festively decorated dinner tables prepared for a Christmas party in an elegant event room',
+                'Close-up of a pastel balloon arch for a celebration',
             },
             anniversary: {
               title: 'Anniversary',
@@ -587,7 +587,7 @@ const resources = {
           items: {
             celebrations: {
               q: 'What private celebrations can we host with you?',
-              a: 'Everything from birthdays and confirmations to baptisms, memorial gatherings and anniversaries. The programme is tailored to your type of celebration.',
+              a: 'Everything from birthdays and confirmations to baptisms, baby showers and anniversaries. The programme is tailored to your type of celebration.',
             },
             ownFoodDrink: {
               q: 'Can we bring our own food and drink?',
@@ -1337,7 +1337,7 @@ const resources = {
             },
             christmasParty: {
               title: 'Julebord',
-              desc: 'Samle kollegaene til en hyggelig kveld med god stemning, mat og fest i lune omgivelser.',
+              desc: 'Skap en varm julefeiring for kollegaer, venner eller familie, med rom for middag, taler og en hyggelig kveld.',
               imgAlt:
                 'Langt festbord med rødrutete duk, lys og dekketallerkener, lyslenker og rød-grønn drapering i taket, juletre og mørke vegger',
             },
@@ -1469,7 +1469,7 @@ const resources = {
           headingBefore: 'Der feiringen får ',
           headingAccent: 'personlighet',
           intro:
-            'Bursdag, konfirmasjon, dåp, minnestund og jubileum – samle dere i lokaler som gir rom for deres stil og måte å feire på, uten standardoppsett.',
+            'Bursdag, konfirmasjon, dåp, babyshower og jubileum – samle dere i lokaler som gir rom for deres stil og måte å feire på, uten standardoppsett.',
           panoramaAlt:
             'Kveldsfest i lokalet med langt stearinlysdekket bord, lyslenker i taket, ståbord, trefarget banner i taket, høye glassdører og lite opplyst tre i bakgrunnen',
           highlights: {
@@ -1509,11 +1509,11 @@ const resources = {
               imgAlt:
                 'Runde bord med hvite duker, brettede servietter, plasskort, rosa ballongdekorasjoner og glass i lyst lokale med store vinduer mot grønt ute',
             },
-            memorial: {
-              title: 'Julebord',
-              desc: 'Skap en varm julefeiring for kollegaer, venner eller familie, med rom for middag, taler og en hyggelig kveld.',
+            babyShower: {
+              title: 'Babyshower',
+              desc: 'Feir den kommende babyen med venner og familie – med plass til leker, taler, kake og en koselig markering i trygge og hyggelige rammer.',
               imgAlt:
-                'Festpyntede middagsbord klare for julebord i et elegant selskapslokale',
+                'Nærbilde av en ballongbue i pastellfarger til en feiring',
             },
             anniversary: {
               title: 'Jubileum',
@@ -1542,7 +1542,7 @@ const resources = {
           items: {
             celebrations: {
               q: 'Hvilke private feiringer kan vi ha hos dere?',
-              a: 'Alt fra bursdager og konfirmasjoner til dåp, minnestund og jubileer. Opplegget tilpasses etter type feiring.',
+              a: 'Alt fra bursdager og konfirmasjoner til dåp, babyshower og jubileer. Opplegget tilpasses etter type feiring.',
             },
             ownFoodDrink: {
               q: 'Kan vi ta med egen mat og drikke?',

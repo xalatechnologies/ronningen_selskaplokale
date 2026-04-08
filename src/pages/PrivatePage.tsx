@@ -29,7 +29,7 @@ const PRIVATE_EVENT_KEYS = [
   'birthday',
   'confirmation',
   'baptismNaming',
-  'memorial',
+  'babyShower',
   'anniversary',
   'gathering',
 ] as const;
@@ -42,7 +42,8 @@ const PRIVATE_EVENT_IMAGES: Record<PrivateEventKey, string> = {
   confirmation: '/private-event-confirmation.png',
   baptismNaming:
     'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=85&w=1200',
-  memorial: '/corporate-event-christmas.png',
+  babyShower:
+    'https://images.unsplash.com/photo-1746309135204-25b148b4375a?auto=format&fit=crop&q=85&w=1200',
   anniversary:
     'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=85&w=1200',
   gathering: '/facilities-bar-event-hall.png',
@@ -298,7 +299,7 @@ export const PrivatePage = () => {
                     width={
                       eventKey === 'birthday' || eventKey === 'baptismNaming'
                         ? 768
-                        : eventKey === 'confirmation' || eventKey === 'memorial'
+                        : eventKey === 'confirmation' || eventKey === 'babyShower'
                           ? 1024
                           : eventKey === 'anniversary'
                             ? 960
@@ -309,7 +310,7 @@ export const PrivatePage = () => {
                         ? 1024
                         : eventKey === 'confirmation'
                           ? 683
-                          : eventKey === 'memorial'
+                          : eventKey === 'babyShower'
                             ? 768
                             : eventKey === 'anniversary'
                               ? 719
