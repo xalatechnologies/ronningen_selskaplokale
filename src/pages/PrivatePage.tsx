@@ -31,7 +31,7 @@ const PRIVATE_EVENT_KEYS = [
   'baptismNaming',
   'babyShower',
   'anniversary',
-  'gathering',
+  'memorial',
 ] as const;
 
 type PrivateEventKey = (typeof PRIVATE_EVENT_KEYS)[number];
@@ -46,7 +46,8 @@ const PRIVATE_EVENT_IMAGES: Record<PrivateEventKey, string> = {
     'https://images.unsplash.com/photo-1746309135204-25b148b4375a?auto=format&fit=crop&q=85&w=1200',
   anniversary:
     'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=85&w=1200',
-  gathering: '/facilities-bar-event-hall.png',
+  memorial:
+    'https://images.unsplash.com/photo-1598288103147-6bc615cb464c?auto=format&fit=crop&q=85&w=1200',
 };
 
 const galleryImgs = [

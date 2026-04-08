@@ -514,7 +514,7 @@ const resources = {
           headingBefore: 'Where your celebration gains ',
           headingAccent: 'personality',
           intro:
-            'Birthdays, confirmations, baptisms, baby showers and anniversaries — gather in spaces that leave room for your style and how you celebrate, without a standard package setup.',
+            'Birthdays, confirmations, baptisms, baby showers, memorial gatherings and anniversaries — gather in spaces that leave room for your style and how you celebrate, without a standard package setup.',
           panoramaAlt:
             'Evening party room with a long candlelit table, fairy lights overhead, cocktail tables, tricolour ceiling banner, tall glass doors and a small lit tree',
           highlights: {
@@ -566,10 +566,10 @@ const resources = {
               imgAlt:
                 'Large illuminated marquee letters spelling MR & MRS on a polished floor by floor-to-ceiling windows overlooking trees and green hills',
             },
-            gathering: {
-              title: 'Gatherings & mingling',
-              desc: 'Informal get-togethers with an easy flow, where guests can move freely and enjoy the evening.',
-              imgAlt: 'Open landscape with trees and soft light — space for relaxed outdoor mingling',
+            memorial: {
+              title: 'Memorial gathering',
+              desc: 'Calm, dignified surroundings for family and friends after a loss — with space for speeches, floral tributes and quiet time together.',
+              imgAlt: 'White roses and lit candles in a calm, respectful setting',
             },
           },
         },
@@ -587,7 +587,7 @@ const resources = {
           items: {
             celebrations: {
               q: 'What private celebrations can we host with you?',
-              a: 'Everything from birthdays and confirmations to baptisms, baby showers and anniversaries. The programme is tailored to your type of celebration.',
+              a: 'Everything from birthdays and confirmations to baptisms, baby showers, memorial gatherings and anniversaries. The programme is tailored to your type of celebration.',
             },
             ownFoodDrink: {
               q: 'Can we bring our own food and drink?',
@@ -1469,7 +1469,7 @@ const resources = {
           headingBefore: 'Der feiringen får ',
           headingAccent: 'personlighet',
           intro:
-            'Bursdag, konfirmasjon, dåp, babyshower og jubileum – samle dere i lokaler som gir rom for deres stil og måte å feire på, uten standardoppsett.',
+            'Bursdag, konfirmasjon, dåp, babyshower, minnestund og jubileum – samle dere i lokaler som gir rom for deres stil og måte å feire på, uten standardoppsett.',
           panoramaAlt:
             'Kveldsfest i lokalet med langt stearinlysdekket bord, lyslenker i taket, ståbord, trefarget banner i taket, høye glassdører og lite opplyst tre i bakgrunnen',
           highlights: {
@@ -1521,10 +1521,10 @@ const resources = {
               imgAlt:
                 'Store opplyste bokstaver som staver MR & MRS på blankt gulv foran høye vinduer med utsikt mot trær og grønne åser',
             },
-            gathering: {
-              title: 'Selskap & mingling',
-              desc: 'Uformelle sammenkomster med god flyt, der gjestene kan bevege seg fritt og nyte kvelden.',
-              imgAlt: 'Åpent landskap med trær og mykt lys — plass til uformelt samvær ute',
+            memorial: {
+              title: 'Minnestund',
+              desc: 'Rolige og verdige rammer for å samle familie og venner i sorg – med plass til taler, kransenedleggelse og stille samvær.',
+              imgAlt: 'Hvite roser og tente lys i en rolig og respektfull stemning',
             },
           },
         },
@@ -1542,7 +1542,7 @@ const resources = {
           items: {
             celebrations: {
               q: 'Hvilke private feiringer kan vi ha hos dere?',
-              a: 'Alt fra bursdager og konfirmasjoner til dåp, babyshower og jubileer. Opplegget tilpasses etter type feiring.',
+              a: 'Alt fra bursdager og konfirmasjoner til dåp, babyshower, minnestund og jubileer. Opplegget tilpasses etter type feiring.',
             },
             ownFoodDrink: {
               q: 'Kan vi ta med egen mat og drikke?',
