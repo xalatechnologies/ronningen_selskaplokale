@@ -697,9 +697,9 @@ const Footer = () => {
                 className="h-11 w-auto max-h-14 shrink-0 rounded-md border border-gray-400/50 object-contain object-left md:h-14"
                 decoding="async"
               />
-              <h2 className="font-serif font-semibold tracking-tight text-brand-100">
+              <h2 className="font-serif font-semibold tracking-tight text-brand-100 text-center">
                 <span className="block text-3xl md:text-[2.125rem] md:leading-tight">{t('branding.navLine1')}</span>
-                <span className="mt-1 block text-lg font-medium leading-tight text-brand-300 md:text-xl">
+                <span className="mt-1 block text-lg font-medium leading-tight uppercase text-brand-300 md:text-xl">
                   {t('footer.brandSubtitle')}
                 </span>
               </h2>

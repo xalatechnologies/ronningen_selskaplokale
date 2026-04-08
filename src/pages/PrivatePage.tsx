@@ -36,13 +36,16 @@ const PRIVATE_EVENT_KEYS = [
 type PrivateEventKey = (typeof PRIVATE_EVENT_KEYS)[number];
 
 const PRIVATE_EVENT_IMAGES: Record<PrivateEventKey, string> = {
-  birthday: '/private-event-birthday.png',
+  birthday:
+    'https://images.unsplash.com/photo-1464349153735-7db50ed83c84?auto=format&fit=crop&q=85&w=1200',
   confirmation: '/private-event-confirmation.png',
-  baptismNaming: '/private-event-baptism.png',
-  memorial: '/private-event-memorial.png',
-  anniversary: '/private-event-anniversary.png',
+  baptismNaming:
+    'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=85&w=1200',
+  memorial: '/corporate-event-christmas.png',
+  anniversary:
+    'https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=85&w=1200',
   gathering:
-    'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=85&w=1200',
+    'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=85&w=1200',
 };
 
 const galleryImgs = [
@@ -212,7 +215,7 @@ export const PrivatePage = () => {
             className="relative mx-auto mt-12 max-h-[min(52vh,480px)] w-full overflow-hidden rounded-2xl border border-brand-200/90 shadow-[0_24px_60px_-20px_rgba(33,24,22,0.35)] md:mt-16 aspect-[16/10] md:aspect-[21/9]"
           >
             <img
-              src="/private-intro-panorama.png"
+              src="/private-intro-panorama-night.png"
               alt={t('privatePage.introSection.panoramaAlt')}
               width={1024}
               height={460}

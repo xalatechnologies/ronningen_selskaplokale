@@ -555,10 +555,10 @@ const resources = {
                 'Round tables with white linens, folded napkins, place cards, pink balloon centrepieces and glassware in a bright room with large windows to greenery',
             },
             memorial: {
-              title: 'Memorial gathering',
-              desc: 'A safe, dignified place to come together, with a focus on calm, closeness and good conversation.',
+              title: 'Christmas party',
+              desc: 'Create a warm Christmas celebration with colleagues, friends or family, with room for dinner, speeches and a festive evening.',
               imgAlt:
-                'Soft pink and cream flower wall behind a white-draped table with candles, small keepsakes and flowers against a dark wall',
+                'Festively decorated dinner tables prepared for a Christmas party in an elegant event room',
             },
             anniversary: {
               title: 'Anniversary',
@@ -792,7 +792,7 @@ const resources = {
         directContact: 'Contact us directly',
       },
       footer: {
-        brandSubtitle: 'selskapslokale',
+        brandSubtitle: 'Selskapslokale',
         rights: 'All rights reserved',
         contact: 'Contact Us',
         tagline: 'A premium venue for life’s most beautiful moments.',
@@ -1510,10 +1510,10 @@ const resources = {
                 'Runde bord med hvite duker, brettede servietter, plasskort, rosa ballongdekorasjoner og glass i lyst lokale med store vinduer mot grønt ute',
             },
             memorial: {
-              title: 'Minnestund',
-              desc: 'Et trygt og verdig sted å samles, med fokus på ro, nærhet og gode samtaler.',
+              title: 'Julebord',
+              desc: 'Skap en varm julefeiring for kollegaer, venner eller familie, med rom for middag, taler og en hyggelig kveld.',
               imgAlt:
-                'Blomstervegg i myke rosa- og kremtoner bak hvitt dekket bord med lys, små minnesaker og blomster mot mørk vegg',
+                'Festpyntede middagsbord klare for julebord i et elegant selskapslokale',
             },
             anniversary: {
               title: 'Jubileum',
@@ -1746,7 +1746,7 @@ const resources = {
         directContact: 'Kontakt oss direkte',
       },
       footer: {
-        brandSubtitle: 'selskapslokale',
+        brandSubtitle: 'Selskapslokale',
         rights: 'Alle rettigheter reservert',
         contact: 'Kontakt oss',
         tagline: 'Et selskapslokale for livets vakreste øyeblikk.',
