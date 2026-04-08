@@ -49,7 +49,7 @@ const WEDDINGS_SERVICE_KEYS = [
 const WEDDINGS_SERVICE_IMAGES = [
   'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800',
   '/weddings/service-photography-waterfall.png',
-  '/weddings/service-decoration-balloon-arch.png',
+  '/weddings/service-decoration-tables.png',
   '/weddings/service-bar-dancefloor-room.png',
   '/weddings/service-sound-light-banquet.png',
   '/weddings/service-table-setting-banquet-hall.png',
@@ -109,7 +109,7 @@ export const WeddingsPage = () => {
       <section className="hero-below-nav section-viewport section-viewport-hero relative flex min-h-0 flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/hero-home-collage-user.png"
+            src="/weddings/hero-weddings-bouquet.png"
             alt={t('weddingsPage.heroImageAlt')}
             className="h-full w-full object-cover brightness-[0.64] contrast-[1.03]"
           />
