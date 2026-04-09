@@ -152,16 +152,10 @@ export const WeddingsPage = () => {
               {t('weddingsPage.heroTagline')}
             </p>
             <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
-              <Link
-                to={ROUTES.kontakt}
-                className="w-full rounded-full bg-white px-10 py-5 text-sm font-bold uppercase tracking-widest text-brand-900 shadow-2xl transition-all hover:-translate-y-1 hover:bg-brand-50 sm:w-auto"
-              >
+              <Link to={ROUTES.kontakt} className="cta-route-hero-primary">
                 {t('hero.bookNow')}
               </Link>
-              <Link
-                to={ROUTES.kontakt}
-                className="w-full rounded-full border-2 border-white bg-transparent px-10 py-5 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-white/10 sm:w-auto"
-              >
+              <Link to={ROUTES.kontakt} className="cta-route-hero-secondary">
                 {t('hero.cta')}
               </Link>
             </div>
@@ -687,16 +681,10 @@ export const WeddingsPage = () => {
               transition={{ delay: 0.3 }}
               className="flex flex-col items-center justify-center gap-5 pt-4 sm:flex-row sm:gap-6 sm:pt-6"
             >
-              <Link
-                to={ROUTES.kontakt}
-                className="w-full rounded-full bg-white px-10 py-5 text-xs font-bold uppercase tracking-[0.3em] text-brand-900 shadow-xl transition-all hover:scale-[1.02] hover:bg-brand-50 active:scale-[0.98] sm:w-auto sm:px-14"
-              >
+              <Link to={ROUTES.kontakt} className="cta-brand-band-primary-lg">
                 {t('hero.bookNow')}
               </Link>
-              <Link
-                to={ROUTES.kontakt}
-                className="w-full rounded-full border border-white/30 bg-transparent px-10 py-5 text-xs font-bold uppercase tracking-[0.3em] text-white transition-all hover:bg-white/10 sm:w-auto sm:px-14"
-              >
+              <Link to={ROUTES.kontakt} className="cta-brand-band-secondary-lg">
                 {t('hero.cta')}
               </Link>
             </motion.div>

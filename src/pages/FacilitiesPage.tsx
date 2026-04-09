@@ -206,16 +206,10 @@ export const FacilitiesPage = () => {
               {t('facilitiesPage.heroTagline')}
             </p>
             <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
-              <Link
-                to={CTA_SECONDARY}
-                className="w-full rounded-full bg-white px-10 py-5 text-sm font-bold uppercase tracking-widest text-brand-900 shadow-2xl transition-all hover:-translate-y-1 hover:bg-brand-50 sm:w-auto"
-              >
+              <Link to={CTA_SECONDARY} className="cta-route-hero-primary">
                 {t('hero.bookNow')}
               </Link>
-              <Link
-                to={CTA_PRIMARY}
-                className="w-full rounded-full border-2 border-white bg-transparent px-10 py-5 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-white/10 sm:w-auto"
-              >
+              <Link to={CTA_PRIMARY} className="cta-route-hero-secondary">
                 {t('hero.cta')}
               </Link>
             </div>
@@ -575,16 +569,10 @@ export const FacilitiesPage = () => {
                 {t('facilitiesPage.closingCta.body')}
               </p>
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-                <Link
-                  to={CTA_PRIMARY}
-                  className="group rounded-full bg-white px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-brand-900 transition-all hover:bg-brand-50 hover:shadow-xl"
-                >
+                <Link to={CTA_PRIMARY} className={cn('group', 'cta-brand-band-primary-md')}>
                   {t('hero.cta')}
                 </Link>
-                <Link
-                  to={CTA_SECONDARY}
-                  className="rounded-full border border-white/30 bg-white/5 px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] text-white transition-all hover:bg-white/10"
-                >
+                <Link to={CTA_SECONDARY} className="cta-brand-band-secondary-md">
                   {t('facilitiesPage.closingCta.ctaSecondary')}
                 </Link>
               </div>

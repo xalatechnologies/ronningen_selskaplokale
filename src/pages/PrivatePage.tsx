@@ -166,16 +166,10 @@ export const PrivatePage = () => {
               {t('privatePage.heroTitleLine2Rest')}
             </motion.h1>
             <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
-              <Link
-                to={CTA_SECONDARY}
-                className="w-full rounded-full bg-white px-10 py-5 text-sm font-bold uppercase tracking-widest text-brand-900 shadow-2xl transition-all hover:-translate-y-1 hover:bg-brand-50 sm:w-auto"
-              >
+              <Link to={CTA_SECONDARY} className="cta-route-hero-primary">
                 {t('hero.bookNow')}
               </Link>
-              <Link
-                to={INQUIRY_CTA_PATH}
-                className="w-full rounded-full border-2 border-white bg-transparent px-10 py-5 text-sm font-bold uppercase tracking-widest text-white transition-all hover:bg-white/10 sm:w-auto"
-              >
+              <Link to={INQUIRY_CTA_PATH} className="cta-route-hero-secondary">
                 {t('hero.cta')}
               </Link>
             </div>
@@ -568,16 +562,10 @@ export const PrivatePage = () => {
                 {t('privatePage.closingCta.body')}
               </p>
               <div className="flex flex-col items-center justify-center gap-4 pt-2 sm:flex-row sm:gap-5">
-                <Link
-                  to={INQUIRY_CTA_PATH}
-                  className="w-full rounded-full bg-white px-10 py-5 text-xs font-bold uppercase tracking-[0.28em] text-brand-900 shadow-xl transition hover:bg-brand-50 sm:w-auto"
-                >
+                <Link to={INQUIRY_CTA_PATH} className="cta-brand-band-primary">
                   {t('hero.cta')}
                 </Link>
-                <Link
-                  to={CTA_SECONDARY}
-                  className="w-full rounded-full border border-white/30 px-10 py-5 text-xs font-bold uppercase tracking-[0.28em] text-white transition hover:bg-white/10 sm:w-auto"
-                >
+                <Link to={CTA_SECONDARY} className="cta-brand-band-secondary">
                   {t('hero.bookNow')}
                 </Link>
               </div>

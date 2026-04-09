@@ -324,17 +324,14 @@ export const GalleryPage: React.FC = () => {
                 transition={{ delay: prefersReducedMotion ? 0 : 0.3 }}
                 className="flex flex-col items-center justify-center gap-5 pt-4 sm:flex-row sm:gap-6 sm:pt-6"
               >
-                <Link
-                  to={ROUTES.kontakt}
-                  className="w-full rounded-full bg-white px-10 py-5 text-xs font-bold uppercase tracking-[0.3em] text-brand-900 shadow-xl transition-all hover:scale-[1.02] hover:bg-brand-50 active:scale-[0.98] sm:w-auto sm:px-14"
-                >
+                <Link to={ROUTES.kontakt} className="cta-brand-band-primary-lg">
                   {t('galleryPage.ctaLink')}
                 </Link>
                 <a
                   href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full rounded-full border border-white/30 bg-transparent px-10 py-5 text-xs font-bold uppercase tracking-[0.3em] text-white transition-all hover:bg-white/10 sm:w-auto sm:px-14"
+                  className="cta-brand-band-secondary-lg"
                 >
                   {t('hero.bookNow')}
                 </a>

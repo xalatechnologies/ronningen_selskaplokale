@@ -150,15 +150,15 @@ export const EventPage: React.FC<EventPageProps> = ({ title, subtitle, descripti
           </div>
 
           <div className="flex flex-wrap gap-4 pt-4">
-            <Link 
-              to={ROUTES.henvendelse} 
-              className="bg-brand-800 text-white px-10 py-5 rounded-full text-sm uppercase tracking-widest font-bold hover:bg-brand-900 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            <Link
+              to={ROUTES.henvendelse}
+              className="rounded-full bg-brand-800 px-10 py-5 text-sm font-bold uppercase tracking-widest text-white shadow-lg transition-all hover:-translate-y-1 hover:bg-brand-900 hover:shadow-xl dark:bg-brand-600 dark:hover:bg-brand-500"
             >
               Request a Quote
             </Link>
-            <Link 
-              to={ROUTES.kontakt} 
-              className="bg-white text-brand-800 border-2 border-brand-800 px-10 py-5 rounded-full text-sm uppercase tracking-widest font-bold hover:bg-brand-50 transition-all"
+            <Link
+              to={ROUTES.kontakt}
+              className="rounded-full border-2 border-brand-800 bg-white px-10 py-5 text-sm font-bold uppercase tracking-widest text-brand-800 transition-all hover:bg-brand-50 dark:border-brand-500 dark:bg-brand-800 dark:text-brand-50 dark:hover:border-brand-400 dark:hover:bg-brand-700"
             >
               Book a Viewing
             </Link>
