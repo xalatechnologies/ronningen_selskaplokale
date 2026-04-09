@@ -605,10 +605,10 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="flex w-full max-w-full min-w-0 flex-col items-center justify-self-center text-center md:items-start md:text-left">
-            <div className="mx-auto w-fit text-left md:mx-0">
+          <div className="flex w-full max-w-full min-w-0 flex-col items-center justify-self-center text-center sm:items-start sm:text-left">
+            <div className="mx-auto w-fit text-left sm:mx-0">
               <p className={labelClass}>{t('footer.contact')}</p>
-              <ul className="m-0 flex list-none flex-col items-start justify-start gap-3 p-0 text-sm text-brand-300">
+              <ul className="m-0 flex list-none flex-col items-start justify-start gap-3 p-0 text-sm text-brand-300 sm:flex-row sm:flex-wrap sm:items-center sm:justify-start sm:gap-x-5 sm:gap-y-2">
               <li className="shrink-0">
                 <a
                   href="tel:+4796665001"
