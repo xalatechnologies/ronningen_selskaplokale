@@ -91,6 +91,9 @@ export function AppNavigation() {
   const reduceMotion = useReducedMotion();
   const navLinks = useNavLinks();
   const desktopNavLinks = navLinks.filter((link) => DESKTOP_HEADER_PATHS.has(link.path));
+  const mobileDrawerLinks = navLinks.filter(
+    (link) => link.path !== ROUTES.home && link.path !== ROUTES.fasiliteter,
+  );
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
@@ -280,7 +283,7 @@ export function AppNavigation() {
 
   const menuPanelLinks = (
     <ul className="m-0 list-none space-y-1 p-0">
-      {navLinks.map((link) => {
+      {mobileDrawerLinks.map((link) => {
         const active = isNavActive(link.path);
         return (
           <li key={link.path}>
@@ -458,7 +461,7 @@ export function AppNavigation() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={reduceMotion ? { duration: 0 } : { duration: 0.2 }}
-              className={cn('fixed inset-x-0 bottom-0 z-[45] bg-black/35', 'top-24')}
+              className={cn('fixed inset-x-0 bottom-0 z-[70] bg-black/35', 'top-24')}
               aria-hidden
               onClick={closeMenu}
             />
@@ -474,7 +477,7 @@ export function AppNavigation() {
               exit={{ x: '100%' }}
               transition={navTransition}
               className={cn(
-                'fixed right-0 z-[46] flex w-[min(22rem,calc(100vw-1.5rem))] flex-col border-l border-brand-200 bg-white shadow-2xl dark:border-brand-700 dark:bg-brand-900',
+                'fixed right-0 z-[71] flex w-[min(22rem,calc(100vw-1.5rem))] flex-col border-l border-brand-200 bg-white shadow-2xl dark:border-brand-700 dark:bg-brand-900',
                 'top-24 h-[calc(100dvh-6rem)]'
               )}
             >

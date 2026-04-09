@@ -586,9 +586,9 @@ const Footer = () => {
     <footer className="site-footer-silk border-t border-brand-800/90 bg-brand-900 pt-4 text-brand-100">
       <div className="site-container pb-2 pt-1 md:pb-[8px]">
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1fr_auto_1fr] lg:gap-x-12">
-          <div className="min-w-0 justify-self-start">
+          <div className="min-w-0 justify-self-center text-center lg:justify-self-start lg:text-left">
             <div className="space-y-4">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-5">
+              <div className="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:gap-5 lg:items-start">
                 <img
                   src="/logo.png"
                   alt="Rønningen selskapslokale"
@@ -605,9 +605,10 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="flex w-full max-w-full min-w-0 flex-col items-center justify-self-center text-center sm:items-start sm:text-left">
-            <p className={labelClass}>{t('footer.contact')}</p>
-            <ul className="m-0 flex list-none flex-row flex-wrap items-center justify-center gap-x-5 gap-y-2 p-0 text-sm text-brand-300 sm:justify-start">
+          <div className="flex w-full max-w-full min-w-0 flex-col items-center justify-self-center text-center md:items-start md:text-left">
+            <div className="mx-auto w-fit text-left md:mx-0">
+              <p className={labelClass}>{t('footer.contact')}</p>
+              <ul className="m-0 flex list-none flex-col items-start justify-start gap-3 p-0 text-sm text-brand-300">
               <li className="shrink-0">
                 <a
                   href="tel:+4796665001"
@@ -653,7 +654,8 @@ const Footer = () => {
                   <span className="text-left">{FOOTER_ADDRESS_LINE}</span>
                 </a>
               </li>
-            </ul>
+              </ul>
+            </div>
           </div>
 
           <nav
