@@ -1,5 +1,4 @@
 import type { MouseEvent } from 'react';
-import { motion, useReducedMotion } from 'motion/react';
 import { cn } from '../lib/utils';
 
 export type HeroScrollHintProps = {
@@ -14,8 +13,6 @@ export function HeroScrollHint({
   ariaLabel = 'Scroll ned til neste seksjon',
   className,
 }: HeroScrollHintProps) {
-  const prefersReducedMotion = useReducedMotion();
-
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const el = document.getElementById(targetId);
@@ -39,16 +36,7 @@ export function HeroScrollHint({
         className="relative flex h-11 w-6 shrink-0 items-start justify-center overflow-hidden rounded-full border border-white/45 pt-2.5"
         aria-hidden
       >
-        {prefersReducedMotion ? (
-          <span className="block h-2 w-1 rounded-full bg-white" />
-        ) : (
-          <motion.span
-            className="block h-2 w-1 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.35)]"
-            initial={false}
-            animate={{ y: [0, 14, 0], opacity: [1, 0.45, 1] }}
-            transition={{ duration: 1.85, repeat: Infinity, ease: [0.45, 0, 0.55, 1] }}
-          />
-        )}
+        <span className="hero-scroll-hint-wheel block h-2 w-1 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.35)]" />
       </span>
     </a>
   );

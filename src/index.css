@@ -21,6 +21,30 @@
   --color-brand-950: #16110e;
 }
 
+/*
+ * Hero scroll hint — keep UNLAYERED (not inside @layer utilities).
+ * Tailwind v4 can drop custom @keyframes + class pairs from the utilities layer in dev/prod.
+ */
+@keyframes hero-scroll-hint-wheel {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(14px);
+    opacity: 0.45;
+  }
+}
+.hero-scroll-hint-wheel {
+  animation: hero-scroll-hint-wheel 1.85s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-hint-wheel {
+    animation: none;
+  }
+}
+
 @layer base {
   :root {
     color-scheme: light;
