@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
+import { facilitiesInspirationSlides } from '../lib/inspirationGallery';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
 import {
@@ -36,10 +37,6 @@ const FACILITIES_WEDDING_WEEKEND_MINI_IMG = '/facilities-usecase-wedding-weekend
 const FACILITIES_CORPORATE_EVENING_BANQUET_IMG = '/facilities-usecase-corporate-evening.png';
 const FACILITIES_OUTDOORS_WATERFALL_IMG = '/facilities-usecase-outdoors-waterfall.png';
 
-/** Unsplash: use ixlib + verified photo ids (some legacy ids return 404 from the CDN). */
-const US_IMG = (id: string) =>
-  `https://images.unsplash.com/${id}?ixlib=rb-4.1.0&auto=format&fit=crop&q=85&w=1200`;
-
 const USE_CASE_KEYS = [
   'familyCelebration',
   'weddingWeekend',
@@ -60,14 +57,6 @@ const USE_CASE_IMAGES: Record<UseCaseKey, string> = {
   livelyEvening: FACILITIES_BAR_EVENT_HALL_IMG,
 };
 
-const galleryImgs = [
-  'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=85&w=1600',
-  'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=1200',
-  FACILITIES_SHUFFLEBOARD_HERO_IMG,
-  FACILITIES_GUEST_LOUNGE_IMG,
-  FACILITIES_BAR_EVENT_HALL_IMG,
-] as const;
-
 const FACILITY_FAQ_KEYS = [
   'combineFacilities',
   'universalDesign',
@@ -79,8 +68,8 @@ export const FacilitiesPage = () => {
   const { t, i18n } = useTranslation();
   const gallerySlides: GalleryLightboxSlide[] = useMemo(
     () =>
-      galleryImgs.map((src, i) => ({
-        src,
+      facilitiesInspirationSlides.map((item, i) => ({
+        src: item.src,
         alt: t('facilitiesPage.gallerySection.imageAlt', { number: i + 1 }),
       })),
     [t, i18n.language],
@@ -91,7 +80,7 @@ export const FacilitiesPage = () => {
   const [showGalleryLeft, setShowGalleryLeft] = useState(false);
   const [showGalleryRight, setShowGalleryRight] = useState(true);
   const { lightboxIndex, setLightboxIndex, closeLightbox, lightboxShowPrev, lightboxShowNext } =
-    useGalleryLightboxState(gallerySlides.length);
+    useGalleryLightboxState(facilitiesInspirationSlides.length);
 
   const facilitiesRef = useRef<HTMLDivElement>(null);
   const [facilitiesHasOverflow, setFacilitiesHasOverflow] = useState(false);
@@ -408,7 +397,7 @@ export const FacilitiesPage = () => {
             <div ref={galleryRef} className="scrollbar-hide site-carousel-bleed flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 md:mx-0 md:gap-8 md:px-0 md:pb-10">
               {gallerySlides.map((slide, i) => (
                 <motion.div
-                  key={slide.src}
+                  key={facilitiesInspirationSlides[i]!.key}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -419,9 +408,9 @@ export const FacilitiesPage = () => {
                     src={slide.src}
                     alt={slide.alt}
                     className="pointer-events-none h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
+                    loading={i > 4 ? 'lazy' : 'eager'}
                     decoding="async"
-                    referrerPolicy="no-referrer"
+                    referrerPolicy={slide.src.startsWith('http') ? 'no-referrer' : undefined}
                   />
                   <button
                     type="button"

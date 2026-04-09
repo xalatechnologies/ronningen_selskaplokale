@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
+import { corporateInspirationSlides } from '../lib/inspirationGallery';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
 import {
@@ -45,14 +46,6 @@ const CORPORATE_EVENT_IMAGES: Record<CorporateEventKey, string> = {
     'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1200',
 };
 
-const galleryImgs = [
-  'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1600',
-  'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=85&w=1200',
-  'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=85&w=1200',
-  'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=85&w=1200',
-  'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=1200',
-];
-
 const CORPORATE_FAQ_KEYS = ['eventTypes', 'tailored', 'viewing', 'howToInquire'] as const;
 
 const GALLERY_EDGE_TOLERANCE = 2;
@@ -61,8 +54,8 @@ export const CorporatePage = () => {
   const { t, i18n } = useTranslation();
   const gallerySlides = useMemo<GalleryLightboxSlide[]>(
     () =>
-      galleryImgs.map((src, i) => ({
-        src,
+      corporateInspirationSlides.map((item, i) => ({
+        src: item.src,
         alt: t('corporatePage.gallerySection.slideAlt', { n: i + 1 }),
       })),
     [t, i18n.language],
@@ -73,7 +66,7 @@ export const CorporatePage = () => {
   const [showGalleryLeft, setShowGalleryLeft] = useState(false);
   const [showGalleryRight, setShowGalleryRight] = useState(true);
   const { lightboxIndex, setLightboxIndex, closeLightbox, lightboxShowPrev, lightboxShowNext } =
-    useGalleryLightboxState(galleryImgs.length);
+    useGalleryLightboxState(corporateInspirationSlides.length);
 
   const handleGalleryScroll = () => {
     if (galleryRef.current) {
@@ -373,7 +366,7 @@ export const CorporatePage = () => {
             >
               {gallerySlides.map((slide, i) => (
                 <motion.div
-                  key={slide.src}
+                  key={corporateInspirationSlides[i]!.key}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -384,9 +377,9 @@ export const CorporatePage = () => {
                     src={slide.src}
                     alt={slide.alt}
                     className="pointer-events-none h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
+                    loading={i > 4 ? 'lazy' : 'eager'}
                     decoding="async"
-                    referrerPolicy="no-referrer"
+                    referrerPolicy={slide.src.startsWith('http') ? 'no-referrer' : undefined}
                   />
                   <button
                     type="button"

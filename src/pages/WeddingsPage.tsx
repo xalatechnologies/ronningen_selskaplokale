@@ -15,7 +15,10 @@ import {
   PartyPopper,
 } from 'lucide-react';
 import { cn } from '../lib/utils';
-import { inspirationGallerySlides, inspirationSlideFileNumber } from '../lib/inspirationGallery';
+import { inspirationSlidesForCategory, inspirationSlideFileNumber } from '../lib/inspirationGallery';
+
+/** Same image set as galleri filter «Bryllup». */
+const WEDDING_INSPIRATION_SLIDES = inspirationSlidesForCategory('wedding');
 import { ROUTES } from '../lib/routes';
 import {
   FAQ_ANSWER_CLASS,
@@ -481,7 +484,7 @@ export const WeddingsPage = () => {
               ref={galleryRef}
               className="scrollbar-hide site-carousel-bleed flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 md:mx-0 md:gap-8 md:px-0 md:pb-10"
             >
-              {inspirationGallerySlides.map((item, i) => {
+              {WEDDING_INSPIRATION_SLIDES.map((item, i) => {
                 const slideDescription = t('inspirationGallery.slideAlt', {
                   n: inspirationSlideFileNumber(item.key),
                 });

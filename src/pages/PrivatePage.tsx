@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { INQUIRY_CTA_PATH } from '../lib/privatePackageConfig';
+import { privateInspirationSlides } from '../lib/inspirationGallery';
 import { ROUTES } from '../lib/routes';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
@@ -56,14 +57,6 @@ const PRIVATE_EVENT_IMAGES: Record<PrivateEventKey, string> = {
     'https://images.unsplash.com/photo-1598288103147-6bc615cb464c?auto=format&fit=crop&q=85&w=1200',
 };
 
-const galleryImgs = [
-  'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=85&w=1600',
-  'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=85&w=1200',
-  'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&q=85&w=1200',
-  'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=85&w=1200',
-  'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=85&w=1200',
-];
-
 const PRIVATE_FAQ_KEYS = ['celebrations', 'ownFoodDrink', 'capacity', 'howToBook'] as const;
 
 const GALLERY_EDGE_TOLERANCE = 2;
@@ -80,8 +73,8 @@ export const PrivatePage = () => {
 
   const gallerySlides = useMemo<GalleryLightboxSlide[]>(
     () =>
-      galleryImgs.map((src, i) => ({
-        src,
+      privateInspirationSlides.map((item, i) => ({
+        src: item.src,
         alt: t('privatePage.gallerySection.slideAlt', { n: i + 1 }),
       })),
     [t, i18n.language],
@@ -92,7 +85,7 @@ export const PrivatePage = () => {
   const [showGalleryLeft, setShowGalleryLeft] = useState(false);
   const [showGalleryRight, setShowGalleryRight] = useState(true);
   const { lightboxIndex, setLightboxIndex, closeLightbox, lightboxShowPrev, lightboxShowNext } =
-    useGalleryLightboxState(galleryImgs.length);
+    useGalleryLightboxState(privateInspirationSlides.length);
 
   const handleGalleryScroll = () => {
     if (galleryRef.current) {
@@ -393,7 +386,7 @@ export const PrivatePage = () => {
             >
               {gallerySlides.map((slide, i) => (
                 <motion.div
-                  key={slide.src}
+                  key={privateInspirationSlides[i]!.key}
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -404,9 +397,9 @@ export const PrivatePage = () => {
                     src={slide.src}
                     alt={slide.alt}
                     className="pointer-events-none h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
+                    loading={i > 4 ? 'lazy' : 'eager'}
                     decoding="async"
-                    referrerPolicy="no-referrer"
+                    referrerPolicy={slide.src.startsWith('http') ? 'no-referrer' : undefined}
                   />
                   <button
                     type="button"

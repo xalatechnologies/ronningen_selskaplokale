@@ -202,12 +202,58 @@ const FACILITIES_FILES = [
   'IMG_1909-scaled.jpg',
 ] as const;
 
-/** Home + bryllup carousels. */
-export const inspirationGallerySlides: InspirationSlide[] = WEDDING_FILES.map((fileName, i) => ({
-  key: `wedding-${i + 1}`,
-  src: toPublicUrl('bryllup', fileName),
-  alt: `Bryllupsinspirasjon ${i + 1}`,
-}));
+function buildInspirationSlides(
+  keyPrefix: string,
+  folder: string,
+  fileNames: readonly string[],
+): InspirationSlide[] {
+  return fileNames.map((fileName, i) => ({
+    key: `${keyPrefix}-${i + 1}`,
+    src: toPublicUrl(folder, fileName),
+    alt: '',
+  }));
+}
+
+/** Home hero + bryllup route — same files as galleri filter «Bryllup». */
+export const inspirationGallerySlides: InspirationSlide[] = buildInspirationSlides(
+  'wedding',
+  'bryllup',
+  WEDDING_FILES,
+);
+
+/** Bedrift route inspirasjon — same files as galleri filter «Bedrift». */
+export const corporateInspirationSlides: InspirationSlide[] = buildInspirationSlides(
+  'corporate',
+  'bedrift',
+  CORPORATE_FILES,
+);
+
+/** Selskap route inspirasjon — same files as galleri filter «Selskap». */
+export const privateInspirationSlides: InspirationSlide[] = buildInspirationSlides(
+  'private',
+  'selskap',
+  PRIVATE_FILES,
+);
+
+/** Fasiliteter — same files as galleri filter «Fasiliteter» (for reuse on route pages). */
+export const facilitiesInspirationSlides: InspirationSlide[] = buildInspirationSlides(
+  'facilities',
+  'fasiliteter',
+  FACILITIES_FILES,
+);
+
+export function inspirationSlidesForCategory(category: GalleryPageCategory): InspirationSlide[] {
+  switch (category) {
+    case 'wedding':
+      return inspirationGallerySlides;
+    case 'corporate':
+      return corporateInspirationSlides;
+    case 'private':
+      return privateInspirationSlides;
+    case 'facilities':
+      return facilitiesInspirationSlides;
+  }
+}
 
 /** /gallery grid: all category folders merged (shown under "ALLE" and per category). */
 export const inspirationGalleryPageItems: GalleryPageItem[] = [
