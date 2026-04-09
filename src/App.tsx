@@ -47,6 +47,7 @@ import { HOME_PARTNER_KEYS } from './lib/homePartners';
 import {
   SECTION_H2_CLASS,
   SECTION_H2_ON_DARK_CLASS,
+  SECTION_H3_CLASS,
   SECTION_LEAD_CLASS,
   SECTION_LEAD_ON_DARK_CLASS,
 } from './lib/typography';
@@ -286,7 +287,7 @@ const Home = () => {
                         to={path}
                         className="group flex flex-col items-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-2xl"
                       >
-                        <div className="relative mx-auto mb-7 w-full max-w-[17rem] sm:mb-8 sm:max-w-[18rem] md:max-w-[19rem]">
+                        <div className="relative mx-auto w-full max-w-[17rem] sm:max-w-[18rem] md:max-w-[19rem]">
                           <div className="relative aspect-square overflow-hidden rounded-full border-[3px] border-white/90 shadow-[0_20px_50px_-12px_rgba(33,24,22,0.35)] ring-1 ring-brand-900/10 transition-[transform,box-shadow] duration-500 ease-out group-hover:scale-[1.03] group-hover:shadow-[0_28px_60px_-8px_rgba(33,24,22,0.42)]">
                             <img
                               src={img}
@@ -319,11 +320,16 @@ const Home = () => {
                               aria-hidden
                             />
                           </div>
-                          <h3 className="absolute bottom-0 left-1/2 z-10 w-[min(92%,15.5rem)] -translate-x-1/2 translate-y-1/2 rounded-sm border-2 border-[#c9a352] bg-[linear-gradient(180deg,#faf8f4_0%,#f3efe6_55%,#f0ebe0_100%)] px-4 py-2 text-center font-serif text-[11px] font-normal uppercase leading-snug tracking-[0.12em] text-brand-950 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.55),inset_0_0_0_2px_rgba(169,132,66,0.35),0_4px_14px_rgba(33,24,22,0.12)] sm:px-5 sm:py-2.5 sm:text-xs md:text-[0.8125rem]">
-                            {title}
-                          </h3>
                         </div>
-                        <p className="mt-5 max-w-[24rem] text-balance text-[0.9375rem] leading-relaxed text-brand-900 sm:mt-6 sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:text-lg lg:leading-relaxed dark:text-brand-100">
+                        <h3
+                          className={cn(
+                            SECTION_H3_CLASS,
+                            'mt-7 max-w-[20rem] text-balance text-center transition-colors duration-300 group-hover:text-brand-800 sm:mt-8 dark:group-hover:text-brand-100',
+                          )}
+                        >
+                          {title}
+                        </h3>
+                        <p className="mt-4 max-w-[24rem] text-balance text-[0.9375rem] leading-relaxed text-brand-900 sm:mt-5 sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:text-lg lg:leading-relaxed dark:text-brand-100">
                           {t(`homeConcepts.items.${key}.description`)}
                         </p>
                       </Link>
