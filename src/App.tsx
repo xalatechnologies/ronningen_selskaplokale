@@ -23,7 +23,7 @@ import {
   ArrowRight,
   ArrowLeft,
 } from 'lucide-react';
-import { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import { useState, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import type React from 'react';
 import './lib/i18n';
 import { Toaster } from 'sonner';
@@ -33,12 +33,13 @@ import { HomePartnerCard } from './components/HomePartnerCard';
 import { AdminPanel } from './components/AdminPanel';
 import { HeroScrollHint } from './components/HeroScrollHint';
 import {
-  InspirationGalleryLightbox,
-  useInspirationGalleryLightboxState,
+  GalleryLightbox,
+  useGalleryLightboxState,
+  type GalleryLightboxSlide,
 } from './components/InspirationGalleryLightbox';
 import { FACILITY_PRICING_HEADING_ID } from './components/pricing/FacilityPricingBlock';
 import { BOOKING_URL } from './lib/booking';
-import { inspirationGallerySlides, inspirationSlideFileNumber } from './lib/inspirationGallery';
+import { homeInspirationGallerySlides, inspirationSlideFileNumber } from './lib/inspirationGallery';
 import { cn } from './lib/utils';
 import { fireHomeHeroConfetti } from './lib/heroConfetti';
 import { ROUTES } from './lib/routes';
@@ -150,7 +151,7 @@ const HOME_SERVICE_IMAGES: Record<HomeServiceKey, string> = {
 };
 
 const Home = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const reduceMotion = useReducedMotion();
   const heroConfettiCooldownRef = useRef(0);
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -158,8 +159,16 @@ const Home = () => {
   const [showGalleryLeft, setShowGalleryLeft] = useState(false);
   const [showGalleryRight, setShowGalleryRight] = useState(true);
   const [galleryHasOverflow, setGalleryHasOverflow] = useState(false);
+  const homeGalleryLightboxSlides = useMemo<GalleryLightboxSlide[]>(
+    () =>
+      homeInspirationGallerySlides.map((s) => ({
+        src: s.src,
+        alt: t('inspirationGallery.slideAlt', { n: inspirationSlideFileNumber(s.key) }),
+      })),
+    [t, i18n.language],
+  );
   const { lightboxIndex, setLightboxIndex, closeLightbox, lightboxShowPrev, lightboxShowNext } =
-    useInspirationGalleryLightboxState();
+    useGalleryLightboxState(homeInspirationGallerySlides.length);
 
   const handleGalleryScroll = () => {
     if (galleryRef.current) {
@@ -404,7 +413,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Inspirasjon og Galleri — samme mål som på bryllupssiden (WeddingsPage §7) */}
+      {/* Inspirasjon og Galleri — blandet fra alle galleri-kategorier (ikke kun bryllup) */}
       <section
         id="inspirasjon-galleri"
         aria-labelledby="inspirasjon-galleri-heading"
@@ -465,7 +474,7 @@ const Home = () => {
               ref={galleryRef}
               className="scrollbar-hide site-carousel-bleed flex snap-x snap-mandatory gap-6 overflow-x-auto pb-8 md:mx-0 md:gap-8 md:px-0 md:pb-10"
             >
-              {inspirationGallerySlides.map((item, i) => {
+              {homeInspirationGallerySlides.map((item, i) => {
                 const slideDescription = t('inspirationGallery.slideAlt', {
                   n: inspirationSlideFileNumber(item.key),
                 });
@@ -557,7 +566,8 @@ const Home = () => {
         </div>
       </section>
 
-      <InspirationGalleryLightbox
+      <GalleryLightbox
+        slides={homeGalleryLightboxSlides}
         activeIndex={lightboxIndex}
         onClose={closeLightbox}
         onGoPrev={lightboxShowPrev}

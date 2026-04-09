@@ -255,6 +255,34 @@ export function inspirationSlidesForCategory(category: GalleryPageCategory): Ins
   }
 }
 
+/**
+ * Forside inspirasjon — én fra hver kategori om gangen (round-robin), så stripa ikke matcher én rute-side.
+ * Samme kildefiler som fullt galleri, stabil rekkefølge ved hver lasting.
+ */
+export const homeInspirationGallerySlides: InspirationSlide[] = (() => {
+  const groups = [
+    inspirationGallerySlides,
+    corporateInspirationSlides,
+    privateInspirationSlides,
+    facilitiesInspirationSlides,
+  ];
+  const maxLen = Math.max(...groups.map((g) => g.length));
+  const result: InspirationSlide[] = [];
+  for (let i = 0; i < maxLen; i++) {
+    for (let g = 0; g < groups.length; g++) {
+      const slide = groups[g][i];
+      if (slide) {
+        result.push({
+          key: `home-${result.length + 1}`,
+          src: slide.src,
+          alt: '',
+        });
+      }
+    }
+  }
+  return result;
+})();
+
 /** /gallery grid: all category folders merged (shown under "ALLE" and per category). */
 export const inspirationGalleryPageItems: GalleryPageItem[] = [
   ...buildGalleryItems('wedding', 'bryllup', WEDDING_FILES),
