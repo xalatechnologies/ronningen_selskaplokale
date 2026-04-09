@@ -42,6 +42,7 @@ import { inspirationGallerySlides, inspirationSlideFileNumber } from './lib/insp
 import { cn } from './lib/utils';
 import { fireHomeHeroConfetti } from './lib/heroConfetti';
 import { ROUTES } from './lib/routes';
+import { FACILITIES_PAGE_ENABLED } from './lib/facilitiesPageAvailability';
 import { HOME_PARTNER_KEYS } from './lib/homePartners';
 import {
   SECTION_H2_CLASS,
@@ -738,7 +739,11 @@ export default function App() {
                 <Route path={ROUTES.bedrift} element={<CorporatePage />} />
                 <Route path={ROUTES.selskap} element={<PrivatePage />} />
                 <Route path={ROUTES.priser} element={<PricesPage />} />
-                <Route path={ROUTES.fasiliteter} element={<FacilitiesPage />} />
+                {FACILITIES_PAGE_ENABLED ? (
+                  <Route path={ROUTES.fasiliteter} element={<FacilitiesPage />} />
+                ) : (
+                  <Route path={ROUTES.fasiliteter} element={<Navigate to={ROUTES.home} replace />} />
+                )}
                 <Route path={ROUTES.galleri} element={<GalleryPage />} />
                 <Route path={`${ROUTES.blogg}/:slug`} element={<BlogPostPage />} />
                 <Route path={ROUTES.blogg} element={<BlogPage />} />
@@ -753,7 +758,12 @@ export default function App() {
                 <Route path="/packages" element={<LegacyPathRedirect to={ROUTES.selskap} />} />
                 <Route path="/private" element={<LegacyPathRedirect to={ROUTES.selskap} />} />
                 <Route path="/prices" element={<Navigate to={ROUTES.priser} replace />} />
-                <Route path="/facilities" element={<Navigate to={ROUTES.fasiliteter} replace />} />
+                <Route
+                  path="/facilities"
+                  element={
+                    <Navigate to={FACILITIES_PAGE_ENABLED ? ROUTES.fasiliteter : ROUTES.home} replace />
+                  }
+                />
                 <Route path="/gallery" element={<Navigate to={ROUTES.galleri} replace />} />
                 <Route path="/blog/:slug" element={<LegacyBlogPostRedirect />} />
                 <Route path="/blog" element={<Navigate to={ROUTES.blogg} replace />} />

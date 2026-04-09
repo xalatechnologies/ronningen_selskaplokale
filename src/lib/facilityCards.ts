@@ -24,6 +24,18 @@ export const FACILITY_CARD_KEYS = [
 
 export type FacilityCardKey = (typeof FACILITY_CARD_KEYS)[number];
 
+/**
+ * Facility cards omitted from the **prices** page grid (`FacilityPricingBlock`) only.
+ * Dedicated `/fasiliteter` page may be disabled in production (`facilitiesPageAvailability.ts`);
+ * i18n + images stay so restoring the page or the prices-grid card is trivial:
+ * remove the key from the set below and switch nothing else.
+ */
+const FACILITY_CARD_KEYS_HIDDEN_FROM_PRICING: ReadonlySet<FacilityCardKey> = new Set(['bridalSuite']);
+
+export const FACILITY_PRICING_CARD_KEYS: FacilityCardKey[] = FACILITY_CARD_KEYS.filter(
+  (key) => !FACILITY_CARD_KEYS_HIDDEN_FROM_PRICING.has(key),
+);
+
 export const FACILITY_CARD_IMAGES: Record<FacilityCardKey, string> = {
   childCare: FACILITIES_CHILDCARE_PLAYROOM_IMG,
   accommodation: FACILITIES_GUEST_LOUNGE_IMG,

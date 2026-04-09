@@ -16,6 +16,7 @@ import {
 } from 'react';
 import { cn } from '../lib/utils';
 import { ROUTES, kontaktSkjemaHash } from '../lib/routes';
+import { FACILITIES_PAGE_ENABLED } from '../lib/facilitiesPageAvailability';
 import { appendConversation, detectLanguage } from '../lib/customerAssistant';
 
 /** Top bar height — keep in sync with main `pt-24` and `--site-nav-pad`. */
@@ -61,16 +62,17 @@ function isDarkSurfaceBehindChatFab(hitTarget: Element | null): boolean {
 
 function useNavLinks() {
   const { t } = useTranslation();
-  return [
+  const links = [
     { name: t('nav.home'), path: ROUTES.home },
     { name: t('nav.weddings'), path: ROUTES.bryllup },
     { name: t('nav.corporate'), path: ROUTES.bedrift },
     { name: t('nav.private'), path: ROUTES.selskap },
-    { name: t('nav.facilities'), path: ROUTES.fasiliteter },
+    ...(FACILITIES_PAGE_ENABLED ? [{ name: t('nav.facilities'), path: ROUTES.fasiliteter }] : []),
     { name: t('nav.prices'), path: ROUTES.priser },
     { name: t('nav.gallery'), path: ROUTES.galleri },
     { name: t('nav.blog'), path: ROUTES.blogg },
   ];
+  return links;
 }
 
 /** Top bar (desktop): subset of routes shown inline — rest stay in the mobile drawer. */
@@ -300,6 +302,65 @@ export function AppNavigation() {
     </ul>
   );
 
+  const languageSegment = (
+    <div
+      role="group"
+      aria-label={t('nav.language')}
+      className="inline-flex items-center rounded-full border border-brand-200 bg-brand-50/60 p-0.5 dark:border-brand-600 dark:bg-brand-800/50"
+    >
+      <button
+        type="button"
+        className={cn(
+          'rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wider transition-colors md:px-2.5',
+          isNorwegian
+            ? 'bg-brand-900 text-white dark:bg-brand-100 dark:text-brand-900'
+            : 'text-brand-800 hover:bg-brand-100 dark:text-brand-200 dark:hover:bg-brand-700/80'
+        )}
+        aria-pressed={isNorwegian}
+        aria-label={t('nav.switchToNorwegian')}
+        onClick={() => i18n.changeLanguage('no')}
+      >
+        {t('nav.languageNorwegianShort')}
+      </button>
+      <button
+        type="button"
+        className={cn(
+          'rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wider transition-colors md:px-2.5',
+          !isNorwegian
+            ? 'bg-brand-900 text-white dark:bg-brand-100 dark:text-brand-900'
+            : 'text-brand-800 hover:bg-brand-100 dark:text-brand-200 dark:hover:bg-brand-700/80'
+        )}
+        aria-pressed={!isNorwegian}
+        aria-label={t('nav.switchToEnglish')}
+        onClick={() => i18n.changeLanguage('en')}
+      >
+        {t('nav.languageEnglishShort')}
+      </button>
+    </div>
+  );
+
+  const themeButton = (
+    <button
+      type="button"
+      onClick={toggleTheme}
+      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-brand-900 transition-colors hover:bg-brand-100 dark:text-brand-100 dark:hover:bg-brand-800/80 md:h-11 md:w-11"
+      aria-label={isDark ? t('nav.themeSwitchToLight') : t('nav.themeSwitchToDark')}
+      aria-pressed={isDark}
+    >
+      {isDark ? <Sun size={22} aria-hidden /> : <Moon size={22} aria-hidden />}
+    </button>
+  );
+
+  const contactHeaderLink = (
+    <Link
+      to={kontaktSkjemaHash()}
+      onClick={closeMenu}
+      className="flex h-10 shrink-0 items-center justify-center rounded-full bg-brand-900 px-3 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lg transition hover:bg-brand-800 hover:shadow-xl dark:bg-brand-100 dark:text-brand-900 dark:hover:bg-white md:h-11 md:px-4 md:text-[11px] md:tracking-[0.24em]"
+    >
+      {t('nav.contact')}
+    </Link>
+  );
+
   return (
     <>
       {/* Top bar: grid on md+ (logo | nav+CTA); mobile hamburger → drawer (full list) */}
@@ -309,7 +370,7 @@ export function AppNavigation() {
           TOP_NAV_H
         )}
       >
-        {/* Logo (left) | primary nav (center, md+) | language, theme, kontakt, menu (right). Shell: site-container (15px gutters). */}
+        {/* Logo (left) | primary nav (center, md+) | (md+) språk/tema/kontakt + alltid meny-knapp på mobil. Shell: site-container. */}
         <div
           className={cn(
             'site-container flex h-full min-w-0 items-center justify-between gap-2',
@@ -365,58 +426,12 @@ export function AppNavigation() {
           </nav>
 
           <div className="flex min-w-0 shrink-0 items-center justify-end gap-1 sm:gap-1.5 md:gap-2 md:justify-self-end lg:gap-2.5">
-            <div
-              role="group"
-              aria-label={t('nav.language')}
-              className="inline-flex items-center rounded-full border border-brand-200 bg-brand-50/60 p-0.5 dark:border-brand-600 dark:bg-brand-800/50"
-            >
-              <button
-                type="button"
-                className={cn(
-                  'rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wider transition-colors md:px-2.5',
-                  isNorwegian
-                    ? 'bg-brand-900 text-white dark:bg-brand-100 dark:text-brand-900'
-                    : 'text-brand-800 hover:bg-brand-100 dark:text-brand-200 dark:hover:bg-brand-700/80'
-                )}
-                aria-pressed={isNorwegian}
-                aria-label={t('nav.switchToNorwegian')}
-                onClick={() => i18n.changeLanguage('no')}
-              >
-                {t('nav.languageNorwegianShort')}
-              </button>
-              <button
-                type="button"
-                className={cn(
-                  'rounded-full px-2 py-1 text-[10px] font-bold uppercase tracking-wider transition-colors md:px-2.5',
-                  !isNorwegian
-                    ? 'bg-brand-900 text-white dark:bg-brand-100 dark:text-brand-900'
-                    : 'text-brand-800 hover:bg-brand-100 dark:text-brand-200 dark:hover:bg-brand-700/80'
-                )}
-                aria-pressed={!isNorwegian}
-                aria-label={t('nav.switchToEnglish')}
-                onClick={() => i18n.changeLanguage('en')}
-              >
-                {t('nav.languageEnglishShort')}
-              </button>
+            {/* Mobile: språk/tema/kontakt ligger i hamburger-skuffen — her kun hamburger */}
+            <div className="hidden items-center md:flex md:gap-2 lg:gap-2.5">
+              {languageSegment}
+              {themeButton}
+              {contactHeaderLink}
             </div>
-
-            <button
-              type="button"
-              onClick={toggleTheme}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-brand-900 transition-colors hover:bg-brand-100 dark:text-brand-100 dark:hover:bg-brand-800/80 md:h-11 md:w-11"
-              aria-label={isDark ? t('nav.themeSwitchToLight') : t('nav.themeSwitchToDark')}
-              aria-pressed={isDark}
-            >
-              {isDark ? <Sun size={22} aria-hidden /> : <Moon size={22} aria-hidden />}
-            </button>
-
-            <Link
-              to={kontaktSkjemaHash()}
-              onClick={closeMenu}
-              className="flex h-10 shrink-0 items-center justify-center rounded-full bg-brand-900 px-3 text-center text-[10px] font-bold uppercase tracking-[0.2em] text-white shadow-lg transition hover:bg-brand-800 hover:shadow-xl dark:bg-brand-100 dark:text-brand-900 dark:hover:bg-white md:h-11 md:px-4 md:text-[11px] md:tracking-[0.24em]"
-            >
-              {t('nav.contact')}
-            </Link>
 
             <button
               ref={menuButtonRef}
@@ -464,6 +479,17 @@ export function AppNavigation() {
               )}
             >
               <nav className="min-h-0 flex-1 overflow-y-auto px-2 py-4">{menuPanelLinks}</nav>
+              <div className="shrink-0 space-y-4 border-t border-brand-200 px-4 py-5 dark:border-brand-700">
+                <div className="flex justify-center">{languageSegment}</div>
+                <div className="flex justify-center">{themeButton}</div>
+                <Link
+                  to={kontaktSkjemaHash()}
+                  onClick={closeMenu}
+                  className="flex min-h-11 w-full items-center justify-center rounded-full bg-brand-900 px-4 py-3 text-center text-[11px] font-bold uppercase tracking-[0.24em] text-white shadow-lg transition hover:bg-brand-800 hover:shadow-xl dark:bg-brand-100 dark:text-brand-900 dark:hover:bg-white"
+                >
+                  {t('nav.contact')}
+                </Link>
+              </div>
             </motion.aside>
           </>
         ) : null}

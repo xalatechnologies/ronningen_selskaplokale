@@ -9,7 +9,7 @@ import {
   UI_BODY_SECONDARY_CLASS,
   UI_PRICING_CARD_NOTE_CLASS,
 } from '../../lib/typography';
-import { FACILITY_CARD_IMAGES, FACILITY_CARD_KEYS, type FacilityCardKey } from '../../lib/facilityCards';
+import { FACILITY_CARD_IMAGES, FACILITY_PRICING_CARD_KEYS, type FacilityCardKey } from '../../lib/facilityCards';
 
 export const FACILITY_PRICING_HEADING_ID = 'facility-pricing-heading';
 
@@ -43,11 +43,11 @@ export function FacilityPricingBlock() {
   const { t } = useTranslation();
   const [expanded, setExpanded] = useState(false);
   const initialVisible = useInitialVisibleCount();
-  const total = FACILITY_CARD_KEYS.length;
+  const total = FACILITY_PRICING_CARD_KEYS.length;
 
   const visibleKeys = useMemo(() => {
-    if (expanded) return [...FACILITY_CARD_KEYS];
-    return FACILITY_CARD_KEYS.slice(0, Math.min(initialVisible, total));
+    if (expanded) return [...FACILITY_PRICING_CARD_KEYS];
+    return FACILITY_PRICING_CARD_KEYS.slice(0, Math.min(initialVisible, total));
   }, [expanded, initialVisible, total]);
 
   const hasHidden = total > initialVisible;
