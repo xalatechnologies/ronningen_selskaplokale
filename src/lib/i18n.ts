@@ -270,7 +270,7 @@ const resources = {
         packagesSection: {
           heading: 'Our packages',
           intro:
-            'Three clear packages as a starting point — get in touch and we will find a date, adjustments, and a quote that suits your wedding day.',
+            'Three clear packages as a starting point — get in touch and we will find a date, adjustments, and a quote that suits your needs.',
           popularBadge: 'Most popular',
           ctaQuote: 'Request a quote',
           items: {
@@ -284,23 +284,23 @@ const resources = {
             },
             plus: {
               name: 'Plus',
-              price: 'NOK 33,000',
+              price: 'Price on request',
               desc: 'A simpler, more ready-made option',
               f1: 'Everything in Basic',
               f2: 'Table setting (tables, chairs, linen, chair covers, napkins)',
               f3: 'Kitchen access with equipment and cold storage',
               f4: 'Extra time before or after your event',
+              f5: 'Sound & lighting',
+              f6: 'Final cleaning',
             },
             premium: {
               name: 'Premium',
-              price: 'NOK 44,000',
+              price: 'Price on request',
               desc: 'Full package — we take care of most of the details',
               f1: 'Everything in Plus',
               f2: 'Coordination and planning',
-              f3: 'Sound system',
-              f4: 'Final cleaning',
-              f5: 'Decoration and table styling',
-              f6: '1 serving staff member',
+              f3: 'Decoration and table styling',
+              f4: 'Catering & serving staff',
             },
           },
         },
@@ -450,17 +450,17 @@ const resources = {
       },
       pricesPage: {
         heroEyebrow: 'Pricing',
-        title: 'Packages & prices',
-        intro: 'Packages and facility pricing at a glance — we confirm everything in your written quote.',
+        title: 'Our packages and services',
+        intro: 'We tailor the right package to your needs.',
         bottomCta: {
           heading: 'Questions or ready to book?',
           body: 'Contact us for a no-obligation chat — we will help with date, programme and quote.',
           primary: 'Contact us',
         },
         facilityPricing: {
-          heading: 'Facilities & indicative pricing',
+          heading: 'Facilities and additional services',
           intro:
-            'Every space below is part of what makes the venue work for your day. Amounts are typical or starting points — the final price follows your date, guest count and programme.',
+            'The facilities and services below are part of what makes the venue complete for your day. Pricing for some services is agreed separately.',
           showMore: 'Show {{count}} more',
           showLess: 'Show fewer',
           items: {
@@ -1246,7 +1246,7 @@ const resources = {
         packagesSection: {
           heading: 'Våre pakker',
           intro:
-            'Tre tydelige pakker som utgangspunkt — ta kontakt, så finner vi dato, tilpasninger og et tilbud som passer deres bryllupsdag.',
+            'Tre tydelige pakker som utgangspunkt — ta kontakt, så finner vi dato, tilpasninger og et tilbud som passer deres behov.',
           popularBadge: 'Mest populær',
           ctaQuote: 'Be om tilbud',
           items: {
@@ -1260,23 +1260,23 @@ const resources = {
             },
             plus: {
               name: 'Plus',
-              price: 'kr 33 000',
+              price: 'Pris etter avtale',
               desc: 'Enklere og mer ferdig løsning',
               f1: 'Alt i Basis',
               f2: 'Oppdekking (bord, stoler, duk, stoltrekk, servietter)',
               f3: 'Tilgang til kjøkken med utstyr og kjølerom',
               f4: 'Ekstra tid før eller etter arrangement',
+              f5: 'Lyd og Lys',
+              f6: 'Sluttrengjøring',
             },
             premium: {
               name: 'Premium',
-              price: 'kr 44 000',
+              price: 'Pris etter avtale',
               desc: 'Full pakke – vi tar oss av det meste',
               f1: 'Alt i Plus',
               f2: 'Koordinering og planlegging',
-              f3: 'Lydanlegg',
-              f4: 'Sluttrengjøring',
-              f5: 'Dekorasjon og bordpynt',
-              f6: '1 serveringspersonell',
+              f3: 'Dekorasjon og bordpynt',
+              f4: 'Catering & serveringspersonell',
             },
           },
         },
@@ -1425,17 +1425,17 @@ const resources = {
       },
       pricesPage: {
         heroEyebrow: 'Priser',
-        title: 'Pakker og priser',
-        intro: 'Pakker og fasilitetspriser samlet — alt bekreftes i deres skriftlige tilbud.',
+        title: 'Våre pakker og tjenester',
+        intro: 'Vi skreddersyr riktig pakke etter deres behov',
         bottomCta: {
           heading: 'Spørsmål eller klar for å booke?',
           body: 'Ta kontakt for en uforpliktende prat — vi hjelper med dato, opplegg og tilbud.',
           primary: 'Kontakt oss',
         },
         facilityPricing: {
-          heading: 'Fasiliteter og veiledende priser',
+          heading: 'Fasiliteter og tilleggstjenester',
           intro:
-            'Rommene og tjenestene under er en del av det som gjør lokalet komplett for deres dag. Beløp er typiske eller utgangspunkt — endelig pris følger dato, antall gjester og opplegg.',
+            'Fasiliteter og tjenestene under er en del av det som gjør lokalet komplett for deres dag. Pris for enkelte tjenester avtales nærmere.',
           showMore: 'Vis {{count}} flere',
           showLess: 'Vis færre',
           items: {

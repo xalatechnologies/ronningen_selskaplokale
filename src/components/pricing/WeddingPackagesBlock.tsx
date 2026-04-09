@@ -10,8 +10,8 @@ const WEDDINGS_PACKAGE_IDS = ['basic', 'plus', 'premium'] as const;
 
 const WEDDINGS_PACKAGE_FEATURE_COUNT: Record<(typeof WEDDINGS_PACKAGE_IDS)[number], number> = {
   basic: 3,
-  plus: 4,
-  premium: 6,
+  plus: 6,
+  premium: 4,
 };
 
 /** Stable id for in-page anchors and deep links from other pages. */
