@@ -666,7 +666,7 @@ const Footer = () => {
               href="https://www.instagram.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm transition-colors hover:text-brand-100"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm transition-colors hover:text-[#E1306C]"
               aria-label="Instagram"
             >
               <Instagram size={20} strokeWidth={1.5} />
@@ -675,7 +675,7 @@ const Footer = () => {
               href="https://www.facebook.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm transition-colors hover:text-brand-100"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm transition-colors hover:text-[#1877F2]"
               aria-label="Facebook"
             >
               <Facebook size={20} strokeWidth={1.5} />
@@ -684,7 +684,7 @@ const Footer = () => {
               href="https://www.tiktok.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm transition-colors hover:text-brand-100"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm transition-colors hover:text-[#25F4EE]"
               aria-label="TikTok"
             >
               <svg

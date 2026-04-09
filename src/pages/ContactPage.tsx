@@ -166,15 +166,17 @@ export const ContactPage: React.FC = () => {
                                 <a
                                   href={item.href}
                                   {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                                  className="mt-1 inline-flex items-center gap-1.5 font-semibold text-brand-950 underline decoration-brand-400/90 underline-offset-4 transition hover:decoration-brand-600 dark:text-brand-50 dark:decoration-brand-500 dark:hover:decoration-brand-300"
+                                  className="mt-1 inline-flex min-w-0 max-w-full items-center gap-1.5 font-semibold text-brand-950 underline decoration-brand-400/90 underline-offset-4 transition hover:decoration-brand-600 dark:text-brand-50 dark:decoration-brand-500 dark:hover:decoration-brand-300"
                                 >
-                                  <span className="wrap-break-word">{item.value}</span>
+                                  <span className="min-w-0 break-all sm:break-words">{item.value}</span>
                                   {item.external ? (
                                     <ExternalLink size={14} className="shrink-0 text-brand-700 dark:text-brand-400" aria-hidden />
                                   ) : null}
                                 </a>
                               ) : (
-                                <p className="mt-1 font-semibold text-brand-950 dark:text-brand-50">{item.value}</p>
+                                <p className="mt-1 min-w-0 break-all font-semibold text-brand-950 sm:break-words dark:text-brand-50">
+                                  {item.value}
+                                </p>
                               )}
                               <p className="mt-1.5 text-sm leading-relaxed text-brand-800 dark:text-brand-200">{item.hint}</p>
                             </div>

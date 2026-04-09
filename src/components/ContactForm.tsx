@@ -127,11 +127,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({ embedded = false, clas
   };
 
   const labelClass = embedded
-    ? 'mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-800'
-    : 'mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-700';
+    ? 'mb-2.5 block text-xs font-semibold uppercase tracking-[0.16em] text-brand-800 dark:text-brand-200'
+    : 'mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-700 dark:text-brand-300';
   const inputClass = embedded
-    ? 'w-full min-h-[3.25rem] rounded-2xl border border-brand-300/90 bg-white px-5 py-3.5 text-base text-brand-950 placeholder:text-brand-500 transition focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500/20'
-    : 'w-full rounded-xl border border-brand-300/80 bg-white px-4 py-3 text-[15px] text-brand-950 placeholder:text-brand-500 transition focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500/20';
+    ? 'w-full min-h-[3.25rem] rounded-2xl border border-brand-300/90 bg-white px-5 py-3.5 text-base text-brand-950 placeholder:text-brand-500 transition focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-brand-600 dark:bg-brand-800 dark:text-brand-50 dark:placeholder:text-brand-400 dark:focus:border-brand-400 dark:focus:ring-brand-400/20'
+    : 'w-full rounded-xl border border-brand-300/80 bg-white px-4 py-3 text-[15px] text-brand-950 placeholder:text-brand-500 transition focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500/20 dark:border-brand-600 dark:bg-brand-800 dark:text-brand-50 dark:placeholder:text-brand-400 dark:focus:border-brand-400 dark:focus:ring-brand-400/20';
 
   return (
     <motion.form
@@ -144,6 +144,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ embedded = false, clas
         'rounded-2xl border border-brand-200/90 bg-white p-6 shadow-[0_1px_0_rgba(28,22,19,0.04)] md:p-8',
         embedded &&
           'border-brand-200/70 p-8 shadow-sm md:p-10 lg:p-12',
+        'dark:border-brand-600/70 dark:bg-brand-900/70 dark:shadow-none',
         className
       )}
       noValidate
@@ -197,7 +198,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ embedded = false, clas
         <div className="md:col-span-2">
           <label htmlFor="contact-phone" className={labelClass}>
             {t('contactPage.formPhoneLabel')}
-            <span className="ml-1 font-normal normal-case tracking-normal text-brand-600">
+            <span className="ml-1 font-normal normal-case tracking-normal text-brand-600 dark:text-brand-400">
               ({t('contactPage.formPhoneHint')})
             </span>
           </label>
@@ -248,7 +249,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ embedded = false, clas
       >
         <p
           className={cn(
-            'leading-relaxed text-brand-800',
+            'leading-relaxed text-brand-800 dark:text-brand-200',
             embedded ? 'max-w-md text-base' : 'text-sm'
           )}
         >

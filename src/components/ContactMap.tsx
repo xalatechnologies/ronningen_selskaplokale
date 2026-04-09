@@ -4,19 +4,12 @@ import L from 'leaflet';
 import { VENUE_LAT, VENUE_LNG } from '../lib/venue';
 import 'leaflet/dist/leaflet.css';
 
-function escapeHtml(s: string) {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/"/g, '&quot;');
-}
-
-function createPillIcon(label: string) {
+function createArrowIcon() {
   return L.divIcon({
-    className: 'contact-venue-pill-marker',
-    html: `<div class="contact-venue-pill-inner">${escapeHtml(label)}</div>`,
-    iconSize: [200, 44],
-    iconAnchor: [100, 44],
+    className: 'contact-venue-arrow-marker',
+    html: '<div class="contact-venue-arrow-inner" aria-hidden="true"></div>',
+    iconSize: [28, 40],
+    iconAnchor: [14, 40],
   });
 }
 
@@ -26,7 +19,7 @@ type ContactMapProps = {
 };
 
 export const ContactMap: React.FC<ContactMapProps> = ({ pillLabel, ariaLabel }) => {
-  const icon = useMemo(() => createPillIcon(pillLabel), [pillLabel]);
+  const icon = useMemo(() => createArrowIcon(), []);
 
   return (
     <div

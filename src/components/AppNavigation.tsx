@@ -436,6 +436,8 @@ export function AppNavigation() {
               {contactHeaderLink}
             </div>
 
+            <div className="md:hidden">{themeButton}</div>
+
             <button
               ref={menuButtonRef}
               type="button"
@@ -484,7 +486,6 @@ export function AppNavigation() {
               <nav className="min-h-0 flex-1 overflow-y-auto px-2 py-4">{menuPanelLinks}</nav>
               <div className="shrink-0 space-y-4 border-t border-brand-200 px-4 py-5 dark:border-brand-700">
                 <div className="flex justify-center">{languageSegment}</div>
-                <div className="flex justify-center">{themeButton}</div>
                 <Link
                   to={kontaktSkjemaHash()}
                   onClick={closeMenu}
