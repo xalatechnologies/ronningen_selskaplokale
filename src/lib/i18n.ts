@@ -465,11 +465,11 @@ const resources = {
           showLess: 'Show fewer',
           items: {
             childCare: {
-              price: 'From NOK 0',
+              price: 'On request',
               note: 'Playroom by arrangement; childcare or staffing quoted separately when booked.',
             },
             accommodation: {
-              price: 'From NOK 1,200 / room / night',
+              price: 'On request',
               note: 'Indicative; depends on season, room type and availability.',
             },
             bridalSuite: {
@@ -477,11 +477,11 @@ const resources = {
               note: 'Other event types and extra nights are priced on request.',
             },
             activities: {
-              price: 'Included',
+              price: 'On request',
               note: 'Indoor games and shuffleboard with standard venue hire.',
             },
             animals: {
-              price: 'On request',
+              price: 'Included',
               note: 'Farm visit or animal programme as an add-on — quoted with your event.',
             },
             barDanceFloor: {
@@ -489,15 +489,15 @@ const resources = {
               note: 'Bar area and dance floor with venue hire.',
             },
             kitchen: {
-              price: 'Included',
+              price: 'On request',
               note: 'Full commercial kitchen; access level follows your package (see wedding/private cards above).',
             },
             universalDesign: {
-              price: 'No surcharge',
+              price: 'Included',
               note: 'Single-level flow and accessible WC — no extra facility fee.',
             },
             parking: {
-              price: 'Free',
+              price: 'Included',
               note: 'Guest parking on site; EV charging available.',
             },
             barn: {
@@ -1440,11 +1440,11 @@ const resources = {
           showLess: 'Vis færre',
           items: {
             childCare: {
-              price: 'Fra kr 0',
+              price: 'Etter avtale',
               note: 'Barnerom etter avtale; barnevakt eller bemanning pristes separat ved bestilling.',
             },
             accommodation: {
-              price: 'Fra kr 1 200 / rom / natt',
+              price: 'Etter avtale',
               note: 'Veiledende; avhenger av sesong, romtype og tilgjengelighet.',
             },
             bridalSuite: {
@@ -1452,11 +1452,11 @@ const resources = {
               note: 'Andre arrangementstyper og ekstra netter prises på forespørsel.',
             },
             activities: {
-              price: 'Inkludert',
+              price: 'Etter avtale',
               note: 'Shuffleboard og spill innendørs ved standard lokalleie.',
             },
             animals: {
-              price: 'På forespørsel',
+              price: 'Inkludert',
               note: 'Besøk til dyr eller bondeprogram som tillegg — pristes sammen med arrangementet.',
             },
             barDanceFloor: {
@@ -1464,15 +1464,15 @@ const resources = {
               note: 'Barområde og dansegulv ved lokalleie.',
             },
             kitchen: {
-              price: 'Inkludert',
+              price: 'Etter avtale',
               note: 'Fullt utstyrt storkjøkken; tilgang følger pakken (se bryllup/private kort over).',
             },
             universalDesign: {
-              price: 'Uten tillegg',
+              price: 'Inkludert',
               note: 'Ett plan og tilgjengelig WC — ingen ekstra fasilitetsavgift.',
             },
             parking: {
-              price: 'Gratis',
+              price: 'Inkludert',
               note: 'Gjesteparkering på området; elbillading tilgjengelig.',
             },
             barn: {
