@@ -42,6 +42,8 @@ const resources = {
         welcomeLine: 'Welcome to',
         venueName: 'Rønningen selskapslokale',
         tagline: 'Everything you need for a celebration to remember.',
+        heroImageLightAlt:
+          'Venue entrance in daylight with a large floral arch over glass doors, gravel courtyard with lemon trees in terracotta pots, and forested hills behind the building',
         heroImageAlt:
           'Event venue at night with warm lighting, a starry sky, and a festive atmosphere',
         scrollHintAria: 'Scroll down to our concepts',
@@ -1020,6 +1022,8 @@ const resources = {
         welcomeLine: 'Velkommen til',
         venueName: 'Rønningen selskapslokale',
         tagline: 'Alt du trenger for en vellykket feiring',
+        heroImageLightAlt:
+          'Lokalets inngang i dagslys med stor blomsterbue over glassdører, grusgård med sitrontrær i terrakottakrukker og skogkledt ås bak bygningen',
         heroImageAlt:
           'Selskapslokale om kvelden med varmt lys, stjernehimmel og feststemning',
         scrollHintAria: 'Rull ned til neste seksjon',

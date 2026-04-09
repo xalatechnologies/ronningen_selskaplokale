@@ -211,15 +211,23 @@ const Home = () => {
       <section className="home-hero section-viewport section-viewport-hero relative flex min-h-0 flex-col overflow-hidden border-b border-brand-800 bg-brand-950 text-white">
         <div className="pointer-events-none absolute inset-0 z-0">
           <img
+            src="/bryllup/inngang1.jpeg"
+            alt={t('homeHero.heroImageLightAlt')}
+            className="h-full w-full object-cover dark:hidden"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+          />
+          <img
             src="/hero-wedding-venue-night.png"
             alt={t('homeHero.heroImageAlt')}
-            className="h-full w-full object-cover"
+            className="hidden h-full w-full object-cover dark:block"
             loading="eager"
             decoding="async"
             fetchPriority="high"
           />
           <div
-            className="absolute inset-0 bg-gradient-to-b from-black/38 via-black/35 to-black/45"
+            className="absolute inset-0 bg-gradient-to-b from-black/22 via-black/16 to-black/30 dark:from-black/38 dark:via-black/35 dark:to-black/45"
             aria-hidden
           />
         </div>
