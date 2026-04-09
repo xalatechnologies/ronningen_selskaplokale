@@ -1924,7 +1924,7 @@ const resources = {
         filterAll: 'Alle',
         filterWedding: 'Bryllup',
         filterCorporate: 'Bedrift',
-        filterPrivate: 'Privat',
+        filterPrivate: 'Selskap',
         filterFacilities: 'Fasiliteter',
         expandHint: 'Åpne',
         emptyTitle: 'Ingen bilder i denne kategorien ennå',

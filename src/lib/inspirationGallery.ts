@@ -46,28 +46,8 @@ const inspirationGallerySlidesBase: InspirationSlide[] = Array.from(
   },
 ).filter((slide) => !EXCLUDED_INSPIRATION_KEYS.has(slide.key));
 
-/** Home + bryllup carousels only (original set, minus excluded lead). */
-export const inspirationGallerySlides: InspirationSlide[] = (() => {
-  const leadSet = new Set<string>(LEAD_INSPIRATION_KEYS);
-  const lead: InspirationSlide[] = [];
-  for (const key of LEAD_INSPIRATION_KEYS) {
-    const slide = inspirationGallerySlidesBase.find((s) => s.key === key);
-    if (slide) lead.push(slide);
-  }
-  const rest = inspirationGallerySlidesBase.filter((s) => !leadSet.has(s.key));
-  const ordered = [...lead, ...rest];
-
-  // Keep legacy ordering, but swap these two specific slides in the carousel.
-  const firstKey = 'inspirasjon-27';
-  const secondKey = 'inspirasjon-45';
-  const firstIndex = ordered.findIndex((slide) => slide.key === firstKey);
-  const secondIndex = ordered.findIndex((slide) => slide.key === secondKey);
-  if (firstIndex >= 0 && secondIndex >= 0) {
-    [ordered[firstIndex], ordered[secondIndex]] = [ordered[secondIndex], ordered[firstIndex]];
-  }
-
-  return ordered;
-})();
+/** Temporarily empty until new category folders are provided. */
+export const inspirationGallerySlides: InspirationSlide[] = [];
 
 export type GalleryPageCategory = 'wedding' | 'corporate' | 'private' | 'facilities';
 
@@ -126,8 +106,5 @@ const extraGalleryPageItems: GalleryPageItem[] = inspirationGalleryExtraSlides
     category: slide.category,
   }));
 
-/** Full /gallery grid: legacy + uploaded batch, grouped by category then image number. */
-export const inspirationGalleryPageItems: GalleryPageItem[] = sortGalleryPageItems([
-  ...legacyGalleryPageItems,
-  ...extraGalleryPageItems,
-]);
+/** Temporarily empty until new category folders are provided. */
+export const inspirationGalleryPageItems: GalleryPageItem[] = [];
