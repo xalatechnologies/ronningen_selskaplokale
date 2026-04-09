@@ -30,7 +30,7 @@ export const HomePartnerCard: FC<Props> = ({ partnerKey, className }) => {
   const body = (
     <article
       className={cn(
-        'flex h-full w-full max-w-[19.5rem] flex-col rounded-2xl border border-brand-200/90 bg-white p-4 shadow-[0_8px_28px_-18px_rgba(33,24,22,0.35)] transition-[box-shadow,transform,border-color] duration-300 sm:max-w-[20rem]',
+        'flex h-full w-full flex-col rounded-2xl border border-brand-200/90 bg-white p-4 shadow-[0_8px_28px_-18px_rgba(33,24,22,0.35)] transition-[box-shadow,transform,border-color] duration-300',
         'dark:border-brand-600 dark:bg-brand-800/95 dark:shadow-[0_12px_36px_-16px_rgba(0,0,0,0.45)]',
         'group-hover:-translate-y-0.5 group-hover:border-brand-300 group-hover:shadow-[0_16px_40px_-20px_rgba(33,24,22,0.45)] dark:group-hover:border-brand-500',
         className,
@@ -63,7 +63,7 @@ export const HomePartnerCard: FC<Props> = ({ partnerKey, className }) => {
           <h3 className="font-serif text-base font-semibold leading-snug tracking-tight text-brand-950 sm:text-[1.0625rem] dark:text-brand-50">
             {name}
           </h3>
-          <p className="mt-1.5 line-clamp-3 text-left text-sm leading-snug text-brand-800 dark:text-brand-200">
+          <p className="mt-1.5 text-left text-sm leading-snug text-brand-800 dark:text-brand-200">
             {desc}
           </p>
         </div>

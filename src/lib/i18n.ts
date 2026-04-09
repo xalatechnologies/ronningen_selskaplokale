@@ -680,7 +680,7 @@ const resources = {
               title: 'Universally designed',
               desc: 'All on one level with access to an accessible WC — arranged so every guest can take part and feel welcome.',
               imgAlt:
-                'Wide hallway with level wood floor, floor-to-ceiling built-in cabinets, mirror and open view to a bright kitchen area',
+                'Accessible restroom sign (wheelchair symbol)',
             },
             parking: {
               title: 'Parking',
@@ -1654,7 +1654,7 @@ const resources = {
               title: 'Universelt utformet',
               desc: 'Alt på samme plan med tilgang til HC-toalett. Tilrettelagt slik at alle gjester kan delta og føle seg velkomne.',
               imgAlt:
-                'Bred gang med jevnt tregulv, innebygde skap fra gulv til tak, speil og åpent utsyn mot lyst kjøkkenområde',
+                'Skilt for tilgjengelig HC-toalett (rullestolsymbol)',
             },
             parking: {
               title: 'Parkering',

@@ -7,7 +7,8 @@ const FACILITIES_VENUE_AERIAL_IMG = '/facilities-venue-aerial.png';
 const FACILITIES_PARKING_COACHES_IMG = '/facilities-parking-coaches.png';
 const FACILITIES_GUEST_LOUNGE_IMG = '/facilities-guest-lounge.png';
 const FACILITIES_BRIDAL_SUITE_BEDROOM_IMG = '/facilities-bridal-suite-bedroom.png';
-const FACILITIES_UNIVERSAL_DESIGN_HALLWAY_IMG = '/facilities-universal-design-hallway.png';
+const FACILITIES_UNIVERSAL_DESIGN_HALLWAY_IMG =
+  'https://images.unsplash.com/photo-1576864333223-db90dadfb975?auto=format&fit=crop&w=1600&q=80';
 
 export const FACILITY_CARD_KEYS = [
   'childCare',
