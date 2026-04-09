@@ -227,7 +227,7 @@ const Home = () => {
             fetchPriority="high"
           />
           <div
-            className="absolute inset-0 bg-gradient-to-b from-black/22 via-black/16 to-black/30 dark:from-black/38 dark:via-black/35 dark:to-black/45"
+            className="absolute inset-0 bg-gradient-to-b from-black/22 via-black/16 to-black/30 dark:from-black/24 dark:via-black/18 dark:to-black/32"
             aria-hidden
           />
         </div>
