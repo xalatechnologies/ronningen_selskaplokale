@@ -95,7 +95,7 @@ export function FacilityPricingBlock() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: Math.min(visibleIndex * 0.05, 0.25) }}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-brand-200/85 bg-[#faf8f5] shadow-[0_28px_64px_-32px_rgba(33,24,22,0.38)] ring-1 ring-brand-900/[0.04] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_34px_72px_-28px_rgba(33,24,22,0.42)] dark:border-brand-600/75 dark:bg-brand-800/55 dark:shadow-[0_28px_68px_-30px_rgba(0,0,0,0.5)] dark:ring-brand-950/35 dark:hover:shadow-[0_36px_80px_-26px_rgba(0,0,0,0.55)]"
+                className="group relative flex flex-col overflow-hidden rounded-lg border border-brand-200/85 bg-[#faf8f5] shadow-[0_28px_64px_-32px_rgba(33,24,22,0.38)] ring-1 ring-brand-900/[0.04] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_34px_72px_-28px_rgba(33,24,22,0.42)] dark:border-brand-600/75 dark:bg-brand-800/55 dark:shadow-[0_28px_68px_-30px_rgba(0,0,0,0.5)] dark:ring-brand-950/35 dark:hover:shadow-[0_36px_80px_-26px_rgba(0,0,0,0.55)]"
               >
                 <div
                   className="pointer-events-none absolute inset-x-8 top-0 z-[1] h-px bg-gradient-to-r from-transparent via-brand-400/45 to-transparent dark:via-brand-500/30"

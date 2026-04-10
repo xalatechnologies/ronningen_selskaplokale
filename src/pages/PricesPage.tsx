@@ -101,7 +101,6 @@ export const PricesPage: React.FC = () => {
             </div>
 
             <div className="relative z-10 w-full max-w-none">
-              <div className="mb-4 h-px w-12 bg-brand-400/70" aria-hidden />
               <h2
                 className={cn(
                   SECTION_H2_ON_DARK_CLASS,

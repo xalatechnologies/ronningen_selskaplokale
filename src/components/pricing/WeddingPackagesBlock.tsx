@@ -18,7 +18,7 @@ const WEDDINGS_PACKAGE_FEATURE_COUNT: Record<(typeof WEDDINGS_PACKAGE_IDS)[numbe
 export const WEDDING_PACKAGES_HEADING_ID = 'wedding-packages-heading';
 
 const tierCardBase =
-  'relative flex h-full flex-col overflow-hidden rounded-[1.35rem] border p-8 transition-[transform,box-shadow] duration-300 md:p-9 lg:rounded-3xl';
+  'relative flex h-full flex-col overflow-hidden rounded-lg border p-8 transition-[transform,box-shadow] duration-300 md:p-9';
 
 const tierCardLight =
   'border-brand-200/75 bg-white/92 text-brand-900 shadow-[0_28px_70px_-34px_rgba(33,24,22,0.38)] backdrop-blur-sm dark:border-brand-600/70 dark:bg-brand-800/50 dark:text-brand-50 dark:shadow-[0_28px_72px_-32px_rgba(0,0,0,0.55)] hover:-translate-y-1 hover:shadow-[0_36px_80px_-30px_rgba(33,24,22,0.42)] dark:hover:shadow-[0_36px_84px_-28px_rgba(0,0,0,0.58)]';
