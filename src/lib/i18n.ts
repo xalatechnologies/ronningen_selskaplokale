@@ -1836,7 +1836,7 @@ const resources = {
         heroEyebrow: 'Journal',
         title: 'Blogg',
         comingSoonBadge: 'Kommer snart',
-        comingSoonTitle: 'Historier fra lokalet kommer straks',
+        comingSoonTitle: 'Historier fra lokalet kommer snart',
         comingSoonBody:
           'Vi jobber med artikler om feiringer, sesonginspirasjon og praktiske tips fra Rønningen. Følg med — journalen åpner snart.',
         intro:
