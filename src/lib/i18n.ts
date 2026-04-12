@@ -860,7 +860,7 @@ const resources = {
         heroEyebrow: 'Journal',
         title: 'Blog',
         comingSoonBadge: 'Coming soon',
-        comingSoonTitle: 'Stories from the venue, almost here',
+        comingSoonTitle: 'Stories from the venue, ongoing',
         comingSoonBody:
           'We are preparing articles about celebrations, seasonal inspiration, and practical tips from Rønningen. Follow along — the journal opens shortly.',
         intro:
@@ -1836,7 +1836,7 @@ const resources = {
         heroEyebrow: 'Journal',
         title: 'Blogg',
         comingSoonBadge: 'Kommer snart',
-        comingSoonTitle: 'Historier fra lokalet kommer snart',
+        comingSoonTitle: 'Historier fra lokalet kommer fortløpende',
         comingSoonBody:
           'Vi jobber med artikler om feiringer, sesonginspirasjon og praktiske tips fra Rønningen. Følg med — journalen åpner snart.',
         intro:
