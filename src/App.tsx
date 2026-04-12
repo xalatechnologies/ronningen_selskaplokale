@@ -50,7 +50,6 @@ import {
   SECTION_H2_ON_DARK_CLASS,
   SECTION_H3_CLASS,
   SECTION_LEAD_CLASS,
-  SECTION_LEAD_ON_DARK_CLASS,
 } from './lib/typography';
 
 import { ContactPage } from './pages/ContactPage';
@@ -117,7 +116,7 @@ const HOME_CONCEPT_ROUTES: Record<HomeConceptKey, { path: string; img: string }>
   },
   facilities: {
     path: `${ROUTES.priser}#${FACILITY_PRICING_HEADING_ID}`,
-    img: '/concept-facilities-bar.png',
+    img: '/facilities-hero-shuffleboard.png',
   },
 };
 
@@ -145,9 +144,9 @@ const HOME_SERVICE_IMAGES: Record<HomeServiceKey, string> = {
   catering:
     'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800',
   barDancefloor: '/home-service-bar-dancefloor.png',
-  coordination: '/home-service-coordination.png',
-  decoration: '/home-service-decoration.png',
-  overnight: '/facilities-guest-lounge.png',
+  coordination: '/weddings/service-table-setting-banquet-hall.png',
+  decoration: '/facilities-hero-shuffleboard.png',
+  overnight: '/facilities-childcare-playroom.png',
 };
 
 const Home = () => {
@@ -245,25 +244,12 @@ const Home = () => {
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.75 }}
-            className="flex w-full max-w-6xl cursor-default flex-col items-center space-y-7 md:space-y-9"
+            className="flex min-h-[min(38vh,15rem)] w-full max-w-6xl cursor-default flex-col items-center justify-center"
             onPointerEnter={handleHeroConfettiPointerEnter}
           >
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              className="max-w-5xl text-balance font-serif leading-[0.9] tracking-tighter text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.32)]"
-            >
-              <span className="block font-serif text-2xl font-normal not-italic tracking-wide text-white/90 sm:text-3xl md:text-4xl lg:text-5xl">
-                {t('homeHero.welcomeLine')}
-              </span>
-              <span className="mt-2 block font-serif text-4xl italic text-brand-200 sm:mt-3 sm:text-5xl md:text-6xl lg:text-7xl">
-                {t('homeHero.venueName')}
-              </span>
-            </motion.h1>
-            <p className="w-full max-w-none font-serif text-xl font-normal not-italic opacity-90 md:text-3xl [text-shadow:0_1px_20px_rgba(0,0,0,0.28)]">
-              {t('homeHero.tagline')}
-            </p>
+            <h1 className="sr-only">
+              {t('homeHero.welcomeLine')} {t('homeHero.venueName')}
+            </h1>
           </motion.div>
         </div>
 
@@ -372,7 +358,6 @@ const Home = () => {
             >
               {t('homeServices.heading')}
             </motion.h2>
-            <p className={SECTION_LEAD_ON_DARK_CLASS}>{t('homeServices.intro')}</p>
           </header>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-4 xl:gap-5">
@@ -430,10 +415,9 @@ const Home = () => {
             viewport={{ once: true }}
             className="mb-12 w-full"
           >
-            <h2 id="inspirasjon-galleri-heading" className={cn(SECTION_H2_CLASS, 'mb-6')}>
+            <h2 id="inspirasjon-galleri-heading" className={SECTION_H2_CLASS}>
               {t('homeGallery.heading')}
             </h2>
-            <p className={SECTION_LEAD_CLASS}>{t('homeGallery.intro')}</p>
           </motion.div>
 
           <div className="relative">

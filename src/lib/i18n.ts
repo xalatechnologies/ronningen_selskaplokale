@@ -41,7 +41,6 @@ const resources = {
       homeHero: {
         welcomeLine: 'Welcome to',
         venueName: 'Rønningen selskapslokale',
-        tagline: 'Everything you need for a celebration to remember.',
         heroImageLightAlt:
           'Venue entrance in daylight with a large floral arch over glass doors, gravel courtyard with lemon trees in terracotta pots, and forested hills behind the building',
         heroImageAlt:
@@ -78,59 +77,54 @@ const resources = {
             description:
               'Everything in one place — kitchen, dance floor, parking and outdoor areas.',
             imgAlt:
-              'Modern bar servery with navy walls, light wood counters, stainless sink and recessed lighting, wooden staircase with rail nearby',
+              'Shuffleboard table with pucks on a polished wooden surface — indoor social activities at the venue',
           },
         },
       },
       homeServices: {
-        heading: 'Exclusive services',
-        intro:
-          'From sound and lighting to catering, bar service and accommodation — practical support so your event feels effortless from start to finish.',
+        heading: 'Highlights',
         items: {
           soundLight: {
-            title: 'Sound & lighting',
+            title: 'Sound and lighting',
             description:
-              'Powerful sound and lighting that sets the right mood from start to finish.',
+              'Sound and lighting tailored for music, speeches and your event.',
           },
           catering: {
-            title: 'Catering & service',
+            title: 'Bring your own',
             description:
-              'Bring your own food, or use our partners for catering and service tailored to your event.',
+              'You may bring your own food and drinks, and use the commercial kitchen and catering options.',
           },
           barDancefloor: {
-            title: 'Bar & dance floor',
+            title: 'Bar and dance floor',
             description:
-              'Bring your own drinks and enjoy the evening with music and dancing in a great setting.',
+              'A dedicated bar and a spacious dance floor for a sociable, lively evening.',
             imgAlt:
               'Black and white photo of a bride and groom on their first dance on a large floor, guests watching in a semicircle in a dimly lit venue',
           },
           coordination: {
-            title: 'Time with the animals',
+            title: 'Table dressing',
             description:
-              'Get close to the animals on the estate — a memorable touch for guests young and old.',
+              'Tables, chairs, tableware, linens and chair covers — ready to use or tailored to your style.',
             imgAlt:
-              'Goats behind a wooden fence on a sunny hillside: a white goat with horns in the foreground, a black goat beside it, more goats and green forest in the background',
+              'Banquet hall with round tables in dark linens, white plates, glassware and floral centrepieces with candles, tall windows to greenery outside',
           },
           decoration: {
-            title: 'Decoration & photography',
+            title: 'Activities',
             description:
-              'Create the right atmosphere with décor in your style, and optional photographers to capture the day.',
+              'We offer activities including shuffleboard, darts, poker, air hockey and team building.',
             imgAlt:
-              'Bride smiling at the camera, groom in a tuxedo with a white goat nuzzling his lapel, outdoors on a green hillside',
+              'Shuffleboard table with pucks on a polished wooden surface — indoor social activities at the venue',
           },
           overnight: {
-            title: 'Accommodation & childcare',
-            description:
-              'Overnight stays and childcare can be arranged — ideal for guests travelling from afar and families with young children.',
+            title: 'Childcare',
+            description: 'Childcare can be arranged for events by agreement.',
             imgAlt:
-              'Guest lounge with sofa, TV, wood floor and tall windows — view of trees and Norwegian flag outside',
+              "Bright children's playroom with toys, small table and large window overlooking a green garden",
           },
         },
       },
       homeGallery: {
         heading: 'Inspiration',
-        intro:
-          'A selection of moments from real celebrations — inspiration for your own event.',
         ctaFullGallery: 'See the full gallery',
       },
       inspirationGallery: {
@@ -175,36 +169,17 @@ const resources = {
       weddingsPage: {
         heroImageAlt:
           'Photo collage of celebrations, details and atmosphere at Rønningen',
-        heroTitleLine1: 'Weddings in beautiful,',
-        heroTitleLine2Accent: 'unique',
-        heroTitleLine2Rest: ' surroundings',
-        heroTagline: 'Create a celebration that feels personal, warm, and unforgettable.',
+        heroTitleBefore: 'Weddings in beautiful, ',
+        heroTitleAccent: 'unique',
+        heroTitleAfter: ' surroundings',
         heroScrollHintAria: 'Scroll down to the atmosphere section',
         atmosphere: {
           headingLine1: 'Ceremony and celebration',
-          headingLine2: 'in one place',
+          headingLine2: '',
           intro1:
-            'Bring the whole day together in one place — from ceremony to dinner and the party. Surrounded by calm, beautiful nature, with only a short distance between the vows and the dance floor.',
+            'Bring the whole day together in one place — from ceremony to dinner and the party. Surrounded by calm, beautiful nature, with only a short distance between the vows and the dance floor. The venue can be prepared for a ceremony in parallel with table setting, while generous green spaces are ideal for a ceremony beneath open skies.',
           figureAlt:
             'Bride and groom embracing at night on a stone path as guests line both sides holding lit sparklers, candles along the walkway',
-          why: {
-            item1: {
-              title: 'Atmosphere',
-              desc: 'A polished venue with warm details and a great sense of space — a setting that works as well for intimate gatherings as for larger celebrations.',
-            },
-            item2: {
-              title: 'Surroundings',
-              desc: 'Nature on the doorstep, peaceful grounds, outdoor areas, and nearby spots that add an extra dimension to your day.',
-            },
-            item3: {
-              title: 'Flexibility',
-              desc: 'Shape the day your way. The space adapts to your format, layout, and style.',
-            },
-            item4: {
-              title: 'Easy to host',
-              desc: 'We make the practical side run smoothly so you can focus on your guests and the experience — not the logistics.',
-            },
-          },
         },
         dayTimeline: {
           headingLine1: 'This is how',
@@ -229,41 +204,42 @@ const resources = {
           },
         },
         servicesSection: {
-          headingBefore: 'Tailored to your ',
-          headingAccent: 'wishes',
+          headingBefore: 'Tailored to ',
+          headingAccent: 'your',
+          headingAfter: ' wishes',
           items: {
             kitchen: {
-              title: 'Commercial kitchen & catering',
-              desc: 'You are welcome to bring your own food or use our fully equipped commercial kitchen.\n\nWe also work with local caterers who can deliver ready-made meals, or cook on site with experienced chefs and serving staff.',
+              title: 'Commercial kitchen & Catering',
+              desc: 'Bring your own food, or use our fully equipped commercial kitchen and catering partners.',
               imgAlt: 'Professional commercial kitchen equipped for catering and events',
             },
             photography: {
-              title: 'Photography',
-              desc: 'Recommended photographers who know the light and spaces here — from portraits and ceremony to the reception and small moments you will want to remember.',
+              title: 'Photography & Film',
+              desc: 'Recommended photographers who know the venue and capture the moments.',
               imgAlt:
                 'Bride in a white gown and groom in a dark suit standing on dark rocks facing each other beside a bright cascading waterfall',
             },
             decoration: {
-              title: 'Decoration',
-              desc: 'Flexible decor options adapted to your style and expression. Together with our partners we can create a cohesive atmosphere — from table details to styling the entire venue.',
+              title: 'Table dressing & Decoration',
+              desc: 'Flexible solutions for table dressing and décor tailored to your style.',
               imgAlt:
                 'Event backdrop with cream arched panels, organic balloon arch in cream, gold and black, pampas grass, and a chocolate cake on a clear pedestal',
             },
             bar: {
-              title: 'Bar & dance floor',
-              desc: 'You may bring your own drinks and use the bar area. With a dedicated dance floor, everything is set for a great atmosphere all evening.',
+              title: 'Bar & Dance Floor',
+              desc: 'Bring your own drinks and enjoy the bar area and dance floor.',
               imgAlt:
                 'Spacious event room with dark walls, polished concrete floor, tall windows with snow outside, industrial pendant lights and screens on stands',
             },
             soundLight: {
-              title: 'Sound & lighting',
-              desc: 'A powerful sound system suited to parties and music, combined with lighting that creates the right mood throughout your event.',
+              title: 'Sound & Lighting',
+              desc: 'Sound and lighting that create the right atmosphere.',
               imgAlt:
                 'Banquet hall with white table settings, purple and blue stage lighting, and projections on the walls',
             },
             tableSetting: {
-              title: 'Table settings & styling',
-              desc: 'Fully dressed tables with linens, chair covers, crockery, glassware, and everything you need — plus table decor, menu cards, and details that tie it all together. We align the look with the style of your day so guests meet complete tables from the very first moment.',
+              title: 'Activities',
+              desc: 'Space for activities indoors and out, tailored to your event.',
               imgAlt:
                 'Banquet hall with round tables in black linens, white plates, glassware, floral centerpieces with candles, and floor-to-ceiling windows to greenery outside',
             },
@@ -316,8 +292,8 @@ const resources = {
           headingAccent: 'questions',
           items: {
             item1: {
-              q: 'Do you offer accommodation?',
-              a: 'We offer accommodation in our own flats, as well as options connected to the venue. This can be rented separately according to your needs.',
+              q: 'Do you offer table dressing and décor?',
+              a: 'Yes — we offer table dressing and décor that can be tailored to your style and preferences.',
             },
             item2: {
               q: 'Can we bring our own food and drinks?',
@@ -1021,7 +997,6 @@ const resources = {
       homeHero: {
         welcomeLine: 'Velkommen til',
         venueName: 'Rønningen selskapslokale',
-        tagline: 'Alt du trenger for en vellykket feiring',
         heroImageLightAlt:
           'Lokalets inngang i dagslys med stor blomsterbue over glassdører, grusgård med sitrontrær i terrakottakrukker og skogkledt ås bak bygningen',
         heroImageAlt:
@@ -1056,59 +1031,54 @@ const resources = {
             description:
               'Alt samlet på ett sted – kjøkken, dansegulv, parkering og uteområder.',
             imgAlt:
-              'Moderne barsone med mørkeblå vegger, lyse trebenker, stålvask og downlights, tretrapp med håndløper i nærheten',
+              'Shuffleboard-bord med klyper på blankpolert tre — sosiale aktiviteter innendørs i lokalet',
           },
         },
       },
       homeServices: {
-        heading: 'Eksklusive tjenester',
-        intro:
-          'Fra lyd og lys til catering, barservice og overnatting — praktiske løsninger som gjør at arrangementet deres flyter trygt fra start til slutt.',
+        heading: 'Høydepunkter',
         items: {
           soundLight: {
-            title: 'Lyd & lys',
+            title: 'Lyd og lys',
             description:
-              'Kraftig lydanlegg og belysning som skaper riktig stemning fra start til slutt.',
+              'Lydanlegg og belysning tilpasset musikk, taler og arrangement.',
           },
           catering: {
-            title: 'Catering & servering',
+            title: 'Medbrakt',
             description:
-              'Dere kan ta med egen mat, eller benytte våre samarbeidspartnere som leverer catering og servering tilpasset deres arrangement.',
+              'Tillatt med medbrakt mat og drikke, samt bruk av storkjøkken og catering.',
           },
           barDancefloor: {
-            title: 'Bar & dansegulv',
+            title: 'Bar og dansegulv',
             description:
-              'Ta med egen drikke og nyt kvelden med musikk og dans i gode omgivelser.',
+              'Egen bar og romslig dansegulv for en sosial og livlig kveld.',
             imgAlt:
               'Svart-hvitt bilde av brud og brudgom som danser sammen på et stort gulv, gjester i halvsirkel i et mørkt lokale',
           },
           coordination: {
-            title: 'Samvær med dyr',
+            title: 'Oppdekking',
             description:
-              'Opplev nærkontakt med dyrene på området – et hyggelig innslag for både store og små.',
+              'Bord, stoler, servise, duker og stoltrekk – klart til bruk eller tilpasset deres stil.',
             imgAlt:
-              'Geiter bak et tregjerde i sol på en åsside: hvit geit med horn i forgrunnen, svart geit ved siden av, flere geiter og grønn skog i bakgrunnen',
+              'Selskapslokale med runde festbord, servise, glass og blomsterdekorasjoner med lys, store vinduer mot grønt ute',
           },
           decoration: {
-            title: 'Dekorasjon & Fotografering',
+            title: 'Aktiviteter',
             description:
-              'Skap riktig stemning med dekor tilpasset deres stil, og mulighet for fotografer som fanger øyeblikkene gjennom dagen.',
+              'Vi har ulike aktiviteter som shuffleboard, dart, poker, airhockey og teambuilding.',
             imgAlt:
-              'Brud som smiler til kameraet, brudgom i smoking med hvit geit som snuser på jakkeslaget, ute på grønn ås',
+              'Shuffleboard-bord med klyper på blankpolert tre — sosiale aktiviteter innendørs i lokalet',
           },
           overnight: {
-            title: 'Overnatting & barnepass',
-            description:
-              'Overnatting og barnepass kan avtales – praktisk for gjester som reiser langt og familier med små barn.',
+            title: 'Barnepass',
+            description: 'Mulighet for barnepass ved arrangementer etter avtale.',
             imgAlt:
-              'Oppholdsrom for gjester med sofa, TV, tregulv og høye vinduer — utsikt til trær og norsk flagg ute',
+              'Lyst lekerom med leker, lite bord og stort vindu mot grønn hage — barnepass på lokalet',
           },
         },
       },
       homeGallery: {
         heading: 'Inspirasjon',
-        intro:
-          'Et utvalg øyeblikk fra virkelige feiringer – til inspirasjon for ditt eget selskap.',
         ctaFullGallery: 'Se hele galleriet',
       },
       inspirationGallery: {
@@ -1153,36 +1123,17 @@ const resources = {
       weddingsPage: {
         heroImageAlt:
           'Bildekolleksjon av feiringer, detaljer og stemning fra Rønningen',
-        heroTitleLine1: 'Bryllup i vakre og',
-        heroTitleLine2Accent: 'unike',
-        heroTitleLine2Rest: ' omgivelser',
-        heroTagline: 'Skap en feiring som føles personlig, varm og minneverdig.',
+        heroTitleBefore: 'Bryllup i vakre og ',
+        heroTitleAccent: 'unike',
+        heroTitleAfter: ' omgivelser',
         heroScrollHintAria: 'Rull ned til atmosfæren',
         atmosphere: {
           headingLine1: 'Vielse og fest',
-          headingLine2: 'på samme sted',
+          headingLine2: '',
           intro1:
-            'Samle hele dagen på ett sted – fra vielse til middag og fest. Omgitt av rolige omgivelser i vakker natur, med kort vei mellom seremoni og dans.',
+            'Samle hele dagen på ett sted – fra vielse til middag og fest. Omgitt av rolige omgivelser i vakker natur, med kort vei mellom seremoni og dans. Lokalet kan tilrettelegges for vielse parallelt med oppdekking av bord. Samtidig vil store grønne arealer fremstå ypperlig for en vielse under åpen himmel.',
           figureAlt:
             'Brud og brudgom som klemmer hverandre om kvelden på en steinlagt sti, gjester i to rekker med tente stjerneskudd langs veien',
-          why: {
-            item1: {
-              title: 'Atmosfære',
-              desc: 'Et gjennomført lokale med varme detaljer og god romfølelse. Her får dere en ramme som fungerer like godt til små som store arrangementer.',
-            },
-            item2: {
-              title: 'Omgivelser',
-              desc: 'Omgitt av natur og rolige omgivelser, med flotte uteområder og nærliggende lokasjoner som gir en ekstra dimensjon til dagen.',
-            },
-            item3: {
-              title: 'Fleksibilitet',
-              desc: 'Dere står fritt til å forme dagen slik dere ønsker. Lokalet tilpasses både type arrangement, oppsett og stil.',
-            },
-            item4: {
-              title: 'Enkelt å gjennomføre',
-              desc: 'Vi legger til rette for en smidig gjennomføring, slik at dere kan fokusere på gjestene og opplevelsen – ikke logistikken.',
-            },
-          },
         },
         dayTimeline: {
           headingLine1: 'Slik kan',
@@ -1207,41 +1158,42 @@ const resources = {
           },
         },
         servicesSection: {
-          headingBefore: 'Tilpasset deres ',
-          headingAccent: 'ønsker',
+          headingBefore: 'Tilpasset ',
+          headingAccent: 'deres',
+          headingAfter: ' ønsker',
           items: {
             kitchen: {
-              title: 'Storkjøkken & catering',
-              desc: 'Dere står fritt til å ta med egen mat eller benytte vårt fullt utstyrte storkjøkken.\n\nVi samarbeider også med lokale cateringaktører som kan levere ferdig mat, eller stå for matlaging på stedet med erfarne kokker og serveringspersonell.',
+              title: 'Storkjøkken & Catering',
+              desc: 'Ta med egen mat, eller bruk vårt fullt utstyrte storkjøkken og cateringpartnere.',
               imgAlt: 'Profesjonelt storkjøkken utstyrt til catering og arrangement',
             },
             photography: {
-              title: 'Fotografering',
-              desc: 'Anbefalte fotografer som kjenner både lyset og rommene her — fra portretter og vielse til fest og små øyeblikk dere vil huske.',
+              title: 'Fotografering & Film',
+              desc: 'Anbefalte fotografer som kjenner lokalet og fanger øyeblikkene.',
               imgAlt:
                 'Brud i hvit kjole og brudgom i mørk dress på mørke steiner foran hverandre ved en lys, fallende foss',
             },
             decoration: {
-              title: 'Dekorasjon',
-              desc: 'Vi tilbyr fleksible dekorasjonsløsninger som kan tilpasses deres stil og uttrykk. Sammen med våre samarbeidspartnere kan vi skape en helhetlig og gjennomført atmosfære – fra bordpynt til dekorasjon av hele lokalet.',
+              title: 'Oppdekking & Dekorasjon',
+              desc: 'Fleksible løsninger for borddekking og dekor tilpasset deres stil.',
               imgAlt:
                 'Arrangement med kremfargede buer, organisk ballongbue i krem, gull og sort, pampasgress og sjokoladekake på klar sokkel',
             },
             bar: {
-              title: 'Bar & dansegulv',
-              desc: 'Dere står fritt til å ta med egen drikke og bruke barområdet. Med eget dansegulv ligger alt til rette for god stemning gjennom hele kvelden.',
+              title: 'Bar & Dansegulv',
+              desc: 'Ta med egen drikke og nyt barområde og dansegulv.',
               imgAlt:
                 'Stort lokale med mørke vegger, lyst polert betonggulv, høye vinduer med snø ute, industrielle taklamper og skjermer på stativ',
             },
             soundLight: {
               title: 'Lyd & Lys',
-              desc: 'Vi har et kraftig lydanlegg som passer perfekt til fest og musikk, kombinert med belysning som skaper riktig stemning gjennom hele arrangementet.',
+              desc: 'Lydanlegg og belysning som skaper riktig stemning.',
               imgAlt:
                 'Selskapslokale med hvite festbord, lilla og blå scenelys og lysmønster på veggene',
             },
             tableSetting: {
-              title: 'Oppdekking & bordpynt',
-              desc: 'Ferdig oppdekket med duker, stoltrekk, servise, glass og det dere trenger på bordet — pluss bordpynt, menykort og små detaljer som binder det hele sammen. Vi avstemmer uttrykket med stilen på dagen deres, så gjestene møter komplette bord fra første minutt.',
+              title: 'Aktiviteter',
+              desc: 'Plass til aktiviteter både inne og ute, tilpasset deres arrangement.',
               imgAlt:
                 'Selskapslokale med runde bord i mørke duker, hvite tallerkener, glass og blomsterdekorasjoner med lys, store vinduer mot grønt ute',
             },
@@ -1294,8 +1246,8 @@ const resources = {
           headingAccent: 'spørsmål',
           items: {
             item1: {
-              q: 'Har dere overnattingsmuligheter?',
-              a: 'Vi tilbyr overnatting i egne leiligheter, samt mulighet for overnatting i tilknytning til lokalet. Dette kan leies separat etter behov.',
+              q: 'Tilbyr dere oppdekking og dekorasjon?',
+              a: 'Ja, vi tilbyr oppdekking og dekorasjon som kan tilpasses etter deres stil og ønsker.',
             },
             item2: {
               q: 'Kan vi ta med egen mat og drikke?',

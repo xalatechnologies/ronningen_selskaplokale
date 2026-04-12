@@ -35,9 +35,6 @@ import {
   useInspirationGalleryLightboxState,
 } from '../components/InspirationGalleryLightbox';
 
-const WEDDINGS_ATMOSPHERE_WHY_KEYS = ['item1', 'item2', 'item3', 'item4'] as const;
-const WEDDINGS_ATMOSPHERE_WHY_NUMBERS = ['01', '02', '03', '04'] as const;
-
 const WEDDINGS_DAY_TIMELINE_KEYS = ['item1', 'item2', 'item3', 'item4'] as const;
 
 const WEDDINGS_DAY_TIMELINE_IMAGES = [
@@ -72,6 +69,7 @@ const WEDDINGS_FAQ_KEYS = ['item1', 'item2', 'item3', 'item4', 'item5', 'item6']
 export const WeddingsPage = () => {
   const GALLERY_EDGE_TOLERANCE = 2;
   const { t } = useTranslation();
+  const atmosphereHeadingLine2 = t('weddingsPage.atmosphere.headingLine2').trim();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const [galleryHasOverflow, setGalleryHasOverflow] = useState(false);
@@ -141,19 +139,12 @@ export const WeddingsPage = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55 }}
-              className="max-w-5xl text-balance font-serif text-4xl leading-[0.92] tracking-tighter text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.32)] sm:text-5xl md:text-6xl lg:text-7xl"
+              className="max-w-4xl text-balance font-serif text-3xl leading-[0.95] tracking-tighter text-white [text-shadow:0_2px_28px_rgba(0,0,0,0.32)] sm:text-4xl md:text-5xl lg:text-6xl"
             >
-              {t('weddingsPage.heroTitleLine1')}
-              {' '}
-              <br className="hidden md:block" />
-              <span className="italic text-white/95">
-                {t('weddingsPage.heroTitleLine2Accent')}
-              </span>
-              {t('weddingsPage.heroTitleLine2Rest')}
+              {t('weddingsPage.heroTitleBefore')}
+              <span className="italic text-white/95">{t('weddingsPage.heroTitleAccent')}</span>
+              {t('weddingsPage.heroTitleAfter')}
             </motion.h1>
-            <p className="w-full max-w-none text-lg font-light italic opacity-90 sm:text-xl md:text-2xl [text-shadow:0_1px_20px_rgba(0,0,0,0.28)]">
-              {t('weddingsPage.heroTagline')}
-            </p>
             <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
               <Link to={ROUTES.kontakt} className="cta-route-hero-primary">
                 {t('hero.bookNow')}
@@ -187,7 +178,13 @@ export const WeddingsPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-14 xl:gap-20 items-start">
             <div className="order-2 lg:order-1 w-full min-w-0">
               <h2 id="atmosfaeren-heading" className={cn(SECTION_H2_CLASS, 'mb-6 text-balance')}>
-                {t('weddingsPage.atmosphere.headingLine1')} <br /> {t('weddingsPage.atmosphere.headingLine2')}
+                {t('weddingsPage.atmosphere.headingLine1')}
+                {atmosphereHeadingLine2 ? (
+                  <>
+                    <br />
+                    {atmosphereHeadingLine2}
+                  </>
+                ) : null}
               </h2>
               <div className="space-y-5 md:space-y-6">
                 <p className={SECTION_LEAD_CLASS}>{t('weddingsPage.atmosphere.intro1')}</p>
@@ -214,55 +211,6 @@ export const WeddingsPage = () => {
               </div>
             </figure>
           </div>
-
-          <div
-            className="relative mt-16 md:mt-20"
-            aria-hidden
-          >
-            <div className="h-px w-full bg-gradient-to-r from-transparent via-brand-300/90 to-transparent dark:via-brand-600/70" />
-          </div>
-          <ul className="m-0 mt-10 grid list-none grid-cols-1 gap-5 p-0 sm:mt-12 sm:grid-cols-2 sm:gap-6 md:mt-14 lg:gap-7">
-            {WEDDINGS_ATMOSPHERE_WHY_KEYS.map((whyKey, i) => (
-              <motion.li
-                key={whyKey}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.45, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                className={cn(
-                  'group relative overflow-hidden rounded-2xl border border-brand-200/75 bg-white/80 p-6 shadow-[0_22px_48px_-28px_rgba(33,24,22,0.28)] backdrop-blur-sm transition-[transform,box-shadow,border-color] duration-300',
-                  'hover:-translate-y-0.5 hover:border-brand-300/90 hover:shadow-[0_28px_56px_-24px_rgba(33,24,22,0.32)]',
-                  'dark:border-brand-600/55 dark:bg-brand-800/35 dark:shadow-[0_22px_52px_-26px_rgba(0,0,0,0.45)] dark:hover:border-brand-500/70 dark:hover:shadow-[0_30px_60px_-22px_rgba(0,0,0,0.5)]',
-                  'md:p-7 lg:rounded-[1.25rem]',
-                )}
-              >
-                <div
-                  className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-brand-400/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 dark:via-brand-500/35 md:inset-x-7"
-                  aria-hidden
-                />
-                <div className="flex gap-5 md:gap-6">
-                  <div
-                    className={cn(
-                      'flex h-[3.25rem] w-[3.25rem] shrink-0 items-center justify-center rounded-xl font-serif text-lg tabular-nums tracking-tight md:h-16 md:w-16 md:rounded-2xl md:text-xl',
-                      'bg-gradient-to-br from-brand-100 via-brand-50 to-white text-brand-900 ring-1 ring-brand-200/90 shadow-inner shadow-white/40',
-                      'dark:from-brand-900/90 dark:via-brand-800/80 dark:to-brand-900/60 dark:text-brand-100 dark:ring-brand-600/50 dark:shadow-none',
-                    )}
-                    aria-hidden
-                  >
-                    {WEDDINGS_ATMOSPHERE_WHY_NUMBERS[i]}
-                  </div>
-                  <div className="min-w-0 flex-1 pt-0.5">
-                    <h3 className="mb-2.5 font-serif text-[1.2rem] font-normal tracking-tight text-brand-950 md:text-2xl md:leading-snug dark:text-brand-50">
-                      {t(`weddingsPage.atmosphere.why.${whyKey}.title`)}
-                    </h3>
-                    <p className="text-[15px] font-normal leading-[1.65] text-brand-700 md:text-[1.05rem] md:leading-relaxed dark:text-brand-200">
-                      {t(`weddingsPage.atmosphere.why.${whyKey}.desc`)}
-                    </p>
-                  </div>
-                </div>
-              </motion.li>
-            ))}
-          </ul>
         </div>
       </section>
 
@@ -363,6 +311,7 @@ export const WeddingsPage = () => {
               <span className="italic text-brand-600 dark:text-brand-400">
                 {t('weddingsPage.servicesSection.headingAccent')}
               </span>
+              {t('weddingsPage.servicesSection.headingAfter')}
             </motion.h2>
           </div>
 
