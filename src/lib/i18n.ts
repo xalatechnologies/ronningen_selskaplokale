@@ -862,7 +862,7 @@ const resources = {
         comingSoonBadge: 'Coming soon',
         comingSoonTitle: 'Stories from the venue, ongoing',
         comingSoonBody:
-          'We are preparing articles about celebrations, seasonal inspiration, and practical tips from Rønningen. Follow along — the journal opens shortly.',
+          'We are preparing articles about celebrations, seasonal inspiration, and practical tips from Rønningen. Follow along!',
         intro:
           'Ideas for your celebration, practical tips from the venue, and stories from real events — gathered in one place.',
         latestHeading: 'Latest articles',
@@ -1838,7 +1838,7 @@ const resources = {
         comingSoonBadge: 'Kommer snart',
         comingSoonTitle: 'Historier fra lokalet kommer fortløpende',
         comingSoonBody:
-          'Vi jobber med artikler om feiringer, sesonginspirasjon og praktiske tips fra Rønningen. Følg med — journalen åpner snart.',
+          'Vi jobber med artikler om feiringer, sesonginspirasjon og praktiske tips fra Rønningen. Følg med!',
         intro:
           'Ideer til feiringen, praktiske tips fra lokalet og historier fra ekte arrangementer — samlet på ett sted.',
         latestHeading: 'Siste artikler',
