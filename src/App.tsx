@@ -112,7 +112,7 @@ const HOME_CONCEPT_ROUTES: Record<HomeConceptKey, { path: string; img: string }>
   },
   private: {
     path: ROUTES.selskap,
-    img: '/concept-private-dessert-table.png',
+    img: '/concept-private-balloon-hexagon.png',
   },
   facilities: {
     path: `${ROUTES.priser}#${FACILITY_PRICING_HEADING_ID}`,
@@ -136,15 +136,15 @@ const HOME_SERVICE_IMAGE_ALT_KEYS = new Set<HomeServiceKey>([
   'coordination',
   'decoration',
   'overnight',
+  'soundLight',
 ]);
 
 const HOME_SERVICE_IMAGES: Record<HomeServiceKey, string> = {
-  soundLight:
-    'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=800',
+  soundLight: '/home-service-sound-light.png',
   catering:
     'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800',
   barDancefloor: '/home-service-bar-dancefloor.png',
-  coordination: '/weddings/service-table-setting-banquet-hall.png',
+  coordination: '/home-service-oppdekking.png',
   decoration: '/facilities-hero-shuffleboard.png',
   overnight: '/facilities-childcare-playroom.png',
 };
@@ -288,7 +288,7 @@ const Home = () => {
                     <li key={key} className="min-w-0">
                       <Link
                         to={path}
-                        className="group flex flex-col items-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-2xl"
+                        className="group flex flex-col items-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-2xl dark:focus-visible:ring-offset-brand-950"
                       >
                         <div className="relative mx-auto w-full max-w-[17rem] sm:max-w-[18rem] md:max-w-[19rem]">
                           <div className="relative aspect-square overflow-hidden rounded-full border-[3px] border-white/90 shadow-[0_20px_50px_-12px_rgba(33,24,22,0.35)] ring-1 ring-brand-900/10 transition-[transform,box-shadow] duration-500 ease-out group-hover:scale-[1.03] group-hover:shadow-[0_28px_60px_-8px_rgba(33,24,22,0.42)]">
@@ -341,7 +341,6 @@ const Home = () => {
                 })}
               </ul>
             </div>
-
           </div>
         </div>
       </section>

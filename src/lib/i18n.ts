@@ -70,7 +70,7 @@ const resources = {
             description:
               'Birthdays, confirmations and anniversaries in flexible, informal surroundings.',
             imgAlt:
-              'Dessert table with a pink tiered cake, cupcakes, candy jars, balloons and candles against a dark wall',
+              'Gold hexagonal metal frame decorated with cream, beige and sage balloon garlands and pampas grass, on a grey floor against a dark teal wall',
           },
           facilities: {
             title: 'Facilities',
@@ -88,6 +88,8 @@ const resources = {
             title: 'Sound and lighting',
             description:
               'Sound and lighting tailored for music, speeches and your event.',
+            imgAlt:
+              'Banquet hall with round tables in black linens, purple accent lighting on the walls, tall floral centrepieces and formal place settings',
           },
           catering: {
             title: 'Bring your own',
@@ -106,7 +108,7 @@ const resources = {
             description:
               'Tables, chairs, tableware, linens and chair covers — ready to use or tailored to your style.',
             imgAlt:
-              'Banquet hall with round tables in dark linens, white plates, glassware and floral centrepieces with candles, tall windows to greenery outside',
+              'Round banquet table in a white floor-length cloth with covered chairs, glassware and silver cutlery, napkins tied with green ribbon, and a soft pink and white floral centrepiece',
           },
           decoration: {
             title: 'Activities',
@@ -1005,7 +1007,7 @@ const resources = {
       },
       homeConcepts: {
         heading: 'Våre konsepter',
-        intro: 'Her starter de beste feiringene - omgitt av natur',
+        intro: 'Her starter de beste feiringene – omgitt av natur',
         items: {
           weddings: {
             title: 'Bryllup',
@@ -1024,7 +1026,7 @@ const resources = {
             description:
               'Bursdager, konfirmasjoner og jubileer i fleksible og uformelle omgivelser.',
             imgAlt:
-              'Dessertbord med rosa etasjekake, cupcakes, godteriglass, ballonger og lys mot en mørk vegg',
+              'Gullfarget sekskantet metallramme med ballongkrans i krem, beige og salvi, pampasstrå og mørk blågrønn vegg',
           },
           facilities: {
             title: 'Fasiliteter',
@@ -1042,6 +1044,8 @@ const resources = {
             title: 'Lyd og lys',
             description:
               'Lydanlegg og belysning tilpasset musikk, taler og arrangement.',
+            imgAlt:
+              'Selskapslokale med runde festbord i svarte duker, lilla stemningslys mot veggene, høye blomsterdekorasjoner og pent dekkede plasser',
           },
           catering: {
             title: 'Medbrakt',
@@ -1060,7 +1064,7 @@ const resources = {
             description:
               'Bord, stoler, servise, duker og stoltrekk – klart til bruk eller tilpasset deres stil.',
             imgAlt:
-              'Selskapslokale med runde festbord, servise, glass og blomsterdekorasjoner med lys, store vinduer mot grønt ute',
+              'Rundt festbord med hvit gulvlang duk og hvite stoltrekk, glass og sølvbestikk, servietter med grønt bånd, og blomsterdekorasjon i myke rosa og hvitt',
           },
           decoration: {
             title: 'Aktiviteter',
