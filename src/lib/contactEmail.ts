@@ -5,7 +5,10 @@
  * FormSubmit: activate once via the link they email to that inbox.
  */
 
-const FORM_SUBMIT_DEFAULT_INBOX = 'r.selskapslokale@gmail.com';
+/** Public inbox: footer, contact page, and FormSubmit default when env override is unset. */
+export const VENUE_CONTACT_EMAIL = 'post@ronningenselskapslokale.no';
+
+const FORM_SUBMIT_DEFAULT_INBOX = VENUE_CONTACT_EMAIL;
 
 function formSubmitInbox(): string {
   const fromEnv = import.meta.env.VITE_CONTACT_NOTIFY_EMAIL?.trim();

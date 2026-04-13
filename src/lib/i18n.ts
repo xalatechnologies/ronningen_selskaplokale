@@ -49,7 +49,6 @@ const resources = {
       },
       homeConcepts: {
         heading: 'Our concepts',
-        intro: 'Where the best celebrations begin — surrounded by nature.',
         items: {
           weddings: {
             title: 'Weddings',
@@ -75,7 +74,7 @@ const resources = {
           facilities: {
             title: 'Facilities',
             description:
-              'Everything in one place — kitchen, dance floor, parking and outdoor areas.',
+              'Various activities, commercial kitchen, bar, dance floor and more.',
             imgAlt:
               'Shuffleboard table with pucks on a polished wooden surface — indoor social activities at the venue',
           },
@@ -797,7 +796,7 @@ const resources = {
         phoneValue: '+47 96 66 50 01',
         phoneHint: 'Mon–Fri 09:00–17:00',
         emailLabel: 'Email',
-        emailValue: 'r.selskapslokale@gmail.com',
+        emailValue: 'post@ronningenselskapslokale.no',
         emailHint: 'We usually reply within one business day.',
         addressLabel: 'Address',
         addressValue: 'Baneveien 290, 3410 SYLLING',
@@ -1007,7 +1006,6 @@ const resources = {
       },
       homeConcepts: {
         heading: 'Våre konsepter',
-        intro: 'Her starter de beste feiringene – omgitt av natur',
         items: {
           weddings: {
             title: 'Bryllup',
@@ -1030,8 +1028,7 @@ const resources = {
           },
           facilities: {
             title: 'Fasiliteter',
-            description:
-              'Alt samlet på ett sted – kjøkken, dansegulv, parkering og uteområder.',
+            description: 'Ulike aktiviteter, storkjøkken, bar, dansegulv m.m.',
             imgAlt:
               'Shuffleboard-bord med klyper på blankpolert tre — sosiale aktiviteter innendørs i lokalet',
           },
@@ -1751,7 +1748,7 @@ const resources = {
         phoneValue: '+47 96 66 50 01',
         phoneHint: 'Man–fre 09:00–17:00',
         emailLabel: 'E-post',
-        emailValue: 'r.selskapslokale@gmail.com',
+        emailValue: 'post@ronningenselskapslokale.no',
         emailHint: 'Vi svarer vanligvis innen én virkedag.',
         addressLabel: 'Adresse',
         addressValue: 'Baneveien 290, 3410 SYLLING',

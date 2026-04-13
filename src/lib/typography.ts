@@ -1,5 +1,5 @@
 /**
- * Primary section <h2> scale — matches Home #konsepter-heading.
+ * Primary section <h2> scale — used on Home (e.g. gallery, partners) and inner routes.
  * Use with `cn(SECTION_H2_CLASS, 'mb-6')` etc. for spacing.
  */
 export const SECTION_H2_SIZE_CLASS =

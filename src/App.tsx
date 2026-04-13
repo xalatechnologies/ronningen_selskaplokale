@@ -39,6 +39,7 @@ import {
 } from './components/InspirationGalleryLightbox';
 import { FACILITY_PRICING_HEADING_ID } from './components/pricing/FacilityPricingBlock';
 import { BOOKING_URL } from './lib/booking';
+import { VENUE_CONTACT_EMAIL } from './lib/contactEmail';
 import { homeInspirationGallerySlides, inspirationSlideFileNumber } from './lib/inspirationGallery';
 import { cn } from './lib/utils';
 import { fireHomeHeroConfetti } from './lib/heroConfetti';
@@ -272,14 +273,11 @@ const Home = () => {
 
         <div className="section-viewport-scroll relative z-10 flex min-h-0 flex-col">
           <div className="site-container flex w-full flex-col py-16 sm:py-20 md:py-24">
-            <header className="w-full space-y-4 md:space-y-5">
-              <h2 id="konsepter-heading" className={SECTION_H2_CLASS}>
-                {t('homeConcepts.heading')}
-              </h2>
-              <p className={SECTION_LEAD_CLASS}>{t('homeConcepts.intro')}</p>
-            </header>
+            <h2 id="konsepter-heading" className="sr-only">
+              {t('homeConcepts.heading')}
+            </h2>
 
-            <div className="mt-10 md:mt-12">
+            <div>
               <ul className="m-0 grid list-none grid-cols-1 gap-x-6 gap-y-10 pl-0 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-14">
                 {HOME_CONCEPT_KEYS.map((key) => {
                   const { path, img } = HOME_CONCEPT_ROUTES[key];
@@ -632,7 +630,7 @@ const Footer = () => {
               </li>
               <li className="min-w-0 shrink-0">
                 <a
-                  href="mailto:r.selskapslokale@gmail.com"
+                  href={`mailto:${VENUE_CONTACT_EMAIL}`}
                   className={cn(linkClass, 'inline-flex max-w-full items-center gap-2.5')}
                 >
                   <span
@@ -641,7 +639,7 @@ const Footer = () => {
                   >
                     <Mail size={15} className="text-brand-500" />
                   </span>
-                  <span className="min-w-0 break-all sm:break-normal">r.selskapslokale@gmail.com</span>
+                  <span className="min-w-0 break-all sm:break-normal">{VENUE_CONTACT_EMAIL}</span>
                 </a>
               </li>
               <li className="shrink-0">

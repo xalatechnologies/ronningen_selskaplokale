@@ -29,7 +29,7 @@ Utdata: `dist/` (brukes av Vercel).
 |----------|-------------|
 | `VITE_SUPABASE_URL` | Supabase-prosjekt-URL |
 | `VITE_SUPABASE_ANON_KEY` | Supabase anon (public) key |
-| `VITE_WEB3FORMS_ACCESS_KEY` | Valgfritt — [Web3Forms](https://web3forms.com); mottaker settes i dashbordet. Uten nøkkel brukes [FormSubmit](https://formsubmit.co) til `r.selskapslokale@gmail.com` (aktiver én gang via e-post fra FormSubmit). |
+| `VITE_WEB3FORMS_ACCESS_KEY` | Valgfritt — [Web3Forms](https://web3forms.com); mottaker settes i dashbordet. Uten nøkkel brukes [FormSubmit](https://formsubmit.co) til `post@ronningenselskapslokale.no` (aktiver én gang via e-post fra FormSubmit). |
 | `VITE_CONTACT_NOTIFY_EMAIL` | Valgfritt — annen FormSubmit-mottaker når Web3Forms ikke brukes. |
 | `GEMINI_API_KEY` | Valgfritt — brukes ved bygg via Vite `define` hvis du bruker Gemini-funksjoner |
 | `APP_URL` | Valgfritt — egen URL til appen dersom koden bruker den |
@@ -41,7 +41,7 @@ Utdata: `dist/` (brukes av Vercel).
 Innsending lagres i **Supabase** (`inquiries`) når URL/nøkkel er satt, og en kopi sendes alltid via e-post (`src/lib/contactEmail.ts`):
 
 - **Med** `VITE_WEB3FORMS_ACCESS_KEY`: [Web3Forms](https://web3forms.com) (mottaker i deres dashbord).
-- **Uten** den nøkkelen: [FormSubmit](https://formsubmit.co) til **`r.selskapslokale@gmail.com`** (ingen ekstra Vercel-variabel nødvendig). Første gang: åpne innboksen og klikk **Activate Form** i e-post fra FormSubmit.
+- **Uten** den nøkkelen: [FormSubmit](https://formsubmit.co) til **`post@ronningenselskapslokale.no`** (ingen ekstra Vercel-variabel nødvendig). Første gang: åpne innboksen og klikk **Activate Form** i e-post fra FormSubmit.
 
 Valgfritt: `VITE_CONTACT_NOTIFY_EMAIL` overstyrer FormSubmit-mottaker. Sjekk Network mot `api.web3forms.com` eller `formsubmit.co` ved feil.
 
