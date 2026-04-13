@@ -40,11 +40,11 @@ const resources = {
       },
       homeHero: {
         welcomeLine: 'Welcome to',
-        venueName: 'Rønningen selskapslokale',
+        venueName: 'Rønningen Selskapslokale',
         heroImageLightAlt:
-          'Venue entrance in daylight with a large floral arch over glass doors, gravel courtyard with lemon trees in terracotta pots, and forested hills behind the building',
+          'Bright outdoor venue entrance with a wide arch draped in white and dusty rose fabric, lush white and pastel floral arrangements, ceremony chairs inside the arch, lemon trees in terracotta pots in the foreground, and forested hills behind',
         heroImageAlt:
-          'Event venue at night with warm lighting, a starry sky, and a festive atmosphere',
+          'Modern event venue at night under a starry sky, warm string lights across the façade and trees, lanterns and a fire pit in the gravel courtyard, and purple-accent lighting visible through tall windows',
         scrollHintAria: 'Scroll down to our concepts',
       },
       homeConcepts: {
@@ -180,7 +180,7 @@ const resources = {
           intro1:
             'Bring the whole day together in one place — from ceremony to dinner and the party. Surrounded by calm, beautiful nature, with only a short distance between the vows and the dance floor. The venue can be prepared for a ceremony in parallel with table setting, while generous green spaces are ideal for a ceremony beneath open skies.',
           figureAlt:
-            'Bride and groom embracing at night on a stone path as guests line both sides holding lit sparklers, candles along the walkway',
+            'Split image: a bright indoor ceremony space with a floral hexagonal arch and forest views through tall windows, beside a black-and-white photo of the groom carrying the bride as guests watch',
         },
         dayTimeline: {
           headingLine1: 'This is how',
@@ -221,7 +221,7 @@ const resources = {
                 'Bride in a white gown and groom in a dark suit standing on dark rocks facing each other beside a bright cascading waterfall',
             },
             decoration: {
-              title: 'Table dressing & Decoration',
+              title: 'Table dressing',
               desc: 'Flexible solutions for table dressing and décor tailored to your style.',
               imgAlt:
                 'Event backdrop with cream arched panels, organic balloon arch in cream, gold and black, pampas grass, and a chocolate cake on a clear pedestal',
@@ -230,19 +230,19 @@ const resources = {
               title: 'Bar & Dance Floor',
               desc: 'Bring your own drinks and enjoy the bar area and dance floor.',
               imgAlt:
-                'Spacious event room with dark walls, polished concrete floor, tall windows with snow outside, industrial pendant lights and screens on stands',
+                'A chilled cocktail in a stemless glass with ice, fresh mint and lime on a round wooden tray, with limes, mint sprigs and a brass spoon beside it',
             },
             soundLight: {
               title: 'Sound & Lighting',
               desc: 'Sound and lighting that create the right atmosphere.',
               imgAlt:
-                'Banquet hall with white table settings, purple and blue stage lighting, and projections on the walls',
+                'Banquet hall with round tables in black linens, purple accent lighting on the walls, tall floral centrepieces and formal place settings',
             },
             tableSetting: {
-              title: 'Activities',
-              desc: 'Space for activities indoors and out, tailored to your event.',
+              title: 'Decoration',
+              desc: 'Florals, lighting and styling that shape the mood of the room for dinner and celebration.',
               imgAlt:
-                'Banquet hall with round tables in black linens, white plates, glassware, floral centerpieces with candles, and floor-to-ceiling windows to greenery outside',
+                'Wedding stage with pleated white drapes, a dense blush-and-cream floral arch, crystal chandeliers, gold-accent seating and tall floral urns on a white platform',
             },
           },
         },
@@ -631,7 +631,8 @@ const resources = {
             activities: {
               title: 'Activities',
               desc: 'Options indoors and out that add breaks and variety through the day.',
-              imgAlt: 'Shuffleboard table with pucks — indoor games and activities',
+              imgAlt:
+                'Indoor games room with shuffleboard, foosball and air hockey tables, dark walls, concrete ceiling and large windows to trees outside',
             },
             animals: {
               title: 'Time with animals',
@@ -991,11 +992,11 @@ const resources = {
       },
       homeHero: {
         welcomeLine: 'Velkommen til',
-        venueName: 'Rønningen selskapslokale',
+        venueName: 'Rønningen Selskapslokale',
         heroImageLightAlt:
-          'Lokalets inngang i dagslys med stor blomsterbue over glassdører, grusgård med sitrontrær i terrakottakrukker og skogkledt ås bak bygningen',
+          'Lyst uteområde foran lokalet med bred bue pyntet med hvitt og støvete rosa stoff, frodige hvite og pastellfargede blomster, vielsesstoler inne i buen, sitrontrær i terrakottakrukker i forgrunnen og skogkledt ås i bakgrunnen',
         heroImageAlt:
-          'Selskapslokale om kvelden med varmt lys, stjernehimmel og feststemning',
+          'Moderne selskapslokale om kvelden under stjernehimmel, varme lysslynger på fasaden og i trærne, lanterner og bålplass i grusgården, og lilla stemningslys synlig gjennom høye vinduer',
         scrollHintAria: 'Rull ned til neste seksjon',
       },
       homeConcepts: {
@@ -1128,7 +1129,7 @@ const resources = {
           intro1:
             'Samle hele dagen på ett sted – fra vielse til middag og fest. Omgitt av rolige omgivelser i vakker natur, med kort vei mellom seremoni og dans. Lokalet kan tilrettelegges for vielse parallelt med oppdekking av bord. Samtidig vil store grønne arealer fremstå ypperlig for en vielse under åpen himmel.',
           figureAlt:
-            'Brud og brudgom som klemmer hverandre om kvelden på en steinlagt sti, gjester i to rekker med tente stjerneskudd langs veien',
+            'Bildesammensetning: lys innendørs vielseslokale med blomsterpyntet sekskantbue og skogutsikt gjennom høye vinduer, ved siden av et svart-hvitt-bilde av brudgom som bærer bruden mens gjester ser på',
         },
         dayTimeline: {
           headingLine1: 'Slik kan',
@@ -1169,7 +1170,7 @@ const resources = {
                 'Brud i hvit kjole og brudgom i mørk dress på mørke steiner foran hverandre ved en lys, fallende foss',
             },
             decoration: {
-              title: 'Oppdekking & Dekorasjon',
+              title: 'Oppdekking',
               desc: 'Fleksible løsninger for borddekking og dekor tilpasset deres stil.',
               imgAlt:
                 'Arrangement med kremfargede buer, organisk ballongbue i krem, gull og sort, pampasgress og sjokoladekake på klar sokkel',
@@ -1178,19 +1179,19 @@ const resources = {
               title: 'Bar & Dansegulv',
               desc: 'Ta med egen drikke og nyt barområde og dansegulv.',
               imgAlt:
-                'Stort lokale med mørke vegger, lyst polert betonggulv, høye vinduer med snø ute, industrielle taklamper og skjermer på stativ',
+                'Kald velkomstdrink i stettløst glass med is, mynte og lime på rundt trebrett, med limefrukter, mynte og messing skje ved siden av',
             },
             soundLight: {
               title: 'Lyd & Lys',
               desc: 'Lydanlegg og belysning som skaper riktig stemning.',
               imgAlt:
-                'Selskapslokale med hvite festbord, lilla og blå scenelys og lysmønster på veggene',
+                'Selskapslokale med runde festbord i svarte duker, lilla stemningslys mot veggene, høye blomsterdekorasjoner og pent dekkede plasser',
             },
             tableSetting: {
-              title: 'Aktiviteter',
-              desc: 'Plass til aktiviteter både inne og ute, tilpasset deres arrangement.',
+              title: 'Dekorasjon',
+              desc: 'Blomster, lys og helhetsgrep som setter stemningen i rommet til middag og feiring.',
               imgAlt:
-                'Selskapslokale med runde bord i mørke duker, hvite tallerkener, glass og blomsterdekorasjoner med lys, store vinduer mot grønt ute',
+                'Bryllupsscene med hvite draperier, tett blomsterbue i rosa og krem, krystallkroner, møbler med gulldetaljer og høye blomsterurner på hvit scene',
             },
           },
         },
@@ -1577,7 +1578,8 @@ const resources = {
             activities: {
               title: 'Aktiviteter',
               desc: 'Muligheter for aktiviteter både inne og ute, som gir pauser og variasjon gjennom dagen.',
-              imgAlt: 'Shuffleboard-bord med klyper — spill og aktiviteter innendørs',
+              imgAlt:
+                'Spillrom innendørs med shuffleboard, fotballbord og airhockey, mørke vegger, betongtak og store vinduer mot skogen',
             },
             animals: {
               title: 'Samvær med dyr',

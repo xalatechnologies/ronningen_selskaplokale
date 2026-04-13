@@ -163,14 +163,14 @@ export const CorporatePage = () => {
                   initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: '-40px' }}
-                  className="relative mx-auto aspect-[7/8] w-full max-w-md overflow-hidden rounded-lg border border-brand-200/80 shadow-lg dark:border-brand-700 lg:mx-0 lg:max-w-none"
+                  className="relative mx-auto aspect-[5/3] w-full max-w-md overflow-hidden rounded-lg border border-brand-200/80 shadow-lg dark:border-brand-700 lg:mx-0 lg:max-w-none"
                 >
                   <img
                     src="/corporate-intro-dinner.png"
                     alt={t('corporatePage.introSection.figureAlt')}
                     width={1024}
                     height={682}
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="absolute inset-0 h-full w-full object-cover object-[center_42%]"
                     loading="lazy"
                     decoding="async"
                   />

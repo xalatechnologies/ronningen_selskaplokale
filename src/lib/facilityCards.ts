@@ -1,4 +1,5 @@
-const FACILITIES_SHUFFLEBOARD_HERO_IMG = '/facilities-hero-shuffleboard.png';
+/** Activities card on prices + `/fasiliteter` intro grids (shuffleboard, foosball, air hockey room). */
+const FACILITIES_ACTIVITIES_GAME_ROOM_IMG = '/facilities-pricing-activities-game-room.png';
 const FACILITIES_CHILDCARE_PLAYROOM_IMG = '/facilities-childcare-playroom.png';
 const FACILITIES_ANIMALS_GOATS_IMG = '/facilities-animals-goats.png';
 const FACILITIES_COMMERCIAL_KITCHEN_IMG = '/facilities-commercial-kitchen.png';
@@ -41,7 +42,7 @@ export const FACILITY_CARD_IMAGES: Record<FacilityCardKey, string> = {
   childCare: FACILITIES_CHILDCARE_PLAYROOM_IMG,
   accommodation: FACILITIES_GUEST_LOUNGE_IMG,
   bridalSuite: FACILITIES_BRIDAL_SUITE_BEDROOM_IMG,
-  activities: FACILITIES_SHUFFLEBOARD_HERO_IMG,
+  activities: FACILITIES_ACTIVITIES_GAME_ROOM_IMG,
   animals: FACILITIES_ANIMALS_GOATS_IMG,
   barDanceFloor: FACILITIES_BAR_EVENT_HALL_IMG,
   kitchen: FACILITIES_COMMERCIAL_KITCHEN_IMG,

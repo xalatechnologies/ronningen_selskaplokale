@@ -59,9 +59,9 @@ const WEDDINGS_SERVICE_IMAGES = [
   'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800',
   '/weddings/service-photography-waterfall.png',
   '/weddings/service-decoration-tables.png',
-  '/home-service-bar-dancefloor.png',
-  'https://images.unsplash.com/photo-1758550445795-278c5867493d?auto=format&fit=crop&q=80&w=1200',
-  '/weddings/service-table-setting-banquet-hall.png',
+  '/weddings/service-bar-cocktail-tray.png',
+  '/home-service-sound-light.png',
+  '/weddings/service-decoration-wedding-stage.png',
 ] as const;
 
 const WEDDINGS_FAQ_KEYS = ['item1', 'item2', 'item3', 'item4', 'item5', 'item6'] as const;
@@ -197,10 +197,10 @@ export const WeddingsPage = () => {
                 )}
               >
                 <img
-                  src="/weddings/atmosphere-sparkler-sendoff.png"
+                  src="/weddings/atmosphere-ceremony-reception.png"
                   alt={t('weddingsPage.atmosphere.figureAlt')}
                   width={1024}
-                  height={682}
+                  height={576}
                   decoding="async"
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover object-center"
@@ -333,23 +333,25 @@ export const WeddingsPage = () => {
                       serviceKey === 'photography' || serviceKey === 'bar'
                         ? 1024
                         : serviceKey === 'tableSetting'
-                          ? 1024
+                          ? 736
                           : serviceKey === 'decoration'
                             ? 852
                             : serviceKey === 'soundLight'
-                              ? 800
+                              ? 892
                               : undefined
                     }
                     height={
-                      serviceKey === 'photography' || serviceKey === 'bar'
+                      serviceKey === 'photography'
                         ? 682
-                        : serviceKey === 'decoration'
+                        : serviceKey === 'bar'
                           ? 1024
-                          : serviceKey === 'soundLight'
-                            ? 600
-                            : serviceKey === 'tableSetting'
-                              ? 737
-                              : undefined
+                          : serviceKey === 'decoration'
+                            ? 1024
+                            : serviceKey === 'soundLight'
+                              ? 1024
+                              : serviceKey === 'tableSetting'
+                                ? 491
+                                : undefined
                     }
                     decoding="async"
                     loading="lazy"

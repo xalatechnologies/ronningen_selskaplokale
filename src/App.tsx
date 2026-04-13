@@ -220,16 +220,20 @@ const Home = () => {
       <section className="home-hero section-viewport section-viewport-hero relative flex min-h-0 flex-col overflow-hidden border-b border-brand-800 bg-brand-950 text-white">
         <div className="pointer-events-none absolute inset-0 z-0">
           <img
-            src="/bryllup/inngang1.jpeg"
+            src="/hero-home-daylight-entrance.png"
             alt={t('homeHero.heroImageLightAlt')}
+            width={1024}
+            height={682}
             className="h-full w-full object-cover dark:hidden"
             loading="eager"
             decoding="async"
             fetchPriority="high"
           />
           <img
-            src="/hero-wedding-venue-night.png"
+            src="/hero-home-evening-lights.png"
             alt={t('homeHero.heroImageAlt')}
+            width={1024}
+            height={682}
             className="hidden h-full w-full object-cover dark:block"
             loading="eager"
             decoding="async"
@@ -240,7 +244,7 @@ const Home = () => {
             aria-hidden
           />
         </div>
-        <div className="section-viewport-scroll site-container relative z-10 flex h-full min-h-0 w-full flex-col items-center justify-center overflow-hidden py-6 text-center text-white">
+        <div className="section-viewport-scroll site-container relative z-10 flex h-full min-h-0 w-full flex-col items-center justify-center overflow-hidden px-4 py-6 text-center text-white">
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -248,8 +252,13 @@ const Home = () => {
             className="flex min-h-[min(38vh,15rem)] w-full max-w-6xl cursor-default flex-col items-center justify-center"
             onPointerEnter={handleHeroConfettiPointerEnter}
           >
-            <h1 className="sr-only">
-              {t('homeHero.welcomeLine')} {t('homeHero.venueName')}
+            <h1 className="flex max-w-[min(98vw,54rem)] flex-col items-center gap-2.5 px-4 text-center sm:gap-3 md:gap-3.5">
+              <span className="font-sans text-[1.0625rem] font-semibold tracking-[0.12em] text-white sm:text-lg md:text-xl">
+                {t('homeHero.welcomeLine')}
+              </span>
+              <span className="font-serif whitespace-nowrap text-[clamp(1.45rem,calc(1.05rem+3.4vw),4.35rem)] font-normal italic leading-[1.05] text-white sm:text-[clamp(1.6rem,calc(0.95rem+3.1vw),4.45rem)] md:text-[clamp(1.85rem,calc(0.85rem+2.7vw),4.65rem)]">
+                {t('homeHero.venueName')}
+              </span>
             </h1>
           </motion.div>
         </div>
