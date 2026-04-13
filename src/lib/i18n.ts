@@ -248,8 +248,6 @@ const resources = {
         },
         packagesSection: {
           heading: 'Our packages',
-          intro:
-            'Three clear packages as a starting point — get in touch and we will find a date, adjustments, and a quote that suits your needs.',
           popularBadge: 'Most popular',
           ctaQuote: 'Request a quote',
           items: {
@@ -341,7 +339,7 @@ const resources = {
           headingBefore: 'Where professionalism meets ',
           headingAccent: 'warmth',
           intro:
-            'From professional content to activities and social time — the venue gives you room for team building, dinner and celebration in the same setting.',
+            'From professional content to social time — everything in one place for team building, dinner and celebration.',
           benefitsEyebrow: 'Three clear advantages',
           benefits: {
             item1: 'Activities and team building',
@@ -420,11 +418,9 @@ const resources = {
         closingCta: {
           bgImageAlt:
             'Corporate celebration at the venue — background image for the contact call-to-action',
-          eyebrow: 'Next step',
           headingLine1Before: 'Ready to ',
           headingLine1Accent: 'plan',
           headingLine2: "your company's day with us?",
-          body: 'Tell us briefly what you envision, and we’ll put together a programme that suits both your team and guests.',
         },
       },
       pricesPage: {
@@ -751,7 +747,6 @@ const resources = {
           headingLine1Before: 'Ready to see what ',
           headingLine1Accent: 'fits your day?',
           body: 'Tell us what you are planning and we will put together an arrangement with the right facilities.',
-          ctaSecondary: 'Contact us',
         },
       },
       branding: {
@@ -807,7 +802,6 @@ const resources = {
         mapTitle: 'Location',
         mapPillLabel: 'Rønningen',
         mapAddressLine: 'Rønningen Selskapslokale – Baneveien 290, 3410 Sylling',
-        ctaRing: 'Call now',
         ctaMail: 'Send email',
         formSectionTitle: 'Contact form',
         formSectionIntro: 'Write a few lines and we will get back to you as soon as we can.',
@@ -1202,8 +1196,6 @@ const resources = {
         },
         packagesSection: {
           heading: 'Våre pakker',
-          intro:
-            'Tre tydelige pakker som utgangspunkt — ta kontakt, så finner vi dato, tilpasninger og et tilbud som passer deres behov.',
           popularBadge: 'Mest populær',
           ctaQuote: 'Be om tilbud',
           items: {
@@ -1295,7 +1287,7 @@ const resources = {
           headingBefore: 'Der profesjon møter ',
           headingAccent: 'varme',
           intro:
-            'Fra faglig innhold til aktiviteter og sosialt samvær – lokalet gir rom for både teambuilding, middag og fest i samme ramme.',
+            'Fra faglig innhold til sosialt samvær – alt samlet for teambuilding, middag og fest.',
           benefitsEyebrow: 'Tre tydelige fordeler',
           benefits: {
             item1: 'Aktiviteter og teambuilding',
@@ -1373,11 +1365,9 @@ const resources = {
         },
         closingCta: {
           bgImageAlt: 'Bedriftsfeiring på lokalet — bakgrunnsbilde for kontaktoppfordring',
-          eyebrow: 'Neste steg',
           headingLine1Before: 'Klar for å ',
           headingLine1Accent: 'planlegge',
           headingLine2: 'bedriftens dag hos oss?',
-          body: 'Fortell oss kort hva dere ser for dere, så setter vi sammen et opplegg som passer både team og gjester.',
         },
       },
       pricesPage: {
@@ -1703,7 +1693,6 @@ const resources = {
           headingLine1Before: 'Klar for å se hva som',
           headingLine1Accent: 'passer deres dag?',
           body: 'Fortell oss hva dere planlegger, så setter vi sammen et opplegg med riktige fasiliteter.',
-          ctaSecondary: 'Se kontakt',
         },
       },
       branding: {
@@ -1759,7 +1748,6 @@ const resources = {
         mapTitle: 'Her finner dere oss',
         mapPillLabel: 'Rønningen',
         mapAddressLine: 'Rønningen Selskapslokale – Baneveien 290, 3410 Sylling',
-        ctaRing: 'Ring nå',
         ctaMail: 'Send e-post',
         formSectionTitle: 'Kontakt skjema',
         formSectionIntro: 'Skriv noen linjer, så tar vi kontakt så snart vi kan.',

@@ -4,7 +4,6 @@ import { motion } from 'motion/react';
 import { CheckCircle2 } from 'lucide-react';
 import { cn } from '../../lib/utils';
 import { ROUTES } from '../../lib/routes';
-import { SECTION_H2_CLASS, SECTION_LEAD_CLASS } from '../../lib/typography';
 
 const WEDDINGS_PACKAGE_IDS = ['basic', 'plus', 'premium'] as const;
 
@@ -44,20 +43,12 @@ export function WeddingPackagesBlock() {
       />
 
       <div className="section-viewport-scroll site-container relative z-10 py-16 sm:py-20 md:py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 w-full max-w-3xl md:mb-14"
+        <h2
+          id={WEDDING_PACKAGES_HEADING_ID}
+          className="sr-only scroll-mt-[calc(var(--site-nav-pad)+1rem)]"
         >
-          <h2
-            id={WEDDING_PACKAGES_HEADING_ID}
-            className={cn(SECTION_H2_CLASS, 'scroll-mt-[calc(var(--site-nav-pad)+1rem)] mb-5')}
-          >
-            {t('weddingsPage.packagesSection.heading')}
-          </h2>
-          <p className={SECTION_LEAD_CLASS}>{t('weddingsPage.packagesSection.intro')}</p>
-        </motion.div>
+          {t('weddingsPage.packagesSection.heading')}
+        </h2>
 
         <div className="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-3 lg:gap-7 xl:gap-8">
           {WEDDINGS_PACKAGE_IDS.map((pkgId, i) => {

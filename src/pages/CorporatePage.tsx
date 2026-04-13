@@ -11,14 +11,10 @@ import {
   SECTION_H2_CLASS,
   SECTION_H2_ON_DARK_CLASS,
   SECTION_LEAD_CLASS,
-  SECTION_LEAD_ON_DARK_CLASS,
 } from '../lib/typography';
 import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 
-import { ROUTES } from '../lib/routes';
-
-const CTA_PRIMARY = ROUTES.henvendelse;
-const CTA_SECONDARY = ROUTES.kontakt;
+import { ROUTES, kontaktSkjemaHash } from '../lib/routes';
 
 const CORPORATE_INTRO_BENEFIT_KEYS = ['item1', 'item2', 'item3'] as const;
 
@@ -142,11 +138,8 @@ export const CorporatePage = () => {
             <p className="w-full max-w-none text-lg font-light italic opacity-90 sm:text-xl md:text-2xl [text-shadow:0_1px_20px_rgba(0,0,0,0.28)]">
               {t('corporatePage.heroTagline')}
             </p>
-            <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
-              <Link to={CTA_SECONDARY} className="cta-route-hero-primary">
-                {t('hero.bookNow')}
-              </Link>
-              <Link to={CTA_PRIMARY} className="cta-route-hero-secondary">
+            <div className="flex w-full justify-center pt-8">
+              <Link to={kontaktSkjemaHash()} className="cta-route-hero-primary">
                 {t('hero.cta')}
               </Link>
             </div>
@@ -509,7 +502,7 @@ export const CorporatePage = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative w-full overflow-hidden rounded-xl bg-brand-900 px-6 py-14 text-center text-white shadow-2xl sm:px-10 sm:py-16 md:px-14 md:py-20"
+            className="relative w-full overflow-hidden rounded-xl bg-brand-900 px-6 pt-10 pb-16 text-center text-white shadow-2xl sm:px-10 sm:pt-12 sm:pb-20 md:px-14 md:pt-12 md:pb-24"
           >
             <div className="absolute inset-0 z-0 opacity-30">
               <img
@@ -524,25 +517,16 @@ export const CorporatePage = () => {
               <div className="absolute -left-[10%] -top-[20%] h-[50%] w-[50%] rounded-full bg-brand-400/20 blur-[120px]" />
               <div className="absolute -bottom-[20%] -right-[10%] h-[50%] w-[50%] rounded-full bg-rose-400/10 blur-[120px]" />
             </div>
-            <div className="relative z-10 mx-auto w-full max-w-none space-y-6 md:space-y-8">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-300">
-                {t('corporatePage.closingCta.eyebrow')}
-              </p>
+            <div className="relative z-10 mx-auto flex w-full max-w-none flex-col items-center text-center">
               <h2 className={cn(SECTION_H2_ON_DARK_CLASS, 'm-0')}>
                 {t('corporatePage.closingCta.headingLine1Before')}
                 <span className="italic text-brand-400">{t('corporatePage.closingCta.headingLine1Accent')}</span>
                 <br />
                 {t('corporatePage.closingCta.headingLine2')}
               </h2>
-              <p className={SECTION_LEAD_ON_DARK_CLASS}>
-                {t('corporatePage.closingCta.body')}
-              </p>
-              <div className="flex flex-col items-center justify-center gap-4 pt-2 sm:flex-row sm:gap-5">
-                <Link to={CTA_PRIMARY} className="cta-brand-band-primary">
+              <div className="mt-12 flex w-full justify-center sm:mt-14 md:mt-16 lg:mt-20">
+                <Link to={kontaktSkjemaHash()} className="cta-brand-band-primary">
                   {t('hero.cta')}
-                </Link>
-                <Link to={CTA_SECONDARY} className="cta-brand-band-secondary">
-                  {t('hero.bookNow')}
                 </Link>
               </div>
             </div>

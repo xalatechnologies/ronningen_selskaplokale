@@ -16,10 +16,7 @@ import {
 import { ArrowLeft, ArrowRight, ChevronDown } from 'lucide-react';
 import { FACILITY_CARD_IMAGES, FACILITY_CARD_KEYS } from '../lib/facilityCards';
 
-import { ROUTES } from '../lib/routes';
-
-const CTA_PRIMARY = ROUTES.henvendelse;
-const CTA_SECONDARY = ROUTES.kontakt;
+import { ROUTES, kontaktSkjemaHash } from '../lib/routes';
 const GALLERY_EDGE_TOLERANCE = 2;
 
 const FACILITIES_SHUFFLEBOARD_HERO_IMG = '/facilities-hero-shuffleboard.png';
@@ -194,11 +191,8 @@ export const FacilitiesPage = () => {
             <p className="w-full max-w-none text-lg font-light italic opacity-90 sm:text-xl md:text-2xl [text-shadow:0_1px_20px_rgba(0,0,0,0.28)]">
               {t('facilitiesPage.heroTagline')}
             </p>
-            <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
-              <Link to={CTA_SECONDARY} className="cta-route-hero-primary">
-                {t('hero.bookNow')}
-              </Link>
-              <Link to={CTA_PRIMARY} className="cta-route-hero-secondary">
+            <div className="flex w-full justify-center pt-8">
+              <Link to={kontaktSkjemaHash()} className="cta-route-hero-primary">
                 {t('hero.cta')}
               </Link>
             </div>
@@ -557,12 +551,9 @@ export const FacilitiesPage = () => {
               <p className={cn(SECTION_LEAD_ON_DARK_CLASS, 'mb-8')}>
                 {t('facilitiesPage.closingCta.body')}
               </p>
-              <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-                <Link to={CTA_PRIMARY} className={cn('group', 'cta-brand-band-primary-md')}>
+              <div className="flex w-full justify-center">
+                <Link to={kontaktSkjemaHash()} className={cn('group', 'cta-brand-band-primary-md')}>
                   {t('hero.cta')}
-                </Link>
-                <Link to={CTA_SECONDARY} className="cta-brand-band-secondary-md">
-                  {t('facilitiesPage.closingCta.ctaSecondary')}
                 </Link>
               </div>
             </div>

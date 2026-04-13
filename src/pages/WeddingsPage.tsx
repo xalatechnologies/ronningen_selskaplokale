@@ -19,7 +19,7 @@ import { inspirationSlidesForCategory, inspirationSlideFileNumber } from '../lib
 
 /** Same image set as galleri filter «Bryllup». */
 const WEDDING_INSPIRATION_SLIDES = inspirationSlidesForCategory('wedding');
-import { ROUTES } from '../lib/routes';
+import { ROUTES, kontaktSkjemaHash } from '../lib/routes';
 import {
   FAQ_ANSWER_CLASS,
   SECTION_H2_CLASS,
@@ -145,11 +145,8 @@ export const WeddingsPage = () => {
               <span className="italic text-white/95">{t('weddingsPage.heroTitleAccent')}</span>
               {t('weddingsPage.heroTitleAfter')}
             </motion.h1>
-            <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
-              <Link to={ROUTES.kontakt} className="cta-route-hero-primary">
-                {t('hero.bookNow')}
-              </Link>
-              <Link to={ROUTES.kontakt} className="cta-route-hero-secondary">
+            <div className="flex w-full justify-center pt-8">
+              <Link to={kontaktSkjemaHash()} className="cta-route-hero-primary">
                 {t('hero.cta')}
               </Link>
             </div>
@@ -626,17 +623,14 @@ export const WeddingsPage = () => {
               {t('weddingsPage.finalCta.body')}
             </motion.p>
             
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="flex flex-col items-center justify-center gap-5 pt-4 sm:flex-row sm:gap-6 sm:pt-6"
+              className="flex w-full justify-center pt-4 sm:pt-6"
             >
-              <Link to={ROUTES.kontakt} className="cta-brand-band-primary-lg">
-                {t('hero.bookNow')}
-              </Link>
-              <Link to={ROUTES.kontakt} className="cta-brand-band-secondary-lg">
+              <Link to={kontaktSkjemaHash()} className="cta-brand-band-primary-lg">
                 {t('hero.cta')}
               </Link>
             </motion.div>

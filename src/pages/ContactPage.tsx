@@ -2,7 +2,7 @@ import React, { useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Clock, ArrowUpRight, ExternalLink, type LucideIcon } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, ExternalLink, type LucideIcon } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { PAGE_H1_CLASS, SECTION_H3_CLASS, SECTION_LEAD_CLASS, UI_EYEBROW_CLASS } from '../lib/typography';
 import { ContactForm } from '../components/ContactForm';
@@ -103,26 +103,6 @@ export const ContactPage: React.FC = () => {
             >
               {t('contactPage.intro')}
             </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.16 }}
-              className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4"
-            >
-              <button
-                type="button"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-900 px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.22em] text-white shadow-lg transition hover:bg-brand-800 dark:bg-brand-100 dark:text-brand-900 dark:hover:bg-white"
-              >
-                {t('hero.bookNow')}
-                <ArrowUpRight size={16} strokeWidth={2} aria-hidden />
-              </button>
-              <a
-                href="tel:+4796665001"
-                className="inline-flex items-center justify-center rounded-full border border-brand-300 bg-white px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.22em] text-brand-900 transition hover:border-brand-400 hover:bg-brand-50 dark:border-brand-500 dark:bg-brand-800 dark:text-brand-50 dark:hover:border-brand-400 dark:hover:bg-brand-700"
-              >
-                {t('contactPage.ctaRing')}
-              </a>
-            </motion.div>
           </header>
         </div>
       </section>

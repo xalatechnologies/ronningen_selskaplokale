@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
-import { INQUIRY_CTA_PATH } from '../lib/privatePackageConfig';
 import { privateInspirationSlides } from '../lib/inspirationGallery';
-import { ROUTES } from '../lib/routes';
+import { ROUTES, kontaktSkjemaHash } from '../lib/routes';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
 import {
@@ -23,8 +22,6 @@ import {
   Heart,
   Sparkles,
 } from 'lucide-react';
-
-const CTA_SECONDARY = ROUTES.kontakt;
 
 const PRIVATE_INTRO_HIGHLIGHT_CONFIG = [
   { key: 'proximity', icon: Heart },
@@ -158,11 +155,8 @@ export const PrivatePage = () => {
               <span className="italic text-white/95">{t('privatePage.heroTitleLine2Accent')}</span>
               {t('privatePage.heroTitleLine2Rest')}
             </motion.h1>
-            <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
-              <Link to={CTA_SECONDARY} className="cta-route-hero-primary">
-                {t('hero.bookNow')}
-              </Link>
-              <Link to={INQUIRY_CTA_PATH} className="cta-route-hero-secondary">
+            <div className="flex w-full justify-center pt-8">
+              <Link to={kontaktSkjemaHash()} className="cta-route-hero-primary">
                 {t('hero.cta')}
               </Link>
             </div>
@@ -554,12 +548,9 @@ export const PrivatePage = () => {
               <p className={SECTION_LEAD_ON_DARK_CLASS}>
                 {t('privatePage.closingCta.body')}
               </p>
-              <div className="flex flex-col items-center justify-center gap-4 pt-2 sm:flex-row sm:gap-5">
-                <Link to={INQUIRY_CTA_PATH} className="cta-brand-band-primary">
+              <div className="flex w-full justify-center pt-2">
+                <Link to={kontaktSkjemaHash()} className="cta-brand-band-primary">
                   {t('hero.cta')}
-                </Link>
-                <Link to={CTA_SECONDARY} className="cta-brand-band-secondary">
-                  {t('hero.bookNow')}
                 </Link>
               </div>
             </div>
