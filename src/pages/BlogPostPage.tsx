@@ -2,12 +2,13 @@ import React from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
-import { ArrowLeft, CalendarDays } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, CalendarDays } from 'lucide-react';
 import { BLOG_CARD_IMAGES, blogPostKeyFromSlug } from '../lib/blogPosts';
 import { ROUTES } from '../lib/routes';
 import type { BlogPostKey } from '../lib/blogPosts';
 import { PAGE_H1_CLASS, SECTION_LEAD_CLASS } from '../lib/typography';
 import { cn } from '../lib/utils';
+import { useRouteMeta } from '../lib/useRouteMeta';
 
 function postBodyParagraphs(t: ReturnType<typeof useTranslation>['t'], key: BlogPostKey): string[] {
   const raw = t(`blogPage.posts.${key}.body`, { returnObjects: true });
@@ -21,14 +22,21 @@ export const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useTranslation();
   const key = blogPostKeyFromSlug(slug);
+  const paragraphs = key ? postBodyParagraphs(t, key) : [];
+  const title = key ? t(`blogPage.posts.${key}.title`) : '';
+  const excerpt = key ? t(`blogPage.posts.${key}.excerpt`) : '';
+  const metaDescription = excerpt.trim() ? excerpt : paragraphs[0] ?? null;
+  useRouteMeta(
+    key ? `${title} | Rønningen Selskapslokale` : null,
+    key ? metaDescription : null,
+  );
 
   if (!key) {
     return <Navigate to={ROUTES.blogg} replace />;
   }
-
-  const title = t(`blogPage.posts.${key}.title`);
-  const paragraphs = postBodyParagraphs(t, key);
   const imageAlt = t('blogPage.postImageAlt', { title });
+  const externalUrl = t(`blogPage.posts.${key}.externalUrl`, { defaultValue: '' });
+  const externalLinkLabel = t(`blogPage.posts.${key}.externalLinkLabel`, { defaultValue: '' });
 
   return (
     <div className="ui-page-shell">
@@ -89,13 +97,31 @@ export const BlogPostPage: React.FC = () => {
         </header>
 
         <div className="section-viewport-scroll site-container py-12 md:py-16">
-          <p className={cn(SECTION_LEAD_CLASS, 'font-medium')}>
-            {t(`blogPage.posts.${key}.excerpt`)}
-          </p>
-          <div className="mx-auto mt-10 w-full max-w-3xl space-y-6 text-pretty text-base leading-relaxed text-brand-700 md:text-[1.0625rem] md:leading-relaxed dark:text-brand-200">
+          {excerpt.trim() ? (
+            <p className={cn(SECTION_LEAD_CLASS, 'font-medium')}>{excerpt}</p>
+          ) : null}
+          <div
+            className={cn(
+              'mx-auto w-full max-w-3xl space-y-6 text-pretty text-base leading-relaxed text-brand-700 md:text-[1.0625rem] md:leading-relaxed dark:text-brand-200',
+              excerpt.trim() ? 'mt-10' : 'mt-0',
+            )}
+          >
             {paragraphs.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
+            {externalUrl && externalLinkLabel ? (
+              <p className="pt-2">
+                <a
+                  href={externalUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-semibold text-brand-800 underline decoration-brand-300 underline-offset-4 transition hover:text-brand-950 dark:text-brand-200 dark:decoration-brand-600 dark:hover:text-white"
+                >
+                  {externalLinkLabel}
+                  <ArrowUpRight className="h-4 w-4 shrink-0" strokeWidth={2} aria-hidden />
+                </a>
+              </p>
+            ) : null}
           </div>
           <p className="mx-auto mt-12 max-w-3xl border-t border-brand-100 pt-10 text-sm text-brand-500 dark:border-brand-800 dark:text-brand-500">
             <Link

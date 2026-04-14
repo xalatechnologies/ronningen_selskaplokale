@@ -76,7 +76,7 @@ const resources = {
             description:
               'Various activities, commercial kitchen, bar, dance floor and more.',
             imgAlt:
-              'Shuffleboard table with pucks on a polished wooden surface — indoor social activities at the venue',
+              'High-ceiling event hall with tall windows to a bright winter landscape, pendant lights and colourful moving-head stage lights painting circles on the floor',
           },
         },
       },
@@ -114,7 +114,7 @@ const resources = {
             description:
               'We offer activities including shuffleboard, darts, poker, air hockey and team building.',
             imgAlt:
-              'Shuffleboard table with pucks on a polished wooden surface — indoor social activities at the venue',
+              'Event hall prepared for a party with professional lighting rigs, colourful beams on the floor and large windows to the landscape outside',
           },
           overnight: {
             title: 'Childcare',
@@ -594,7 +594,7 @@ const resources = {
       },
       facilitiesPage: {
         heroImageAlt:
-          'Shuffleboard table with pucks on a polished wooden surface — indoor social activities at the venue',
+          'High-ceiling event hall with tall windows to a bright winter landscape, pendant lights and colourful moving-head stage lights painting circles on the floor',
         heroTitleLine1: 'All in one place.',
         heroTitleLine2Prefix: 'For the ',
         heroTitleLine2Accent: 'whole celebration',
@@ -783,6 +783,7 @@ const resources = {
         developedBy: 'Developed by:',
         xalaLinkAria: 'Xala — xala.no (opens in a new tab)',
         openInMapsAria: 'Open {{address}} in Google Maps (opens in a new tab)',
+        tiktokUnavailableAria: 'TikTok — not linked yet',
       },
       contactPage: {
         intro:
@@ -829,21 +830,39 @@ const resources = {
         formErrMessage: 'Please write at least 10 characters.',
       },
       blogPage: {
-        heroEyebrow: 'Journal',
-        title: 'Blog',
+        metaTitle: 'Journal & blog | Rønningen — weddings, events & parties in Lier',
+        metaDescription:
+          'Articles about our venue in Lier: weddings, corporate events, birthdays, confirmations and celebrations — practical tips and stories from Rønningen.',
         comingSoonBadge: 'Coming soon',
         comingSoonTitle: 'Stories from the venue, ongoing',
         comingSoonBody:
           'We are preparing articles about celebrations, seasonal inspiration, and practical tips from Rønningen. Follow along!',
-        intro:
-          'Ideas for your celebration, practical tips from the venue, and stories from real events — gathered in one place.',
+        ctaHeading: 'Planning an event with us?',
+        ctaBody: 'Tell us about your date and ideas — we are happy to help.',
+        ctaButton: 'Get in touch',
         latestHeading: 'Latest articles',
-        latestSub: 'A curated mix of inspiration and know-how from Rønningen.',
+        latestSub:
+          'Inspiration and know-how: event flow, room layout, seasonal atmosphere and what to ask on a viewing — from your event venue in Lier.',
         featuredBadge: 'Featured',
         readMore: 'Read more',
         backToBlog: 'Back to blog',
         postImageAlt: 'Article image: {{title}}',
         posts: {
+          pixlightWeddingReport: {
+            category: 'Weddings',
+            date: '26 April 2026',
+            dateIso: '2026-04-26',
+            title: 'Wedding day in Lier — full photo story on Pixlight',
+            excerpt:
+              'Thea and Andreas chose reception and cake cutting at Rønningen before dinner — a smooth timeline many of our couples love. Pixlight photographed the whole day.',
+            body: [
+              'This is a real wedding day at Rønningen selskapslokale near Drammen: guests arrived for reception and cake, then dinner and celebration into the evening. The couple prioritised a calm flow — including an earlier cake cut so the party could stay unhurried later on.',
+              'We host many weddings where personal décor, speeches and dance matter as much as the room itself. When suppliers and family work together, the result is a warm, lived-in atmosphere — exactly what we want guests to feel when they walk in.',
+              'The detailed photo reportage is published by Pixlight (independent wedding photographer). Follow the link below for their full article and gallery from the day.',
+            ],
+            externalUrl: 'https://www.pixlight.no/blog/bryllup-i-lier-utenfor-drammen',
+            externalLinkLabel: 'Open Pixlight’s blog post (new tab)',
+          },
           springWedding: {
             category: 'Weddings',
             date: 'March 2026',
@@ -852,7 +871,7 @@ const resources = {
             excerpt:
               'How we think about flow from ceremony to party — and small details that make the atmosphere feel effortless.',
             body: [
-              'Spring at Rønningen is about soft light through tall windows, doors that can open to the garden, and a schedule that does not fight the season. We often start with a calm arrival, time for greetings and photographs, then move guests naturally from one moment to the next.',
+              'Spring at Rønningen event venue is about soft light through tall windows, doors that can open to the garden, and a schedule that does not fight the season. We often start with a calm arrival, time for greetings and photographs, then move guests naturally from one moment to the next.',
               'The building is divided into rooms that can be opened up or closed off, so you can keep dinner intimate and still have space for dancing later. We work with you on sound, lighting and flow so nobody feels rushed from ceremony to toast to party.',
               'Small touches matter: where the cake is placed, how speeches are lit, where older relatives can sit with a clear view and a short path to quiet if they need it. We have hosted enough spring weddings to anticipate the usual pinch points and plan around them.',
               'If you are planning a spring celebration, ask us about timing for outdoor photos, backup plans for rain, and how early we can access the venue for styling. We are happy to shape the day with you — from a tight timeline to a looser, more Mediterranean rhythm.',
@@ -866,7 +885,7 @@ const resources = {
             excerpt:
               'From welcome drink to last song: spaces that work for both focused sessions and relaxed mingling.',
             body: [
-              'Corporate events often arrive with a clear agenda: presentations, awards, dinner, maybe entertainment. Our job is to make those beats land while the room still feels like a place people want to stay in, not a conference centre they cannot wait to leave.',
+              'Corporate events and company parties often arrive with a clear agenda: presentations, awards, dinner, maybe entertainment. Our job is to make those beats land while the room still feels like a place people want to stay in, not a conference centre they cannot wait to leave.',
               'We can set one zone for focus — seating, sightlines, sound for speeches — and another for informal conversation, coffee and networking. Moving between them should feel obvious, not like herding.',
               'Catering and bar flow are part of the experience. We coordinate with your suppliers so service does not collide with programme items, and so guests are never stuck hungry while a slide deck runs long.',
               'Tell us the tone you want: celebratory, understated, or somewhere in between. We will align lighting, furniture and timing so the evening matches your brand without feeling stiff.',
@@ -898,20 +917,6 @@ const resources = {
               'Ask about parking and arrival — especially if many guests drive, or if you expect coaches. Walk the path from car to cloakroom to main room as if you were a guest in heels or with a pushchair.',
               'Sound and light matter for speeches and music. Where can PA and lighting go? Are there noise limits or time restrictions? If you plan a band or DJ, confirm power and load-in.',
               'Finally, ask about rain plans for photos or outdoor moments, catering logistics (kitchen access, waste, timing), and who your contact is on the day. A good venue answers plainly and offers a written overview of what is included.',
-            ],
-          },
-          seasonalGathering: {
-            category: 'Seasonal',
-            date: 'November 2025',
-            dateIso: '2025-11-01',
-            title: 'Autumn and winter gatherings with warmth built in',
-            excerpt:
-              'Lighting, comfort and rhythm through the evening when the days are short and the party is long.',
-            body: [
-              'When the sun sets early, lighting becomes part of the design. We layer ambient light, pin spots where needed, and softer tones in lounge areas so the room feels warm rather than harsh.',
-              'Heating and airflow matter when doors stay closed. We monitor comfort throughout the evening, especially as the dance floor fills and body heat rises.',
-              'Seasonal menus and drinks fit naturally — hearty mains, citrus or spice in cocktails, desserts that feel right in cold weather. We align service timing with daylight so guests are not eating in pitch black unless you want that mood.',
-              'Long parties need rhythm: peaks of energy and quieter stretches. We help you plan music, breaks and surprises so the last hour feels as intentional as the first.',
             ],
           },
         },
@@ -1025,7 +1030,7 @@ const resources = {
             title: 'Fasiliteter',
             description: 'Ulike aktiviteter, storkjøkken, bar, dansegulv m.m.',
             imgAlt:
-              'Shuffleboard-bord med klyper på blankpolert tre — sosiale aktiviteter innendørs i lokalet',
+              'Høyt selskapslokale med store vinduer mot lyst vinterlandskap, pendellys og fargede scenelys som tegner sirkler på gulvet',
           },
         },
       },
@@ -1063,7 +1068,7 @@ const resources = {
             description:
               'Vi har ulike aktiviteter som shuffleboard, dart, poker, airhockey og teambuilding.',
             imgAlt:
-              'Shuffleboard-bord med klyper på blankpolert tre — sosiale aktiviteter innendørs i lokalet',
+              'Festsal rigget med profesjonelle lysarmaturer, fargede lyskjegler på gulvet og store vinduer mot landskapet utenfor',
           },
           overnight: {
             title: 'Barnepass',
@@ -1541,7 +1546,7 @@ const resources = {
       },
       facilitiesPage: {
         heroImageAlt:
-          'Shuffleboard-bord med klyper på blankpolert tre — sosiale aktiviteter innendørs i lokalet',
+          'Høyt selskapslokale med store vinduer mot lyst vinterlandskap, pendellys og fargede scenelys som tegner sirkler på gulvet',
         heroTitleLine1: 'Alt på ett sted.',
         heroTitleLine2Prefix: 'For ',
         heroTitleLine2Accent: 'hele feiringen',
@@ -1730,6 +1735,7 @@ const resources = {
         developedBy: 'Utviklet av:',
         xalaLinkAria: 'Xala — xala.no (åpnes i ny fane)',
         openInMapsAria: 'Åpne {{address}} i Google Maps (åpnes i ny fane)',
+        tiktokUnavailableAria: 'TikTok — ikke koblet ennå',
       },
       contactPage: {
         intro:
@@ -1776,21 +1782,39 @@ const resources = {
         formErrMessage: 'Skriv minst 10 tegn.',
       },
       blogPage: {
-        heroEyebrow: 'Journal',
-        title: 'Blogg',
+        metaTitle: 'Journal og blogg | Rønningen selskapslokale — fest og event i Lier',
+        metaDescription:
+          'Artikler om selskapslokalet vårt: bryllup, bedriftsevent, konfirmasjon, bursdag og fest ved Sylling. Tips til omvisning og gjennomføring på Rønningen.',
         comingSoonBadge: 'Kommer snart',
         comingSoonTitle: 'Historier fra lokalet kommer fortløpende',
         comingSoonBody:
           'Vi jobber med artikler om feiringer, sesonginspirasjon og praktiske tips fra Rønningen. Følg med!',
-        intro:
-          'Ideer til feiringen, praktiske tips fra lokalet og historier fra ekte arrangementer — samlet på ett sted.',
+        ctaHeading: 'Planlegger dere noe hos oss?',
+        ctaBody: 'Fortell om dato og tanker — vi hjelper dere i gang.',
+        ctaButton: 'Ta kontakt',
         latestHeading: 'Siste artikler',
-        latestSub: 'Et utvalg av inspirasjon og faglig stoff fra Rønningen.',
+        latestSub:
+          'Inspirasjon og erfaring: flyt på festen, romløsninger, sesongstemning og hva du bør spørre om på omvisning — fra selskapslokalet i Lier.',
         featuredBadge: 'Utvalgt',
         readMore: 'Les mer',
         backToBlog: 'Tilbake til bloggen',
         postImageAlt: 'Artikkelbilde: {{title}}',
         posts: {
+          pixlightWeddingReport: {
+            category: 'Bryllup',
+            date: '26. april 2026',
+            dateIso: '2026-04-26',
+            title: 'Bryllupsdag i Lier — hele bildeserien hos Pixlight',
+            excerpt:
+              'Thea og Andreas feiret med mottakelse og kakeskjæring på Rønningen før middag — en behagelig tidslinje mange av våre par velger. Pixlight dokumenterte dagen i bilder.',
+            body: [
+              'Dette er en ekte bryllupsdag på Rønningen selskapslokale ved Sylling utenfor Drammen: gjester samles til mottakelse og kake, deretter middag og fest utover kvelden. Brudeparet la vekt på rolig flyt — blant annet ved å skjære kaken tidligere på kvelden slik at festen kan være mer uformell senere.',
+              'Vi ser ofte bryllup der personlig dekor, taler og dans betyr like mye som selve lokalene. Når nettverk, familie og leverandører spiller på lag, blir stemningen varm og «lived in» — akkurat det vi ønsker at gjestene skal møte når de kommer inn.',
+              'Den utførlige bildefortellingen ligger hos Pixlight (uavhengig bryllupsfotograf). Følg lenken under for hele artikkelen og galleriet fra dagen.',
+            ],
+            externalUrl: 'https://www.pixlight.no/blog/bryllup-i-lier-utenfor-drammen',
+            externalLinkLabel: 'Les Pixlights bloggartikkel (åpner i ny fane)',
+          },
           springWedding: {
             category: 'Bryllup',
             date: 'mars 2026',
@@ -1799,7 +1823,7 @@ const resources = {
             excerpt:
               'Hvordan vi tenker på flyt fra vielse til fest — og små detaljer som gjør stemningen enkel og helhetlig.',
             body: [
-              'Vår på Rønningen handler om mykt lys i høye vinduer, dører som kan stå åpne mot hagen og et tidsskjema som ikke kjemper mot årstiden. Vi starter gjerne med en rolig ankomst, tid til hilsener og bilder, og flytter gjestene naturlig fra ett øyeblikk til det neste.',
+              'Vår på Rønningen selskapslokale handler om mykt lys i høye vinduer, dører som kan stå åpne mot hagen og et tidsskjema som ikke kjemper mot årstiden. Vi starter gjerne med en rolig ankomst, tid til hilsener og bilder, og flytter gjestene naturlig fra ett øyeblikk til det neste.',
               'Bygget er delt i rom som kan åpnes eller lukkes, så dere kan ha en intim middag og likevel plass til dans senere. Vi jobber med dere om lyd, lys og flyt, slik at ingen føler seg jaget fra vielse til tale til fest.',
               'Små grep teller: hvor kaken står, hvordan taler lyssettes, hvor eldre slektninger kan sitte med god oversikt og kort vei til ro hvis de trenger det. Vi har arrangert nok vårbryllup til å forutse de vanlige knepunktene og planlegge rundt dem.',
               'Planlegger dere vårfeiring, spør oss om tidspunkt for bilder utendørs, reserveplan ved regn, og hvor tidlig dere kan få tilgang til lokalet for styling. Vi hjelper dere gjerne å forme dagen — fra stramt program til en løsere, mer sørlig rytme.',
@@ -1813,7 +1837,7 @@ const resources = {
             excerpt:
               'Fra velkomstdrink til siste sang: rom som fungerer til både fokus og uformelt samvær.',
             body: [
-              'Bedriftsarrangement kommer ofte med tydelig program: presentasjoner, prisutdeling, middag, kanskje underholdning. Vår oppgave er at punktene sitter, samtidig som rommet føles som et sted folk vil være — ikke et konferansesenter de vil ut av.',
+              'Bedriftsarrangement og firmafest kommer ofte med tydelig program: presentasjoner, prisutdeling, middag, kanskje underholdning. Vår oppgave er at punktene sitter, samtidig som rommet føles som et sted folk vil være — ikke et konferansesenter de vil ut av.',
               'Vi kan ha én sone for fokus — sitteplasser, siktlinjer, lyd til taler — og en annen for uformelt samvær, kaffe og nettverk. Overgangen skal føles naturlig, ikke som gjeting.',
               'Catering og barflyt er en del av opplevelsen. Vi koordinerer med leverandørene slik at servering ikke kolliderer med programpunkter, og at gjestene ikke står sultne mens en presentasjon drar ut.',
               'Fortell oss tonen dere ønsker: festlig, diskret, eller midt imellom. Vi tilpasser lys, møbler og timing slik at kvelden matcher merkevaren uten å bli stiv.',
@@ -1841,24 +1865,10 @@ const resources = {
             excerpt:
               'Parkering, tidspunkt, lyd, cateringflyt og regnvær — en kort sjekkliste før dere bestemmer dere.',
             body: [
-              'Omvisning er sjansen til å teste lokalet med ekte spørsmål, ikke bare utseende. Start med kapasitet: ikke bare hvor mange som er tillatt, men hvordan rommet føles når bord, scene og dansegulv står på plass.',
+              'Omvisning er sjansen til å teste selskapslokalet med ekte spørsmål, ikke bare utseende. Start med kapasitet: ikke bare hvor mange som er tillatt, men hvordan rommet føles når bord, scene og dansegulv står på plass.',
               'Spør om parkering og ankomst — særlig om mange kjører, eller dere forventer buss. Gå ruten fra bil til garderobe til hovedrom som om dere var gjest med hæler eller barnevogn.',
               'Lyd og lys betyr noe for taler og musikk. Hvor kan PA og lys settes? Finnes det støygrenser eller tidsbegrensninger? Om dere skal ha band eller DJ, bekreft strøm og rigg.',
               'Til slutt: spør om regnvær for bilder eller uteøyeblikk, cateringlogistikk (kjøkkenadgang, avfall, timing), og hvem som er kontakt på dagen. Et godt lokale svarer tydelig og kan gi en skriftlig oversikt over hva som inngår.',
-            ],
-          },
-          seasonalGathering: {
-            category: 'Sesong',
-            date: 'november 2025',
-            dateIso: '2025-11-01',
-            title: 'Høst- og vinterfeiring med varme i rammene',
-            excerpt:
-              'Lys, komfort og rytme gjennom kvelden når dagene er korte og festen skal vare lenge.',
-            body: [
-              'Når sola går tidlig, blir lys en del av uttrykket. Vi bygger lag med stemningslys, spot der det trengs, og mykere soner i sittegrupper slik at rommet føles varmt, ikke sterilt.',
-              'Oppvarming og luftsirkulasjon betyr noe når dører forblir lukket. Vi følger med på komfort utover kvelden, særlig når dansegulvet fylles og kroppsvarmen stiger.',
-              'Sesongbasert mat og drikke passer naturlig — kraftige hovedretter, sitrus eller krydder i drinker, desserter som passer i kald årstid. Vi tilpasser servering til dagslys slik at gjestene ikke spiser i stummende mørke med mindre dere ønsker nettopp den stemningen.',
-              'Lange fester trenger rytme: topper av energi og rolige partier. Vi hjelper dere å planlegge musikk, pauser og overraskelser slik at siste time føles like gjennomtenkt som den første.',
             ],
           },
         },

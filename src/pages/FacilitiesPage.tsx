@@ -19,7 +19,7 @@ import { FACILITY_CARD_IMAGES, FACILITY_CARD_KEYS } from '../lib/facilityCards';
 import { ROUTES, kontaktSkjemaHash } from '../lib/routes';
 const GALLERY_EDGE_TOLERANCE = 2;
 
-const FACILITIES_SHUFFLEBOARD_HERO_IMG = '/facilities-hero-shuffleboard.png';
+const FACILITIES_EVENT_LIGHTING_HERO_IMG = '/facilities-hero-event-lighting.png';
 const FACILITIES_CHILDCARE_PLAYROOM_IMG = '/facilities-childcare-playroom.png';
 const FACILITIES_ANIMALS_GOATS_IMG = '/facilities-animals-goats.png';
 const FACILITIES_COMMERCIAL_KITCHEN_IMG = '/facilities-commercial-kitchen.png';
@@ -157,7 +157,7 @@ export const FacilitiesPage = () => {
       <section className="hero-below-nav section-viewport section-viewport-hero relative flex min-h-0 flex-col items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src={FACILITIES_SHUFFLEBOARD_HERO_IMG}
+            src={FACILITIES_EVENT_LIGHTING_HERO_IMG}
             alt={t('facilitiesPage.heroImageAlt')}
             width={1024}
             height={682}

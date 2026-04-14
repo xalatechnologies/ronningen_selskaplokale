@@ -24,6 +24,9 @@ const TOP_NAV_H = 'h-24';
 
 const THEME_STORAGE_KEY = 'site-theme';
 
+/** Customer-assistant FAB + panel — `false` hides launcher and skips chat-only layout listeners. */
+const CUSTOMER_ASSISTANT_ENABLED = false;
+
 function readDomDark(): boolean {
   return typeof document !== 'undefined' && document.documentElement.classList.contains('dark');
 }
@@ -130,12 +133,13 @@ export function AppNavigation() {
   }, [chatFabBottomPx]);
 
   useLayoutEffect(() => {
-    if (!chatOpen) return;
+    if (!CUSTOMER_ASSISTANT_ENABLED || !chatOpen) return;
     const el = chatMessagesRef.current;
     if (el) el.scrollTop = el.scrollHeight;
   }, [messages, chatOpen]);
 
   useEffect(() => {
+    if (!CUSTOMER_ASSISTANT_ENABLED) return;
     updateChatFabContrast();
     const raf = requestAnimationFrame(updateChatFabContrast);
     const timer = window.setTimeout(updateChatFabContrast, 150);
@@ -153,6 +157,7 @@ export function AppNavigation() {
   }, [location.pathname, chatOpen, updateChatFabContrast]);
 
   useLayoutEffect(() => {
+    if (!CUSTOMER_ASSISTANT_ENABLED) return;
     const footer = document.querySelector('footer');
     if (!footer || !(footer instanceof HTMLElement)) return;
 
@@ -499,88 +504,92 @@ export function AppNavigation() {
         ) : null}
       </AnimatePresence>
 
-      {/* Chat launcher + panel */}
-      <button
-        type="button"
-        aria-label={chatOpen ? t('chat.closeAssistant') : t('chat.openAssistant')}
-        title={t('chat.launcherTitle')}
-        onClick={() => setChatOpen((v) => !v)}
-        style={{ bottom: chatFabBottomPx }}
-        className={cn(
-          'fixed right-5 z-[60] inline-flex h-12 w-12 items-center justify-center rounded-full shadow-xl transition-transform duration-300 hover:-translate-y-0.5 md:right-6 md:h-14 md:w-14',
-          chatFabOnDark
-            ? 'border border-white/25 bg-white/95 text-brand-900 shadow-brand-900/15 hover:border-white/50 hover:bg-white hover:shadow-2xl'
-            : 'bg-brand-900 text-white hover:bg-brand-800 hover:shadow-2xl'
-        )}
-      >
-        {chatOpen ? <X size={22} aria-hidden /> : <MessageCircle size={22} aria-hidden />}
-      </button>
-      <AnimatePresence>
-        {chatOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 14, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.98 }}
-            transition={reduceMotion ? { duration: 0 } : undefined}
-            style={{ bottom: chatPanelBottomPx }}
-            className="fixed right-4 z-[60] w-[min(92vw,24rem)] overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-2xl dark:border-brand-600 dark:bg-brand-900 md:right-6"
+      {CUSTOMER_ASSISTANT_ENABLED ? (
+        <>
+          {/* Chat launcher + panel */}
+          <button
+            type="button"
+            aria-label={chatOpen ? t('chat.closeAssistant') : t('chat.openAssistant')}
+            title={t('chat.launcherTitle')}
+            onClick={() => setChatOpen((v) => !v)}
+            style={{ bottom: chatFabBottomPx }}
+            className={cn(
+              'fixed right-5 z-[60] inline-flex h-12 w-12 items-center justify-center rounded-full shadow-xl transition-transform duration-300 hover:-translate-y-0.5 md:right-6 md:h-14 md:w-14',
+              chatFabOnDark
+                ? 'border border-white/25 bg-white/95 text-brand-900 shadow-brand-900/15 hover:border-white/50 hover:bg-white hover:shadow-2xl'
+                : 'bg-brand-900 text-white hover:bg-brand-800 hover:shadow-2xl'
+            )}
           >
-            <div className="border-b border-brand-100 bg-brand-900 px-4 py-3 text-white">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-300">{t('chat.panelEyebrow')}</p>
-              <h3 className="mt-1 font-serif text-lg leading-tight">{t('chat.panelHeading')}</h3>
-            </div>
-            <div
-              ref={chatMessagesRef}
-              className="max-h-[19rem] space-y-3 overflow-y-auto overflow-x-hidden bg-brand-50/40 px-4 py-3 dark:bg-brand-950/50"
-            >
-              {messages.map((msg, i) => (
-                <div
-                  key={`${msg.role}-${i}`}
-                  className={cn(
-                    'rounded-xl px-3 py-2 text-sm leading-relaxed',
-                    msg.role === 'assistant'
-                      ? 'border border-brand-100 bg-white text-brand-900 dark:border-brand-700 dark:bg-brand-800 dark:text-brand-100'
-                      : 'ml-8 bg-brand-900 text-white dark:bg-brand-700'
-                  )}
-                >
-                  {msg.text}
-                </div>
-              ))}
-            </div>
-            <div className="border-t border-brand-100 bg-white p-3 dark:border-brand-700 dark:bg-brand-900">
-              <div className="flex items-center gap-2">
-                <input
-                  value={chatInput}
-                  onChange={(e) => setChatInput(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') sendChat();
-                  }}
-                  placeholder={
-                    detectLanguage(chatInput, siteChatLang) === 'no'
-                      ? 'Skriv spørsmålet ditt …'
-                      : 'Type your question…'
-                  }
-                  className="h-10 flex-1 rounded-full border border-brand-200 bg-white px-4 text-sm text-brand-900 outline-none focus:border-brand-400 dark:border-brand-600 dark:bg-brand-800 dark:text-brand-100 dark:placeholder:text-brand-400 dark:focus:border-brand-400"
-                />
-                <button
-                  type="button"
-                  onClick={sendChat}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-900 text-white transition hover:bg-brand-800"
-                  aria-label={t('chat.sendMessage')}
-                >
-                  <SendHorizontal size={16} aria-hidden />
-                </button>
-              </div>
-              <Link
-                to={ROUTES.kontakt}
-                className="mt-2 inline-block text-xs font-semibold uppercase tracking-[0.16em] text-brand-900 hover:text-brand-950 dark:text-brand-200 dark:hover:text-white"
+            {chatOpen ? <X size={22} aria-hidden /> : <MessageCircle size={22} aria-hidden />}
+          </button>
+          <AnimatePresence>
+            {chatOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 14, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                transition={reduceMotion ? { duration: 0 } : undefined}
+                style={{ bottom: chatPanelBottomPx }}
+                className="fixed right-4 z-[60] w-[min(92vw,24rem)] overflow-hidden rounded-2xl border border-brand-200 bg-white shadow-2xl dark:border-brand-600 dark:bg-brand-900 md:right-6"
               >
-                {t('chat.directContact')}
-              </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                <div className="border-b border-brand-100 bg-brand-900 px-4 py-3 text-white">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-300">{t('chat.panelEyebrow')}</p>
+                  <h3 className="mt-1 font-serif text-lg leading-tight">{t('chat.panelHeading')}</h3>
+                </div>
+                <div
+                  ref={chatMessagesRef}
+                  className="max-h-[19rem] space-y-3 overflow-y-auto overflow-x-hidden bg-brand-50/40 px-4 py-3 dark:bg-brand-950/50"
+                >
+                  {messages.map((msg, i) => (
+                    <div
+                      key={`${msg.role}-${i}`}
+                      className={cn(
+                        'rounded-xl px-3 py-2 text-sm leading-relaxed',
+                        msg.role === 'assistant'
+                          ? 'border border-brand-100 bg-white text-brand-900 dark:border-brand-700 dark:bg-brand-800 dark:text-brand-100'
+                          : 'ml-8 bg-brand-900 text-white dark:bg-brand-700'
+                      )}
+                    >
+                      {msg.text}
+                    </div>
+                  ))}
+                </div>
+                <div className="border-t border-brand-100 bg-white p-3 dark:border-brand-700 dark:bg-brand-900">
+                  <div className="flex items-center gap-2">
+                    <input
+                      value={chatInput}
+                      onChange={(e) => setChatInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') sendChat();
+                      }}
+                      placeholder={
+                        detectLanguage(chatInput, siteChatLang) === 'no'
+                          ? 'Skriv spørsmålet ditt …'
+                          : 'Type your question…'
+                      }
+                      className="h-10 flex-1 rounded-full border border-brand-200 bg-white px-4 text-sm text-brand-900 outline-none focus:border-brand-400 dark:border-brand-600 dark:bg-brand-800 dark:text-brand-100 dark:placeholder:text-brand-400 dark:focus:border-brand-400"
+                    />
+                    <button
+                      type="button"
+                      onClick={sendChat}
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-900 text-white transition hover:bg-brand-800"
+                      aria-label={t('chat.sendMessage')}
+                    >
+                      <SendHorizontal size={16} aria-hidden />
+                    </button>
+                  </div>
+                  <Link
+                    to={ROUTES.kontakt}
+                    className="mt-2 inline-block text-xs font-semibold uppercase tracking-[0.16em] text-brand-900 hover:text-brand-950 dark:text-brand-200 dark:hover:text-white"
+                  >
+                    {t('chat.directContact')}
+                  </Link>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </>
+      ) : null}
     </>
   );
 }

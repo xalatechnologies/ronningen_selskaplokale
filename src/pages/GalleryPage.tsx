@@ -31,6 +31,12 @@ type Filter = (typeof FILTERS)[number];
 
 const GALLERY_CATEGORY_PARAM = 'category';
 
+/** Below Tailwind `sm` (640px): skip scroll-driven entrance motion for smoother scrolling. */
+const COMPACT_GALLERY_MEDIA = '(max-width: 639px)';
+
+/** Local mood image for CTA band (replaces external Unsplash). */
+const GALLERY_CTA_BG_IMAGE = '/weddings/atmosphere-ceremony-reception.png';
+
 function filterFromSearchParams(params: URLSearchParams): Filter {
   const cat = params.get(GALLERY_CATEGORY_PARAM);
   if (cat === 'wedding' || cat === 'corporate' || cat === 'private' || cat === 'facilities') return cat;
@@ -57,6 +63,18 @@ export const GalleryPage: React.FC = () => {
   const prefersReducedMotion = useReducedMotion();
   const [searchParams, setSearchParams] = useSearchParams();
   const filter = useMemo(() => filterFromSearchParams(searchParams), [searchParams]);
+
+  const [isCompactGalleryViewport, setIsCompactGalleryViewport] = useState(() =>
+    typeof window !== 'undefined' ? window.matchMedia(COMPACT_GALLERY_MEDIA).matches : false,
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia(COMPACT_GALLERY_MEDIA);
+    const sync = () => setIsCompactGalleryViewport(mq.matches);
+    sync();
+    mq.addEventListener('change', sync);
+    return () => mq.removeEventListener('change', sync);
+  }, []);
 
   const setFilter = useCallback(
     (f: Filter) => {
@@ -131,6 +149,8 @@ export const GalleryPage: React.FC = () => {
 
   const motionDur = prefersReducedMotion ? 0 : 0.35;
   const motionStagger = prefersReducedMotion ? 0 : 0.045;
+  const skipScrollEntranceOnCompact =
+    Boolean(prefersReducedMotion) || isCompactGalleryViewport;
 
   return (
     <div className="ui-page-shell">
@@ -217,16 +237,20 @@ export const GalleryPage: React.FC = () => {
                     type="button"
                     key={item.id}
                     initial={
-                      prefersReducedMotion
+                      skipScrollEntranceOnCompact
                         ? { opacity: 1, y: 0 }
                         : { opacity: 0, y: 16 }
                     }
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: '-60px' }}
+                    {...(!skipScrollEntranceOnCompact
+                      ? {
+                          whileInView: { opacity: 1, y: 0 },
+                          viewport: { once: true as const, margin: '-60px' },
+                        }
+                      : {})}
                     exit={{ opacity: 0 }}
                     transition={{
-                      duration: motionDur,
-                      delay: Math.min(i * motionStagger, 0.4),
+                      duration: skipScrollEntranceOnCompact ? 0 : motionDur,
+                      delay: skipScrollEntranceOnCompact ? 0 : Math.min(i * motionStagger, 0.4),
                     }}
                     className={cn(
                       'group relative aspect-square w-full overflow-hidden rounded-lg border border-brand-200/80 bg-brand-100 text-left shadow-sm ring-1 ring-black/[0.03] transition-[box-shadow,transform] duration-300 hover:z-10 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2'
@@ -241,7 +265,7 @@ export const GalleryPage: React.FC = () => {
                         category: categoryLabel(t, item.category),
                       })}
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                      className="absolute inset-0 h-full w-full object-cover transition duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform group-hover:scale-[1.045]"
+                      className="absolute inset-0 h-full w-full object-cover transition duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.045]"
                       loading={i < 4 ? 'eager' : 'lazy'}
                       fetchPriority={i === 0 ? 'high' : undefined}
                       decoding="async"
@@ -262,43 +286,56 @@ export const GalleryPage: React.FC = () => {
       <section className="section-viewport">
         <div className="section-viewport-scroll site-container py-8 md:py-10">
           <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: prefersReducedMotion ? 0 : 1 }}
+            initial={skipScrollEntranceOnCompact ? false : { opacity: 0, scale: 0.98 }}
+            {...(!skipScrollEntranceOnCompact
+              ? {
+                  whileInView: { opacity: 1, scale: 1 },
+                  viewport: { once: true as const },
+                }
+              : {})}
+            transition={{ duration: skipScrollEntranceOnCompact ? 0 : 1 }}
             className="relative w-full overflow-hidden rounded-xl bg-brand-900 px-6 py-12 text-center text-white shadow-2xl sm:px-10 sm:py-14 md:px-14 md:py-16 lg:px-16 lg:py-20"
           >
             <div className="absolute inset-0 z-0 opacity-30">
               <img
-                src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=2000"
+                src={GALLERY_CTA_BG_IMAGE}
                 alt=""
                 className="h-full w-full object-cover"
-                referrerPolicy="no-referrer"
+                decoding="async"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-brand-900/80 via-brand-900/40 to-brand-900/90" />
             </div>
 
             <div className="pointer-events-none absolute inset-0 overflow-hidden">
-              <div className="absolute -left-[10%] -top-[20%] h-[50%] w-[50%] rounded-full bg-brand-400/20 blur-[120px]" />
-              <div className="absolute -bottom-[20%] -right-[10%] h-[50%] w-[50%] rounded-full bg-rose-400/10 blur-[120px]" />
+              <div className="absolute -left-[10%] -top-[20%] h-[50%] w-[50%] rounded-full bg-brand-400/20 blur-[72px] sm:blur-[120px]" />
+              <div className="absolute -bottom-[20%] -right-[10%] h-[50%] w-[50%] rounded-full bg-rose-400/10 blur-[72px] sm:blur-[120px]" />
             </div>
 
             <div className="relative z-10 mx-auto max-w-4xl space-y-8 md:space-y-10">
               <div className="space-y-3 md:space-y-4">
                 <motion.p
-                  initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: prefersReducedMotion ? 0 : 0.05 }}
+                  initial={skipScrollEntranceOnCompact ? false : { opacity: 0, y: 12 }}
+                  {...(!skipScrollEntranceOnCompact
+                    ? {
+                        whileInView: { opacity: 1, y: 0 },
+                        viewport: { once: true as const },
+                      }
+                    : {})}
+                  transition={{ delay: skipScrollEntranceOnCompact ? 0 : 0.05 }}
                   className="text-[11px] font-semibold uppercase tracking-[0.28em] text-brand-300"
                 >
                   {t('galleryPage.ctaLine')}
                 </motion.p>
                 <motion.h2
-                  initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: prefersReducedMotion ? 0 : 0.12 }}
+                  initial={skipScrollEntranceOnCompact ? false : { opacity: 0, y: 20 }}
+                  {...(!skipScrollEntranceOnCompact
+                    ? {
+                        whileInView: { opacity: 1, y: 0 },
+                        viewport: { once: true as const },
+                      }
+                    : {})}
+                  transition={{ delay: skipScrollEntranceOnCompact ? 0 : 0.12 }}
                   className={cn(SECTION_H2_ON_DARK_CLASS, 'm-0')}
                 >
                   {t('galleryPage.ctaHeadingLine1')}
@@ -308,20 +345,28 @@ export const GalleryPage: React.FC = () => {
               </div>
 
               <motion.p
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: prefersReducedMotion ? 0 : 0.2 }}
+                initial={skipScrollEntranceOnCompact ? false : { opacity: 0, y: 20 }}
+                {...(!skipScrollEntranceOnCompact
+                  ? {
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: true as const },
+                    }
+                  : {})}
+                transition={{ delay: skipScrollEntranceOnCompact ? 0 : 0.2 }}
                 className={SECTION_LEAD_ON_DARK_CLASS}
               >
                 {t('galleryPage.ctaBody')}
               </motion.p>
 
               <motion.div
-                initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: prefersReducedMotion ? 0 : 0.3 }}
+                initial={skipScrollEntranceOnCompact ? false : { opacity: 0, y: 20 }}
+                {...(!skipScrollEntranceOnCompact
+                  ? {
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: true as const },
+                    }
+                  : {})}
+                transition={{ delay: skipScrollEntranceOnCompact ? 0 : 0.3 }}
                 className="flex flex-col items-center justify-center gap-5 pt-4 sm:flex-row sm:gap-6 sm:pt-6"
               >
                 <Link to={ROUTES.kontakt} className="cta-brand-band-primary-lg">
