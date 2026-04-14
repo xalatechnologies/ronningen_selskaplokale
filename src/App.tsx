@@ -146,7 +146,7 @@ const HOME_SERVICE_IMAGES: Record<HomeServiceKey, string> = {
     'https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&q=80&w=800',
   barDancefloor: '/home-service-bar-dancefloor.png',
   coordination: '/home-service-oppdekking.png',
-  decoration: '/facilities-hero-event-lighting.png',
+  decoration: '/facilities-hero-shuffleboard.png',
   overnight: '/facilities-childcare-playroom.png',
 };
 
@@ -295,7 +295,7 @@ const Home = () => {
                     <li key={key} className="min-w-0">
                       <Link
                         to={path}
-                        className="group flex flex-col items-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-2xl dark:focus-visible:ring-offset-brand-950"
+                        className="group flex w-full flex-col items-center text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded-2xl dark:focus-visible:ring-offset-brand-950"
                       >
                         <div className="relative mx-auto w-full max-w-[17rem] sm:max-w-[18rem] md:max-w-[19rem]">
                           <div className="relative aspect-square overflow-hidden rounded-full border-[3px] border-white/90 shadow-[0_20px_50px_-12px_rgba(33,24,22,0.35)] ring-1 ring-brand-900/10 transition-[transform,box-shadow] duration-500 ease-out group-hover:scale-[1.03] group-hover:shadow-[0_28px_60px_-8px_rgba(33,24,22,0.42)]">
@@ -334,12 +334,12 @@ const Home = () => {
                         <h3
                           className={cn(
                             SECTION_H3_CLASS,
-                            'mt-7 max-w-[20rem] text-balance text-center transition-colors duration-300 group-hover:text-brand-800 sm:mt-8 dark:group-hover:text-brand-100',
+                            'mx-auto mt-7 w-full max-w-[20rem] text-center transition-colors duration-300 group-hover:text-brand-800 sm:mt-8 dark:group-hover:text-brand-100',
                           )}
                         >
                           {title}
                         </h3>
-                        <p className="mt-4 max-w-[24rem] text-balance text-[0.9375rem] leading-relaxed text-brand-900 sm:mt-5 sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:text-lg lg:leading-relaxed dark:text-brand-100">
+                        <p className="mx-auto mt-4 w-full max-w-[24rem] text-center text-pretty text-[0.9375rem] leading-relaxed text-brand-900 sm:mt-5 sm:text-base md:text-[1.0625rem] md:leading-relaxed lg:text-lg lg:leading-relaxed dark:text-brand-100">
                           {t(`homeConcepts.items.${key}.description`)}
                         </p>
                       </Link>

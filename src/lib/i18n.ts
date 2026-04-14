@@ -53,7 +53,7 @@ const resources = {
           weddings: {
             title: 'Weddings',
             description:
-              'A full day tailored to you — from ceremony to celebration.',
+              'A full day tailored to you — from ceremony to celebration in beautiful, calm surroundings.',
             imgAlt:
               'Bride and groom cutting their wedding cake together in front of tall windows with a blurred forest outside',
           },
@@ -114,7 +114,7 @@ const resources = {
             description:
               'We offer activities including shuffleboard, darts, poker, air hockey and team building.',
             imgAlt:
-              'Event hall prepared for a party with professional lighting rigs, colourful beams on the floor and large windows to the landscape outside',
+              'Shuffleboard table with pucks on a polished wooden surface — indoor social activities at the venue',
           },
           overnight: {
             title: 'Childcare',
@@ -1009,7 +1009,8 @@ const resources = {
         items: {
           weddings: {
             title: 'Bryllup',
-            description: 'En hel dag tilpasset dere – fra vielse til fest.',
+            description:
+              'En hel dag tilpasset dere – fra vielse til fest i vakre og rolige omgivelser.',
             imgAlt:
               'Brud og brudgom som skjærer bryllupskaken sammen foran høye vinduer med utsikt mot skog',
           },
@@ -1068,7 +1069,7 @@ const resources = {
             description:
               'Vi har ulike aktiviteter som shuffleboard, dart, poker, airhockey og teambuilding.',
             imgAlt:
-              'Festsal rigget med profesjonelle lysarmaturer, fargede lyskjegler på gulvet og store vinduer mot landskapet utenfor',
+              'Shuffleboard-bord med klyper på blankpolert tre — sosiale aktiviteter innendørs i lokalet',
           },
           overnight: {
             title: 'Barnepass',
