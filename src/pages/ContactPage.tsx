@@ -7,6 +7,7 @@ import { cn } from '../lib/utils';
 import { PAGE_H1_CLASS, SECTION_H3_CLASS, SECTION_LEAD_CLASS, UI_EYEBROW_CLASS } from '../lib/typography';
 import { ContactForm } from '../components/ContactForm';
 import { ContactMap } from '../components/ContactMap';
+import { VENUE_CONTACT_EMAIL } from '../lib/contactEmail';
 
 type ContactItem = {
   icon: LucideIcon;
@@ -40,9 +41,9 @@ export const ContactPage: React.FC = () => {
     {
       icon: Mail,
       label: t('contactPage.emailLabel'),
-      value: t('contactPage.emailValue'),
+      value: VENUE_CONTACT_EMAIL,
       hint: t('contactPage.emailHint'),
-      href: `mailto:${t('contactPage.emailValue')}`,
+      href: `mailto:${VENUE_CONTACT_EMAIL}`,
     },
     {
       icon: MapPin,

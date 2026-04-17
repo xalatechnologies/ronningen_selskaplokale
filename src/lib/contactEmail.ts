@@ -1,12 +1,18 @@
 /**
  * Contact form email: Web3Forms when VITE_WEB3FORMS_ACCESS_KEY is set, otherwise
  * FormSubmit (https://formsubmit.co/ajax) to the venue inbox — works without extra
- * Vercel vars. Optional VITE_CONTACT_NOTIFY_EMAIL overrides FormSubmit recipient.
+ * Vercel vars. Optional VITE_CONTACT_NOTIFY_EMAIL overrides FormSubmit recipient only.
  * FormSubmit: activate once via the link they email to that inbox.
+ *
+ * Set VITE_VENUE_CONTACT_EMAIL on Vercel to use another inbox for footer, contact page,
+ * and FormSubmit (when VITE_CONTACT_NOTIFY_EMAIL is unset).
  */
 
-/** Public inbox: footer, contact page, and FormSubmit default when env override is unset. */
-export const VENUE_CONTACT_EMAIL = 'post@ronningenselskapslokale.no';
+const DEFAULT_VENUE_INBOX = 'post@ronningenselskapslokale.no';
+
+/** Public inbox: footer, contact page, and FormSubmit default when notify override is unset. */
+export const VENUE_CONTACT_EMAIL =
+  import.meta.env.VITE_VENUE_CONTACT_EMAIL?.trim() || DEFAULT_VENUE_INBOX;
 
 const FORM_SUBMIT_DEFAULT_INBOX = VENUE_CONTACT_EMAIL;
 

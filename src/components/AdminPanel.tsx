@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { LayoutDashboard, Inbox, Package, Image as ImageIcon, MessageSquare, HelpCircle, Users, Settings, LogOut, Plus, Edit, Trash2 } from 'lucide-react';
 import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { SECTION_H2_CLASS } from '../lib/typography';
+import { VENUE_CONTACT_EMAIL } from '../lib/contactEmail';
 
 const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const navigate = useNavigate();
@@ -336,7 +337,7 @@ const SiteSettings = () => {
           </div>
           <div className="space-y-2">
             <label className="text-sm font-bold text-gray-700 uppercase tracking-widest">Contact Email</label>
-            <input type="email" defaultValue="post@ronningenselskapslokale.no" className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-brand-500 outline-none" />
+            <input type="email" defaultValue={VENUE_CONTACT_EMAIL} className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-brand-500 outline-none" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-bold text-gray-700 uppercase tracking-widest">Phone Number</label>
