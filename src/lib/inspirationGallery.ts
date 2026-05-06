@@ -130,7 +130,6 @@ const PRIVATE_FILES = [
 const FACILITIES_FILES = [
   '948_2e68cafd-755e-44c3-99b3-a9a584bcca38.avif',
   '948_d37b1bf2-6805-4d9c-a559-eea68a1bf023.avif',
-  '37319914_10214030408207206_378276062024433664_o.jpg',
   '948_734e4299-f6ad-4911-a9c1-d32cfa110315.avif',
   '948_40737654-e46b-4ee5-aac5-00e3862c5aad.avif',
   '948_2fda58de-0689-4e5b-b064-8c94e0eb5dd8.avif',
@@ -152,7 +151,6 @@ const FACILITIES_FILES = [
   '468752200_1326561468723071_2651641691333451860_n.jpg',
   '470876633_1340265430686008_300663239583926768_n.jpg',
   '21NYH_14-14-Rønningen-Liesl-og-Kai-26.jpg',
-  '948_ed824d64-5e71-49fc-a39c-a3e98e1b0072.avif',
 ] as const;
 
 function buildInspirationSlides(
