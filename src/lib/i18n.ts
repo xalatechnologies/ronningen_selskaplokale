@@ -12,7 +12,7 @@ const resources = {
         corporate: 'Corporate',
         private: 'Private',
         packages: 'Packages',
-        prices: 'Prices',
+        prices: 'Facilities',
         facilities: 'Facilities',
         gallery: 'Gallery',
         blog: 'Blog',
@@ -247,6 +247,7 @@ const resources = {
           },
         },
         packagesSection: {
+          introHeading: 'Our wedding packages',
           heading: 'Choose the package that suits you',
           intro: 'Flexible solutions, no matter what kind of day you are planning.',
           popularBadge: 'Most popular',
@@ -989,7 +990,7 @@ const resources = {
         corporate: 'Bedrift',
         private: 'Selskap',
         packages: 'Pakker',
-        prices: 'Priser',
+        prices: 'Fasiliteter',
         facilities: 'Fasiliteter',
         gallery: 'Galleri',
         blog: 'Blogg',
@@ -1222,6 +1223,7 @@ const resources = {
           },
         },
         packagesSection: {
+          introHeading: 'Våre bryllupspakker',
           heading: 'Velg pakken som passer dere',
           intro: 'Fleksible løsninger — uansett hva slags dag dere planlegger.',
           popularBadge: 'Mest populær',

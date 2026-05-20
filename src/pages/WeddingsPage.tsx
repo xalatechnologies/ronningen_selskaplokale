@@ -34,6 +34,7 @@ import {
   InspirationGalleryLightbox,
   useInspirationGalleryLightboxState,
 } from '../components/InspirationGalleryLightbox';
+import { WeddingPricingIntroBlock } from '../components/pricing/WeddingPricingIntroBlock';
 
 const WEDDINGS_DAY_TIMELINE_KEYS = ['item1', 'item2', 'item3', 'item4'] as const;
 
@@ -487,6 +488,8 @@ export const WeddingsPage = () => {
           </motion.div>
         </div>
       </section>
+
+      <WeddingPricingIntroBlock />
 
 
 
