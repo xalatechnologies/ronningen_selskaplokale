@@ -6,6 +6,8 @@ import { cn } from '../lib/utils';
 import { corporateInspirationSlides } from '../lib/inspirationGallery';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
+import { EventPackagesBlock } from '../components/pricing/EventPackagesBlock';
+import { PackageIntroBlock } from '../components/pricing/PackageIntroBlock';
 import {
   FAQ_ANSWER_CLASS,
   SECTION_H2_CLASS,
@@ -406,6 +408,9 @@ export const CorporatePage = () => {
           </motion.div>
         </div>
       </section>
+
+      <PackageIntroBlock pageKey="corporatePage" headingId="corporate-packages-intro-heading" />
+      <EventPackagesBlock type="corporate" />
 
       {/* 5 — FAQ (samme mål og uttrykk som bryllup) */}
       <section className="section-viewport relative overflow-hidden border-b border-brand-100 bg-brand-50/50 dark:border-brand-800 dark:bg-brand-950/50">

@@ -109,7 +109,7 @@ const Dashboard = () => {
           <div className="space-y-6">
             {[
               { user: 'Sarah Johnson', action: 'sent a new inquiry', time: '2 hours ago' },
-              { user: 'Admin', action: 'updated package "Plus"', time: '5 hours ago' },
+              { user: 'Admin', action: 'updated package "Standard"', time: '5 hours ago' },
               { user: 'Thomas Berg', action: 'confirmed booking for June 12', time: '1 day ago' },
               { user: 'Admin', action: 'uploaded 5 new gallery items', time: '2 days ago' },
             ].map((activity, i) => (
@@ -234,7 +234,7 @@ export const PackagesManagement = () => {
           <tbody className="divide-y divide-gray-200">
             {[
               { name: 'Basis', price: 'Kr 450,-', features: 5 },
-              { name: 'Plus', price: 'Kr 750,-', features: 8 },
+              { name: 'Standard', price: 'Kr 750,-', features: 8 },
               { name: 'Premium', price: 'Kr 1250,-', features: 12 },
             ].map((pkg, i) => (
               <tr key={i} className="hover:bg-gray-50 transition-colors">

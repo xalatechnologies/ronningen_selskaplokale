@@ -176,7 +176,10 @@ const intentBoost = (intent: string, lower: string): number => {
     includesAny(lower, ['kontakt', 'contact', 'e-post', 'email', 'telefon', 'phone', 'skjema', 'form', 'booking', 'bestill'])
   )
     return 2;
-  if (intent === 'plus_premium_diff' && includesAny(lower, ['plus', 'premium', 'forskjell', 'difference', 'nivå', 'level']))
+  if (
+    intent === 'standard_premium_diff' &&
+    includesAny(lower, ['standard', 'premium', 'forskjell', 'difference', 'nivå', 'level'])
+  )
     return 2;
   if (
     intent === 'accessibility_universal' &&
@@ -388,7 +391,7 @@ export const generateAssistantReply = (input: string, replyCount: number, siteLa
     );
   }
 
-  if (includesAny(lower, ['package', 'pakke', 'basis', 'plus', 'premium'])) {
+  if (includesAny(lower, ['package', 'pakke', 'basis', 'standard', 'premium'])) {
     const pkgFaq = getBestFaq(text, lang);
     if (pkgFaq) {
       return withEnding(lang === 'no' ? pkgFaq.answer_no : pkgFaq.answer_en, lang, replyCount);

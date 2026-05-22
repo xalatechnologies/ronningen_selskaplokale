@@ -2,22 +2,22 @@
   {
     "id": "basis",
     "name_no": "Basis",
-    "name_en": "Basis",
-    "guidance_no": "Mer egenorganisering og fleksibilitet.",
-    "guidance_en": "More DIY flexibility."
+    "name_en": "Basic",
+    "guidance_no": "En enkel ramme med lokale, grunnleggende teknisk utstyr og gratis parkering.",
+    "guidance_en": "A simple starting point with the venue, basic technical equipment and free parking."
   },
   {
-    "id": "plus",
-    "name_no": "Plus",
-    "name_en": "Plus",
-    "guidance_no": "Balansert praktisk løsning.",
-    "guidance_en": "Balanced practical option."
+    "id": "standard",
+    "name_no": "Standard",
+    "name_en": "Standard",
+    "guidance_no": "Den mest populære rammen for bedrift og selskap, med mer praktisk hjelp og flere fasiliteter inkludert.",
+    "guidance_en": "The most popular option for corporate and private events, with more practical support and facilities included."
   },
   {
     "id": "premium",
     "name_no": "Premium",
     "name_en": "Premium",
-    "guidance_no": "Mer koordinering og helhet.",
-    "guidance_en": "More coordination and full service feel."
+    "guidance_no": "Den mest komplette pakken, med høyere komfort, mer oppdekking og bedre helhet rundt arrangementet.",
+    "guidance_en": "The most complete package, with more comfort, setup support and a fuller event experience."
   }
 ]

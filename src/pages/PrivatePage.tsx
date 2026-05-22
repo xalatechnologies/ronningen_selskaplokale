@@ -1,12 +1,14 @@
-import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
 import { privateInspirationSlides } from '../lib/inspirationGallery';
 import { ROUTES, kontaktSkjemaHash } from '../lib/routes';
 import { HeroScrollHint } from '../components/HeroScrollHint';
 import { GalleryLightbox, useGalleryLightboxState, type GalleryLightboxSlide } from '../components/InspirationGalleryLightbox';
+import { EventPackagesBlock } from '../components/pricing/EventPackagesBlock';
+import { PackageIntroBlock } from '../components/pricing/PackageIntroBlock';
 import {
   FAQ_ANSWER_CLASS,
   SECTION_H2_CLASS,
@@ -60,13 +62,6 @@ const GALLERY_EDGE_TOLERANCE = 2;
 
 export const PrivatePage = () => {
   const { t, i18n } = useTranslation();
-  const { hash } = useLocation();
-  const navigate = useNavigate();
-
-  useLayoutEffect(() => {
-    if (hash !== '#private-packages-heading') return;
-    navigate(ROUTES.priser, { replace: true });
-  }, [hash, navigate]);
 
   const gallerySlides = useMemo<GalleryLightboxSlide[]>(
     () =>
@@ -427,6 +422,9 @@ export const PrivatePage = () => {
           </motion.div>
         </div>
       </section>
+
+      <PackageIntroBlock pageKey="privatePage" headingId="private-packages-intro-heading" />
+      <EventPackagesBlock type="private" />
 
       {/* 5 — FAQ (samme mål og uttrykk som bryllup) */}
       <section className="section-viewport relative overflow-hidden border-b border-brand-100 bg-brand-50/50 dark:border-brand-800 dark:bg-brand-950/50">

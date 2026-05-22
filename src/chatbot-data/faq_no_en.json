@@ -145,11 +145,11 @@
   },
   {
     "category": "packages",
-    "intent": "plus_premium_diff",
-    "questions_no": ["Hva er forskjellen på Plus og Premium?", "Hva inkluderer Plus?", "Hva inkluderer Premium?", "plus pakke", "premium pakke"],
-    "questions_en": ["What is the difference between Plus and Premium?", "What does Plus include?", "What does Premium include?", "plus package", "premium package"],
-    "answer_no": "Plus er en balansert praktisk løsning; Premium gir mer koordinering og helhet. Nøyaktig innhold og pris settes i tilbud etter behov.",
-    "answer_en": "Plus is a balanced practical option; Premium adds more coordination and a fuller service feel. Exact inclusions and price are set in your quote based on needs."
+    "intent": "standard_premium_diff",
+    "questions_no": ["Hva er forskjellen på Standard og Premium?", "Hva inkluderer Standard?", "Hva inkluderer Premium?", "standard pakke", "premium pakke"],
+    "questions_en": ["What is the difference between Standard and Premium?", "What does Standard include?", "What does Premium include?", "standard package", "premium package"],
+    "answer_no": "Standard gir en komplett og praktisk ramme for gjennomføringen. Premium legger til mer komfort, oppdekking og helhet rundt arrangementet. Nøyaktig innhold og pris følger valgt type arrangement.",
+    "answer_en": "Standard provides a complete and practical event setup. Premium adds more comfort, setup support and a fuller event experience. Exact inclusions and price depend on the event type."
   },
   {
     "category": "accessibility",
