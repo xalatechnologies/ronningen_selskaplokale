@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { LayoutDashboard, Inbox, Package, Image as ImageIcon, MessageSquare, HelpCircle, Users, Settings, LogOut, Plus, Edit, Trash2 } from 'lucide-react';
 import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { SECTION_H2_CLASS } from '../lib/typography';
-import { VENUE_CONTACT_EMAIL } from '../lib/contactEmail';
+import { VENUE_CONTACT_EMAIL, VENUE_CONTACT_PHONE_DISPLAY } from '../lib/contactEmail';
 
 const AdminLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const navigate = useNavigate();
@@ -341,7 +341,7 @@ const SiteSettings = () => {
           </div>
           <div className="space-y-2">
             <label className="text-sm font-bold text-gray-700 uppercase tracking-widest">Phone Number</label>
-            <input type="text" defaultValue="+47 96 66 50 01" className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-brand-500 outline-none" />
+            <input type="text" defaultValue={VENUE_CONTACT_PHONE_DISPLAY} className="w-full px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-brand-500 outline-none" />
           </div>
           <div className="pt-4">
             <button type="submit" className="bg-brand-800 text-white px-8 py-3 rounded-lg font-medium hover:bg-brand-900 transition-colors">

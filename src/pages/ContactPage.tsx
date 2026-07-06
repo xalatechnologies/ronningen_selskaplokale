@@ -7,7 +7,10 @@ import { cn } from '../lib/utils';
 import { PAGE_H1_CLASS, SECTION_H3_CLASS, SECTION_LEAD_CLASS, UI_EYEBROW_CLASS } from '../lib/typography';
 import { ContactForm } from '../components/ContactForm';
 import { ContactMap } from '../components/ContactMap';
-import { VENUE_CONTACT_EMAIL } from '../lib/contactEmail';
+import {
+  VENUE_CONTACT_EMAIL,
+  VENUE_CONTACT_PHONE_HREF,
+} from '../lib/contactEmail';
 
 type ContactItem = {
   icon: LucideIcon;
@@ -36,7 +39,7 @@ export const ContactPage: React.FC = () => {
       label: t('contactPage.phoneLabel'),
       value: t('contactPage.phoneValue'),
       hint: t('contactPage.phoneHint'),
-      href: 'tel:+4796665001',
+      href: VENUE_CONTACT_PHONE_HREF,
     },
     {
       icon: Mail,

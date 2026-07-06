@@ -14,6 +14,11 @@ const DEFAULT_VENUE_INBOX = 'post@ronningenselskapslokale.no';
 export const VENUE_CONTACT_EMAIL =
   import.meta.env.VITE_VENUE_CONTACT_EMAIL?.trim() || DEFAULT_VENUE_INBOX;
 
+/** Public phone: footer, contact page, and i18n display. */
+export const VENUE_CONTACT_PHONE = '+4792977771';
+export const VENUE_CONTACT_PHONE_DISPLAY = '+47 92 97 77 71';
+export const VENUE_CONTACT_PHONE_HREF = `tel:${VENUE_CONTACT_PHONE}`;
+
 const FORM_SUBMIT_DEFAULT_INBOX = VENUE_CONTACT_EMAIL;
 
 function formSubmitInbox(): string {

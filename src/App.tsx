@@ -39,7 +39,11 @@ import {
 } from './components/InspirationGalleryLightbox';
 import { FACILITY_PRICING_HEADING_ID } from './components/pricing/FacilityPricingBlock';
 import { BOOKING_URL } from './lib/booking';
-import { VENUE_CONTACT_EMAIL } from './lib/contactEmail';
+import {
+  VENUE_CONTACT_EMAIL,
+  VENUE_CONTACT_PHONE_DISPLAY,
+  VENUE_CONTACT_PHONE_HREF,
+} from './lib/contactEmail';
 import { homeInspirationGallerySlides, inspirationSlideFileNumber } from './lib/inspirationGallery';
 import { cn } from './lib/utils';
 import { fireHomeHeroConfetti } from './lib/heroConfetti';
@@ -625,7 +629,7 @@ const Footer = () => {
               <ul className="m-0 flex list-none flex-col items-start justify-start gap-3 p-0 text-sm text-brand-300 sm:flex-row sm:flex-wrap sm:items-center sm:justify-start sm:gap-x-5 sm:gap-y-2">
               <li className="shrink-0">
                 <a
-                  href="tel:+4796665001"
+                  href={VENUE_CONTACT_PHONE_HREF}
                   className={cn(linkClass, 'inline-flex items-center gap-2.5')}
                 >
                   <span
@@ -634,7 +638,7 @@ const Footer = () => {
                   >
                     <Phone size={15} className="text-brand-500" />
                   </span>
-                  <span>+47 96 66 50 01</span>
+                  <span>{VENUE_CONTACT_PHONE_DISPLAY}</span>
                 </a>
               </li>
               <li className="min-w-0 shrink-0">
