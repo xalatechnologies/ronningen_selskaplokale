@@ -930,6 +930,14 @@ const resources = {
         formErrPhone: 'If you add a phone number, use at least 8 digits.',
         formErrMessage: 'Please write at least 10 characters.',
       },
+      contactThankYou: {
+        title: 'Thank you | Rønningen Selskapslokale',
+        heading: 'Thank you for your message',
+        body: 'We have received your enquiry and will get back to you as soon as we can — usually within one business day.',
+        backHome: 'Back to home',
+        metaDescription:
+          'Thank you for contacting Rønningen Selskapslokale. We will reply to your enquiry soon.',
+      },
       blogPage: {
         metaTitle: 'Journal & blog | Rønningen — weddings, events & parties in Lier',
         metaDescription:
@@ -1983,6 +1991,14 @@ const resources = {
         formErrEmail: 'Oppgi en gyldig e-postadresse.',
         formErrPhone: 'Hvis du fyller inn telefon, bruk minst 8 siffer.',
         formErrMessage: 'Skriv minst 10 tegn.',
+      },
+      contactThankYou: {
+        title: 'Takk | Rønningen Selskapslokale',
+        heading: 'Takk for henvendelsen',
+        body: 'Vi har mottatt meldingen din og tar kontakt så snart vi kan — vanligvis innen én virkedag.',
+        backHome: 'Til forsiden',
+        metaDescription:
+          'Takk for at du kontaktet Rønningen Selskapslokale. Vi svarer på henvendelsen din snart.',
       },
       blogPage: {
         metaTitle: 'Journal og blogg | Rønningen selskapslokale — fest og event i Lier',

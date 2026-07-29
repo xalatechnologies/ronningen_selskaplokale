@@ -14,6 +14,7 @@ export const ROUTES = {
   ofteStilteSporsmal: '/ofte-stilte-sporsmal',
   anmeldelser: '/anmeldelser',
   kontakt: '/kontakt',
+  takk: '/kontakt/takk',
   henvendelse: '/henvendelse',
 } as const;
 

@@ -58,6 +58,7 @@ import {
 } from './lib/typography';
 
 import { ContactPage } from './pages/ContactPage';
+import { ContactThankYouPage } from './pages/ContactThankYouPage';
 
 import { GalleryPage } from './pages/GalleryPage';
 
@@ -766,6 +767,7 @@ export default function App() {
                 <Route path={ROUTES.blogg} element={<BlogPage />} />
                 <Route path={ROUTES.ofteStilteSporsmal} element={<FAQPage />} />
                 <Route path={ROUTES.anmeldelser} element={<TestimonialsPage />} />
+                <Route path={ROUTES.takk} element={<ContactThankYouPage />} />
                 <Route path={ROUTES.kontakt} element={<ContactPage />} />
                 <Route path={ROUTES.henvendelse} element={<InquiryPage />} />
                 <Route path="/admin/*" element={<AdminPanel />} />

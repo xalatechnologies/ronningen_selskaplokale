@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -9,6 +10,7 @@ import { isSupabaseConfigured, supabase } from '../lib/supabase';
 import { sendContactFormEmailNotification } from '../lib/contactEmail';
 import { toast } from 'sonner';
 import { cn } from '../lib/utils';
+import { ROUTES } from '../lib/routes';
 
 export type ContactFormValues = {
   name: string;
@@ -25,6 +27,7 @@ type ContactFormProps = {
 
 export const ContactForm: React.FC<ContactFormProps> = ({ embedded = false, className }) => {
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
   const schema = useMemo(
     () =>
@@ -44,7 +47,6 @@ export const ContactForm: React.FC<ContactFormProps> = ({ embedded = false, clas
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    reset,
   } = useForm<ContactFormValues>({
     resolver: zodResolver(schema),
     defaultValues: { name: '', email: '', phone: '', message: '' },
@@ -102,20 +104,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({ embedded = false, clas
         console.error('Contact form email notification:', emailErr);
       }
 
-      if (emailOk && dbOk) {
-        toast.success(t('contactPage.formSuccess'));
-        reset();
-        return;
-      }
-      if (emailOk && !dbOk) {
-        toast.success(t('contactPage.formSuccessEmailOnly'));
-        reset();
-        return;
-      }
-      if (!emailOk && dbOk) {
-        toast.success(t('contactPage.formSuccess'));
-        toast.warning(t('contactPage.formEmailNotifyError'));
-        reset();
+      if (emailOk || dbOk) {
+        navigate(ROUTES.takk);
         return;
       }
 
