@@ -29,6 +29,7 @@ import './lib/i18n';
 import { Toaster } from 'sonner';
 
 import { AppNavigation } from './components/AppNavigation';
+import { GtmRouteTracker } from './components/GtmRouteTracker';
 import { HomePartnerCard } from './components/HomePartnerCard';
 import { AdminPanel } from './components/AdminPanel';
 import { HeroScrollHint } from './components/HeroScrollHint';
@@ -746,6 +747,7 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
+      <GtmRouteTracker />
       <div className="flex min-h-screen flex-col">
         <AppNavigation />
         <div className="flex min-h-screen min-w-0 flex-1 flex-col">
