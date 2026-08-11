@@ -141,21 +141,21 @@ const resources = {
         websiteLabel: 'Visit website',
         noWebsite: 'Contact us',
         items: {
-          cateringKitchen: {
-            name: 'Svensefjøset',
-            desc: 'Based in Lierbyen with a focus on local produce. Delivers flavorful food for both small and large events.',
+          smakslykke: {
+            name: 'Smakslykke',
+            desc: 'Catering with authentic flavours and quality produce for meetings, parties and larger events in the Drammen and Lier region.',
           },
           flowersDecor: {
             name: 'OsloEvent',
             desc: 'Provides event equipment and practical solutions, from decor elements to technical needs.',
           },
-          photoVideo: {
-            name: 'Villa Boligstyling',
-            desc: 'Supports table setup and venue styling, tailored to your style and event format.',
+          vmCatering: {
+            name: 'VM Catering',
+            desc: 'Catering for businesses and private events in Asker, Bærum and Oslo — from lunch buffets to complete celebration menus.',
           },
-          soundLight: {
-            name: 'Festpartner',
-            desc: 'Rental of chair covers, table linens and accessories for a complete table setting.',
+          rishiDecor: {
+            name: 'Rishidekor',
+            desc: 'Decoration, photo and video for weddings, celebrations and events — styling tailored to your day.',
           },
           barService: {
             name: 'Digilist',
@@ -538,6 +538,10 @@ const resources = {
               price: 'From NOK 26,000',
               note: 'Main celebration hall — package pricing depends on event type and guest count.',
             },
+            helicopter: {
+              price: 'On request',
+              note: 'Available by arrangement when weather and scheduling allow.',
+            },
           },
         },
       },
@@ -771,6 +775,12 @@ const resources = {
               desc: 'The main room with space for dinner, speeches and dancing — all in one place.',
               imgAlt:
                 'Aerial view of the estate — main venue, white guest house with pool, red outbuilding, picnic tables, gravel paths, Norwegian flag and forested hills',
+            },
+            helicopter: {
+              title: 'Helicopter',
+              desc: 'Arrive or leave by helicopter when available — a memorable experience arranged on request.',
+              imgAlt:
+                'Yellow helicopter with red stripes parked on gravel beside a grain field and forest',
             },
           },
         },
@@ -1205,21 +1215,21 @@ const resources = {
         websiteLabel: 'Besøk nettside',
         noWebsite: 'Ta kontakt',
         items: {
-          cateringKitchen: {
-            name: 'Svensefjøset',
-            desc: 'Lokalisert i Lierbyen, med fokus på lokale råvarer. Leverer smakfull mat til både små og store arrangementer.',
+          smakslykke: {
+            name: 'Smakslykke',
+            desc: 'Catering med ekte smaker og kvalitetsråvarer til møter, fest og større arrangementer i Drammen- og Lier-området.',
           },
           flowersDecor: {
             name: 'OsloEvent',
             desc: 'Leverer utstyr og løsninger til arrangementer, fra dekor til praktiske behov.',
           },
-          photoVideo: {
-            name: 'Villa Boligstyling',
-            desc: 'Hjelper med oppdekking og styling av lokalet, tilpasset deres stil og type arrangement.',
+          vmCatering: {
+            name: 'VM Catering',
+            desc: 'Catering til bedrift og private arrangementer i Asker, Bærum og Oslo — fra lunsjbuffé til komplette selskapsmenyer.',
           },
-          soundLight: {
-            name: 'Festpartner',
-            desc: 'Utleie av stoltrekk, duker og annet tilbehør for en gjennomført borddekking.',
+          rishiDecor: {
+            name: 'Rishidekor',
+            desc: 'Dekorasjon, foto og video til bryllup, fest og event — styling tilpasset deres dag.',
           },
           barService: {
             name: 'Digilist',
@@ -1601,6 +1611,10 @@ const resources = {
               price: 'Fra kr 26 000',
               note: 'Hovedlokale — pakkepris avhenger av arrangementstype og antall gjester.',
             },
+            helicopter: {
+              price: 'Etter avtale',
+              note: 'Tilgjengelig etter avtale når vær og tidspunkt tillater det.',
+            },
           },
         },
       },
@@ -1833,6 +1847,12 @@ const resources = {
               desc: 'Hovedrommet med god plass til middag, taler og fest – alt samlet på ett sted.',
               imgAlt:
                 'Luftfoto av tunet — hovedbygg, hvitt gjestehus med basseng, rødt driftsbygg, langbord ute, grusveier, norsk flagg og skogkledde åser',
+            },
+            helicopter: {
+              title: 'Helikopter',
+              desc: 'Ankomst eller avreise med helikopter når det er tilgjengelig — en unik opplevelse etter avtale.',
+              imgAlt:
+                'Gult helikopter med røde striper parkert på grus ved åker og skog',
             },
           },
         },

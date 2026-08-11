@@ -1,8 +1,8 @@
 export const HOME_PARTNER_KEYS = [
-  'cateringKitchen',
+  'smakslykke',
   'flowersDecor',
-  'photoVideo',
-  'soundLight',
+  'vmCatering',
+  'rishiDecor',
   'barService',
   'digilist',
 ] as const;
@@ -10,20 +10,20 @@ export const HOME_PARTNER_KEYS = [
 export type HomePartnerKey = (typeof HOME_PARTNER_KEYS)[number];
 
 export const HOME_PARTNER_LINKS: Record<HomePartnerKey, string | null> = {
-  cateringKitchen: 'https://svensefjoset.no/',
+  smakslykke: 'https://smakslykkecatering.no/pages/vare-menyer',
   flowersDecor: 'https://osloeventshop.no/',
-  photoVideo: 'https://villaboligstyling.no/',
-  soundLight: 'https://festpartner.no/',
+  vmCatering: 'https://www.vmcatering.no/',
+  rishiDecor: null,
   barService: 'https://digilist.no/',
   digilist: 'https://xala.no/',
 };
 
 /** Fallback initials when no favicon / URL (stable across locales). */
 export const HOME_PARTNER_INITIALS: Record<HomePartnerKey, string> = {
-  cateringKitchen: 'S',
+  smakslykke: 'S',
   flowersDecor: 'O',
-  photoVideo: 'V',
-  soundLight: 'F',
+  vmCatering: 'V',
+  rishiDecor: 'R',
   barService: 'D',
   digilist: 'X',
 };
