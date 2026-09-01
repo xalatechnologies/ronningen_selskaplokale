@@ -23,3 +23,7 @@ export type RouteKey = keyof typeof ROUTES;
 export function kontaktSkjemaHash(): string {
   return `${ROUTES.kontakt}#kontakt-skjema`;
 }
+
+export function befaringHash(): string {
+  return `${ROUTES.kontakt}#befaring`;
+}

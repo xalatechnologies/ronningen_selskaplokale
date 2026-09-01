@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
@@ -6,11 +6,14 @@ import { Mail, Phone, MapPin, Clock, ExternalLink, type LucideIcon } from 'lucid
 import { cn } from '../lib/utils';
 import { PAGE_H1_CLASS, SECTION_H3_CLASS, SECTION_LEAD_CLASS, UI_EYEBROW_CLASS } from '../lib/typography';
 import { ContactForm } from '../components/ContactForm';
+import { BefaringForm } from '../components/BefaringForm';
 import { ContactMap } from '../components/ContactMap';
 import {
   VENUE_CONTACT_EMAIL,
   VENUE_CONTACT_PHONE_HREF,
 } from '../lib/contactEmail';
+
+type ContactMode = 'contact' | 'befaring';
 
 type ContactItem = {
   icon: LucideIcon;
@@ -24,11 +27,22 @@ type ContactItem = {
 export const ContactPage: React.FC = () => {
   const { t } = useTranslation();
   const { hash } = useLocation();
+  const [mode, setMode] = useState<ContactMode>(() =>
+    typeof window !== 'undefined' && window.location.hash === '#befaring'
+      ? 'befaring'
+      : 'contact'
+  );
 
   useLayoutEffect(() => {
-    if (hash !== '#kontakt-skjema') return;
-    const el = document.getElementById('kontakt-skjema');
-    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (hash === '#befaring') {
+      setMode('befaring');
+      document.getElementById('kontakt-skjema')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    if (hash === '#kontakt-skjema') {
+      setMode('contact');
+      document.getElementById('kontakt-skjema')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }, [hash]);
 
   const mapsSearchUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(t('contactPage.addressValue'))}`;
@@ -64,6 +78,14 @@ export const ContactPage: React.FC = () => {
     },
   ];
 
+  const selectMode = (next: ContactMode) => {
+    setMode(next);
+    const nextHash = next === 'befaring' ? '#befaring' : '#kontakt-skjema';
+    if (window.location.hash !== nextHash) {
+      window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}${nextHash}`);
+    }
+  };
+
   return (
     <div className="ui-page-shell">
       <section
@@ -80,7 +102,6 @@ export const ContactPage: React.FC = () => {
         />
 
         <div className="section-viewport-scroll site-container relative z-10 py-12 md:py-16 lg:py-20">
-          {/* Page intro — same scroll context as everything below */}
           <header className="mx-auto w-full text-center">
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -116,11 +137,9 @@ export const ContactPage: React.FC = () => {
         aria-label={t('contactPage.sectionHeading')}
       >
         <div className="section-viewport-scroll site-container py-12 md:py-16 lg:py-20">
-          {/* Single panel: row1 = contact | form · row2 = full-width map */}
           <div className="rounded-3xl border border-brand-300/80 bg-[#f5f2ed] p-5 text-brand-900 shadow-[0_1px_0_rgba(28,22,19,0.06)] sm:p-6 md:p-8 lg:p-10 dark:border-brand-600/80 dark:bg-brand-900/50 dark:text-brand-100 dark:shadow-none">
             <div className="flex flex-col gap-10 lg:gap-12">
               <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-x-10 xl:gap-x-14">
-                {/* Left: how to reach us + cards */}
                 <div className="flex flex-col gap-8 lg:col-span-4">
                   <h2 className="font-serif text-xl tracking-tight text-brand-950 md:text-2xl dark:text-brand-50">
                     {t('contactPage.sectionHeading')}
@@ -171,24 +190,62 @@ export const ContactPage: React.FC = () => {
                   </ul>
                 </div>
 
-                {/* Right: kontakt skjema — wider column */}
                 <div
                   id="kontakt-skjema"
                   className="scroll-mt-28 lg:col-span-8 lg:min-h-0"
                 >
                   <h3 id="contact-form-heading" className={SECTION_H3_CLASS}>
-                    {t('contactPage.formSectionTitle')}
+                    {mode === 'befaring'
+                      ? t('contactPage.befaringSectionTitle')
+                      : t('contactPage.formSectionTitle')}
                   </h3>
                   <p className={cn(SECTION_LEAD_CLASS, 'mt-3')}>
-                    {t('contactPage.formSectionIntro')}
+                    {mode === 'befaring'
+                      ? t('contactPage.befaringSectionIntro')
+                      : t('contactPage.formSectionIntro')}
                   </p>
+
+                  <div
+                    className="mt-6 inline-flex w-full max-w-md rounded-full border border-brand-300/90 bg-white/80 p-1 dark:border-brand-600 dark:bg-brand-950/40"
+                    role="tablist"
+                    aria-label={t('contactPage.formModeAria')}
+                  >
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={mode === 'contact'}
+                      onClick={() => selectMode('contact')}
+                      className={cn(
+                        'flex-1 rounded-full px-4 py-2.5 text-center text-xs font-semibold uppercase tracking-[0.16em] transition',
+                        mode === 'contact'
+                          ? 'bg-brand-900 text-white shadow-sm dark:bg-brand-100 dark:text-brand-900'
+                          : 'text-brand-800 hover:bg-brand-50 dark:text-brand-200 dark:hover:bg-brand-800/60'
+                      )}
+                    >
+                      {t('contactPage.modeContact')}
+                    </button>
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={mode === 'befaring'}
+                      onClick={() => selectMode('befaring')}
+                      className={cn(
+                        'flex-1 rounded-full px-4 py-2.5 text-center text-xs font-semibold uppercase tracking-[0.16em] transition',
+                        mode === 'befaring'
+                          ? 'bg-brand-900 text-white shadow-sm dark:bg-brand-100 dark:text-brand-900'
+                          : 'text-brand-800 hover:bg-brand-50 dark:text-brand-200 dark:hover:bg-brand-800/60'
+                      )}
+                    >
+                      {t('contactPage.modeBefaring')}
+                    </button>
+                  </div>
+
                   <div className="mt-8">
-                    <ContactForm embedded />
+                    {mode === 'befaring' ? <BefaringForm embedded /> : <ContactForm embedded />}
                   </div>
                 </div>
               </div>
 
-              {/* Full-width map below both columns */}
               <div className="border-t border-brand-200/80 pt-10 dark:border-brand-600/70">
                 <div className="mb-4">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-700 dark:text-brand-400">
