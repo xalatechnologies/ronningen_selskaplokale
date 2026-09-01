@@ -60,6 +60,7 @@ import {
 
 import { ContactPage } from './pages/ContactPage';
 import { ContactThankYouPage } from './pages/ContactThankYouPage';
+import { VisningPage } from './pages/VisningPage';
 
 import { GalleryPage } from './pages/GalleryPage';
 
@@ -770,6 +771,7 @@ export default function App() {
                 <Route path={ROUTES.ofteStilteSporsmal} element={<FAQPage />} />
                 <Route path={ROUTES.anmeldelser} element={<TestimonialsPage />} />
                 <Route path={ROUTES.takk} element={<ContactThankYouPage />} />
+                <Route path={ROUTES.visning} element={<VisningPage />} />
                 <Route path={ROUTES.kontakt} element={<ContactPage />} />
                 <Route path={ROUTES.henvendelse} element={<InquiryPage />} />
                 <Route path="/admin/*" element={<AdminPanel />} />

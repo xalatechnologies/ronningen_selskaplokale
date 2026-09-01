@@ -369,6 +369,16 @@ export function AppNavigation() {
     </Link>
   );
 
+  const visningHeaderLink = (
+    <Link
+      to={ROUTES.visning}
+      onClick={closeMenu}
+      className="hidden h-10 shrink-0 items-center justify-center rounded-full border border-brand-300 px-3 text-center text-[10px] font-bold uppercase tracking-[0.18em] text-brand-900 transition hover:border-brand-900 hover:bg-brand-50 dark:border-brand-500 dark:text-brand-100 dark:hover:border-brand-200 dark:hover:bg-brand-800/60 md:flex md:h-11 md:px-4 md:text-[11px]"
+    >
+      {t('nav.bookVisning')}
+    </Link>
+  );
+
   return (
     <>
       {/* Top bar: grid on md+ (logo | nav+CTA); mobile hamburger → drawer (full list) */}
@@ -438,6 +448,7 @@ export function AppNavigation() {
             <div className="hidden items-center md:flex md:gap-2 lg:gap-2.5">
               {languageSegment}
               {themeButton}
+              {visningHeaderLink}
               {contactHeaderLink}
             </div>
 
@@ -491,6 +502,13 @@ export function AppNavigation() {
               <nav className="min-h-0 flex-1 overflow-y-auto px-2 py-4">{menuPanelLinks}</nav>
               <div className="shrink-0 space-y-4 border-t border-brand-200 px-4 py-5 dark:border-brand-700">
                 <div className="flex justify-center">{languageSegment}</div>
+                <Link
+                  to={ROUTES.visning}
+                  onClick={closeMenu}
+                  className="flex min-h-11 w-full items-center justify-center rounded-full border border-brand-300 px-4 py-3 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-brand-900 transition hover:border-brand-900 hover:bg-brand-50 dark:border-brand-500 dark:text-brand-100 dark:hover:border-brand-200 dark:hover:bg-brand-800/60"
+                >
+                  {t('nav.bookVisning')}
+                </Link>
                 <Link
                   to={kontaktSkjemaHash()}
                   onClick={closeMenu}

@@ -136,3 +136,67 @@ export async function sendContactFormEmailNotification(input: {
     await sendViaFormSubmit(input);
   }
 }
+
+export function buildVisningEmailMessage(input: {
+  arrangementType: string;
+  displayDate: string;
+  selectedTime: string;
+  message?: string;
+  language: string;
+}): { subject: string; body: string } {
+  const lang = input.language === 'en' ? 'en' : 'no';
+  const userMessage = input.message?.trim();
+
+  if (lang === 'en') {
+    return {
+      subject: `New viewing request — ${input.arrangementType} — ${input.displayDate} at ${input.selectedTime}`,
+      body: [
+        '[Viewing request]',
+        '',
+        `Event type: ${input.arrangementType}`,
+        `Date: ${input.displayDate}`,
+        `Time: ${input.selectedTime}`,
+        '',
+        userMessage ? `Questions / message:\n${userMessage}` : 'Questions / message: —',
+        '',
+        `Source: ${typeof window !== 'undefined' ? window.location.origin : ''}/visning`,
+      ].join('\n'),
+    };
+  }
+
+  return {
+    subject: `Ny visningsforespørsel — ${input.arrangementType} — ${input.displayDate} kl. ${input.selectedTime}`,
+    body: [
+      '[Visningsforespørsel]',
+      '',
+      `Arrangement: ${input.arrangementType}`,
+      `Dato: ${input.displayDate}`,
+      `Tid: ${input.selectedTime}`,
+      '',
+      userMessage ? `Spørsmål / melding:\n${userMessage}` : 'Spørsmål / melding: —',
+      '',
+      `Kilde: ${typeof window !== 'undefined' ? window.location.origin : ''}/visning`,
+    ].join('\n'),
+  };
+}
+
+/** Same delivery path as the contact form (Web3Forms or FormSubmit). */
+export async function sendVisningEmailNotification(input: {
+  name: string;
+  email: string;
+  phone: string;
+  arrangementType: string;
+  displayDate: string;
+  selectedTime: string;
+  message?: string;
+  language: string;
+}): Promise<void> {
+  const { subject, body } = buildVisningEmailMessage(input);
+  await sendContactFormEmailNotification({
+    name: input.name,
+    email: input.email,
+    phone: input.phone,
+    message: body,
+    subject,
+  });
+}

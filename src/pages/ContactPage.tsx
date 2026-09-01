@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Clock, ExternalLink, type LucideIcon } from 'lucide-react';
@@ -7,6 +7,7 @@ import { cn } from '../lib/utils';
 import { PAGE_H1_CLASS, SECTION_H3_CLASS, SECTION_LEAD_CLASS, UI_EYEBROW_CLASS } from '../lib/typography';
 import { ContactForm } from '../components/ContactForm';
 import { ContactMap } from '../components/ContactMap';
+import { ROUTES } from '../lib/routes';
 import {
   VENUE_CONTACT_EMAIL,
   VENUE_CONTACT_PHONE_HREF,
@@ -105,7 +106,13 @@ export const ContactPage: React.FC = () => {
               transition={{ duration: 0.45, delay: 0.1 }}
               className={cn(SECTION_LEAD_CLASS, 'mt-5')}
             >
-              {t('contactPage.intro')}
+              {t('contactPage.intro')}{' '}
+              <Link
+                to={ROUTES.visning}
+                className="font-semibold text-brand-900 underline decoration-brand-400 underline-offset-4 transition hover:decoration-brand-700 dark:text-brand-100 dark:decoration-brand-500"
+              >
+                {t('contactPage.bookVisningLink')}
+              </Link>
             </motion.p>
           </header>
         </div>
