@@ -773,7 +773,7 @@ const resources = {
             },
             barn: {
               title: 'Celebration hall',
-              desc: 'The main room with space for dinner, speeches and dancing — all in one place.',
+              desc: 'Large venue for up to 250 guests with space for dinner, speeches and celebration — all in one place.',
               imgAlt:
                 'Aerial view of the estate — main venue, white guest house with pool, red outbuilding, picnic tables, gravel paths, Norwegian flag and forested hills',
             },
@@ -781,7 +781,7 @@ const resources = {
               title: 'Helicopter',
               desc: 'Arrive or leave by helicopter when available — a memorable experience arranged on request.',
               imgAlt:
-                'Yellow helicopter with red stripes parked on gravel beside a grain field and forest',
+                'Yellow helicopter parked in front of the venue with guests gathered for a celebration',
             },
           },
         },
@@ -996,7 +996,7 @@ const resources = {
         submitting: 'Sending…',
         submitError: 'Something went wrong. Please call us or try again.',
         successHeading: 'Viewing requested!',
-        successBody: 'We will contact you within one business day to confirm.',
+        successBody: 'We will confirm your viewing and look forward to meeting you.',
         successPhone: 'Questions? Call us:',
         errName: 'Please enter at least two characters.',
         errEmail: 'Enter a valid email address.',
@@ -1918,7 +1918,7 @@ const resources = {
             },
             barn: {
               title: 'Selskapslokale',
-              desc: 'Hovedrommet med god plass til middag, taler og fest – alt samlet på ett sted.',
+              desc: 'Stort lokale for opp til 250 personer med god plass til middag, taler og fest - alt samlet på ett sted.',
               imgAlt:
                 'Luftfoto av tunet — hovedbygg, hvitt gjestehus med basseng, rødt driftsbygg, langbord ute, grusveier, norsk flagg og skogkledde åser',
             },
@@ -1926,7 +1926,7 @@ const resources = {
               title: 'Helikopter',
               desc: 'Ankomst eller avreise med helikopter når det er tilgjengelig — en unik opplevelse etter avtale.',
               imgAlt:
-                'Gult helikopter med røde striper parkert på grus ved åker og skog',
+                'Gult helikopter parkert foran selskapslokalet med gjester samlet til feiring',
             },
           },
         },
@@ -2141,7 +2141,7 @@ const resources = {
         submitting: 'Sender …',
         submitError: 'Noe gikk galt. Ring oss eller prøv igjen.',
         successHeading: 'Visning forespurt!',
-        successBody: 'Vi tar kontakt innen én virkedag for å bekrefte.',
+        successBody: 'Vi bekrefter visningen din og ser frem til å møte deg.',
         successPhone: 'Spørsmål? Ring oss:',
         errName: 'Skriv inn minst to tegn.',
         errEmail: 'Oppgi en gyldig e-postadresse.',

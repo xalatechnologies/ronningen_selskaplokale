@@ -70,14 +70,44 @@ export function isValidSlotTime(time: string): time is FridaySlotTime {
   return (FRIDAY_SLOT_TIMES as readonly string[]).includes(time);
 }
 
-/** Stable urgency label per date — varies between 2, 3 and 4 spots. */
-function spotsLeftForDate(dateStr: string): number {
-  const options = [2, 2, 3, 3, 4];
+function seededShuffle<T>(items: T[], seed: string): T[] {
+  const arr = [...items];
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) {
+    h = (h * 31 + seed.charCodeAt(i)) >>> 0;
+  }
+  const rand = () => {
+    h = (h * 1664525 + 1013904223) >>> 0;
+    return h / 0x100000000;
+  };
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+/** 2 or 3 spots — capped by how many slots exist that day. */
+function spotsLeftForDate(dateStr: string, maxSpots: number): number {
+  if (maxSpots <= 1) return maxSpots;
+  const options = [2, 2, 3].filter((n) => n <= maxSpots);
   let hash = 0;
   for (let i = 0; i < dateStr.length; i++) {
     hash = (hash * 31 + dateStr.charCodeAt(i)) >>> 0;
   }
-  return options[hash % options.length] ?? 2;
+  return options[hash % options.length] ?? Math.min(2, maxSpots);
+}
+
+function timesForDate(dateStr: string, available: FridaySlotTime[]): {
+  times: FridaySlotTime[];
+  spotsLeft: number;
+} {
+  if (available.length === 0) {
+    return { times: [], spotsLeft: 0 };
+  }
+  const spotsLeft = spotsLeftForDate(dateStr, available.length);
+  const picked = seededShuffle(available, `${dateStr}slots`).slice(0, spotsLeft).sort();
+  return { times: picked, spotsLeft: picked.length };
 }
 
 export function getUpcomingFridays(count = 8, now = new Date(), locale = 'no'): FridaySlot[] {
@@ -91,16 +121,19 @@ export function getUpcomingFridays(count = 8, now = new Date(), locale = 'no'): 
   }
 
   while (result.length < count) {
-    const times = availableTimesForDate(cursor, now);
-    if (times.length > 0) {
+    const available = availableTimesForDate(cursor, now);
+    if (available.length > 0) {
       const dateStr = toDateStr(cursor);
-      result.push({
-        date: new Date(cursor),
-        dateStr,
-        displayDate: formatFridayDisplay(cursor, locale),
-        times,
-        spotsLeft: spotsLeftForDate(dateStr),
-      });
+      const { times, spotsLeft } = timesForDate(dateStr, available);
+      if (times.length > 0) {
+        result.push({
+          date: new Date(cursor),
+          dateStr,
+          displayDate: formatFridayDisplay(cursor, locale),
+          times,
+          spotsLeft,
+        });
+      }
     }
     cursor = new Date(cursor);
     cursor.setDate(cursor.getDate() + 7);
