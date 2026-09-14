@@ -540,8 +540,16 @@ const resources = {
               note: 'Main celebration hall — package pricing depends on event type and guest count.',
             },
             helicopter: {
+              price: 'From NOK 7,000',
+              note: 'Drammen–Rønningen flight for up to 3 people, when available and by arrangement.',
+            },
+            busTransport: {
+              price: 'From NOK 5,500 one way',
+              note: 'Coach pickup and drop-off via partners (e.g. Drammen or Oslo), up to about 80 guests.',
+            },
+            decoration: {
               price: 'On request',
-              note: 'Available by arrangement when weather and scheduling allow.',
+              note: 'In-house decoration stock plus partner package solutions.',
             },
           },
         },
@@ -745,7 +753,7 @@ const resources = {
               title: 'Time with animals',
               desc: 'Close to animals and outdoor areas for a calm, distinctive setting around your event.',
               imgAlt:
-                'White goats resting by grey wooden shelters on a grassy hillside with green fields beyond',
+                'Bride and groom by a wooden fence overlooking goats in the pasture on the hillside',
             },
             barDanceFloor: {
               title: 'Bar & dance floor',
@@ -775,13 +783,25 @@ const resources = {
               title: 'Celebration hall',
               desc: 'Large venue for up to 250 guests with space for dinner, speeches and celebration — all in one place.',
               imgAlt:
-                'Aerial view of the estate — main venue, white guest house with pool, red outbuilding, picnic tables, gravel paths, Norwegian flag and forested hills',
+                'Twilight view of the venue glowing from within, with the white guest house, red barn and forested hills behind',
             },
             helicopter: {
               title: 'Helicopter',
-              desc: 'Arrive or leave by helicopter when available — a memorable experience arranged on request.',
+              desc: 'Arrive or leave by helicopter when available — a memorable experience by arrangement. A flight from Drammen to Rønningen Selskapslokale costs NOK 7,000 and seats 3 people.',
               imgAlt:
                 'Yellow helicopter parked in front of the venue with guests gathered for a celebration',
+            },
+            busTransport: {
+              title: 'Bus transport',
+              desc: 'Through our partners we offer coach pickup and drop-off from e.g. Drammen or Oslo, with stops along the way if needed. Prices from NOK 5,500 one way, for up to about 80 guests.',
+              imgAlt:
+                'Coaches on a gravel parking area with forest behind — group transport to the venue',
+            },
+            decoration: {
+              title: 'Decoration',
+              desc: 'We have decoration in our own stock that can be used. We also offer decoration package solutions through our partners.',
+              imgAlt:
+                'Outdoor wedding canopy with white roses, fabric drapes and ceremonial setup in the field',
             },
           },
         },
@@ -1686,8 +1706,16 @@ const resources = {
               note: 'Hovedlokale — pakkepris avhenger av arrangementstype og antall gjester.',
             },
             helicopter: {
+              price: 'Fra kr 7 000',
+              note: 'Tur Drammen–Rønningen for inntil 3 personer, når tilgjengelig og etter avtale.',
+            },
+            busTransport: {
+              price: 'Fra kr 5 500 per vei',
+              note: 'Henting og levering med buss via samarbeidspartnere (f.eks. Drammen eller Oslo), opptil ca. 80 personer.',
+            },
+            decoration: {
               price: 'Etter avtale',
-              note: 'Tilgjengelig etter avtale når vær og tidspunkt tillater det.',
+              note: 'Egen lagerdekorasjon pluss pakkeløsninger via samarbeidspartnere.',
             },
           },
         },
@@ -1890,7 +1918,7 @@ const resources = {
               title: 'Samvær med dyr',
               desc: 'Nærhet til dyr og uteområder gir en rolig og unik ramme rundt arrangementet.',
               imgAlt:
-                'Hvite geiter ved grå trehus på en gressbakke med grønne åser i bakgrunnen',
+                'Brud og brudgom ved gjerdet med utsikt til geiter på beitet i åssiden',
             },
             barDanceFloor: {
               title: 'Bar & dansegulv',
@@ -1920,13 +1948,25 @@ const resources = {
               title: 'Selskapslokale',
               desc: 'Stort lokale for opp til 250 personer med god plass til middag, taler og fest - alt samlet på ett sted.',
               imgAlt:
-                'Luftfoto av tunet — hovedbygg, hvitt gjestehus med basseng, rødt driftsbygg, langbord ute, grusveier, norsk flagg og skogkledde åser',
+                'Skumringsbilde av selskapslokalet opplyst innenfra, med hvitt gjestehus, rødt uthus og skogkledde åser bak',
             },
             helicopter: {
               title: 'Helikopter',
-              desc: 'Ankomst eller avreise med helikopter når det er tilgjengelig — en unik opplevelse etter avtale.',
+              desc: 'Ankomst eller avreise med helikopter når det er tilgjengelig — en unik opplevelse etter avtale. Tur fra Drammen til Rønningen Selskapslokale koster 7 000,– og har plass til 3 personer.',
               imgAlt:
                 'Gult helikopter parkert foran selskapslokalet med gjester samlet til feiring',
+            },
+            busTransport: {
+              title: 'Transport med buss',
+              desc: 'Gjennom våre samarbeidspartnere tilbyr vi henting og levering med buss fra f.eks. Drammen eller Oslo, med mulighet for stopp underveis. Priser fra 5 500,– per vei, med plass til opptil 80 personer.',
+              imgAlt:
+                'Turbusser på grusparkering med skog i bakgrunnen — gruppetransport til lokalet',
+            },
+            decoration: {
+              title: 'Dekorasjon',
+              desc: 'Vi har en del dekorasjon på eget lager som kan benyttes. Vi tilbyr også egne pakkeløsninger for dekor gjennom våre samarbeidspartnere.',
+              imgAlt:
+                'Utendørs vielsesoppsett med treramme, hvite roser, stoffdrapering og seremonioppsett på åkeren',
             },
           },
         },
