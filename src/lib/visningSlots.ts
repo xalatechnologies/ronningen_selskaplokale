@@ -70,6 +70,9 @@ export function isValidSlotTime(time: string): time is FridaySlotTime {
   return (FRIDAY_SLOT_TIMES as readonly string[]).includes(time);
 }
 
+/** Friday 25 September 2026 — all viewing times are booked. */
+const FULLY_BOOKED_DATES = new Set(['2026-09-25']);
+
 function seededShuffle<T>(items: T[], seed: string): T[] {
   const arr = [...items];
   let h = 0;
@@ -104,6 +107,9 @@ function timesForDate(dateStr: string, available: FridaySlotTime[]): {
 } {
   if (available.length === 0) {
     return { times: [], spotsLeft: 0 };
+  }
+  if (FULLY_BOOKED_DATES.has(dateStr)) {
+    return { times: [...available].sort(), spotsLeft: 0 };
   }
   const spotsLeft = spotsLeftForDate(dateStr, available.length);
   const picked = seededShuffle(available, `${dateStr}slots`).slice(0, spotsLeft).sort();

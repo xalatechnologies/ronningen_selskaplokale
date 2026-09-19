@@ -281,23 +281,48 @@ export const VisningWizard: React.FC = () => {
                   <p className="font-semibold capitalize text-brand-950 dark:text-brand-50">
                     {friday.displayDate}
                   </p>
-                  <span className="text-xs font-medium text-[#c9a84c] dark:text-[#d4b55e]">
-                    {friday.spotsLeft === 1
-                      ? t('visningWizard.spotsLeftOne')
-                      : t('visningWizard.spotsLeft', { count: friday.spotsLeft })}
+                  <span
+                    className={cn(
+                      'text-xs font-medium',
+                      friday.spotsLeft === 0
+                        ? 'text-brand-500 dark:text-brand-400'
+                        : 'text-[#c9a84c] dark:text-[#d4b55e]'
+                    )}
+                  >
+                    {friday.spotsLeft === 0
+                      ? t('visningWizard.fullyBooked')
+                      : friday.spotsLeft === 1
+                        ? t('visningWizard.spotsLeftOne')
+                        : t('visningWizard.spotsLeft', { count: friday.spotsLeft })}
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-2 px-4 pb-3">
-                  {friday.times.map((time) => (
-                    <button
-                      key={`${friday.dateStr}-${time}`}
-                      type="button"
-                      onClick={() => selectTime(friday, time)}
-                      className="rounded-full border border-brand-300 bg-white px-4 py-2 text-sm font-medium text-brand-900 transition hover:border-brand-900 hover:bg-brand-900 hover:text-white dark:border-brand-500 dark:bg-brand-900 dark:text-brand-100 dark:hover:border-brand-100 dark:hover:bg-brand-100 dark:hover:text-brand-900"
-                    >
-                      {t('visningWizard.timeAt', { time })}
-                    </button>
-                  ))}
+                  {friday.times.map((time) => {
+                    const booked = friday.spotsLeft === 0;
+                    return (
+                      <button
+                        key={`${friday.dateStr}-${time}`}
+                        type="button"
+                        disabled={booked}
+                        aria-disabled={booked || undefined}
+                        aria-label={
+                          booked ? t('visningWizard.timeBookedAria', { time }) : undefined
+                        }
+                        onClick={() => {
+                          if (!booked) selectTime(friday, time);
+                        }}
+                        className={cn(
+                          'rounded-full border px-4 py-2 text-sm font-medium transition',
+                          booked
+                            ? 'cursor-not-allowed border-brand-200 bg-brand-100/80 text-brand-500 line-through decoration-brand-400 dark:border-brand-700 dark:bg-brand-800/50 dark:text-brand-400'
+                            : 'border-brand-300 bg-white text-brand-900 hover:border-brand-900 hover:bg-brand-900 hover:text-white dark:border-brand-500 dark:bg-brand-900 dark:text-brand-100 dark:hover:border-brand-100 dark:hover:bg-brand-100 dark:hover:text-brand-900'
+                        )}
+                      >
+                        {t('visningWizard.timeAt', { time })}
+                        {booked ? ` · ${t('visningWizard.fullyBooked')}` : null}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             ))}
