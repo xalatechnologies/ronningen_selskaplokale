@@ -312,7 +312,7 @@ const resources = {
             },
             item3: {
               q: 'How many guests can you host?',
-              a: 'We can host up to 300 guests, with space for up to 200 more in a party tent.',
+              a: 'We have a limit of 200 guests.',
             },
             item4: {
               q: 'Can we hold the ceremony at the venue or outdoors?',
@@ -781,7 +781,7 @@ const resources = {
             },
             barn: {
               title: 'Celebration hall',
-              desc: 'Large venue for up to 250 guests with space for dinner, speeches and celebration — all in one place.',
+              desc: 'Large venue with a limit of 200 guests — space for dinner, speeches and celebration, all in one place.',
               imgAlt:
                 'Twilight view of the venue glowing from within, with the white guest house, red barn and forested hills behind',
             },
@@ -1481,7 +1481,7 @@ const resources = {
             },
             item3: {
               q: 'Hvor mange gjester er det plass til?',
-              a: 'Vi har plass til inntil 300 gjester og muligheter for 200 ekstra i partitelt.',
+              a: 'Vi har en grense på 200 gjester.',
             },
             item4: {
               q: 'Er det mulig med vielse på lokalet/utendørs?',
@@ -1948,7 +1948,7 @@ const resources = {
             },
             barn: {
               title: 'Selskapslokale',
-              desc: 'Stort lokale for opp til 250 personer med god plass til middag, taler og fest - alt samlet på ett sted.',
+              desc: 'Stort lokale med grense på 200 gjester — god plass til middag, taler og fest, alt samlet på ett sted.',
               imgAlt:
                 'Skumringsbilde av selskapslokalet opplyst innenfra, med hvitt gjestehus, rødt uthus og skogkledde åser bak',
             },

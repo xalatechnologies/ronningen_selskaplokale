@@ -16,7 +16,7 @@ const faqData = [
     questions: [
       {
         q: 'What is the capacity of the venue?',
-        a: 'Our venue can accommodate up to 120 guests for a seated dinner and up to 200 for a standing reception.',
+        a: 'We have a limit of 200 guests.',
       },
       {
         q: 'Is there parking available?',
