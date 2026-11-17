@@ -931,7 +931,7 @@ const resources = {
         addressValue: 'Baneveien 290, 3410 SYLLING',
         addressHint: 'Easy access by car and public transport.',
         hoursLabel: 'Viewings',
-        hoursValue: 'Friday viewings by appointment',
+        hoursValue: 'Saturday viewings by appointment',
         hoursHint: 'Book a free viewing online or contact us to arrange a visit.',
         bookVisningLink: 'Book viewing →',
         mapTitle: 'Location',
@@ -973,14 +973,14 @@ const resources = {
       visningPage: {
         metaTitle: 'Book a free viewing | Rønningen Selskapslokale',
         metaDescription:
-          'Book a free, no-obligation viewing at Rønningen Selskapslokale in Sylling. Friday slots at 17:00, 18:00 and 19:00.',
+          'Book a free, no-obligation viewing at Rønningen Selskapslokale in Sylling. Saturday slots at 12:00 and 13:00.',
         eyebrow: 'Free viewing',
         heading: 'Come and see — before you decide.',
         lead:
           'A guided tour of the venue with no obligation and no sales pressure. Just the spaces, the atmosphere, and a sense of whether Rønningen fits your plans.',
         trustNoObligation: 'No obligation',
         trustParking: 'Free parking',
-        trustFridays: 'Friday viewings',
+        trustFridays: 'Saturday viewings',
         trustLocation: 'Sylling, Lier',
         wizardAria: 'Book a viewing',
         fallbackHeading: 'Questions?',
@@ -995,7 +995,7 @@ const resources = {
         calendarHeading: 'Choose date and time',
         calendarIntro:
           'The viewing is free and lasts about 45 minutes. We confirm your slot by email.',
-        fridayOnlyNote: 'Viewings are only available on Fridays.',
+        fridayOnlyNote: 'Viewings are only available on Saturdays.',
         spotsLeftOne: '1 spot left',
         spotsLeft: '{{count}} spots left',
         fullyBooked: 'Fully booked',
@@ -2098,7 +2098,7 @@ const resources = {
         addressValue: 'Baneveien 290, 3410 SYLLING',
         addressHint: 'God adkomst med bil og kollektivt.',
         hoursLabel: 'Omvisning',
-        hoursValue: 'Fredagsvisning etter avtale',
+        hoursValue: 'Lørdagsvisning etter avtale',
         hoursHint: 'Book gratis visning på nett, eller ta kontakt for å avtale tid.',
         bookVisningLink: 'Book visning →',
         mapTitle: 'Her finner dere oss',
@@ -2140,14 +2140,14 @@ const resources = {
       visningPage: {
         metaTitle: 'Book gratis visning | Rønningen Selskapslokale',
         metaDescription:
-          'Book gratis og uforpliktende visning på Rønningen Selskapslokale i Sylling. Fredager kl. 17:00, 18:00 og 19:00.',
+          'Book gratis og uforpliktende visning på Rønningen Selskapslokale i Sylling. Lørdager kl. 12:00 og 13:00.',
         eyebrow: 'Gratis visning',
         heading: 'Kom og se — før dere bestemmer dere.',
         lead:
           'En guidet omvisning uten forpliktelse og uten salgspress. Bare lokalene, stemningen og en følelse av om Rønningen passer for dere.',
         trustNoObligation: 'Ingen forpliktelse',
         trustParking: 'Gratis parkering',
-        trustFridays: 'Fredagsvisning',
+        trustFridays: 'Lørdagsvisning',
         trustLocation: 'Sylling, Lier',
         wizardAria: 'Book visning',
         fallbackHeading: 'Spørsmål?',
@@ -2162,7 +2162,7 @@ const resources = {
         calendarHeading: 'Velg dato og tid',
         calendarIntro:
           'Visning er gratis og varer ca. 45 minutter. Vi bekrefter tidspunktet på e-post.',
-        fridayOnlyNote: 'Omvisning er kun tilgjengelig på fredager.',
+        fridayOnlyNote: 'Omvisning er kun tilgjengelig på lørdager.',
         spotsLeftOne: '1 plass igjen',
         spotsLeft: '{{count}} plasser igjen',
         fullyBooked: 'Opptatt',

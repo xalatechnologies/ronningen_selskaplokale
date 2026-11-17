@@ -1,4 +1,4 @@
-export const FRIDAY_SLOT_TIMES = ['17:00', '18:00', '19:00'] as const;
+export const FRIDAY_SLOT_TIMES = ['12:00', '13:00'] as const;
 
 export type FridaySlotTime = (typeof FRIDAY_SLOT_TIMES)[number];
 
@@ -21,10 +21,11 @@ function slotHour(time: FridaySlotTime): number {
   return parseInt(time.split(':')[0], 10);
 }
 
+// Viewings are held on Saturdays (identifiers still say "Friday" from the old schedule).
+const VIEWING_WEEKDAY = 6;
+
 function getDaysUntilFriday(day: number): number {
-  if (day === 5) return 0;
-  if (day < 5) return 5 - day;
-  return 5 + 7 - day;
+  return (VIEWING_WEEKDAY - day + 7) % 7;
 }
 
 function startOfDay(d: Date): Date {
@@ -57,7 +58,7 @@ export function isValidFridayDate(dateStr: string): boolean {
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateStr);
   if (!match) return false;
   const d = new Date(`${dateStr}T12:00:00`);
-  return !Number.isNaN(d.getTime()) && d.getDay() === 5;
+  return !Number.isNaN(d.getTime()) && d.getDay() === VIEWING_WEEKDAY;
 }
 
 export function isFridayInFuture(dateStr: string, now = new Date()): boolean {
@@ -70,7 +71,7 @@ export function isValidSlotTime(time: string): time is FridaySlotTime {
   return (FRIDAY_SLOT_TIMES as readonly string[]).includes(time);
 }
 
-/** Friday 25 September 2026 — all viewing times are booked. */
+/** Friday 25 September 2026 (legacy) — all viewing times are booked. */
 const FULLY_BOOKED_DATES = new Set(['2026-09-25']);
 
 function seededShuffle<T>(items: T[], seed: string): T[] {
@@ -121,7 +122,7 @@ export function getUpcomingFridays(count = 8, now = new Date(), locale = 'no'): 
   let cursor = startOfDay(now);
   cursor.setDate(cursor.getDate() + getDaysUntilFriday(cursor.getDay()));
 
-  if (cursor.getDay() === 5 && availableTimesForDate(cursor, now).length === 0) {
+  if (cursor.getDay() === VIEWING_WEEKDAY && availableTimesForDate(cursor, now).length === 0) {
     cursor = new Date(cursor);
     cursor.setDate(cursor.getDate() + 7);
   }
