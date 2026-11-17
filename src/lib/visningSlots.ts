@@ -1,4 +1,4 @@
-export const FRIDAY_SLOT_TIMES = ['12:00', '13:00'] as const;
+export const FRIDAY_SLOT_TIMES = ['12:00', '13:00', '17:00', '18:00', '19:00'] as const;
 
 export type FridaySlotTime = (typeof FRIDAY_SLOT_TIMES)[number];
 
@@ -24,6 +24,19 @@ function slotHour(time: FridaySlotTime): number {
 // Viewings are held on Saturdays (identifiers still say "Friday" from the old schedule).
 const VIEWING_WEEKDAY = 6;
 
+/** First Saturday offered; earlier Saturdays are hidden. */
+const FIRST_VIEWING_DATE = '2026-11-28';
+
+const SATURDAY_TIMES: FridaySlotTime[] = ['12:00', '13:00'];
+
+/** One-off Friday still offered with its old evening times. */
+const LEGACY_FRIDAY_DATE = '2026-11-20';
+const LEGACY_FRIDAY_TIMES: FridaySlotTime[] = ['17:00', '18:00', '19:00'];
+
+function slotTimesFor(dateStr: string): FridaySlotTime[] {
+  return dateStr === LEGACY_FRIDAY_DATE ? LEGACY_FRIDAY_TIMES : SATURDAY_TIMES;
+}
+
 function getDaysUntilFriday(day: number): number {
   return (VIEWING_WEEKDAY - day + 7) % 7;
 }
@@ -36,10 +49,11 @@ function startOfDay(d: Date): Date {
 
 function availableTimesForDate(date: Date, now: Date): FridaySlotTime[] {
   const isToday = toDateStr(date) === toDateStr(now);
-  if (!isToday) return [...FRIDAY_SLOT_TIMES];
+  const all = slotTimesFor(toDateStr(date));
+  if (!isToday) return [...all];
   const hour = now.getHours();
   const minute = now.getMinutes();
-  return FRIDAY_SLOT_TIMES.filter((t) => {
+  return all.filter((t) => {
     const h = slotHour(t);
     return h > hour || (h === hour && minute === 0);
   });
@@ -58,7 +72,9 @@ export function isValidFridayDate(dateStr: string): boolean {
   const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateStr);
   if (!match) return false;
   const d = new Date(`${dateStr}T12:00:00`);
-  return !Number.isNaN(d.getTime()) && d.getDay() === VIEWING_WEEKDAY;
+  if (Number.isNaN(d.getTime())) return false;
+  if (dateStr === LEGACY_FRIDAY_DATE) return true;
+  return d.getDay() === VIEWING_WEEKDAY && dateStr >= FIRST_VIEWING_DATE;
 }
 
 export function isFridayInFuture(dateStr: string, now = new Date()): boolean {
@@ -69,6 +85,10 @@ export function isFridayInFuture(dateStr: string, now = new Date()): boolean {
 
 export function isValidSlotTime(time: string): time is FridaySlotTime {
   return (FRIDAY_SLOT_TIMES as readonly string[]).includes(time);
+}
+
+export function isValidSlot(dateStr: string, time: string): boolean {
+  return (slotTimesFor(dateStr) as readonly string[]).includes(time);
 }
 
 /** Friday 25 September 2026 (legacy) — all viewing times are booked. */
@@ -122,28 +142,28 @@ export function getUpcomingFridays(count = 8, now = new Date(), locale = 'no'): 
   let cursor = startOfDay(now);
   cursor.setDate(cursor.getDate() + getDaysUntilFriday(cursor.getDay()));
 
-  if (cursor.getDay() === VIEWING_WEEKDAY && availableTimesForDate(cursor, now).length === 0) {
+  const legacy = new Date(`${LEGACY_FRIDAY_DATE}T00:00:00`);
+  const candidates: Date[] = startOfDay(now) <= legacy ? [legacy] : [];
+  while (candidates.length < count + 2) {
+    if (toDateStr(cursor) >= FIRST_VIEWING_DATE) candidates.push(cursor);
     cursor = new Date(cursor);
     cursor.setDate(cursor.getDate() + 7);
   }
 
-  while (result.length < count) {
-    const available = availableTimesForDate(cursor, now);
-    if (available.length > 0) {
-      const dateStr = toDateStr(cursor);
-      const { times, spotsLeft } = timesForDate(dateStr, available);
-      if (times.length > 0) {
-        result.push({
-          date: new Date(cursor),
-          dateStr,
-          displayDate: formatFridayDisplay(cursor, locale),
-          times,
-          spotsLeft,
-        });
-      }
-    }
-    cursor = new Date(cursor);
-    cursor.setDate(cursor.getDate() + 7);
+  for (const day of candidates) {
+    if (result.length >= count) break;
+    const dateStr = toDateStr(day);
+    const available = availableTimesForDate(day, now);
+    if (available.length === 0) continue;
+    const { times, spotsLeft } = timesForDate(dateStr, available);
+    if (times.length === 0) continue;
+    result.push({
+      date: new Date(day),
+      dateStr,
+      displayDate: formatFridayDisplay(day, locale),
+      times,
+      spotsLeft,
+    });
   }
 
   return result;

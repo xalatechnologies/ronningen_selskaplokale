@@ -1,7 +1,7 @@
 import {
-  FRIDAY_SLOT_TIMES,
   isFridayInFuture,
   isValidFridayDate,
+  isValidSlot,
   isValidSlotTime,
 } from '../../src/lib/visningSlots';
 
@@ -40,7 +40,7 @@ export function validateVisningPayload(raw: VisningApiPayload): string | null {
     return 'Ugyldig dato';
   }
   if (!isValidSlotTime(raw.selectedTime)) return 'Ugyldig tid';
-  if (!(FRIDAY_SLOT_TIMES as readonly string[]).includes(raw.selectedTime)) {
+  if (!isValidSlot(raw.selectedDate, raw.selectedTime)) {
     return 'Ugyldig tid';
   }
   if (raw.message != null && raw.message.length > 2000) return 'Ugyldig melding';
